@@ -48,26 +48,28 @@ Before you plug the board into JA–JD, check that pins 5/6 and 11/12 line up wi
 - Read 18 SCLK cycles on SDO. The frame is a leading 0, then D13..D0, then zeros (datasheet Fig. 1).
 - SCLK can go up to 60 MHz. Start at 10–20 MHz.
 
-## Cost (Economic PCBA, 5 bare PCBs, before shipping)
+## Cost (JLCPCB Economic PCBA, shipped to Chile)
 
-Run `python3 hw/tools/cost.py N` for N assembled boards.
+Always 5 bare PCBs. N = boards assembled. For the full line-item list, run `python3 hw/tools/cost.py 2 3 5`.
 
-| Block | Per board (2 assembled) | Per board (5 assembled) |
-|---|---|---|
-| Input + HPF + gain | $2.23 | $1.77 |
-| LPF + VMID | $2.31 | $1.85 |
-| Driver + VOCM | $4.64 | $3.72 |
-| ADC + input filter + SPI resistors | $11.32 | $10.40 |
-| Wake comparator (incl. trimmer) | $1.01 | $1.01 |
-| Power | $1.05 | $1.05 |
-| Connectors (hand-soldered) | $0.70 | $0.70 |
-| Shared (PCB, setup, stencil, placement check) | $7.08 | $2.83 |
-| **Total order** | **$60.68** | **$116.65** |
+| | 2 boards | 3 boards | 5 boards |
+|---|---|---|---|
+| Components (JLC buys and places) | $30.43 | $45.65 | $76.08 |
+| PCB fabrication (5 pcs) | $4.00 | $4.00 | $4.00 |
+| Setup + stencil + placement check | $10.16 | $10.16 | $10.16 |
+| Extended-part fee (ADS7057, OPA2365, THS4531) | $9.21 | $9.21 | $9.21 |
+| X-ray inspection of the ADS7057 ($1.64 each) | $3.28 | $4.92 | $8.20 |
+| SMT joints (150/board × $0.0016) | $0.48 | $0.72 | $1.20 |
+| **JLCPCB order** | **$57.56** | **$74.66** | **$108.85** |
+| Shipping, Global Standard (13–22 days) | $9.00 | $9.00 | $9.00 |
+| IVA 19% | $12.65 | $15.90 | $22.39 |
+| Hand-soldered parts (SMA, trimmer, headers) | $3.12 | $4.68 | $7.80 |
+| **Total** | **$82.33** | **$104.24** | **$148.05** |
+| Per board | $41.17 | $34.75 | $29.61 |
 
-Shipping to Chile:
-- Global Standard Direct Line: $9–12, 13–22 business days, orders up to $150.
-- DHL: $42.51, 3–7 business days.
-- Expect about 19% IVA on arrival.
+DHL instead of Global Standard: +$33.51 (3–7 days).
+
+Prices were checked on 2026-10-12 in the JLCPCB parts library and on the PCBA fee page. Upload the files to get the official quote.
 
 ## Files (`hw/`)
 
