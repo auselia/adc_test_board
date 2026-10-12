@@ -1,8 +1,12 @@
 ** Drc report for ADC_Test.kicad_pcb **
-** Created on 2026-10-12T12:07:08 **
+** Created on 2026-10-12T12:58:30 **
 ** Report includes: Errors, Warnings, Exclusions **
 
-** Found 6 DRC violations **
+** Found 7 DRC violations **
+[starved_thermal]: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1)
+    Local override; error
+    @(100.3000 mm, 100.3000 mm): Zone [GND] on F.Cu, priority 0
+    @(131.0250 mm, 130.0000 mm): Pad 2 [GND] of R23 on F.Cu
 [silk_edge_clearance]: Silkscreen clipped by board edge
     Rule: board setup constraints silk; warning
     @(150.0000 mm, 100.0000 mm): Segment on Edge.Cuts

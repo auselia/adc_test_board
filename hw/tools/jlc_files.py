@@ -1,10 +1,10 @@
 """JLCPCB BOM + CPL from the netlist and the KiCad position file.
-THT parts (J1 SMA, J2/J3 headers, RV1 trimmer) are left out: hand-soldered."""
+Left out: THT parts (J1/J4 SMA, J2/J3 headers, RV1 trimmer) are hand-soldered, H1/H2 are holes, C31 is DNP."""
 import csv,os,sys,collections
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 from sexp import *
 HW=os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)),'..'))
-SKIP={'J1','J2','J3','RV1'}   # THT: hand-soldered, keeps them out of the extended-part fee
+SKIP={'J1','J2','J3','J4','RV1','H1','H2','C31'}   # THT: hand-soldered, keeps them out of the extended-part fee
 ROT={}   # ref-prefix/package rotation corrections for JLC, filled after checking the JLC preview
 t=parse(open(os.path.join(HW,'ADC_Test.net')).read())
 comps={}

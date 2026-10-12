@@ -67,6 +67,8 @@ def build():
     for v in ('3.3','5.0'):
         S.append(mk_ic('AMS1117-'+v,'U','AMS1117-'+v,'Package_TO_SOT_SMD:SOT-223-3_TabPin2','http://www.advanced-monolithic.com/pdf/ds1117.pdf','1 A LDO, fixed '+v+' V, SOT-223',
             [('3','VIN','power_in')],[('2','VOUT','power_out')],[],[('1','GND','power_in')]))
+    S.append(mk_ic('XC6206P332','U','XC6206P332','Package_TO_SOT_SMD:SOT-23','https://www.torexsemi.com/file/xc6206/XC6206.pdf','200 mA CMOS LDO, 3.3 V, ceramic-stable, SOT-23',
+        [('3','VIN','power_in')],[('2','VOUT','power_out')],[],[('1','VSS','power_in')]))
     return lib(S)
 if __name__=='__main__':
     open('../Auselia.kicad_sym','w').write(dump(build())+'\n')

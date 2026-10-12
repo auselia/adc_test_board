@@ -10,10 +10,48 @@ gnd=b.FindNet('GND')
 # 1. drop Freerouting's 0.12 mm GND neck-down stubs (the GND pours connect those pads)
 for t in list(b.GetTracks()):
     if t.Type()==pcbnew.PCB_TRACE_T and t.GetWidth()<mm(0.15) and t.GetNetname()=='GND': b.Delete(t)
-for fp in list(b.GetFootprints()):    # single-spoke thermal there: connect solid
-    if fp.GetReference() in ('R21','R23','C26','C27'):
-        for pad in fp.Pads():
-            if pad.GetNetname()=='GND': pad.SetLocalZoneConnection(pcbnew.ZONE_CONNECTION_FULL)
+def gnd_stubs():   # GND track ends that touch nothing but the pour
+    out=[]
+    trs=[t for t in b.GetTracks() if t.GetNetname()=='GND']
+    pads=[p for f in b.GetFootprints() for p in f.Pads() if p.GetNetname()=='GND']
+    for t in trs:
+        if t.Type()!=pcbnew.PCB_TRACE_T: continue
+        for e in (t.GetStart(),t.GetEnd()):
+            hit=any(o is not t and (o.HitTest(e) if o.Type()==pcbnew.PCB_VIA_T else (o.GetStart()==e or o.GetEnd()==e)) for o in trs) \
+                or any(p.HitTest(e) for p in pads)
+            if not hit: out.append(t); break
+    return out
+def via_ok(p,r):       # free copper circle of radius r around p (other nets, both layers)
+    for t in b.GetTracks():
+        if t.GetNetname()=='GND': continue
+        if t.Type()==pcbnew.PCB_VIA_T:
+            if math.dist((T(t.GetPosition().x),T(t.GetPosition().y)),p)<r+0.3: return False
+        else:
+            a=(T(t.GetStart().x),T(t.GetStart().y)); c=(T(t.GetEnd().x),T(t.GetEnd().y))
+            dx,dy=c[0]-a[0],c[1]-a[1]; L=dx*dx+dy*dy
+            u=0 if L==0 else max(0,min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dy)/L))
+            if math.dist((a[0]+u*dx,a[1]+u*dy),p)<r+T(t.GetWidth())/2: return False
+    for f in b.GetFootprints():
+        for pad in f.Pads():
+            if pad.GetNetname()=='GND': continue
+            bb=pad.GetBoundingBox(); bb.Inflate(mm(r))
+            if bb.Contains(V(*p)): return False
+    return True
+for _ in range(5):
+    st=gnd_stubs()
+    if not st: break
+    for t in st:
+        for e in (t.GetStart(),t.GetEnd()):
+            p=(T(e.x),T(e.y))
+            trs=[o for o in b.GetTracks() if o.GetNetname()=='GND' and o is not t]
+            pads=[q for f in b.GetFootprints() for q in f.Pads() if q.GetNetname()=='GND']
+            if any(q.HitTest(e) for q in pads) or any((o.HitTest(e) if o.Type()==pcbnew.PCB_VIA_T else (o.GetStart()==e or o.GetEnd()==e)) for o in trs): continue
+            if via_ok(p,0.3+0.16):
+                v=pcbnew.PCB_VIA(b); v.SetPosition(e); v.SetViaType(pcbnew.VIATYPE_THROUGH); v.SetWidth(mm(0.6)); v.SetDrill(mm(0.3))
+                v.SetNet(gnd); v.SetLayerPair(pcbnew.F_Cu,pcbnew.B_Cu); b.Add(v); print('  GND via at track end',round(p[0]-OX,2),round(p[1]-OY,2))
+            else:
+                b.Delete(t); print('  removed GND stub at',round(p[0]-OX,2),round(p[1]-OY,2))
+            break
 # 2. top GND pour (bottom pour exists from prep_route)
 if not any(z.GetLayer()==pcbnew.F_Cu for z in b.Zones()):
     z=pcbnew.ZONE(b); z.SetLayer(pcbnew.F_Cu); z.SetNet(gnd)
@@ -72,12 +110,17 @@ for fp in b.GetFootprints():
 text('SMA IN',4.6,1.2,1.0)
 text('+9V',2.6,21.2); text('GND',2.6,28.1)
 text('THRESHOLD',23.8,25.6,0.8)
-for s_,y_,sz in (('ADS7057 test board v1',14.0,1.5),('Auselia 2026-10',16.4,1.2)):   # title on the empty back side
+for s_,y_,sz in (('ADS7057 test board v1',6.0,1.5),('Auselia 2026-10',8.4,1.2)):   # title on the empty back side
     t=pcbnew.PCB_TEXT(b); t.SetText(s_); t.SetLayer(pcbnew.B_SilkS); t.SetPosition(V(OX+25,OY+y_)); t.SetTextSize(V(sz,sz))
     t.SetTextThickness(mm(0.2)); t.SetMirrored(True); b.Add(t)
-# PMOD legend (top right, clear of J3)
-for i,l in enumerate(['ZedBoard PMOD','1 CS   7 -','2 -    8 -','3 SDO  9 -','4 SCK 10 nWAKE','5 GND 11 GND','6 3V3 12 3V3']):
-    text(l,39.4,1.2+i*1.15,0.8,pcbnew.GR_TEXT_H_ALIGN_LEFT)
+# PMOD legend on the back (the front corner holds the MON SMA)
+for i,l in enumerate(['ZedBoard PMOD (J3)','1 CS    7 -','2 -     8 -','3 SDO   9 -','4 SCK  10 nWAKE','5 GND  11 GND','6 3V3  12 3V3']):
+    t=pcbnew.PCB_TEXT(b); t.SetText(l); t.SetLayer(pcbnew.B_SilkS); t.SetPosition(V(OX+33.0,OY+16.5+i*1.4))
+    t.SetTextSize(V(1.0,1.0)); t.SetTextThickness(mm(0.15)); t.SetMirrored(True); t.SetHorizJustify(pcbnew.GR_TEXT_H_ALIGN_LEFT); b.Add(t)
+text('MON',39.9,1.4,0.9)
+text('CH',9.6,1.2,1.0)                     # channel number, written by hand in the box
+r_=pcbnew.PCB_SHAPE(b); r_.SetShape(pcbnew.SHAPE_T_RECT); r_.SetLayer(pcbnew.F_SilkS); r_.SetWidth(mm(0.15))
+r_.SetStart(V(OX+11.0,OY+0.35)); r_.SetEnd(V(OX+19.5,OY+2.15)); b.Add(r_)
 text('1',42.0,11.0,0.8)      # next to pad 1 (PMOD pin 1)
 b.GetDesignSettings().SetAuxOrigin(V(OX,OY+H))   # gerber + CPL origin: bottom-left corner
 pcbnew.ZONE_FILLER(b).Fill(b.Zones())

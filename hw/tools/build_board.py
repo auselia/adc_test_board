@@ -24,23 +24,24 @@ POS={
  'U3':(21.0,20.0,0),'R12':(16.0,20.0,90),'R13':(26.0,20.0,90),
  'R11':(14.2,18.0,90),'C13':(12.5,18.0,90),'C12':(14.2,21.6,90),
  'R14':(12.5,14.4,90),'R15':(14.2,14.4,90),                                       # VOCM divider
- 'U5':(5.0,16.6,180),'C21':(10.7,14.6,90),                                       # AVDD regulator
+ 'U5':(8.6,14.6,0),'C21':(8.6,17.4,0),'C30':(8.6,19.4,0),'H1':(3.6,16.4,0),     # AVDD regulator, mounting hole
  'R16':(27.8,24.0,0),'R17':(28.2,22.0,0),                                       # 10R
  'C14':(31.4,22.7,0),'C15':(31.4,24.4,0),'C16':(34.8,23.0,0),'C17':(34.8,24.7,0),  # 4 x 100 pF across AINP/AINM
  'U4':(33.6,20.6,180),'C18':(30.6,19.2,90),'C20':(35.45,18.6,0),'C19':(32.3,18.2,0),'C22':(32.0,15.6,0),
  'R19':(38.6,20.4,0),'R20':(38.6,18.6,180),'R18':(38.95,14.8,0),               # 22R SPI
  'J3':(43.42,11.0,0),                                                           # PMOD, body flush with the right edge
  # 9 V -> 5 V (bottom left)
- 'J2':(2.6,23.4,0),'D1':(7.4,23.6,0),'C23':(7.4,27.8,0),'U7':(13.8,28.0,0),'C24':(7.4,30.4,0),
+ 'J2':(2.6,23.4,0),'D1':(7.4,23.6,0),'C23':(7.4,27.8,0),'U7':(13.8,28.0,0),'C29':(7.6,30.4,0),
  # window comparator (bottom middle/right)
  'RV1':(25.2,29.0,0),'R21':(30.2,26.4,0),'R22':(30.2,28.2,0),'R23':(30.2,30.0,0),'C26':(33.6,26.4,0),'C27':(33.6,30.0,0),
- 'U6':(38.6,28.36,0),'C28':(38.6,24.4,0),'R24':(44.6,27.4,0),
+ 'U6':(38.6,28.36,0),'C28':(37.8,24.6,0),'R24':(40.85,23.3,90),'C31':(38.6,22.4,0),'H2':(46.6,29.1,0),
+ 'J4':(45.6,4.4,0),'R25':(40.0,6.0,90),                                        # MON output
 }
 def load_fp(fpid):
     lib,name=fpid.split(':')
     path=os.path.join(HW,'Auselia.pretty') if lib=='Auselia' else FPDIR+lib+'.pretty'
     return pcbnew.FootprintLoad(path,name)
-FIXED={'J1','J2','J3','U4'}
+FIXED={'J1','J2','J3','J4','U4','H1','H2'}
 def legalize(b,gap=0.1,iters=200):
     """Push the smaller of two overlapping courtyards out along the shorter axis."""
     T=pcbnew.ToMM
@@ -72,7 +73,8 @@ def build(out):
     for c in find(get(t,'components'),'comp'):
         ref=get(c,'ref')[1]
         fields={get(f,'name')[1] if False else f[1][1]:f[2] for f in find(get(c,'fields') or [],'field') if len(f)>2}
-        comps[ref]=dict(value=get(c,'value')[1],fp=get(c,'footprint')[1],fields=fields,
+        dnp=any(get(pp,'name') and get(pp,'name')[1]=='dnp' for pp in find(c,'property'))
+        comps[ref]=dict(value=get(c,'value')[1],fp=get(c,'footprint')[1],fields=fields,dnp=dnp,
                         path=get(get(c,'sheetpath'),'tstamps')[1]+get(c,'tstamps')[1])
     nets={get(n,'name')[1]:[(get(x,'ref')[1],get(x,'pin')[1]) for x in find(n,'node')] for n in find(get(t,'nets'),'net')}
     b=pcbnew.BOARD(); b.SetCopperLayerCount(2)
@@ -85,6 +87,8 @@ def build(out):
         x,y,rot=POS[ref]
         m.SetReference(ref); m.SetValue(c['value'])
         lib,name=c['fp'].split(':'); m.SetFPID(pcbnew.LIB_ID(lib,name))
+        m.SetDNP(c['dnp'])
+        if ref.startswith('H'): m.SetAttributes(m.GetAttributes() & ~pcbnew.FP_EXCLUDE_FROM_BOM)
         if 'LCSC' in c['fields']:
             m.SetField('LCSC',c['fields']['LCSC'])
             f=m.GetField('LCSC'); f.SetVisible(False); f.SetLayer(pcbnew.F_Fab)
