@@ -96,34 +96,49 @@ while gx<W-1.0:
         gy+=2.0
     gx+=2.0
 print('stitching vias',len(added))
-# 4. reference designators to F.Fab (dense board); keep a few useful ones on silk
-for fp in b.GetFootprints():
-    r=fp.Reference()
-    if fp.GetReference() in ('J1',): continue
-    r.SetLayer(pcbnew.F_Fab)
-def text(s,x,y,size=0.8,just=pcbnew.GR_TEXT_H_ALIGN_CENTER,layer=pcbnew.F_SilkS):
+# 4. silkscreen. Reference designators go to F.Fab (the board is dense); the silk carries plain-language labels.
+for fp in b.GetFootprints(): fp.Reference().SetLayer(pcbnew.F_Fab)
+def text(s,x,y,size=0.8,just=pcbnew.GR_TEXT_H_ALIGN_CENTER,layer=pcbnew.F_SilkS,thick=None,mirror=False):
     t=pcbnew.PCB_TEXT(b); t.SetText(s); t.SetLayer(layer); t.SetPosition(V(OX+x,OY+y))
-    t.SetTextSize(V(size,size)); t.SetTextThickness(mm(0.13 if size<1 else 0.18)); t.SetHorizJustify(just); b.Add(t)
-for fp in b.GetFootprints():
-    p=fp.GetPosition(); x,y=T(p.x)-OX,T(p.y)-OY; ref=fp.GetReference()
-    if ref=='J1': fp.Reference().SetPosition(V(OX+x,OY+y-5.2)); fp.Reference().SetText('J1');
-    if ref=='J2': fp.Reference().SetPosition(V(OX+x,OY+y-2.0))
-    if ref=='J3': fp.Reference().SetPosition(V(OX+x+1.27,OY+y-2.2))
-text('SMA IN',4.6,1.2,1.0)
-text('+9V',2.6,21.2); text('GND',2.6,28.1)
-text('THRESHOLD',23.8,25.6,0.8)
-for s_,y_,sz in (('ADS7057 test board v1',6.0,1.5),('Auselia 2026-10',8.4,1.2)):   # title on the empty back side
-    t=pcbnew.PCB_TEXT(b); t.SetText(s_); t.SetLayer(pcbnew.B_SilkS); t.SetPosition(V(OX+25,OY+y_)); t.SetTextSize(V(sz,sz))
-    t.SetTextThickness(mm(0.2)); t.SetMirrored(True); b.Add(t)
-# PMOD legend on the back (the front corner holds the MON SMA)
+    t.SetTextSize(V(size,size)); t.SetTextThickness(mm(thick or (0.13 if size<1 else 0.18))); t.SetHorizJustify(just); t.SetMirrored(mirror); b.Add(t)
+def shape(kind,layer=pcbnew.F_SilkS,width=0.1,fill=False):
+    s=pcbnew.PCB_SHAPE(b); s.SetShape(kind); s.SetLayer(layer); s.SetWidth(mm(width))
+    if fill: s.SetFilled(True)
+    b.Add(s); return s
+def logo(x0,y0,s=0.1):
+    """Auselia mark (platform/brand/mark/svg/auselia-mark-mono-bone.svg), top-left of its bounding box at (x0,y0) mm, s mm per SVG unit."""
+    P=lambda u,v: V(OX+x0+(u-7.0)*s, OY+y0+(v-9.5)*s)
+    st=shape(pcbnew.SHAPE_T_SEGMENT,width=5*s); st.SetStart(P(28,58)); st.SetEnd(P(28,12))                # stem
+    def bez(p0,c1,c2,p3,n=14):
+        return [((1-t)**3*p0[0]+3*(1-t)**2*t*c1[0]+3*(1-t)*t*t*c2[0]+t**3*p3[0],
+                 (1-t)**3*p0[1]+3*(1-t)**2*t*c1[1]+3*(1-t)*t*t*c2[1]+t**3*p3[1]) for t in [k/n for k in range(n+1)]]
+    pts=bez((28,48),(28,37),(18,31),(7,31))+bez((7,31),(7,42),(17,50),(28,48))[1:]                    # leaf
+    lf=shape(pcbnew.SHAPE_T_POLY,width=0.05,fill=True)
+    ch=pcbnew.SHAPE_LINE_CHAIN()
+    for u,v in pts: ch.Append(P(u,v))
+    ch.SetClosed(True); lf.SetPolyShape(pcbnew.SHAPE_POLY_SET(ch))
+    c=shape(pcbnew.SHAPE_T_CIRCLE,width=0.05,fill=True); c.SetCenter(P(28,24)); c.SetEnd(P(34,24))   # bud
+    for r in (14,22):                                                                                  # two sound arcs
+        a=shape(pcbnew.SHAPE_T_ARC,width=3.6*s)
+        dy=(r*r-(r*r-8.0**2 if r==14 else r*r-12.6**2))**0.5
+        h=8.0 if r==14 else 12.6; dx=(r*r-h*h)**0.5
+        a.SetArcGeometry(P(28+dx,24-h),P(28+r,24),P(28+dx,24+h))
+# front: labels a person can read without the schematic
+text('SENSOR IN',4.6,1.1,0.9)                                  # J1, from the perfboard
+text('SCOPE OUT',36.6,0.9,0.9)                                 # J4, same signal the ADC sees (51 ohm)
+text('+9V',2.6,21.2); text('GND',2.6,28.1)                     # J2
+text('WAKE LEVEL',23.2,25.3,0.8)                               # RV1
+text('1',42.0,11.0,0.8)                                        # PMOD pin 1
+text('CH',12.0,1.2,1.0)                                        # channel number: write it in the box
+r_=shape(pcbnew.SHAPE_T_RECT,width=0.15); r_.SetStart(V(OX+13.2,OY+0.35)); r_.SetEnd(V(OX+21.5,OY+2.15))
+logo(15.6,11.7,0.1)
+text('AUSELIA',21.0,13.4,1.0,pcbnew.GR_TEXT_H_ALIGN_LEFT)
+text('TEST v1',21.0,14.8,0.8,pcbnew.GR_TEXT_H_ALIGN_LEFT)
+# back: the PMOD pin list and the title
+for s_,y_,sz in (('ADS7057 test board v1',6.0,1.5),('Auselia 2026-10',8.4,1.2)):
+    text(s_,25,y_,sz,layer=pcbnew.B_SilkS,thick=0.2,mirror=True)
 for i,l in enumerate(['ZedBoard PMOD (J3)','1 CS    7 -','2 -     8 -','3 SDO   9 -','4 SCK  10 nWAKE','5 GND  11 GND','6 3V3  12 3V3']):
-    t=pcbnew.PCB_TEXT(b); t.SetText(l); t.SetLayer(pcbnew.B_SilkS); t.SetPosition(V(OX+33.0,OY+16.5+i*1.4))
-    t.SetTextSize(V(1.0,1.0)); t.SetTextThickness(mm(0.15)); t.SetMirrored(True); t.SetHorizJustify(pcbnew.GR_TEXT_H_ALIGN_LEFT); b.Add(t)
-text('MON',39.9,1.4,0.9)
-text('CH',9.6,1.2,1.0)                     # channel number, written by hand in the box
-r_=pcbnew.PCB_SHAPE(b); r_.SetShape(pcbnew.SHAPE_T_RECT); r_.SetLayer(pcbnew.F_SilkS); r_.SetWidth(mm(0.15))
-r_.SetStart(V(OX+11.0,OY+0.35)); r_.SetEnd(V(OX+19.5,OY+2.15)); b.Add(r_)
-text('1',42.0,11.0,0.8)      # next to pad 1 (PMOD pin 1)
+    text(l,33.0,16.5+i*1.4,1.0,pcbnew.GR_TEXT_H_ALIGN_LEFT,pcbnew.B_SilkS,0.15,True)
 b.GetDesignSettings().SetAuxOrigin(V(OX,OY+H))
 # pads that DRC reports with a starved thermal relief get a solid connection (self-correcting, up to 3 rounds)
 import subprocess,re

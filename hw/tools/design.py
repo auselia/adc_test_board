@@ -13,7 +13,7 @@ class _All:
     def update(self,*a): pass
 core.GLOBALS=_All()          # every net is a global label -> clean net names
 FP_R='Resistor_SMD:R_0603_1608Metric'; FP_C='Capacitor_SMD:C_0603_1608Metric'
-FP_SMA='Connector_Coaxial:SMA_Amphenol_132134_Vertical'
+FP_SMA='Connector_Coaxial:SMA_Amphenol_132134-11_Vertical'
 FP_PMOD='Connector_PinHeader_2.54mm:PinHeader_2x06_P2.54mm_Horizontal'
 FP_H2='Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical'
 FP_C8='Capacitor_SMD:C_0805_2012Metric'

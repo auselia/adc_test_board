@@ -7,10 +7,10 @@ Comment,Designator,Footprint,LCSC Part #
 10uF 25V,C23,C_0805_2012Metric,C15850
 22uF 10V tantalum,C29,CP_EIA-3216-18_Kemet-A,C11366
 SS14,D1,D_SMA,C2480
-SMA in (perfboard),J1,SMA_Amphenol_132134_Vertical,C496549
+SMA in (perfboard),J1,SMA_Amphenol_132134-11_Vertical,C496549
 9V IN,J2,PinHeader_1x02_P2.54mm_Vertical,C492401
 PMOD (ZedBoard),J3,PinHeader_2x06_P2.54mm_Horizontal,C60565
-SMA MON,J4,SMA_Amphenol_132134_Vertical,C496549
+SMA MON,J4,SMA_Amphenol_132134-11_Vertical,C496549
 10k,"R1,R7,R8,R24",R_0603_1608Metric,C25804
 20k,R2,R_0603_1608Metric,C4184
 3.9k,R3,R_0603_1608Metric,C23018

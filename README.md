@@ -28,6 +28,20 @@ The two LM393 open-collector outputs are tied together and pulled up to 3.3 V. *
 
 Board: 50 × 32 mm, 2 layers, all SMD parts on top, GND pour on both layers.
 
+## Silkscreen
+
+| Label | What it is |
+|---|---|
+| SENSOR IN (J1) | SMA input. Connect the perfboard charge amplifier output here. |
+| SCOPE OUT (J4) | SMA monitor output. It carries the same signal the ADC samples, through 51 Ω. Use a 1 MΩ scope input. A 50 Ω input halves the signal. |
+| +9V / GND (J2) | 9 V battery input. The square pad is +9V. |
+| WAKE LEVEL (RV1) | Trimmer that sets how large a signal must be to pull nWAKE low. Clockwise should widen the window. Check with a multimeter on the 33k resistors. |
+| CH and box | Write the channel number in the box with a marker. Four boards go on JA to JD. |
+| 1 (next to J3) | PMOD pin 1. The pin list is on the back of the board. |
+| Leaf and waves | Auselia mark. |
+
+Reference designators (R1, C4 and so on) are on the F.Fab layer, not on the silkscreen. Open the KiCad file to see them.
+
 ## Regulators
 
 The AMS1117 datasheet (LCSC C6186, C6187) says the output capacitor is part of the frequency compensation. It asks for 22 µF solid tantalum and gives no ESR range. So the board uses option (b) for AVDD: the XC6206P332 (C5446, Basic) is stable with ceramic capacitors. It has no noise spec. Reference noise scales with the signal, and events reach 17 % of full scale, so 500 µV rms on AVDD adds about 0.2 LSB. The 5 V AMS1117 keeps option (a): a 22 µF tantalum (C11366) on its output. That part is Extended and adds one $3.07 fee.
@@ -81,6 +95,23 @@ JLCPCB assembles the through-hole parts too (two SMAs, the trimmer and two heade
 The difference between letting JLC solder and doing it yourself is about $6 to $9 for 2 to 5 boards in the low case. The high case adds $14.63.
 
 DHL instead of Global Standard: +$33.51 (3–7 days). Prices were checked on 2026-10-12. Upload the files to get the official quote.
+
+## Simulation
+
+`sim/adc_chain.py` runs the circuit in ngspice with the same behavioral models as the AFE repo. Results are in `sim/results.txt`. They use the final values.
+
+| Check | Result | Target |
+|---|---|---|
+| DC points | VMID5 2.50 V, VOCM 1.65 V, ADC inputs 1.65 V | |
+| Gain at 250 kHz | 13.4 dB (×4.7) | |
+| Variation 230 to 280 kHz | 0.05 dB | < 1 dB |
+| Loss at 10 kHz, relative to 250 kHz | 41.6 dB | ≥ 40 dB |
+| Loss at 2 MHz | 23.5 dB | ≥ 20 dB |
+| −3 dB band | 108 to 522 kHz | |
+| Board noise at the ADC input | 82 µV rms, 0.2 LSB | |
+| Comparator window | 7 to 123 mV at the perfboard output | 50 to 100 mV trigger |
+
+The 10 kHz margin is only 1.6 dB. A bench measurement should confirm it.
 
 ## Files (`hw/`)
 

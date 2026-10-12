@@ -1,0 +1,36 @@
+--- DC operating point (V)
+  v(mid5)      2.500
+  v(vocm)      1.650
+  v(vbuf)      2.500
+  v(hpf)       2.500
+  v(gout)      2.500
+  v(lpf)       2.500
+  v(op)        1.650
+  v(om)        1.650
+  v(ainp)      1.650
+  v(ainm)      1.650
+  v(vth_h)     2.857
+  v(vth_l)     2.143
+--- Frequency response, SMA in -> ADC differential input
+  gain at 250 kHz: 13.36 dB (x4.66; ideal x4.9, the rest is the 50 ohm source into the 100 pF input capacitor and the filter tails)
+        1 kHz   -68.44 dB  rel. 250 kHz  -81.80 dB   MON/LPF 1.000
+       10 kHz   -28.24 dB  rel. 250 kHz  -41.60 dB   MON/LPF 1.000
+       50 kHz    -0.40 dB  rel. 250 kHz  -13.76 dB   MON/LPF 1.000
+      100 kHz     9.64 dB  rel. 250 kHz   -3.72 dB   MON/LPF 1.000
+      230 kHz    13.36 dB  rel. 250 kHz    0.00 dB   MON/LPF 1.000
+      250 kHz    13.36 dB  rel. 250 kHz    0.00 dB   MON/LPF 1.000
+      280 kHz    13.29 dB  rel. 250 kHz   -0.07 dB   MON/LPF 1.000
+      500 kHz    10.89 dB  rel. 250 kHz   -2.47 dB   MON/LPF 1.000
+     1000 kHz     1.69 dB  rel. 250 kHz  -11.67 dB   MON/LPF 1.000
+     2000 kHz   -10.14 dB  rel. 250 kHz  -23.50 dB   MON/LPF 1.000
+     5000 kHz   -26.76 dB  rel. 250 kHz  -40.12 dB   MON/LPF 1.000
+  variation 230-280 kHz: 0.05 dB   (target < 1 dB)
+  loss at 10 kHz: 41.6 dB (target >= 40 dB)   loss at 2 MHz: 23.5 dB (target >= 20 dB)
+  -3 dB band: 108 to 522 kHz
+--- Board noise at the ADC input, 1 kHz to 2.5 MHz: 82 uV rms = 0.21 LSB (LSB 0.40 mV; sensor noise on the perfboard is 40-53 LSB, ADC own noise ~0.6 LSB)
+--- Comparator window (trimmer RV1 = Rp, 20k), half width at LPF_OUT and at the perfboard output (gain 4.9)
+  Rp= 0.0k  VTH_H=2.537 V  VTH_L=2.463 V  half window   37.3 mV  =    7.6 mV at perfboard
+  Rp= 5.0k  VTH_H=2.708 V  VTH_L=2.292 V  half window  208.3 mV  =   42.5 mV at perfboard
+  Rp=10.0k  VTH_H=2.857 V  VTH_L=2.143 V  half window  357.1 mV  =   72.9 mV at perfboard
+  Rp=14.0k  VTH_H=2.963 V  VTH_L=2.037 V  half window  463.0 mV  =   94.5 mV at perfboard
+  Rp=20.0k  VTH_H=3.103 V  VTH_L=1.897 V  half window  603.4 mV  =  123.2 mV at perfboard
