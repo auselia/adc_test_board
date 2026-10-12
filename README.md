@@ -32,18 +32,18 @@ Board: 50 × 32 mm, 2 layers, all SMD parts on top, GND pour on both layers.
 
 The AMS1117 datasheet (LCSC C6186, C6187) says the output capacitor is part of the frequency compensation. It asks for 22 µF solid tantalum and gives no ESR range. So the board uses option (b) for AVDD: the XC6206P332 (C5446, Basic) is stable with ceramic capacitors. It has no noise spec. Reference noise scales with the signal, and events reach 17 % of full scale, so 500 µV rms on AVDD adds about 0.2 LSB. The 5 V AMS1117 keeps option (a): a 22 µF tantalum (C11366) on its output. That part is Extended and adds one $3.07 fee.
 
-## Hand-soldered parts
+## Through-hole parts
 
-These are not in the JLC BOM, which keeps them out of the fees.
+JLCPCB solders these. They are in the BOM and the pick-and-place file.
 
 | Ref | Part | LCSC |
 |---|---|---|
 | J1, J4 | SMA jack, vertical, 5 pins (input, MON) | C496549 |
 | RV1 | 20k Bourns 3296W trimmer | C34845 |
-| J2 | 1×2 pin header, 2.54 mm | — |
-| J3 | 2×6 right-angle pin header, 2.54 mm | — |
+| J2 | 1×2 pin header, 2.54 mm | C492401 |
+| J3 | 2×6 right-angle pin header, 2.54 mm | C60565 |
 
-All four are common parts at local shops.
+If JLCPCB declines a through-hole part, delete its line from the BOM and solder it yourself. The board has the same footprints either way.
 
 ## Connectors
 
@@ -64,26 +64,23 @@ Before you plug the board into JA–JD, check that pins 5/6 and 11/12 line up wi
 
 ## Cost (JLCPCB Economic PCBA, shipped to Chile)
 
-Always 5 bare PCBs. The figures below predate the MON output and regulator changes. Those add about $3.30 per order (tantalum fee) plus a few cents per board. Run the script for current numbers. N = boards assembled. For the full line-item list, run `python3 hw/tools/cost.py 2 3 5`.
+Always 5 bare PCBs. N = boards assembled. Run `python3 hw/tools/cost.py 2 3 5` for the figures below. It reads the BOM in `hw/fab`.
+
+JLCPCB assembles the through-hole parts too (two SMAs, the trimmer and two headers). Economic assembly allows through-hole parts on the top side, which is the only side used. The cost depends on one detail I could not confirm without an order: whether the four through-hole part types also pay the $3.07 extended-part fee. The table gives both cases.
 
 | | 2 boards | 3 boards | 5 boards |
 |---|---|---|---|
-| Components (JLC buys and places) | $30.43 | $45.65 | $76.08 |
-| PCB fabrication (5 pcs) | $4.00 | $4.00 | $4.00 |
-| Setup + stencil + placement check | $10.16 | $10.16 | $10.16 |
-| Extended-part fee (ADS7057, OPA2365, THS4531) | $9.21 | $9.21 | $9.21 |
-| X-ray inspection of the ADS7057 ($1.64 each) | $3.28 | $4.92 | $8.20 |
-| SMT joints (150/board × $0.0016) | $0.48 | $0.72 | $1.20 |
-| **JLCPCB order** | **$57.56** | **$74.66** | **$108.85** |
+| Components (JLC buys and places) | $33.33 | $49.99 | $83.32 |
+| JLC fees (PCB, setup, stencil, 4 extended parts, X-ray, joints, through-hole labor) | $34.68 | $37.01 | $41.67 |
 | Shipping, Global Standard (13–22 days) | $9.00 | $9.00 | $9.00 |
-| IVA 19% | $12.65 | $15.90 | $22.39 |
-| Hand-soldered parts (SMA, trimmer, headers) | $3.12 | $4.68 | $7.80 |
-| **Total** | **$82.33** | **$104.24** | **$148.05** |
-| Per board | $41.17 | $34.75 | $29.61 |
+| IVA 19% | $14.63 | $18.24 | $25.46 |
+| **Total, JLC solders through-hole (low)** | **$91.64** | **$114.24** | **$159.45** |
+| **Total, JLC solders through-hole (high)** | **$106.25** | **$128.86** | **$174.07** |
+| Total if you solder the through-hole parts yourself | $85.66 | $107.40 | $150.88 |
 
-DHL instead of Global Standard: +$33.51 (3–7 days).
+The difference between letting JLC solder and doing it yourself is about $6 to $9 for 2 to 5 boards in the low case. The high case adds $14.63.
 
-Prices were checked on 2026-10-12 in the JLCPCB parts library and on the PCBA fee page. Upload the files to get the official quote.
+DHL instead of Global Standard: +$33.51 (3–7 days). Prices were checked on 2026-10-12. Upload the files to get the official quote.
 
 ## Files (`hw/`)
 
@@ -103,6 +100,6 @@ hw/tools/drc.sh && hw/tools/fab.sh && python3 hw/tools/jlc_files.py
 
 ## At JLCPCB checkout
 
-- Check the rotations in the parts-placement preview, and keep "Confirm Parts Placement" ($0.45). The CPL uses KiCad rotations with no JLC offsets.
+- Check the rotations in the parts-placement preview, and keep "Confirm Parts Placement" ($0.45). The CPL applies the JLC offsets for SOIC (+270), SOT-23 (−90), SOT-223 (+180) and tantalum (+180).
+- Not covered by the offset table, so check them by eye: ADS7057 U4 (pin 1), SS14 D1 (cathode band), and the through-hole J1 to J4 and RV1.
 - Check pin 1 of U4 (ADS7057) in particular.
-- SOIC, SOT-223 and SMA-diode parts usually need a 90° or 180° offset.

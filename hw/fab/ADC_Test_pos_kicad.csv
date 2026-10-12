@@ -32,7 +32,7 @@ Ref,Val,Package,PosX,PosY,Rot,Side
 "J1","SMA in (perfboard)","SMA_Amphenol_132134_Vertical",4.600000,24.400000,0.000000,top
 "J2","9V IN","PinHeader_1x02_P2.54mm_Vertical",2.600000,8.600000,0.000000,top
 "J3","PMOD (ZedBoard)","PinHeader_2x06_P2.54mm_Horizontal",43.420000,21.000000,0.000000,top
-"J4","SMA MON (hand-solder)","SMA_Amphenol_132134_Vertical",45.600000,27.600000,0.000000,top
+"J4","SMA MON","SMA_Amphenol_132134_Vertical",45.600000,27.600000,0.000000,top
 "R1","10k","R_0603_1608Metric",10.400000,27.400000,0.000000,top
 "R2","20k","R_0603_1608Metric",10.400000,20.400000,0.000000,top
 "R3","3.9k","R_0603_1608Metric",22.400000,25.400000,0.000000,top
@@ -58,7 +58,7 @@ Ref,Val,Package,PosX,PosY,Rot,Side
 "R23","33k","R_0603_1608Metric",30.200000,2.000000,0.000000,top
 "R24","10k","R_0603_1608Metric",40.850000,8.700000,90.000000,top
 "R25","51R","R_0603_1608Metric",40.000000,26.000000,90.000000,top
-"RV1","20k trim (hand-solder)","Potentiometer_Bourns_3296W_Vertical",25.950000,3.000000,0.000000,top
+"RV1","20k trim","Potentiometer_Bourns_3296W_Vertical",25.950000,3.000000,0.000000,top
 "U1","OPA2365","SOIC-8_3.9x4.9mm_P1.27mm",16.800000,24.400000,0.000000,top
 "U2","OPA2365","SOIC-8_3.9x4.9mm_P1.27mm",31.600000,24.400000,0.000000,top
 "U3","THS4531","SOIC-8_3.9x4.9mm_P1.27mm",21.000000,12.000000,0.000000,top

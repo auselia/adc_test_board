@@ -52,6 +52,8 @@ for _ in range(5):
             else:
                 b.Delete(t); print('  removed GND stub at',round(p[0]-OX,2),round(p[1]-OY,2))
             break
+for t in gnd_stubs():          # anything still dangling: the pours already carry GND there
+    print('  removed dangling GND stub',round(T(t.GetStart().x)-OX,2),round(T(t.GetStart().y)-OY,2)); b.Delete(t)
 # 2. top GND pour (bottom pour exists from prep_route)
 if not any(z.GetLayer()==pcbnew.F_Cu for z in b.Zones()):
     z=pcbnew.ZONE(b); z.SetLayer(pcbnew.F_Cu); z.SetNet(gnd)
@@ -122,7 +124,22 @@ text('CH',9.6,1.2,1.0)                     # channel number, written by hand in 
 r_=pcbnew.PCB_SHAPE(b); r_.SetShape(pcbnew.SHAPE_T_RECT); r_.SetLayer(pcbnew.F_SilkS); r_.SetWidth(mm(0.15))
 r_.SetStart(V(OX+11.0,OY+0.35)); r_.SetEnd(V(OX+19.5,OY+2.15)); b.Add(r_)
 text('1',42.0,11.0,0.8)      # next to pad 1 (PMOD pin 1)
-b.GetDesignSettings().SetAuxOrigin(V(OX,OY+H))   # gerber + CPL origin: bottom-left corner
+b.GetDesignSettings().SetAuxOrigin(V(OX,OY+H))
+# pads that DRC reports with a starved thermal relief get a solid connection (self-correcting, up to 3 rounds)
+import subprocess,re
+K='/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli'
+for _ in range(3):
+    pcbnew.ZONE_FILLER(b).Fill(b.Zones()); b.Save(PCB)
+    rpt=os.path.join(HW,'_therm.rpt')
+    subprocess.run([K,'pcb','drc','--severity-all','-o',rpt,PCB],capture_output=True)
+    bad=set(re.findall(r'\[starved_thermal\][^\n]*\n[^\n]*\n[^\n]*\n\s*@\([^)]*\): Pad (\S+) \[GND\] of (\S+)',open(rpt).read()))
+    if not bad: break
+    for num,ref in bad:
+        for fp in b.GetFootprints():
+            if fp.GetReference()==ref:
+                for pad in fp.Pads():
+                    if pad.GetNumber()==num: pad.SetLocalZoneConnection(pcbnew.ZONE_CONNECTION_FULL); print('  solid GND connection',ref,num)
+if os.path.exists(os.path.join(HW,'_therm.rpt')): os.remove(os.path.join(HW,'_therm.rpt'))   # gerber + CPL origin: bottom-left corner
 pcbnew.ZONE_FILLER(b).Fill(b.Zones())
 b.Save(PCB)
 print('finished')

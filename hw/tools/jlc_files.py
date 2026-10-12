@@ -1,11 +1,17 @@
 """JLCPCB BOM + CPL from the netlist and the KiCad position file.
-Left out: THT parts (J1/J4 SMA, J2/J3 headers, RV1 trimmer) are hand-soldered, H1/H2 are holes, C31 is DNP."""
+Left out: H1/H2 (mounting holes) and C31 (DNP). THT parts stay in: JLCPCB wave-solders them (Economic, top side)."""
 import csv,os,sys,collections
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 from sexp import *
 HW=os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)),'..'))
-SKIP={'J1','J2','J3','J4','RV1','H1','H2','C31'}   # THT: hand-soldered, keeps them out of the extended-part fee
-ROT={}   # ref-prefix/package rotation corrections for JLC, filled after checking the JLC preview
+SKIP={'H1','H2','C31'}   # THT: hand-soldered, keeps them out of the extended-part fee
+import re
+# JLC rotation offsets, from matthewlai/JLCKicadTools cpl_rotations_db.csv (the table kicad-jlcpcb-tools uses)
+ROT_RULES=[(r'^SOT-223',180),(r'^SOT-23',-90),(r'^SOIC-',270),(r'^CP_EIA-',180)]
+def rot_off(pkg):
+    for rx,off in ROT_RULES:
+        if re.match(rx,pkg): return off
+    return 0
 t=parse(open(os.path.join(HW,'ADC_Test.net')).read())
 comps={}
 for c in find(get(t,'components'),'comp'):
@@ -25,7 +31,7 @@ with open(os.path.join(HW,'fab','ADC_Test_CPL_JLC.csv'),'w',newline='') as f:
     w=csv.writer(f); w.writerow(['Designator','Mid X','Mid Y','Layer','Rotation'])
     for r in rows:
         if r['Ref'] in SKIP: continue
-        rot=(float(r['Rot'])+ROT.get(r['Package'],0))%360
+        rot=(float(r['Rot'])+rot_off(r['Package']))%360
         w.writerow([r['Ref'],'%.3fmm'%float(r['PosX']),'%.3fmm'%float(r['PosY']),'Top','%g'%rot])
 missing=[r for r,c in comps.items() if r not in SKIP and not c['lcsc']]
 print('BOM lines',len(groups),'parts',sum(len(v) for v in groups.values()),'missing LCSC',missing)

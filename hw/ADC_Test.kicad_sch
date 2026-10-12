@@ -2,7 +2,7 @@
 	(version 20250114)
 	(generator "eeschema")
 	(generator_version "9.0")
-	(uuid "62b6a2a4-3795-4810-89b1-4f90502222f1")
+	(uuid "8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3")
 	(paper "A2")
 	(title_block
 		(title "Auselia ADS7057 test board, low-cost version (JLC Basic parts)")
@@ -3043,7 +3043,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "a30b99f2-bbca-4997-b97a-62edfdf8aa22")
+		(uuid "2d8c8138-a431-452a-9b1b-8912257b199a")
 	)
 	(text "Perfboard charge amp (SMA) -> 2nd-order HPF 113 kHz -> gain x4.9 -> 2nd-order LPF 512 kHz -> THS4531 -> 10R/400pF -> ADS7057 -> ZedBoard PMOD."
 		(exclude_from_sim no)
@@ -3054,7 +3054,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "e81272da-9b64-434c-9b80-19ff397bee9e")
+		(uuid "acd47a52-ba4e-4931-afa9-be57d2149088")
 	)
 	(text "AFE v0.1 topology rebuilt around JLC Basic parts (100 pF C0G, E12 resistors, AMS1117, LM393). Power: 9 V -> AMS1117-5.0 -> AMS1117-3.3 (AVDD). DVDD = PMOD 3.3 V."
 		(exclude_from_sim no)
@@ -3065,7 +3065,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "231ff28d-da01-40c1-a230-2099177081d8")
+		(uuid "8b7e5dc2-c0b7-43d4-bf5f-dfae719d924b")
 	)
 	(text "Input, high-pass filter (Sallen-Key, 100 pF / 10k / 20k: f0 = 113 kHz, Q = 0.71), gain 1 + 3.9k/1k = 4.9"
 		(exclude_from_sim no)
@@ -3077,7 +3077,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "3d714812-06bc-494f-a694-a7476c4e4d10")
+		(uuid "ffcf1285-ac84-466c-87b8-94242fe6f381")
 	)
 	(symbol
 		(lib_id "Connector:Conn_Coaxial")
@@ -3087,7 +3087,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "b16217fe-5547-4fd3-9116-281f96184e1b")
+		(uuid "5a58da80-69b6-4d4b-a1c7-f9c06c628686")
 		(property "Reference" "J1"
 			(at 30.48 85.4 0)
 			(effects
@@ -3132,14 +3132,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "34f77831-d968-4814-af84-54a28bba6f85")
+			(uuid "32ceacb1-3f7a-4973-9730-accc9da6bfad")
 		)
 		(pin "2"
-			(uuid "16a75b7f-0aa3-4794-a139-563f04da382f")
+			(uuid "b1a03b57-5352-41fb-b74e-2c4625d5f8f8")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "J1")
 					(unit 1)
 				)
@@ -3156,7 +3156,7 @@
 			)
 			(justify right)
 		)
-		(uuid "95c3c715-998a-47c0-a2e0-b743c4cafc1d")
+		(uuid "71fc14d2-bf93-4aef-81af-81c4d4f02e5f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 25.4 88.9 0)
 			(effects
@@ -3177,7 +3177,7 @@
 			)
 			(justify right)
 		)
-		(uuid "afb4010a-12ef-48fb-bc87-9b638bc54507")
+		(uuid "566626c8-1609-4a81-84e0-509bf701e10d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 30.48 93.98 0)
 			(effects
@@ -3196,7 +3196,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "5b6d0c14-43e2-4c76-9464-2c1b977a6e22")
+		(uuid "fc85541c-a31c-4305-8039-952773365760")
 		(property "Reference" "C1"
 			(at 55.88 75.54 0)
 			(effects
@@ -3241,14 +3241,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "c5ada26f-248b-4aee-82d6-5d48f87e2dea")
+			(uuid "a7a8eee2-ad79-4dd5-8196-77edde8b0653")
 		)
 		(pin "2"
-			(uuid "9dea47f7-05b5-47aa-b6c4-bfff783421dc")
+			(uuid "8f849933-0616-4c18-a4f3-b623eb9a9f8a")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C1")
 					(unit 1)
 				)
@@ -3265,7 +3265,7 @@
 			)
 			(justify right)
 		)
-		(uuid "41a11c20-93f4-432f-89fe-01a2922daefe")
+		(uuid "a6ee3efc-3ee3-4122-8ab3-f9baad7f1ffe")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 52.07 78.74 0)
 			(effects
@@ -3286,7 +3286,7 @@
 			)
 			(justify left)
 		)
-		(uuid "61ccfe99-3265-47a8-8abf-8d657b23ca3e")
+		(uuid "66a13812-a1a5-4efe-8d58-2ea13991f009")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 59.69 78.74 0)
 			(effects
@@ -3305,7 +3305,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "e2993628-1046-4e43-8742-14be5ad23d13")
+		(uuid "fab92fc2-b6e7-46db-9ebd-b92b99d9b4b0")
 		(property "Reference" "C2"
 			(at 76.2 75.54 0)
 			(effects
@@ -3350,14 +3350,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "61166cbb-d212-41dc-bf97-fa9349b188d6")
+			(uuid "f150b9eb-450e-4198-afbe-1c614b2736fc")
 		)
 		(pin "2"
-			(uuid "df034ed7-c455-4abe-9f5a-d6f58aef1686")
+			(uuid "01785f86-1af2-458d-9c2a-95fb2484e1b3")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C2")
 					(unit 1)
 				)
@@ -3374,7 +3374,7 @@
 			)
 			(justify right)
 		)
-		(uuid "eff78251-dfdb-45f8-8223-9405c4087a33")
+		(uuid "b30d314a-724e-4bd5-a584-3a5ac765b98e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 72.39 78.74 0)
 			(effects
@@ -3395,7 +3395,7 @@
 			)
 			(justify left)
 		)
-		(uuid "f9bbf5c9-48af-470a-a145-c597fc592cb8")
+		(uuid "00846c9b-4e0b-4ddb-98b8-a1b27e3f220c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 80.01 78.74 0)
 			(effects
@@ -3414,7 +3414,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "8ea1e6b1-5b76-43c5-a808-6cf6848ad761")
+		(uuid "2565a963-876c-4c18-9c15-da8bb057f208")
 		(property "Reference" "R1"
 			(at 66.04 62.84 0)
 			(effects
@@ -3459,14 +3459,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "e29d9731-17f4-40d2-8670-9b55ac2a564f")
+			(uuid "aea1c316-59e3-409c-b616-5bb074e91227")
 		)
 		(pin "2"
-			(uuid "66bafb1d-17d1-463b-b176-6371fd5370fd")
+			(uuid "24414f61-db27-4f5a-b3f6-3675d754fbff")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R1")
 					(unit 1)
 				)
@@ -3483,7 +3483,7 @@
 			)
 			(justify right)
 		)
-		(uuid "b0815a5f-60f3-4014-8ec8-fc453c247e74")
+		(uuid "91615573-e646-4049-b4d1-76c8d02d12f4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 62.23 66.04 0)
 			(effects
@@ -3504,7 +3504,7 @@
 			)
 			(justify left)
 		)
-		(uuid "845b3708-1a6e-4fcb-99a9-718c35ac5209")
+		(uuid "949d702e-f41b-45c3-b826-e163839d06bd")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 69.85 66.04 0)
 			(effects
@@ -3523,7 +3523,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "de1e4532-28c6-479b-b9ca-c250b1cf6d3b")
+		(uuid "fbfa1da5-30e9-4891-a7d3-52e992bdc79d")
 		(property "Reference" "R2"
 			(at 86.36 97.79 0)
 			(effects
@@ -3570,14 +3570,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "4bfbe0be-33c6-4288-83e6-45ef7fc353fa")
+			(uuid "0204f860-eefa-4c3b-a256-008fe5ac4730")
 		)
 		(pin "2"
-			(uuid "fa3c274c-a71e-4551-a839-83382ab67469")
+			(uuid "3437a30e-178f-49f1-94e2-e01cf1c983d1")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R2")
 					(unit 1)
 				)
@@ -3594,7 +3594,7 @@
 			)
 			(justify left)
 		)
-		(uuid "bb99def4-2b84-4056-a253-660554db8bef")
+		(uuid "ddadb1bc-185a-4ee5-895a-7fac47ebb130")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 83.82 95.25 0)
 			(effects
@@ -3615,7 +3615,7 @@
 			)
 			(justify right)
 		)
-		(uuid "160f698e-a2e7-4288-a43d-b4ffcb98992c")
+		(uuid "fcd9ef6a-08c4-4e11-93a4-57ebbc8b6005")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 83.82 102.87 0)
 			(effects
@@ -3634,7 +3634,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "f2fdb8c4-cb9c-430c-8b68-e2b2e5f1500e")
+		(uuid "50f6d303-f2f8-47de-b4e2-9c033a50109c")
 		(property "Reference" "U1"
 			(at 139.7 70.16 0)
 			(effects
@@ -3679,32 +3679,32 @@
 			)
 		)
 		(pin "3"
-			(uuid "207f4c2a-ea65-488e-a3ce-afc0e80b9827")
+			(uuid "1a1cd937-6101-4398-891f-23025249aad0")
 		)
 		(pin "2"
-			(uuid "9e1a0269-a56a-41a9-9d50-05b3c4750fd3")
+			(uuid "19d8e52f-41d0-4a64-9894-9f7880aebc39")
 		)
 		(pin "5"
-			(uuid "f0da110e-642e-4867-85b0-f567eb5d2775")
+			(uuid "871bae15-8cf0-458b-bd84-c7852d65735b")
 		)
 		(pin "6"
-			(uuid "c5160b58-483f-49db-8dae-ee3ade7d81ee")
+			(uuid "63aea5dc-d324-4f88-b4e7-f9a0ed07f4ff")
 		)
 		(pin "1"
-			(uuid "f2154948-78b9-434f-962d-9512eb74c2e9")
+			(uuid "82df66bd-0e50-4fe5-91c9-fd6605b20b99")
 		)
 		(pin "7"
-			(uuid "44e80a69-1865-4ea3-8f30-a86596c763b8")
+			(uuid "8f22ef0f-4ac5-44a2-abfe-0b35965d757f")
 		)
 		(pin "8"
-			(uuid "0f09e064-6851-4971-b116-74c7a87834a3")
+			(uuid "27af8601-9aa1-4aae-8e25-31482b26a5fe")
 		)
 		(pin "4"
-			(uuid "0abe1b84-7f13-4444-9b4e-5625ff756b98")
+			(uuid "37b99679-85d4-463d-b577-dd87ed406021")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "U1")
 					(unit 1)
 				)
@@ -3721,7 +3721,7 @@
 			)
 			(justify right)
 		)
-		(uuid "94e7142f-67c4-45fe-aeae-a02928f80a01")
+		(uuid "189f4b43-ccb1-43c1-87a0-b7cac8bd83b3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 129.54 81.28 0)
 			(effects
@@ -3742,7 +3742,7 @@
 			)
 			(justify right)
 		)
-		(uuid "0207e109-be9c-46f8-8664-f1a1770c55f3")
+		(uuid "9f874a0e-5abb-4642-9bb8-f18089737c01")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 129.54 86.36 0)
 			(effects
@@ -3763,7 +3763,7 @@
 			)
 			(justify left)
 		)
-		(uuid "7d0d2de2-c6f0-4d5c-8884-55973060034b")
+		(uuid "3fbf8a90-64e2-405e-be1d-a61f20a3d5c2")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 149.86 81.28 0)
 			(effects
@@ -3784,7 +3784,7 @@
 			)
 			(justify right)
 		)
-		(uuid "2d68988c-5565-4583-a02f-b4a51d488d51")
+		(uuid "7eb8fefd-5232-4fb2-8eab-bc760bdcce6a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 129.54 91.44 0)
 			(effects
@@ -3805,7 +3805,7 @@
 			)
 			(justify right)
 		)
-		(uuid "cdeb8e3f-4175-4616-8931-46d1ac698110")
+		(uuid "e775733f-3487-48bb-a6ac-de6b6f74e919")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 129.54 96.52 0)
 			(effects
@@ -3826,7 +3826,7 @@
 			)
 			(justify left)
 		)
-		(uuid "b0242e06-6807-4000-91fa-b9c90e7a7f70")
+		(uuid "ec737f1f-15a8-4cce-8ccf-fb8c4720060d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 149.86 86.36 0)
 			(effects
@@ -3847,7 +3847,7 @@
 			)
 			(justify left)
 		)
-		(uuid "b543955a-cdb1-45aa-8760-90765ded1de5")
+		(uuid "563a63c5-467b-4c80-ac35-30881b468a61")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 139.7 73.66 0)
 			(effects
@@ -3868,7 +3868,7 @@
 			)
 			(justify right)
 		)
-		(uuid "b66435c4-7562-4d18-b40e-f81fa3e3c3d2")
+		(uuid "0385b83f-3243-4fc1-8035-6b9aba54d49d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 139.7 104.14 0)
 			(effects
@@ -3887,7 +3887,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "2aae4d7c-9056-4adb-9e3c-1a59e18167ef")
+		(uuid "7032bf25-2f41-4ac9-88dc-8606b0927b82")
 		(property "Reference" "R3"
 			(at 190.5 73.0 0)
 			(effects
@@ -3932,14 +3932,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "1f341be5-df29-4721-bc72-7e54cdd90d63")
+			(uuid "74349b66-95fd-460b-9d95-0cdd2c129185")
 		)
 		(pin "2"
-			(uuid "5e8d2a7f-925b-46dd-b272-4c7a3ab2be91")
+			(uuid "b4100bb5-c4e2-4ff1-b534-b96a14b2e3ab")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R3")
 					(unit 1)
 				)
@@ -3956,7 +3956,7 @@
 			)
 			(justify right)
 		)
-		(uuid "9dc9ef88-deb8-4882-beed-04b5043aa9db")
+		(uuid "f04f08e2-08ed-4ed6-be3b-c79452ff1ea3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 186.69 76.2 0)
 			(effects
@@ -3977,7 +3977,7 @@
 			)
 			(justify left)
 		)
-		(uuid "5961d502-ef11-4edf-b471-5ea36228be64")
+		(uuid "d729945c-59f1-4769-8b61-72649edf70d5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 194.31 76.2 0)
 			(effects
@@ -3996,7 +3996,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "50749805-f521-4801-9a8e-a0793a493186")
+		(uuid "ed102c99-dc74-4c9e-bbac-40a82ecb8726")
 		(property "Reference" "R4"
 			(at 193.04 107.95 0)
 			(effects
@@ -4043,14 +4043,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "cbc140d8-c57f-4ec6-8527-3cfc0545e09d")
+			(uuid "5b4d6ee9-cded-402a-ad7a-7de1ccdacb98")
 		)
 		(pin "2"
-			(uuid "75b3f5d0-ff49-4061-a777-f39a3776bb6c")
+			(uuid "df8da82f-16a2-4fe1-b327-10f903d7664b")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R4")
 					(unit 1)
 				)
@@ -4067,7 +4067,7 @@
 			)
 			(justify left)
 		)
-		(uuid "2d127ef6-1b25-43e8-9eac-69a2b6bac03b")
+		(uuid "a5a2fc1d-b65c-4d22-ae42-ffcbd3fd921e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 190.5 105.41 0)
 			(effects
@@ -4088,7 +4088,7 @@
 			)
 			(justify right)
 		)
-		(uuid "bfc63cbb-ee8e-48b3-bcde-c4d3827201c2")
+		(uuid "ae3fed59-608d-4de3-b04a-9ef11f501104")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 190.5 113.03 0)
 			(effects
@@ -4107,7 +4107,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "7a68ffc5-2c02-4236-85e0-84227522ca21")
+		(uuid "400284cf-a519-4774-b27c-58d8126ec1c1")
 		(property "Reference" "C3"
 			(at 121.92 123.19 0)
 			(effects
@@ -4154,14 +4154,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "0485038d-5a25-4ece-88a8-484a21a5cce3")
+			(uuid "97aa446e-ace5-4223-a4de-54dead5383bb")
 		)
 		(pin "2"
-			(uuid "1b1ceb05-2b7a-4868-830e-6cae1e00fb37")
+			(uuid "ca73ab9d-f6a5-443a-bfad-524c175705af")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C3")
 					(unit 1)
 				)
@@ -4178,7 +4178,7 @@
 			)
 			(justify left)
 		)
-		(uuid "dffb45e2-455e-4e3f-86ba-3c1caed0782a")
+		(uuid "51bd95c8-7b60-47b7-88eb-8eacd9904c10")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 119.38 120.65 0)
 			(effects
@@ -4199,7 +4199,7 @@
 			)
 			(justify right)
 		)
-		(uuid "4a32468b-aa37-481e-8d2d-76395358e918")
+		(uuid "266c6fc5-37d5-4ad2-9fda-dd0e772829ea")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 119.38 128.27 0)
 			(effects
@@ -4220,7 +4220,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "3c2fcdad-69b2-4899-8fbe-e64b31a9f5a1")
+		(uuid "bcef1e06-f299-4a32-8002-fde21f3e211c")
 	)
 	(symbol
 		(lib_id "Device:R")
@@ -4230,7 +4230,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "f3e3de29-62f6-413d-92c6-a07feae82f10")
+		(uuid "73b1e19d-a733-4381-813d-a2113ee36243")
 		(property "Reference" "R5"
 			(at 236.22 75.54 0)
 			(effects
@@ -4275,14 +4275,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "972d59c4-550d-4f18-b1f6-a58d61554052")
+			(uuid "a723e0bc-d168-4f95-80a7-d69cabda0994")
 		)
 		(pin "2"
-			(uuid "6a1536d1-12ce-48fc-8548-58aaf3a31a81")
+			(uuid "deb7adc1-c8ca-49a4-843d-78dcfb94ff8d")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R5")
 					(unit 1)
 				)
@@ -4299,7 +4299,7 @@
 			)
 			(justify right)
 		)
-		(uuid "9eda9aa4-814d-417d-8963-283f1b9f4d6f")
+		(uuid "aa10ce6b-7376-4cd3-884f-b8b32c5c34ba")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 232.41 78.74 0)
 			(effects
@@ -4320,7 +4320,7 @@
 			)
 			(justify left)
 		)
-		(uuid "89f65643-d772-40e0-a802-a22181f06cb0")
+		(uuid "de89516d-633f-4941-8f8b-7da7b629d9c3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 240.03 78.74 0)
 			(effects
@@ -4339,7 +4339,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "30be7e69-7933-4849-a970-1a5392c93bc1")
+		(uuid "82714925-c589-4889-bca6-74418c072f5d")
 		(property "Reference" "R6"
 			(at 254.0 75.54 0)
 			(effects
@@ -4384,14 +4384,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "114e20fb-49f8-4d7a-aabe-71f7fd9d78b3")
+			(uuid "b5879c6a-e6ed-4948-b3f3-2b24485f83c8")
 		)
 		(pin "2"
-			(uuid "29fd1e2d-2003-4cf2-9add-df4da4f06134")
+			(uuid "56a21abf-d71d-47f0-a6ca-a544ebdada15")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R6")
 					(unit 1)
 				)
@@ -4408,7 +4408,7 @@
 			)
 			(justify right)
 		)
-		(uuid "ecb0bb24-6e12-47ba-850c-f188a8253984")
+		(uuid "97411598-8779-4813-a509-c42d458b5331")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 250.19 78.74 0)
 			(effects
@@ -4429,7 +4429,7 @@
 			)
 			(justify left)
 		)
-		(uuid "67cdda36-0871-4386-9d14-3dfb52aa1fbf")
+		(uuid "c477a45b-9ff0-4af2-9a37-0976642d7051")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 257.81 78.74 0)
 			(effects
@@ -4448,7 +4448,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "b8cd1c7d-d2ff-4001-826d-a223fe8a666e")
+		(uuid "c0f8d439-e8be-4cea-8f79-dcd22ca0da72")
 		(property "Reference" "C4"
 			(at 243.84 62.84 0)
 			(effects
@@ -4493,14 +4493,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "96d69262-e66c-4238-9d16-3c75064af685")
+			(uuid "2e303e17-2871-425d-a088-cadb625294ad")
 		)
 		(pin "2"
-			(uuid "efa08f42-a8a6-417e-8816-f8216fc7cdad")
+			(uuid "e26f6db6-0c96-4bd4-93ca-72ca169b65e0")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C4")
 					(unit 1)
 				)
@@ -4517,7 +4517,7 @@
 			)
 			(justify right)
 		)
-		(uuid "2019936a-f473-4c45-9f2e-702fa2b8cff9")
+		(uuid "2ff59176-86a9-46b4-bd75-33443397174a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 240.03 66.04 0)
 			(effects
@@ -4538,7 +4538,7 @@
 			)
 			(justify left)
 		)
-		(uuid "b9d68ce2-5eb1-4afd-bbfd-38f1c62adcd4")
+		(uuid "361a6ff8-3965-4f1b-8e6b-152f728fc6b4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 247.65 66.04 0)
 			(effects
@@ -4557,7 +4557,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "68661f8b-5032-49cb-9b36-29e77430ec38")
+		(uuid "c548191a-eaa3-415e-a2f1-50a2a148b61a")
 		(property "Reference" "C5"
 			(at 261.62 62.84 0)
 			(effects
@@ -4602,14 +4602,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "f456d49b-0aa2-4ff8-b39d-ab46266d9c1a")
+			(uuid "9668fe2c-8823-483e-b6aa-8292c09a6e9c")
 		)
 		(pin "2"
-			(uuid "a64b56c7-1f5c-431a-809d-2b3b49dbac98")
+			(uuid "01c683fc-28da-49d0-ad7c-89a4ab6c5247")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C5")
 					(unit 1)
 				)
@@ -4626,7 +4626,7 @@
 			)
 			(justify right)
 		)
-		(uuid "eff04528-f75b-4df6-888a-ceb44cdc7edc")
+		(uuid "4b4298ae-fe7e-4de8-9229-b1d9a82d9d27")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 257.81 66.04 0)
 			(effects
@@ -4647,7 +4647,7 @@
 			)
 			(justify left)
 		)
-		(uuid "027f9fd1-1bb7-4279-9e7e-01eea07cec2c")
+		(uuid "6a5264b1-3d30-4dbb-a892-7784e90dea25")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 265.43 66.04 0)
 			(effects
@@ -4666,7 +4666,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "28f85d88-529b-499f-9e8b-44108d9ed663")
+		(uuid "20faa4c6-60ea-4018-a5df-3f3962769e90")
 		(property "Reference" "C6"
 			(at 266.7 97.79 0)
 			(effects
@@ -4713,14 +4713,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "3c3aca9d-afa1-46d5-9c6f-b5292159884f")
+			(uuid "514f365a-060a-4219-8978-b6379bb52a71")
 		)
 		(pin "2"
-			(uuid "449d78b0-120a-49a5-82b5-661cdc1eac90")
+			(uuid "62b230c6-fa4c-4337-b7df-eabb1a3351dd")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C6")
 					(unit 1)
 				)
@@ -4737,7 +4737,7 @@
 			)
 			(justify left)
 		)
-		(uuid "b5a606bd-5c1d-41c4-be90-1958fce712d2")
+		(uuid "cab79604-8717-4643-91d8-782053d04674")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 264.16 95.25 0)
 			(effects
@@ -4758,7 +4758,7 @@
 			)
 			(justify right)
 		)
-		(uuid "b9a1f906-1653-4c69-a052-009c4a80eaad")
+		(uuid "b2a8a34c-252d-43db-b2a7-50f18f6c90b6")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 264.16 102.87 0)
 			(effects
@@ -4777,7 +4777,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "efeae603-6aea-42d0-b65d-d0e8b274828c")
+		(uuid "a1ba4048-8931-430c-839f-54e4f39f7af5")
 		(property "Reference" "U2"
 			(at 320.04 70.16 0)
 			(effects
@@ -4822,32 +4822,32 @@
 			)
 		)
 		(pin "3"
-			(uuid "af06158d-51ec-4960-8ecd-a42405c0c82c")
+			(uuid "e5c65d9b-f265-48af-825d-6055394e9365")
 		)
 		(pin "2"
-			(uuid "b3cf0922-9fbb-447f-a7a0-d107a6f08fd9")
+			(uuid "2462db5c-0138-452a-9263-696fcfdc6c6a")
 		)
 		(pin "5"
-			(uuid "929dd34e-ea4d-4eb1-94bf-3e992994ab0f")
+			(uuid "93b55432-c904-4d2d-9f55-0eb72ef6c8f4")
 		)
 		(pin "6"
-			(uuid "b079a5a0-1bc3-4da2-ba15-ab3347ce7f6c")
+			(uuid "3bee5c6e-2c5b-4e59-8b31-0f4d9d1f2d7d")
 		)
 		(pin "1"
-			(uuid "eb8c0752-d2fc-46bb-bf55-cedaa68d4e7b")
+			(uuid "8f1b2a9e-5e98-436a-bc2a-06a0ec5613ab")
 		)
 		(pin "7"
-			(uuid "377b74e4-2afe-408a-aeb9-82737d3093a0")
+			(uuid "665c7118-7e1d-4f52-b1b8-3a75a7d63f90")
 		)
 		(pin "8"
-			(uuid "e3ac0f1c-e53c-4380-8467-587231f579e9")
+			(uuid "27cf81da-1909-469f-ba57-1812d3dfe9bd")
 		)
 		(pin "4"
-			(uuid "6ee25a3b-0215-4b61-b305-25cd3fa33d8c")
+			(uuid "c6e028bc-5338-4559-a7d9-158923240e3d")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "U2")
 					(unit 1)
 				)
@@ -4864,7 +4864,7 @@
 			)
 			(justify right)
 		)
-		(uuid "27ef038d-cb99-40ba-a560-697231c803bf")
+		(uuid "aaf63cb4-5f18-402c-8b21-fb977de1220d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 309.88 81.28 0)
 			(effects
@@ -4885,7 +4885,7 @@
 			)
 			(justify right)
 		)
-		(uuid "4aaaa637-efbd-4dca-93b7-1d70ce59609a")
+		(uuid "e64a3221-1ddb-4780-9f33-bd025ea8a560")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 309.88 86.36 0)
 			(effects
@@ -4906,7 +4906,7 @@
 			)
 			(justify left)
 		)
-		(uuid "efde907f-b6cc-44ae-8d3b-c2afa69a685a")
+		(uuid "8d7dfb4a-19e1-4411-b949-065379a89f19")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 330.2 81.28 0)
 			(effects
@@ -4927,7 +4927,7 @@
 			)
 			(justify right)
 		)
-		(uuid "3ba18cdf-8377-4ee8-8d68-20f18a85b080")
+		(uuid "8eee0a70-517d-4b93-a2ba-b4ce72981123")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 309.88 91.44 0)
 			(effects
@@ -4948,7 +4948,7 @@
 			)
 			(justify right)
 		)
-		(uuid "c5a42e84-ff86-420f-9f77-b50de1409106")
+		(uuid "a72db6a2-8a9f-49b7-a3a8-308efcfb72f5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 309.88 96.52 0)
 			(effects
@@ -4969,7 +4969,7 @@
 			)
 			(justify left)
 		)
-		(uuid "6ff95825-4700-4174-acde-5fee605b73b0")
+		(uuid "9ceb1cd2-1235-49ef-b2ed-412038cb2154")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 330.2 86.36 0)
 			(effects
@@ -4990,7 +4990,7 @@
 			)
 			(justify left)
 		)
-		(uuid "76089d5f-fd25-4d9a-a224-324e4fd23d36")
+		(uuid "ad2e1ce1-950a-4018-a01b-e98311b55610")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 320.04 73.66 0)
 			(effects
@@ -5011,7 +5011,7 @@
 			)
 			(justify right)
 		)
-		(uuid "b4e351cb-ee82-411f-a37d-8d7d34288bc5")
+		(uuid "a8897686-d795-4bf1-9493-fc6c88c93cea")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 320.04 104.14 0)
 			(effects
@@ -5030,7 +5030,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "4ae61de7-1a3d-4906-b73f-a6d560744669")
+		(uuid "4df20351-c0db-4e48-ab31-5c41a09ef3aa")
 		(property "Reference" "R7"
 			(at 238.76 128.27 0)
 			(effects
@@ -5077,14 +5077,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "014ccd40-f3bb-46f8-bcd0-a05c1ba7dbb8")
+			(uuid "c18657e9-8005-4892-bcc7-a27282082c1c")
 		)
 		(pin "2"
-			(uuid "08a2e724-c996-46bf-8193-da0af8363b7a")
+			(uuid "7b8aa5ba-58b8-4319-8971-3db9221355ea")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R7")
 					(unit 1)
 				)
@@ -5101,7 +5101,7 @@
 			)
 			(justify left)
 		)
-		(uuid "ea62e981-7513-4093-9bcd-465dc8a8fc86")
+		(uuid "6214f271-07bb-4d30-a19a-70f5a864c5f2")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 236.22 125.73 0)
 			(effects
@@ -5122,7 +5122,7 @@
 			)
 			(justify right)
 		)
-		(uuid "5e874753-6f26-4fec-addd-d1ca263f5415")
+		(uuid "11e6121f-a836-4900-9040-c9731e7a9558")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 236.22 133.35 0)
 			(effects
@@ -5141,7 +5141,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "5c055294-6c49-4389-a461-dd59ffed52e8")
+		(uuid "f8dd5250-7573-4430-8957-854cbff2cde9")
 		(property "Reference" "R8"
 			(at 238.76 148.59 0)
 			(effects
@@ -5188,14 +5188,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "9ab1f969-b57c-473b-aa3f-127c7be45672")
+			(uuid "35f43f81-fbff-4fa1-b04d-a046bcc39e8e")
 		)
 		(pin "2"
-			(uuid "571ccbf2-9d5b-4104-90ec-6fccf2ac94d1")
+			(uuid "ae625d85-21ac-4579-8b4b-ccfb65988d6e")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R8")
 					(unit 1)
 				)
@@ -5212,7 +5212,7 @@
 			)
 			(justify left)
 		)
-		(uuid "8d2b90c7-20a0-4de2-8c5a-135a58d65dba")
+		(uuid "a4b098fb-cfb0-431a-813a-9a3b4eabd6f6")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 236.22 146.05 0)
 			(effects
@@ -5233,7 +5233,7 @@
 			)
 			(justify right)
 		)
-		(uuid "9a4fb443-4dc3-46db-99a1-1b0eaf588d44")
+		(uuid "19bdd11f-1a17-437a-aa68-0caabdbc51f4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 236.22 153.67 0)
 			(effects
@@ -5252,7 +5252,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "866eb66f-c995-4759-90fc-7f3cf3bd754f")
+		(uuid "87fc91cb-ca31-41d2-89e6-8f07cfc30845")
 		(property "Reference" "C7"
 			(at 251.46 138.43 0)
 			(effects
@@ -5299,14 +5299,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "0b82ed78-f8aa-4a00-97a7-f5845687b8e2")
+			(uuid "c7b6d054-f52b-46aa-a23c-34c25f7547fc")
 		)
 		(pin "2"
-			(uuid "1082a068-7028-4b07-9578-3e9891b5c94a")
+			(uuid "ab9ac23c-f044-447d-a018-e3d71b25cee3")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C7")
 					(unit 1)
 				)
@@ -5323,7 +5323,7 @@
 			)
 			(justify left)
 		)
-		(uuid "3623a68e-3c5c-46f7-80b4-6c93c74d762c")
+		(uuid "6841b3bc-aae2-417d-a313-4edab2017585")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 248.92 135.89 0)
 			(effects
@@ -5344,7 +5344,7 @@
 			)
 			(justify right)
 		)
-		(uuid "ee435317-8c74-40a9-bb02-d1126a161680")
+		(uuid "bef95e3d-73ed-4487-bf53-2a92b6a46b01")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 248.92 143.51 0)
 			(effects
@@ -5363,7 +5363,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "84e52d3b-a516-4547-8481-142af59d523f")
+		(uuid "0eb6629f-734f-45da-b4c8-7702ea881f6a")
 		(property "Reference" "R9"
 			(at 289.56 136.5 0)
 			(effects
@@ -5408,14 +5408,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "c3dd5180-7d95-4a20-b93c-cfdd730af18e")
+			(uuid "6bb0ff3b-13b3-4d79-b179-c8f24399d120")
 		)
 		(pin "2"
-			(uuid "f97d7c10-fd6b-4f33-a87d-e3882dcf8a1b")
+			(uuid "d639698a-b40c-4b7f-b8a2-6755ce36de29")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R9")
 					(unit 1)
 				)
@@ -5432,7 +5432,7 @@
 			)
 			(justify right)
 		)
-		(uuid "38a74948-2e5d-4a52-a5d9-1ad87e585193")
+		(uuid "081fe800-63dd-4955-ac6e-917a5784d925")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 285.75 139.7 0)
 			(effects
@@ -5453,7 +5453,7 @@
 			)
 			(justify left)
 		)
-		(uuid "6c487a24-5772-4fb4-857d-fe209960c289")
+		(uuid "8d0f1d17-2963-4b48-a4f0-7807d7d9639d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 293.37 139.7 0)
 			(effects
@@ -5472,7 +5472,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "f6728599-f132-4f39-99a3-17e873760ea1")
+		(uuid "ed969e9d-f8e4-41e4-88bf-a23d87d9cfe4")
 		(property "Reference" "C8"
 			(at 312.42 148.59 0)
 			(effects
@@ -5519,14 +5519,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "1f9c34f0-acc5-4f2f-acbb-347cb2f38ea3")
+			(uuid "a0b6a590-b06f-42a2-a00d-9ed1e15e0155")
 		)
 		(pin "2"
-			(uuid "171fac62-640b-4f49-9372-d70ae6be291c")
+			(uuid "f9ae12d9-85f5-4b77-9b5f-b3f9a9b5713d")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C8")
 					(unit 1)
 				)
@@ -5543,7 +5543,7 @@
 			)
 			(justify left)
 		)
-		(uuid "c9e79a8e-35aa-4e38-9c87-9f13703eaf27")
+		(uuid "8f015120-64b6-4889-9095-b9bf4c5d55a0")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 309.88 146.05 0)
 			(effects
@@ -5564,7 +5564,7 @@
 			)
 			(justify right)
 		)
-		(uuid "c4973df3-c5af-4085-99d3-0ba24acb65ca")
+		(uuid "90c6cd9a-23e5-45cc-a70a-d239887cba6e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 309.88 153.67 0)
 			(effects
@@ -5583,7 +5583,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "70fab40b-3f6b-4587-8083-ec9d23521a24")
+		(uuid "ff81885d-2f8b-4f41-af66-d5da005b6eb7")
 		(property "Reference" "C9"
 			(at 327.66 148.59 0)
 			(effects
@@ -5630,14 +5630,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "8e179268-ea50-45b4-abfc-977ad0c9ff45")
+			(uuid "ea26fe07-1f9f-4947-b5c9-b314a63a1b85")
 		)
 		(pin "2"
-			(uuid "ea16b77f-5f5b-4544-9806-6e50339e3347")
+			(uuid "a50765f3-ef94-4d08-87a8-4702e3e0466d")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C9")
 					(unit 1)
 				)
@@ -5654,7 +5654,7 @@
 			)
 			(justify left)
 		)
-		(uuid "f5568b0d-bdd4-49eb-bc38-a47febdc13b1")
+		(uuid "ab11735a-1aa3-44bb-b465-4cb781453fba")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 325.12 146.05 0)
 			(effects
@@ -5675,7 +5675,7 @@
 			)
 			(justify right)
 		)
-		(uuid "f087acc8-3591-4c18-9b0c-6d61d8e354af")
+		(uuid "80a3200f-acaf-4f07-b99e-e21bb8300cab")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 325.12 153.67 0)
 			(effects
@@ -5694,7 +5694,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "a4d71ec8-f37e-4e84-b608-4acb24060ee7")
+		(uuid "c664b9be-2c4a-45af-ba2c-c3b2a60d4b3e")
 		(property "Reference" "C10"
 			(at 347.98 123.19 0)
 			(effects
@@ -5741,14 +5741,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "763f020b-5c0f-4cbd-99ad-3eb9556c32c8")
+			(uuid "474d46ae-b662-4e7a-bc9a-4fdaf170fe41")
 		)
 		(pin "2"
-			(uuid "d29ba49f-f579-4e06-96cc-80d5e72fc73b")
+			(uuid "247df784-dc30-435c-acd9-d70f0c0ffc98")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C10")
 					(unit 1)
 				)
@@ -5765,7 +5765,7 @@
 			)
 			(justify left)
 		)
-		(uuid "b066b80f-910b-49e1-9842-364403d48897")
+		(uuid "c687403e-91a1-4594-b4b8-429344cb0a50")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 345.44 120.65 0)
 			(effects
@@ -5786,7 +5786,7 @@
 			)
 			(justify right)
 		)
-		(uuid "2693ae84-401a-48a8-b699-4b8f86ec699f")
+		(uuid "1eaef3c5-6501-476e-a6c7-d885bd81ec47")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 345.44 128.27 0)
 			(effects
@@ -5807,7 +5807,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "5e576b8a-c0dd-48ee-9e4c-8e062839011f")
+		(uuid "8ce8f077-c275-470f-9744-3aed034fe232")
 	)
 	(symbol
 		(lib_id "Device:C")
@@ -5817,7 +5817,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "aaceb3e6-da93-453d-a50f-5fd715fcbb90")
+		(uuid "78d9ecef-a6a5-45ed-960a-61b5ab94e434")
 		(property "Reference" "C11"
 			(at 40.64 197.46 0)
 			(effects
@@ -5862,14 +5862,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "8c48070f-39a0-4e65-ab12-2b0e72593184")
+			(uuid "ccdef26b-b63d-45c1-8e7f-7e95073c71b4")
 		)
 		(pin "2"
-			(uuid "486d3eb5-77e7-42dd-9f85-67907a1b5113")
+			(uuid "0aa99f21-7b72-4f79-a97b-44f8e7b2a868")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C11")
 					(unit 1)
 				)
@@ -5886,7 +5886,7 @@
 			)
 			(justify right)
 		)
-		(uuid "f4c2e38b-44d1-4d9a-a835-159c90930a82")
+		(uuid "27ce8c11-45c7-4ce2-9815-b87156014829")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 36.83 200.66 0)
 			(effects
@@ -5907,7 +5907,7 @@
 			)
 			(justify left)
 		)
-		(uuid "064d6494-ae02-4be6-83a4-6d3c9c2b489b")
+		(uuid "f8c69dba-e24b-452c-815a-4342faaecfc5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 44.45 200.66 0)
 			(effects
@@ -5926,7 +5926,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "451f24d9-018f-47c2-8983-8e84c504e7b1")
+		(uuid "e0b1da4d-e2ce-41a5-a1d1-73d178844298")
 		(property "Reference" "R10"
 			(at 60.96 197.46 0)
 			(effects
@@ -5971,14 +5971,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "82d076b0-ccd7-4ea8-a0c9-2825d53a0bf4")
+			(uuid "f257d784-436f-418a-abc5-80e275c70c9d")
 		)
 		(pin "2"
-			(uuid "13ee3701-9425-4c88-8ca9-02bf84a2c62e")
+			(uuid "df0b514a-d38b-4713-ba33-942ac217f852")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R10")
 					(unit 1)
 				)
@@ -5995,7 +5995,7 @@
 			)
 			(justify right)
 		)
-		(uuid "78f15fe9-b394-49fe-b52c-135024aeed74")
+		(uuid "5dc8ff76-84aa-4c06-a3a9-af7d99b0bc65")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 57.15 200.66 0)
 			(effects
@@ -6016,7 +6016,7 @@
 			)
 			(justify left)
 		)
-		(uuid "da4c09a0-eb7c-4149-941c-2ab2bae2d1a1")
+		(uuid "d11b338c-2743-4265-9176-596e0083ac2d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 64.77 200.66 0)
 			(effects
@@ -6035,7 +6035,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "eceff2a9-8800-492b-a1d0-9953b4ba6ef5")
+		(uuid "02f0937b-7e1d-4f16-9f77-a360794afe68")
 		(property "Reference" "R11"
 			(at 60.96 222.86 0)
 			(effects
@@ -6080,14 +6080,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "7c1f7d5e-9642-4617-8675-340621312b5f")
+			(uuid "b15c0931-39db-4b26-9d05-1c53f001c033")
 		)
 		(pin "2"
-			(uuid "39071abf-60f5-4c9e-ab82-ff6ef8d1b726")
+			(uuid "7e797e2e-122c-4000-af08-b50fce9ea24b")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R11")
 					(unit 1)
 				)
@@ -6104,7 +6104,7 @@
 			)
 			(justify right)
 		)
-		(uuid "b0bc0474-213b-418e-9131-60f5342225fd")
+		(uuid "49e931be-3f25-4ea6-9580-bfd22b33e02d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 57.15 226.06 0)
 			(effects
@@ -6125,7 +6125,7 @@
 			)
 			(justify left)
 		)
-		(uuid "8ce5baf7-a3c6-4067-a35f-b0d1e9afd517")
+		(uuid "38c70623-d6d5-4906-8bd8-651aec9b501b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 64.77 226.06 0)
 			(effects
@@ -6144,7 +6144,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "079500c0-d113-49d8-a759-a71e5c3d6c52")
+		(uuid "cb194cc8-8f7a-47b5-9bdd-cb40e116ce4e")
 		(property "Reference" "U3"
 			(at 109.22 192.08 0)
 			(effects
@@ -6189,32 +6189,32 @@
 			)
 		)
 		(pin "8"
-			(uuid "ecca7453-260f-4499-b5bc-3ec8735119c5")
+			(uuid "08644271-05e0-4f1c-af36-18f9e229901a")
 		)
 		(pin "1"
-			(uuid "cfbe61b0-bd59-40ba-bba0-36a36cdfdd5d")
+			(uuid "53054595-cc4e-46e8-9e2a-dbc75806a61d")
 		)
 		(pin "2"
-			(uuid "87b8c06c-7792-4982-b593-a28d53ff1cdc")
+			(uuid "a9bffbf3-f227-414c-a031-5024e0291d05")
 		)
 		(pin "7"
-			(uuid "5876eec6-b5c4-435e-8673-222522b164e4")
+			(uuid "b0ffe9eb-2df8-4d74-8fc2-4b5d680167db")
 		)
 		(pin "4"
-			(uuid "c8532696-9496-4321-bb5a-7ad2c08ebf61")
+			(uuid "db52eaf6-a12c-43a1-b942-2324f327ce9d")
 		)
 		(pin "5"
-			(uuid "2f769304-459c-4581-b3d8-57b178a303cf")
+			(uuid "31587658-b28e-4831-a04f-b30216706b9f")
 		)
 		(pin "3"
-			(uuid "6362aa0a-dcd0-4b25-9263-98d77986e9ef")
+			(uuid "59d8444f-34ee-4569-b061-e68c083d907b")
 		)
 		(pin "6"
-			(uuid "9d54579f-757a-4705-abe5-a6901fda59d1")
+			(uuid "1316078c-bbd4-4733-8d4f-f2372f93aaab")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "U3")
 					(unit 1)
 				)
@@ -6231,7 +6231,7 @@
 			)
 			(justify right)
 		)
-		(uuid "98bfea51-6c89-47ae-954e-9062eb3679b4")
+		(uuid "2e8f4645-601f-4c11-91bb-12609fad221d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 99.06 203.2 0)
 			(effects
@@ -6252,7 +6252,7 @@
 			)
 			(justify right)
 		)
-		(uuid "1991c165-12fd-4cf7-97b0-5cd2f147622f")
+		(uuid "4c5f6e23-d18c-4241-9dba-698e23a3cce1")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 99.06 208.28 0)
 			(effects
@@ -6273,7 +6273,7 @@
 			)
 			(justify right)
 		)
-		(uuid "ab80218a-3b65-432d-8759-5470e3c75dd7")
+		(uuid "9276c781-48e6-4174-ac9b-f611ccb14f42")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 99.06 213.36 0)
 			(effects
@@ -6294,7 +6294,7 @@
 			)
 			(justify right)
 		)
-		(uuid "bf97dfbf-9b63-420e-868a-d87e9e58cece")
+		(uuid "65ec7350-3596-4a45-8369-2501f927d56a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 99.06 218.44 0)
 			(effects
@@ -6315,7 +6315,7 @@
 			)
 			(justify left)
 		)
-		(uuid "a82a06ea-451b-4929-b419-fef2c3823579")
+		(uuid "fa644539-0831-4060-8aea-5c2c6da95c20")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 119.38 203.2 0)
 			(effects
@@ -6336,7 +6336,7 @@
 			)
 			(justify left)
 		)
-		(uuid "b6b9bd4f-aef2-492c-b460-6a9806a35d7d")
+		(uuid "38b272e8-a2a3-41b6-9424-1fa09e08281a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 119.38 208.28 0)
 			(effects
@@ -6357,7 +6357,7 @@
 			)
 			(justify left)
 		)
-		(uuid "5448116a-2174-47fe-ac05-f4cc403cd123")
+		(uuid "c6056080-26cf-4143-b497-fb6a5cc8cdc8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 109.22 195.58 0)
 			(effects
@@ -6378,7 +6378,7 @@
 			)
 			(justify right)
 		)
-		(uuid "b81e3ff6-3d5a-44c4-a7bc-635967ab6c0b")
+		(uuid "77a6687d-44c8-4c86-819f-4e74da9fac1a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 109.22 226.06 0)
 			(effects
@@ -6397,7 +6397,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "bdf23846-6829-4890-9bd8-8f4f84b74e0c")
+		(uuid "32a7c782-7593-42be-b79d-a5a0d4f2ed28")
 		(property "Reference" "R12"
 			(at 109.22 177.14 0)
 			(effects
@@ -6442,14 +6442,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "cd57083f-59e4-401d-8cc1-557e9a086dad")
+			(uuid "674ad533-893e-4001-87ec-6bfee37cd68c")
 		)
 		(pin "2"
-			(uuid "ba20e7f1-700a-468e-88a7-971fec838a93")
+			(uuid "10990683-b31a-4878-87f2-5e65c240578d")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R12")
 					(unit 1)
 				)
@@ -6466,7 +6466,7 @@
 			)
 			(justify right)
 		)
-		(uuid "5b68efa5-a133-4d74-97b4-f48e1a28a251")
+		(uuid "48f9df75-27bc-4c40-80e6-8a07aab83ffc")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 105.41 180.34 0)
 			(effects
@@ -6487,7 +6487,7 @@
 			)
 			(justify left)
 		)
-		(uuid "be426843-3b13-4138-b15c-26b8bab390ca")
+		(uuid "7228b55b-04ac-4ccf-963b-41cd2e99cf95")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 113.03 180.34 0)
 			(effects
@@ -6506,7 +6506,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "e0491c5b-e673-47c9-9f77-417d498b581c")
+		(uuid "7edc0552-726a-4b26-8651-86944d6eb172")
 		(property "Reference" "R13"
 			(at 109.22 240.64 0)
 			(effects
@@ -6551,14 +6551,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "9ada1fe8-b3a0-4fa5-8d7a-32f2b3c20282")
+			(uuid "ea750c68-ad0a-4d36-b4a8-ca4dfe16b925")
 		)
 		(pin "2"
-			(uuid "333fa390-193c-4568-ba32-c4be247cd655")
+			(uuid "973bdf5b-2f1b-4053-ae80-460b0513919f")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R13")
 					(unit 1)
 				)
@@ -6575,7 +6575,7 @@
 			)
 			(justify right)
 		)
-		(uuid "be2d8810-0457-411d-bfb0-8196757283d4")
+		(uuid "6aed8a52-f212-44b0-aecc-6c7c98930b41")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 105.41 243.84 0)
 			(effects
@@ -6596,7 +6596,7 @@
 			)
 			(justify left)
 		)
-		(uuid "d692a90e-3ff1-4a4b-ae2e-db996f02253f")
+		(uuid "19754d36-de2a-4fc2-a2d7-93914207c6e7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 113.03 243.84 0)
 			(effects
@@ -6615,7 +6615,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "6e603061-e806-4713-adb2-8c4a91ef6f9c")
+		(uuid "b0283ff9-17af-4b8f-b3a5-87c055615606")
 		(property "Reference" "C12"
 			(at 81.28 247.65 0)
 			(effects
@@ -6662,14 +6662,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "93175f75-aa75-4744-b635-b09486055cab")
+			(uuid "82831169-508b-416b-84dc-c50ab3f20391")
 		)
 		(pin "2"
-			(uuid "8873e1f8-edd1-468f-875e-61340e202481")
+			(uuid "fe793de7-4d8d-4d54-bd44-41a2c709afb8")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C12")
 					(unit 1)
 				)
@@ -6686,7 +6686,7 @@
 			)
 			(justify left)
 		)
-		(uuid "9bfe61d3-2e8f-41d7-9d1b-22b375079837")
+		(uuid "42940a00-e131-4535-920a-464dee73ff3b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 78.74 245.11 0)
 			(effects
@@ -6707,7 +6707,7 @@
 			)
 			(justify right)
 		)
-		(uuid "00f83c7f-f717-442e-b6cb-5dc78c40a0cd")
+		(uuid "172f45b5-4b53-4835-8e40-ef1b07e9a2df")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 78.74 252.73 0)
 			(effects
@@ -6726,7 +6726,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "cfab08a0-214d-47ab-927c-dd00d4ed9b47")
+		(uuid "948bd6e0-b4b9-4bcd-81ae-80da6f2e6791")
 		(property "Reference" "R14"
 			(at 22.86 237.49 0)
 			(effects
@@ -6773,14 +6773,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "f503139f-efd7-4c4b-adf2-a17bf9cf492a")
+			(uuid "19d102d8-8d95-4c19-ba68-552d073ae425")
 		)
 		(pin "2"
-			(uuid "e5980b4a-ae1a-4ef0-b829-0bb690261ddf")
+			(uuid "cf4e8f4a-2743-44bf-998c-041eb6ff3b65")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R14")
 					(unit 1)
 				)
@@ -6797,7 +6797,7 @@
 			)
 			(justify left)
 		)
-		(uuid "260c282c-a02c-4d96-af3a-12fa652e0f29")
+		(uuid "9d6542b3-61c2-4850-a960-7abab5079d9e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 20.32 234.95 0)
 			(effects
@@ -6818,7 +6818,7 @@
 			)
 			(justify right)
 		)
-		(uuid "1469ad6d-e564-4504-bb87-ad6836d8d3e6")
+		(uuid "1fc618f9-defe-4e53-bd71-58acb7882eb1")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 20.32 242.57 0)
 			(effects
@@ -6837,7 +6837,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "9384f3d6-32d2-4a3a-8ef7-f65e741e4e97")
+		(uuid "7f311510-7349-47e6-b308-590b78f826e6")
 		(property "Reference" "R15"
 			(at 38.1 237.49 0)
 			(effects
@@ -6884,14 +6884,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "3540f6d0-3b30-4fcc-b5f7-2ceb8cde938d")
+			(uuid "5562c25f-5462-4a70-a791-d243ba63dc9b")
 		)
 		(pin "2"
-			(uuid "ca1663b3-46ae-4ce3-bf52-fc43fafba511")
+			(uuid "c96c6e42-d2fd-4a6b-8866-7f68e6cf0c18")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R15")
 					(unit 1)
 				)
@@ -6908,7 +6908,7 @@
 			)
 			(justify left)
 		)
-		(uuid "711410b5-4884-4db9-8527-859c1a10a92d")
+		(uuid "6737e788-e909-4e2c-aad3-04743b2540fb")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 35.56 234.95 0)
 			(effects
@@ -6929,7 +6929,7 @@
 			)
 			(justify right)
 		)
-		(uuid "76967f03-d2ba-4842-a7a1-c7c6e6cf109e")
+		(uuid "b871d9df-1762-4581-bf04-c0295a7410b2")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 35.56 242.57 0)
 			(effects
@@ -6948,7 +6948,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "85ba2bc4-e98b-4e52-9c61-c7564ae8edf9")
+		(uuid "05adb81c-8b91-4a5d-8209-69d1215f4d5e")
 		(property "Reference" "C13"
 			(at 53.34 237.49 0)
 			(effects
@@ -6995,14 +6995,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "894abe56-bb68-4bc9-9032-6d3b3e9c43ae")
+			(uuid "ac563da3-c309-42ae-86f9-ff7c958c8e70")
 		)
 		(pin "2"
-			(uuid "1b4d0b22-2a5d-47b9-a1ef-3d3645d579dc")
+			(uuid "a33181b0-624f-4a1d-acc0-9e581e24895b")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C13")
 					(unit 1)
 				)
@@ -7019,7 +7019,7 @@
 			)
 			(justify left)
 		)
-		(uuid "0fc34174-554b-4f46-bd06-535600fab47f")
+		(uuid "24479d51-dce7-4ae2-ad63-30959be430e5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 50.8 234.95 0)
 			(effects
@@ -7040,7 +7040,7 @@
 			)
 			(justify right)
 		)
-		(uuid "d629bb1d-50fc-45f7-9286-cbf2f2e80971")
+		(uuid "8ebc85b5-53ec-4c5f-a72b-7a94dc0f04ad")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 50.8 242.57 0)
 			(effects
@@ -7059,7 +7059,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "88069ffa-3697-483f-9422-c3141720509d")
+		(uuid "db24693d-ac00-4201-bc7d-d76bb7fe2a88")
 		(property "Reference" "R16"
 			(at 154.94 197.46 0)
 			(effects
@@ -7104,14 +7104,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "4ee4e444-5f14-4d42-b91c-eef6ada65e39")
+			(uuid "186d8c25-eb42-4634-8500-fba56d030100")
 		)
 		(pin "2"
-			(uuid "a71fa97e-2076-4516-891a-a0545090b2e7")
+			(uuid "8f07574f-4436-45dd-9845-492d33c8c02a")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R16")
 					(unit 1)
 				)
@@ -7128,7 +7128,7 @@
 			)
 			(justify right)
 		)
-		(uuid "61fe50d2-99e3-4098-a703-57210b2a8da9")
+		(uuid "eb2d2e4e-ad8e-47de-9783-959dee4fd199")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 151.13 200.66 0)
 			(effects
@@ -7149,7 +7149,7 @@
 			)
 			(justify left)
 		)
-		(uuid "b210d210-76d0-402e-b8d4-4ee18fa7b92c")
+		(uuid "2c531382-013c-4774-852e-a513149171e6")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 158.75 200.66 0)
 			(effects
@@ -7168,7 +7168,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "9891f1dd-2be1-4df5-9e3d-ded1d3ce1f18")
+		(uuid "ff0bdfd6-ff7a-4730-984a-16dc201f0620")
 		(property "Reference" "R17"
 			(at 154.94 217.78 0)
 			(effects
@@ -7213,14 +7213,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "ae67c89c-da02-4de2-bf22-82524cce4460")
+			(uuid "7f6c7e75-d7a8-4ecd-9e8c-7c2ebfa6c44f")
 		)
 		(pin "2"
-			(uuid "788d2b64-bfd0-458c-b43a-bc87064c170b")
+			(uuid "3c0102ea-9bb4-4f56-bf5d-507f63295c16")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R17")
 					(unit 1)
 				)
@@ -7237,7 +7237,7 @@
 			)
 			(justify right)
 		)
-		(uuid "5adcd078-3009-45c0-8f93-5a55f4d3dd34")
+		(uuid "72e6815d-67b4-49e3-923f-cdbeb7a1ec50")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 151.13 220.98 0)
 			(effects
@@ -7258,7 +7258,7 @@
 			)
 			(justify left)
 		)
-		(uuid "3e9b5fdf-04d7-4e53-aac8-443c1432d2cb")
+		(uuid "2958a4e5-72f1-4868-a53c-5009d8120bd0")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 158.75 220.98 0)
 			(effects
@@ -7277,7 +7277,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "0f3fcc81-d0c1-4928-955a-9f199816f92b")
+		(uuid "ffe0d114-a895-467a-ab3c-998a7e59ee6b")
 		(property "Reference" "C14"
 			(at 172.72 234.95 0)
 			(effects
@@ -7324,14 +7324,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "d273408b-a054-4ede-bb63-c49b8f64ebc7")
+			(uuid "d4343411-e8e9-48d7-a475-58c894d52f71")
 		)
 		(pin "2"
-			(uuid "02ef638a-efe8-4be8-8aa4-e80b64c5ed9f")
+			(uuid "dbb4b44e-6b96-4579-9d54-326b1f1cee34")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C14")
 					(unit 1)
 				)
@@ -7348,7 +7348,7 @@
 			)
 			(justify left)
 		)
-		(uuid "d35a9cc4-1711-4218-8dc6-5b1bd4453b2b")
+		(uuid "b8a9722c-a067-4bed-b2d7-6515b2a164ae")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 170.18 232.41 0)
 			(effects
@@ -7369,7 +7369,7 @@
 			)
 			(justify right)
 		)
-		(uuid "3bf74b9d-a76d-4058-8836-90e87ba28696")
+		(uuid "7c0cd0e9-39e1-4e18-8dab-28cddb879e96")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 170.18 240.03 0)
 			(effects
@@ -7388,7 +7388,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "4ecd5df8-9249-4f88-ac8f-a3e836befc49")
+		(uuid "61734163-8871-4b2a-ad5d-897279215bb4")
 		(property "Reference" "C15"
 			(at 182.88 234.95 0)
 			(effects
@@ -7435,14 +7435,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "10815e18-fdc5-4525-99cf-1943daaa21ac")
+			(uuid "cc5d321b-b330-44e7-b0e6-544448264956")
 		)
 		(pin "2"
-			(uuid "3416a1ef-b68e-4304-8a9b-b343f57087f2")
+			(uuid "b504aabf-fa55-44f7-8c82-a06e844cd7e9")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C15")
 					(unit 1)
 				)
@@ -7459,7 +7459,7 @@
 			)
 			(justify left)
 		)
-		(uuid "887ce980-3dbd-479b-80b7-3f84a25495e2")
+		(uuid "5f0786c9-5724-4179-8a79-22f6383a5adf")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 180.34 232.41 0)
 			(effects
@@ -7480,7 +7480,7 @@
 			)
 			(justify right)
 		)
-		(uuid "f0d69682-5461-4a62-a1a0-00fbe9d030cd")
+		(uuid "5d368561-7ca0-4cae-ac41-826a4a89507d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 180.34 240.03 0)
 			(effects
@@ -7499,7 +7499,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "c434ea80-c6e8-4549-bda4-fae44e157af5")
+		(uuid "3a05fe48-5623-451f-98cb-b11d41eb6d9f")
 		(property "Reference" "C16"
 			(at 193.04 234.95 0)
 			(effects
@@ -7546,14 +7546,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "14febd11-d28c-4044-8123-22b0be010d40")
+			(uuid "b2899cf6-0923-403d-b3d0-194a60400a94")
 		)
 		(pin "2"
-			(uuid "8f1110fe-2142-4267-b878-01ffb6588929")
+			(uuid "6b73b976-2fa3-458f-aa5c-c8b39e417156")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C16")
 					(unit 1)
 				)
@@ -7570,7 +7570,7 @@
 			)
 			(justify left)
 		)
-		(uuid "0a84a899-1f73-48f1-b9c3-baa0aa472482")
+		(uuid "bdb611dd-8704-4ccc-873c-10b4bbf2bdef")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 190.5 232.41 0)
 			(effects
@@ -7591,7 +7591,7 @@
 			)
 			(justify right)
 		)
-		(uuid "0b75d61e-f485-45e4-a49c-f856d322dfd7")
+		(uuid "be73c3ca-d0ca-4a95-8899-53b2ef14ccbf")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 190.5 240.03 0)
 			(effects
@@ -7610,7 +7610,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "85623c8c-2b4c-4272-beac-2403c4cf7a31")
+		(uuid "ca3028f3-c192-460b-9f3a-2f9f91b4de8f")
 		(property "Reference" "C17"
 			(at 203.2 234.95 0)
 			(effects
@@ -7657,14 +7657,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "c3030f87-1c6c-4b77-a499-ac2445124552")
+			(uuid "8e851aa2-93d7-4aba-a99e-57ba0498c338")
 		)
 		(pin "2"
-			(uuid "df629c86-d6c6-4df0-a088-ff7ac51c7dc3")
+			(uuid "b668f416-4cc9-4e77-baba-a853e6764cfa")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C17")
 					(unit 1)
 				)
@@ -7681,7 +7681,7 @@
 			)
 			(justify left)
 		)
-		(uuid "7da6fe39-d2f9-4f36-b880-d6389f89ccf5")
+		(uuid "9675a97a-6fcc-4982-8d34-8183c2d49b46")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 200.66 232.41 0)
 			(effects
@@ -7702,7 +7702,7 @@
 			)
 			(justify right)
 		)
-		(uuid "aa14a69b-3968-4502-9b5f-6a7e015e76d8")
+		(uuid "62cb1176-cf42-45c9-8e2d-22480ecbafeb")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 200.66 240.03 0)
 			(effects
@@ -7721,7 +7721,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "4995183e-57f2-4bcc-8342-25551cbbed0e")
+		(uuid "03e39e5c-f80d-49db-8443-2fba5bae3094")
 		(property "Reference" "U4"
 			(at 231.14 194.62 0)
 			(effects
@@ -7766,32 +7766,32 @@
 			)
 		)
 		(pin "7"
-			(uuid "1ac9c9c7-0074-4a33-9174-2610e280d5f9")
+			(uuid "2403dd47-4abc-4a2e-94e5-d8d1572d9f0c")
 		)
 		(pin "8"
-			(uuid "c59a8c3f-a223-4a07-8f14-d8cad3505e3d")
+			(uuid "d4ea0ec6-8c8f-4dcd-b7c2-5ad2a285c306")
 		)
 		(pin "1"
-			(uuid "a9db7b18-d767-4837-9a6f-8f8239174c3a")
+			(uuid "8cd0d79f-fee8-42b9-b59c-92a5cd40b5b4")
 		)
 		(pin "3"
-			(uuid "0ab5c037-7bf3-4aa6-a2b0-ac16ea64f41f")
+			(uuid "14c1dfab-fed1-474b-91d5-11406e99f2d7")
 		)
 		(pin "2"
-			(uuid "c96b52ab-0aae-4916-be5b-96cd232e47f0")
+			(uuid "ab2f35aa-4acb-47dc-85c1-b706404550c7")
 		)
 		(pin "6"
-			(uuid "4051b0b0-f5ba-40c8-8b6b-5db05def683c")
+			(uuid "d314d439-0153-42fe-8f27-bdb9060c2e15")
 		)
 		(pin "4"
-			(uuid "f59f9ea1-7f7d-44df-bae9-a5092158b278")
+			(uuid "aa735de1-cecf-41ac-8c78-d9e54faa9760")
 		)
 		(pin "5"
-			(uuid "f565c1f3-d8c7-437d-bbaf-e5fbb9603d19")
+			(uuid "4c750587-8d2a-4a4c-86cb-c8f8a4a5b045")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "U4")
 					(unit 1)
 				)
@@ -7808,7 +7808,7 @@
 			)
 			(justify right)
 		)
-		(uuid "73eaaecd-50ad-4ee8-b350-509a63cdcdd4")
+		(uuid "8b6b7e67-fdc9-4ef1-bd39-d2a17fd2609f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 220.98 205.74 0)
 			(effects
@@ -7829,7 +7829,7 @@
 			)
 			(justify right)
 		)
-		(uuid "2f917935-4ef6-4ca9-b8da-74f833ada47b")
+		(uuid "bcbaa5c8-eeb0-492d-a09f-cf1acdc00522")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 220.98 210.82 0)
 			(effects
@@ -7850,7 +7850,7 @@
 			)
 			(justify left)
 		)
-		(uuid "d8eb3e74-dcc3-4960-b5de-30ef4032c66f")
+		(uuid "8ce98ee1-09fd-4888-81c5-5a007bd2bf35")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 241.3 205.74 0)
 			(effects
@@ -7871,7 +7871,7 @@
 			)
 			(justify left)
 		)
-		(uuid "a0bd7e8b-5e91-483d-ae9c-811abcd1e4f8")
+		(uuid "dcabbea4-a20b-4f13-810f-abe00e9e0fbf")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 241.3 210.82 0)
 			(effects
@@ -7892,7 +7892,7 @@
 			)
 			(justify left)
 		)
-		(uuid "712c9bf5-6413-48fa-9cee-465bd312a7b3")
+		(uuid "fe7876ad-32ec-4e32-916b-56ecb924a882")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 241.3 215.9 0)
 			(effects
@@ -7913,7 +7913,7 @@
 			)
 			(justify left)
 		)
-		(uuid "0914dfc3-6bb6-40a8-9ffd-a11376ec7413")
+		(uuid "f55ef42d-11f4-4144-b149-69579fd0f48d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 228.6 198.12 0)
 			(effects
@@ -7934,7 +7934,7 @@
 			)
 			(justify left)
 		)
-		(uuid "b7b8b527-4124-424e-918f-4c87a46190a9")
+		(uuid "beb8adca-e644-4558-a250-9690cb82ce73")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 233.68 198.12 0)
 			(effects
@@ -7955,7 +7955,7 @@
 			)
 			(justify right)
 		)
-		(uuid "706ee5a0-2ecc-4927-ac26-5891f7fbaa83")
+		(uuid "aaf7c4c0-a0c5-42c0-a7dd-7d9c5a9df5cd")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 231.14 223.52 0)
 			(effects
@@ -7974,7 +7974,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "e3db56ab-7db5-46cc-9e08-0249cf7156a2")
+		(uuid "9100da7d-6f77-4a9f-bdc5-1bbf37f868c5")
 		(property "Reference" "C18"
 			(at 218.44 252.73 0)
 			(effects
@@ -8021,14 +8021,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "b202b6f9-06f2-425c-8267-33b9c9edf89b")
+			(uuid "de456a24-251a-44e2-9c73-46e172fbee3c")
 		)
 		(pin "2"
-			(uuid "4f8afb92-b34c-495a-9d4f-54c2873a4d50")
+			(uuid "a7ad7553-9f7f-46ee-8fd8-74b01510a0cb")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C18")
 					(unit 1)
 				)
@@ -8045,7 +8045,7 @@
 			)
 			(justify left)
 		)
-		(uuid "e62e6be4-b567-4b47-b39e-7d4c3727e184")
+		(uuid "69d4ea91-db12-4fdb-9b60-b0443f12529e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 215.9 250.19 0)
 			(effects
@@ -8066,7 +8066,7 @@
 			)
 			(justify right)
 		)
-		(uuid "b9b4ddaf-07fc-4b9a-8ac6-03057de06fc3")
+		(uuid "4ffc23b4-664c-4708-8e8e-4ccc331df899")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 215.9 257.81 0)
 			(effects
@@ -8085,7 +8085,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "42b59f27-3176-4f13-8ee6-e0ed349bf55c")
+		(uuid "d20fdc8f-4356-459b-b31c-332d6d38f522")
 		(property "Reference" "C19"
 			(at 256.54 252.73 0)
 			(effects
@@ -8132,14 +8132,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "3191cbe2-2f9d-4267-972b-b64bb68f7c69")
+			(uuid "25ee6486-77e1-424d-ae58-56e837bf5820")
 		)
 		(pin "2"
-			(uuid "112feb5e-c3bf-4518-8845-d4c8b3e1b55a")
+			(uuid "91620719-22e3-496f-a724-cbd3819a827d")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C19")
 					(unit 1)
 				)
@@ -8156,7 +8156,7 @@
 			)
 			(justify left)
 		)
-		(uuid "44bd6534-97b2-404c-806f-597d35d9aaf9")
+		(uuid "69f2fd80-b993-4edb-a541-13976c3ea374")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 254.0 250.19 0)
 			(effects
@@ -8177,7 +8177,7 @@
 			)
 			(justify right)
 		)
-		(uuid "9494f0a1-e867-4ef7-92fa-5bb56154fd03")
+		(uuid "073decd3-3fcb-42e7-bcfa-4683e2836015")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 254.0 257.81 0)
 			(effects
@@ -8196,7 +8196,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "d8cf9ca2-4b8d-4bfe-b156-4afa0cfd09b4")
+		(uuid "5aa241bc-ac8a-4e9e-acbf-42efe5279edc")
 		(property "Reference" "C20"
 			(at 271.78 252.73 0)
 			(effects
@@ -8243,14 +8243,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "aa1b7156-97c9-4c90-9127-1c9016c1f751")
+			(uuid "ff3d7ea7-afd4-4049-9e19-f431a360dd4b")
 		)
 		(pin "2"
-			(uuid "0263a0b8-68ab-4d49-9e97-a0a9ff45a234")
+			(uuid "8ba11e3e-179c-449b-8636-3b7e4cba0110")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C20")
 					(unit 1)
 				)
@@ -8267,7 +8267,7 @@
 			)
 			(justify left)
 		)
-		(uuid "a9607f69-8418-4e20-a994-20cdd097fa5b")
+		(uuid "cf30a994-02b1-4a64-80da-c7fa6630a3cc")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 269.24 250.19 0)
 			(effects
@@ -8288,7 +8288,7 @@
 			)
 			(justify right)
 		)
-		(uuid "6053053c-bb0c-4c33-87f0-6eff25862cf9")
+		(uuid "8dea2d24-bbae-496b-a044-dbc38eb6e3b8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 269.24 257.81 0)
 			(effects
@@ -8307,7 +8307,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "6f6925c6-4b28-4fe6-85d6-e73ec6dae0a8")
+		(uuid "345f9fd2-ee03-4ab0-aaa0-f8cb70675506")
 		(property "Reference" "R18"
 			(at 279.4 192.38 0)
 			(effects
@@ -8352,14 +8352,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "72fbeb92-d801-48fd-add4-849fb9b6afe5")
+			(uuid "47a1caf2-a934-4746-8f13-0652254e8e4b")
 		)
 		(pin "2"
-			(uuid "365d4d3e-ec58-41c3-8554-2cc0cfb7a5d3")
+			(uuid "2da6084e-0502-481b-b65e-eac49611556c")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R18")
 					(unit 1)
 				)
@@ -8376,7 +8376,7 @@
 			)
 			(justify right)
 		)
-		(uuid "3f655943-df17-4a96-b773-2fb1cbdedf0c")
+		(uuid "1abf8921-c1a0-4262-a7cb-220972566bb8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 275.59 195.58 0)
 			(effects
@@ -8397,7 +8397,7 @@
 			)
 			(justify left)
 		)
-		(uuid "ff9f7b56-a8fb-4c2d-980f-0171b921b49d")
+		(uuid "42b7e7e6-bdb0-4bec-a569-f01332079934")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 283.21 195.58 0)
 			(effects
@@ -8416,7 +8416,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "eb53f1e4-ae44-4587-a99d-1c02f22fae5b")
+		(uuid "3ccbd326-98ec-4ebe-9236-d00f1fe13d18")
 		(property "Reference" "R19"
 			(at 279.4 207.62 0)
 			(effects
@@ -8461,14 +8461,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "186cd32a-622a-4911-9e42-9cdbe368b0aa")
+			(uuid "82cccf73-87c0-4556-9c7f-60049f7c0162")
 		)
 		(pin "2"
-			(uuid "090b0bc3-59fa-479f-9cad-16aba7badfa7")
+			(uuid "c120f859-327e-4242-b40e-30a4d451ac92")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R19")
 					(unit 1)
 				)
@@ -8485,7 +8485,7 @@
 			)
 			(justify right)
 		)
-		(uuid "29b12174-76ac-427c-b15d-46d03754c02c")
+		(uuid "8c89364a-a9b1-4664-a2e3-312ebc6aff3b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 275.59 210.82 0)
 			(effects
@@ -8506,7 +8506,7 @@
 			)
 			(justify left)
 		)
-		(uuid "37e1c18f-4ba8-4c1b-8e3b-77def62b3567")
+		(uuid "ad237357-161d-4a1c-8a99-8eeb11187542")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 283.21 210.82 0)
 			(effects
@@ -8525,7 +8525,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "844786c0-20c7-4995-9bc3-65b9761caf82")
+		(uuid "d9ce8b8f-dda2-47bc-8cfc-252aaf961dd0")
 		(property "Reference" "R20"
 			(at 279.4 222.86 0)
 			(effects
@@ -8570,14 +8570,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "2a54a068-5310-4816-9ecf-6ffa17ab3b53")
+			(uuid "2618e4e0-f638-40af-962a-fc6da3f19abe")
 		)
 		(pin "2"
-			(uuid "cd6c7476-b355-426d-835d-da59d34267b4")
+			(uuid "7b6463ac-76b6-4301-960e-5d5f9ca0c94e")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R20")
 					(unit 1)
 				)
@@ -8594,7 +8594,7 @@
 			)
 			(justify right)
 		)
-		(uuid "e1a17de2-a6e2-47d0-8c1d-c59daf4ac069")
+		(uuid "810452ea-ae83-42d8-8f93-103bbb28a80e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 275.59 226.06 0)
 			(effects
@@ -8615,7 +8615,7 @@
 			)
 			(justify left)
 		)
-		(uuid "01d69047-cb73-4525-8921-838a43ecbee9")
+		(uuid "b49169a3-23a4-4cb6-8fed-8c2966b4afed")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 283.21 226.06 0)
 			(effects
@@ -8636,7 +8636,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "ebc355d5-d78b-41d6-b14c-f31031c854d8")
+		(uuid "4a91ee8b-debd-46df-9e26-2ce94632a043")
 	)
 	(symbol
 		(lib_id "Auselia:XC6206P332")
@@ -8646,7 +8646,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "947f97b7-338a-428d-8bb4-7f520402bd9d")
+		(uuid "085c718c-a146-4ccd-a392-f7599896642d")
 		(property "Reference" "U5"
 			(at 330.2 202.24 0)
 			(effects
@@ -8691,17 +8691,17 @@
 			)
 		)
 		(pin "3"
-			(uuid "064d5f2e-7164-41b0-9f70-0b10bae9be68")
+			(uuid "53aadd60-77e7-4b84-91b5-cafdbcccf5b4")
 		)
 		(pin "2"
-			(uuid "a78aeab4-4013-4076-8b99-4b555ddd7cd6")
+			(uuid "9719084a-b424-4f48-b590-ac240069593c")
 		)
 		(pin "1"
-			(uuid "64cbb3af-f32e-4faa-9e7c-e587b09a849c")
+			(uuid "a2b361dd-7f67-46be-90ab-024f4009f363")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "U5")
 					(unit 1)
 				)
@@ -8718,7 +8718,7 @@
 			)
 			(justify right)
 		)
-		(uuid "ec16bb91-1e9b-44ba-9ce4-a5a20aadd46c")
+		(uuid "2bb53637-423b-4a1a-9c73-40dda2a567e8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 320.04 205.74 0)
 			(effects
@@ -8739,7 +8739,7 @@
 			)
 			(justify left)
 		)
-		(uuid "eb942bf8-7cc8-4285-b1b4-90f92008a7e0")
+		(uuid "68ac4f35-3d4a-477a-bf7b-5d622f5a9c62")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 340.36 205.74 0)
 			(effects
@@ -8760,7 +8760,7 @@
 			)
 			(justify right)
 		)
-		(uuid "70e86701-e48b-4805-bc88-b8c786366ef0")
+		(uuid "b1ec8fe8-8150-48d8-b329-bd7e228f6bcc")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 330.2 213.36 0)
 			(effects
@@ -8779,7 +8779,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "15b62edd-f90b-480e-a8ea-53390ebcc4fb")
+		(uuid "fce40180-f175-4453-ac01-165241769564")
 		(property "Reference" "C30"
 			(at 307.34 234.95 0)
 			(effects
@@ -8826,14 +8826,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "3414396a-301a-4bb7-be72-7f426ba86955")
+			(uuid "5157f493-3767-42c9-92ac-87a7a22da930")
 		)
 		(pin "2"
-			(uuid "be62c801-9dc8-4289-944c-c226d647cb21")
+			(uuid "2c816dfa-3e9c-4b13-aa46-a86160b1c050")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C30")
 					(unit 1)
 				)
@@ -8850,7 +8850,7 @@
 			)
 			(justify left)
 		)
-		(uuid "8eb4629e-4be9-41fc-bf48-806423c8513b")
+		(uuid "7e4fed23-37d0-41ee-93e2-4c4eec5c892d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 304.8 232.41 0)
 			(effects
@@ -8871,7 +8871,7 @@
 			)
 			(justify right)
 		)
-		(uuid "0141f86a-3baa-44d3-8a2f-0790e0ec6b87")
+		(uuid "115651ee-e09c-4f04-8bc5-846c959cf16c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 304.8 240.03 0)
 			(effects
@@ -8890,7 +8890,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "405dd304-ee37-4aed-b5e9-8dac7825c720")
+		(uuid "4273edc9-822a-4472-b2e2-6abe8e7aa77e")
 		(property "Reference" "C21"
 			(at 363.22 234.95 0)
 			(effects
@@ -8937,14 +8937,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "3964eb44-af21-4520-9741-b7e8d5427c3d")
+			(uuid "1bfde7c8-767b-464e-ace1-a58f432c6700")
 		)
 		(pin "2"
-			(uuid "79f98aa2-6056-425b-bcd7-bb975262cb38")
+			(uuid "1108d724-e922-4d4d-955f-181f47da0dde")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C21")
 					(unit 1)
 				)
@@ -8961,7 +8961,7 @@
 			)
 			(justify left)
 		)
-		(uuid "dc6007fc-4ca8-4e4a-adcb-2ef7448cc54e")
+		(uuid "a4c0f0db-38b2-4da0-b25e-47075592ce47")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 360.68 232.41 0)
 			(effects
@@ -8982,7 +8982,7 @@
 			)
 			(justify right)
 		)
-		(uuid "343a152a-1e27-496a-860f-f810f8d82794")
+		(uuid "3eaf3ac1-69ee-4ff9-a84b-e0d71f9952d5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 360.68 240.03 0)
 			(effects
@@ -9001,7 +9001,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "69c95f91-2583-4387-b9cc-3419bb24069e")
+		(uuid "6cf7de6a-305f-4d4f-bb01-692d61a6bc64")
 		(property "Reference" "C22"
 			(at 378.46 234.95 0)
 			(effects
@@ -9048,14 +9048,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "59e87c9b-5275-42da-bdd3-19fb46d746a3")
+			(uuid "c43f99a1-ec67-4810-87c1-5f991381e715")
 		)
 		(pin "2"
-			(uuid "d8a08479-2e36-40b7-aed1-ed679a3a526f")
+			(uuid "52c45cf2-7d36-48d2-b90c-dceb3d2eaeba")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C22")
 					(unit 1)
 				)
@@ -9072,7 +9072,7 @@
 			)
 			(justify left)
 		)
-		(uuid "f586542d-0875-4744-9094-685f436ad027")
+		(uuid "627fddcc-6c3c-480a-aee5-5fe4fcbefb53")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 375.92 232.41 0)
 			(effects
@@ -9093,7 +9093,7 @@
 			)
 			(justify right)
 		)
-		(uuid "ed473dca-9aa7-4609-8225-882585986127")
+		(uuid "f009c9e2-8b1d-494c-b814-674f0968cbb6")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 375.92 240.03 0)
 			(effects
@@ -9113,7 +9113,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "298fec3c-daed-4b30-984d-4b7aa5d9095b")
+		(uuid "bf6b0ffd-0e64-4cc8-b091-afc22cabf2dd")
 	)
 	(text "LM393 open-collector outputs are wired together: WAKE_N (PMOD pin 10) is pulled up to 3.3 V and goes LOW when the signal leaves the window."
 		(exclude_from_sim no)
@@ -9124,7 +9124,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "f6ab25b0-5e49-45d7-8318-66f24c021e54")
+		(uuid "748f958b-bd83-4659-8f82-0209b777075a")
 	)
 	(symbol
 		(lib_id "Auselia:LM393")
@@ -9134,7 +9134,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "1807a554-5eb7-4b37-8ebd-a0da1b6d4976")
+		(uuid "c2cadd69-6602-4f1d-bf17-5c4f97b9afc4")
 		(property "Reference" "U6"
 			(at 149.86 301.3 0)
 			(effects
@@ -9179,32 +9179,32 @@
 			)
 		)
 		(pin "3"
-			(uuid "143dbece-7f3c-4f34-9c55-d408c87c50bb")
+			(uuid "bec075a4-e3f8-491d-8159-39b6993970ab")
 		)
 		(pin "2"
-			(uuid "119d6657-fd0f-4bed-a302-20c4d62aeb84")
+			(uuid "1d05a809-2439-460a-853c-8ca794135f70")
 		)
 		(pin "5"
-			(uuid "223abad8-403c-4192-b186-3239ac3ef624")
+			(uuid "16b6a1f7-9a49-4e2f-8eed-3324d6b93d6b")
 		)
 		(pin "6"
-			(uuid "c1d2f3bb-7102-465f-b31e-c0b6ac449128")
+			(uuid "32af7798-c687-4706-9d33-67a5476c115e")
 		)
 		(pin "1"
-			(uuid "aac551b8-4c36-473b-a04b-25b42dc6f94e")
+			(uuid "965bd124-6e05-461b-add2-4e0ec9858b3b")
 		)
 		(pin "7"
-			(uuid "0ff6a4e5-5b49-400b-8765-7ed01625a20b")
+			(uuid "1e562e4f-33dd-4960-9d72-06735d194a48")
 		)
 		(pin "8"
-			(uuid "4f576a53-a6a0-49c0-8606-ac62c27f406f")
+			(uuid "da9f1d44-32ca-43e2-8e23-e3b27a67186a")
 		)
 		(pin "4"
-			(uuid "8350b0a6-f191-4ea2-80d8-c1f0d1feb016")
+			(uuid "2c3b9412-c159-4e4f-b491-e4898a449827")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "U6")
 					(unit 1)
 				)
@@ -9221,7 +9221,7 @@
 			)
 			(justify right)
 		)
-		(uuid "83326d53-f5a1-41af-9c8d-f592075bfc9d")
+		(uuid "030b3244-05fd-42e3-99df-b27d2f5fd601")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 139.7 312.42 0)
 			(effects
@@ -9242,7 +9242,7 @@
 			)
 			(justify right)
 		)
-		(uuid "80809e94-39e4-4744-b606-ad2af3bf5093")
+		(uuid "93e78d41-bb1a-4276-84e7-41ec46cd2095")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 139.7 317.5 0)
 			(effects
@@ -9263,7 +9263,7 @@
 			)
 			(justify right)
 		)
-		(uuid "fc1b5e4b-f776-4e18-8cb2-9a6952af26ba")
+		(uuid "dc6a7a5d-6f48-41f5-aebb-959b43316797")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 139.7 322.58 0)
 			(effects
@@ -9284,7 +9284,7 @@
 			)
 			(justify right)
 		)
-		(uuid "da50d7f8-39dd-4302-81fc-130110e42008")
+		(uuid "7b90e60e-bb14-4bcc-8551-a6ee9cbc96c2")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 139.7 327.66 0)
 			(effects
@@ -9305,7 +9305,7 @@
 			)
 			(justify left)
 		)
-		(uuid "fbf1cd0c-6554-4caa-bf67-2eafb754fe70")
+		(uuid "41d79f42-6bf5-417d-a32f-2d25a6a18759")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 160.02 312.42 0)
 			(effects
@@ -9326,7 +9326,7 @@
 			)
 			(justify left)
 		)
-		(uuid "e6462748-68cf-4708-9b45-be04760dcc6e")
+		(uuid "d089e812-1821-4c4f-b663-c6bb20463b94")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 160.02 317.5 0)
 			(effects
@@ -9347,7 +9347,7 @@
 			)
 			(justify left)
 		)
-		(uuid "286b2d3e-be10-4115-a80f-1e073cca0943")
+		(uuid "b0032f52-3f47-4af5-80c4-2f7ba4b77755")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 149.86 304.8 0)
 			(effects
@@ -9368,7 +9368,7 @@
 			)
 			(justify right)
 		)
-		(uuid "7261b3a4-45f3-45a7-9736-02fc9cec4a71")
+		(uuid "98d2c54a-ca42-474e-a950-4955a6ca617d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 149.86 335.28 0)
 			(effects
@@ -9387,7 +9387,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "fbe19c49-f5f2-4b9b-b0c7-e373a31d0ff5")
+		(uuid "6f51a2e2-2294-4d16-a4f5-c2823f28532b")
 		(property "Reference" "R21"
 			(at 43.18 298.45 0)
 			(effects
@@ -9434,14 +9434,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "47bdc451-ca87-4b2e-a6f4-a6d00e905a0b")
+			(uuid "d82760b7-2f9c-4851-b4da-6d7a68d50697")
 		)
 		(pin "2"
-			(uuid "5e49a46c-69b8-48be-8572-a898b1f60f0f")
+			(uuid "57c4c4ea-458d-4333-bfc0-7d45b09e248d")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R21")
 					(unit 1)
 				)
@@ -9458,7 +9458,7 @@
 			)
 			(justify left)
 		)
-		(uuid "3c64724d-c99e-4bbd-b824-aa3d065bd8f6")
+		(uuid "831e096b-abaf-423d-97d1-b586e9eebe4d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 40.64 295.91 0)
 			(effects
@@ -9479,7 +9479,7 @@
 			)
 			(justify right)
 		)
-		(uuid "61584bde-7e1f-4fe6-a62a-1675cac74d3b")
+		(uuid "24f19892-9494-4017-a74f-de18f6a2b3c4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 40.64 303.53 0)
 			(effects
@@ -9498,7 +9498,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "e6e2c7de-b990-4f3b-89ec-890c135f8a18")
+		(uuid "37713725-5496-4276-9f58-7de86ceeb2c5")
 		(property "Reference" "R22"
 			(at 58.42 298.45 0)
 			(effects
@@ -9545,14 +9545,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "f698af31-0088-47e8-9cd0-98f0bd7d122a")
+			(uuid "cafdecc6-cbd9-4f25-9e6b-383eefc35958")
 		)
 		(pin "2"
-			(uuid "00a6b9fa-3276-4807-9e9e-6c41a2dc76b7")
+			(uuid "b472f66d-229e-4f10-b7fa-9ad3b5435ffd")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R22")
 					(unit 1)
 				)
@@ -9569,7 +9569,7 @@
 			)
 			(justify left)
 		)
-		(uuid "2162688a-012c-45f0-9c47-caaac2026792")
+		(uuid "0d8b9da9-4ef4-4f88-bc04-18e04d7d86ea")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 55.88 295.91 0)
 			(effects
@@ -9590,7 +9590,7 @@
 			)
 			(justify right)
 		)
-		(uuid "3909ebb3-c29e-4a07-92a3-1c6f30758ead")
+		(uuid "894a0871-ad74-4205-afd7-c9b271a3f223")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 55.88 303.53 0)
 			(effects
@@ -9609,7 +9609,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "0927ef64-b8fe-4ca9-869f-efc571d15095")
+		(uuid "8519989c-5aa0-437f-aece-e2e4516fb110")
 		(property "Reference" "RV1"
 			(at 76.2 292.41 0)
 			(effects
@@ -9618,7 +9618,7 @@
 				)
 			)
 		)
-		(property "Value" "20k trim (hand-solder)"
+		(property "Value" "20k trim"
 			(at 76.2 307.03 0)
 			(effects
 				(font
@@ -9654,17 +9654,17 @@
 			)
 		)
 		(pin "1"
-			(uuid "c81ab422-331b-42d5-90b8-624eb8ef1d64")
+			(uuid "241c8725-20d0-4918-924d-1628def1fa67")
 		)
 		(pin "2"
-			(uuid "c80acc88-7bf3-4dac-92a3-4f63f5840b63")
+			(uuid "dfbce498-9959-4c97-811c-5c9325facc5d")
 		)
 		(pin "3"
-			(uuid "8a505ec6-ce1a-46eb-a45b-d58327dd0103")
+			(uuid "1cc391e9-2ca2-4412-a52e-74b1711e0037")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "RV1")
 					(unit 1)
 				)
@@ -9681,7 +9681,7 @@
 			)
 			(justify left)
 		)
-		(uuid "938d4b54-69ec-4a13-bd3d-f70c72bdda21")
+		(uuid "eb9366ba-9939-42bc-99ba-cc1c65b926e3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 76.2 295.91 0)
 			(effects
@@ -9702,7 +9702,7 @@
 			)
 			(justify left)
 		)
-		(uuid "6625523d-b53f-4df7-808d-57cebb300c19")
+		(uuid "af555459-75ba-4f52-aaa3-0451ddf3e30e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 80.01 299.72 0)
 			(effects
@@ -9723,7 +9723,7 @@
 			)
 			(justify right)
 		)
-		(uuid "09c41121-8b6f-414e-918c-f009c281b9f3")
+		(uuid "3d95c92b-244a-4d0e-8673-e36b82b2353b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 76.2 303.53 0)
 			(effects
@@ -9742,7 +9742,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "411604fe-60cd-4d5b-85d6-1900e05e6200")
+		(uuid "3ec46b88-9bde-4d96-836e-eea77cda8754")
 		(property "Reference" "R23"
 			(at 101.6 298.45 0)
 			(effects
@@ -9789,14 +9789,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "9db3b679-7b76-45d4-8cdc-7a4c7e50632e")
+			(uuid "32410e26-7507-496c-9e8a-9093a952ae45")
 		)
 		(pin "2"
-			(uuid "b0418ee5-636c-4104-81ad-918dad204294")
+			(uuid "09f04d44-91da-467b-81b5-93d0feedafb4")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R23")
 					(unit 1)
 				)
@@ -9813,7 +9813,7 @@
 			)
 			(justify left)
 		)
-		(uuid "05b29736-43b6-4478-b4ac-13b10653c2da")
+		(uuid "b06dc792-571b-4d25-beff-d66d76a272c5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 99.06 295.91 0)
 			(effects
@@ -9834,7 +9834,7 @@
 			)
 			(justify right)
 		)
-		(uuid "cbe2a737-5fc9-4e0d-99f0-690ba487522c")
+		(uuid "0fba9eae-4045-4e1a-9b21-228dfbce6bd7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 99.06 303.53 0)
 			(effects
@@ -9853,7 +9853,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "e3e30b06-cd80-46e4-af92-a0cf925df73c")
+		(uuid "b9fef923-20a9-4864-9ea7-b8ec5281cfc0")
 		(property "Reference" "C26"
 			(at 43.18 328.93 0)
 			(effects
@@ -9900,14 +9900,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "4f2f7f55-bbfc-4df0-bf34-2ac8c074dad7")
+			(uuid "ccb233d7-5d87-44b7-834b-7cd3c16278ef")
 		)
 		(pin "2"
-			(uuid "1f05fad9-84bb-4fa5-ad57-2df6df7ee6a6")
+			(uuid "f6db2c31-c1c6-4993-afee-f1cee2d5f574")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C26")
 					(unit 1)
 				)
@@ -9924,7 +9924,7 @@
 			)
 			(justify left)
 		)
-		(uuid "178b8216-6ed9-4889-9a69-73ce9f0e40d7")
+		(uuid "2819dd61-32d0-4075-ac57-9218c0d426a8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 40.64 326.39 0)
 			(effects
@@ -9945,7 +9945,7 @@
 			)
 			(justify right)
 		)
-		(uuid "9c1069e7-12e7-4bfc-bc7e-091fefab088d")
+		(uuid "1edc52c8-1cad-4780-a87e-5337089160c7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 40.64 334.01 0)
 			(effects
@@ -9964,7 +9964,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "aabc80d4-1d51-49e8-8bb0-785fd0a6fd13")
+		(uuid "41eab5b6-366e-4c2b-bb4a-8ed74e928fb2")
 		(property "Reference" "C27"
 			(at 58.42 328.93 0)
 			(effects
@@ -10011,14 +10011,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "10bdd9e4-4252-4601-9180-1833e6a3a1d4")
+			(uuid "a18965ba-a049-4ae0-afc8-7666cc84a25f")
 		)
 		(pin "2"
-			(uuid "1d1c7a86-d89d-4045-80dc-c5ad8a342685")
+			(uuid "c2c02396-2660-4592-9c2d-0c91b6a76222")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C27")
 					(unit 1)
 				)
@@ -10035,7 +10035,7 @@
 			)
 			(justify left)
 		)
-		(uuid "81543a04-f9ef-4f09-9802-41990b46a45c")
+		(uuid "86498f47-abd1-41d6-9670-5efb0ba0a5a7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 55.88 326.39 0)
 			(effects
@@ -10056,7 +10056,7 @@
 			)
 			(justify right)
 		)
-		(uuid "d6900574-1c93-4670-a760-1d9bce06db9e")
+		(uuid "0dfed1d5-50d3-4579-84f3-e678dfd7d6fe")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 55.88 334.01 0)
 			(effects
@@ -10075,7 +10075,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "15e41a95-b310-445c-9480-47bd6dddeb2f")
+		(uuid "a88b9ea4-edf2-487d-8862-4315f6d4a796")
 		(property "Reference" "C28"
 			(at 193.04 344.17 0)
 			(effects
@@ -10122,14 +10122,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "e7b90ae2-a180-426e-89f0-e9a43b4b65b0")
+			(uuid "947557e0-bc97-4b25-a921-dbbe0058b74c")
 		)
 		(pin "2"
-			(uuid "a7300815-375e-4b22-860a-fdb4ba8c03dd")
+			(uuid "ce05342f-bdd2-4a51-9c8a-edb8ff1492fc")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C28")
 					(unit 1)
 				)
@@ -10146,7 +10146,7 @@
 			)
 			(justify left)
 		)
-		(uuid "4e5bd615-b8d0-41ab-8f6f-05b97abc67c4")
+		(uuid "2253f680-65e0-4711-9edd-33f205dfb9ac")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 190.5 341.63 0)
 			(effects
@@ -10167,7 +10167,7 @@
 			)
 			(justify right)
 		)
-		(uuid "c3b61392-2bcd-4cdd-b91d-1cf4e5a44bc3")
+		(uuid "40c7a784-2f6e-4da6-849b-4f12bae29ce5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 190.5 349.25 0)
 			(effects
@@ -10186,7 +10186,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "219717f1-c3f3-43c4-a40c-dde0d4032027")
+		(uuid "3c27c99c-c0ef-46a9-b614-87052e349c8f")
 		(property "Reference" "R24"
 			(at 233.68 313.69 0)
 			(effects
@@ -10233,14 +10233,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "f07f5d88-d8ff-4481-81e6-2ec949159606")
+			(uuid "9608a8c7-7bb0-4470-bfe7-1e46d13fecfc")
 		)
 		(pin "2"
-			(uuid "c2a1bf9d-8500-49e3-8664-8695c13fbcf5")
+			(uuid "43255bc8-7dd8-47d4-b6c4-ef6e5b60e778")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R24")
 					(unit 1)
 				)
@@ -10257,7 +10257,7 @@
 			)
 			(justify left)
 		)
-		(uuid "157e321f-7d15-46f0-8358-217ac2f50658")
+		(uuid "893a73e6-ff08-408a-a9b8-b124d1cbab6b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 231.14 311.15 0)
 			(effects
@@ -10278,7 +10278,7 @@
 			)
 			(justify right)
 		)
-		(uuid "356c61c9-30b0-45f7-9727-296efdb99b0f")
+		(uuid "b4e771f9-a16a-40c3-969d-ca5a9db85a1a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 231.14 318.77 0)
 			(effects
@@ -10298,7 +10298,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "4b8623d5-bfc5-4b51-a6c7-eec4102e068c")
+		(uuid "abd7dad9-1c13-412e-81b5-0f441995a6b5")
 	)
 	(text "Power: 9 V battery -> SS14 -> AMS1117-5.0 (+5V). AMS1117 needs a 22 uF solid tantalum output capacitor for stability (datasheet)."
 		(exclude_from_sim no)
@@ -10309,7 +10309,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "07e92088-fe2e-4670-93f8-82df5b106ea0")
+		(uuid "84e3a7b6-0203-4f4d-b1e9-b21f08141e6a")
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x02")
@@ -10319,7 +10319,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "12f08df4-6e59-429d-8f2b-b66982bd8b74")
+		(uuid "dbf4cb9d-72e4-4834-8386-819b7c558231")
 		(property "Reference" "J2"
 			(at 332.74 298.45 0)
 			(effects
@@ -10356,15 +10356,24 @@
 				(hide yes)
 			)
 		)
+		(property "LCSC" "C492401"
+			(at 330.2 299.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
-			(uuid "0bf7c05e-a2dc-4278-8f7c-aba6fa2db08d")
+			(uuid "45fe11c0-40e7-4172-832a-bf4151a1c851")
 		)
 		(pin "2"
-			(uuid "2ab3e817-fafb-41ee-b608-f9d777d4fda1")
+			(uuid "14bfd373-25c7-419f-b578-db494bdbb66d")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "J2")
 					(unit 1)
 				)
@@ -10381,7 +10390,7 @@
 			)
 			(justify right)
 		)
-		(uuid "a1cde825-0d06-49c3-90ef-f22d14d76112")
+		(uuid "30634d95-07ab-435b-9c26-9283a240e9d6")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 325.12 299.72 0)
 			(effects
@@ -10402,7 +10411,7 @@
 			)
 			(justify right)
 		)
-		(uuid "2a4bd556-3cb8-4544-81ef-7245a188c91c")
+		(uuid "d9f58cfb-c42f-40aa-af20-051966f28ae8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 325.12 302.26 0)
 			(effects
@@ -10421,7 +10430,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "56c0097b-8bbe-49e3-bf5c-7e32682df59b")
+		(uuid "9a312464-04c0-4cda-9287-ce630fe68378")
 		(property "Reference" "D1"
 			(at 360.68 296.22 0)
 			(effects
@@ -10466,14 +10475,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "c79c18e4-ce59-4887-8f05-c1c0b0b0f080")
+			(uuid "8b921c5b-d923-4ede-a2e4-18c18a0be6b5")
 		)
 		(pin "2"
-			(uuid "6ad7367a-8ee2-43eb-a676-dbf5ef1d9191")
+			(uuid "af546941-0ba7-43af-9d60-c8bb4229e5dd")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "D1")
 					(unit 1)
 				)
@@ -10490,7 +10499,7 @@
 			)
 			(justify left)
 		)
-		(uuid "28d6a541-cad7-4aac-af1b-b7041766bc5f")
+		(uuid "618160e5-a7b9-4fe6-aa56-114950f40f4a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 364.49 299.72 0)
 			(effects
@@ -10511,7 +10520,7 @@
 			)
 			(justify right)
 		)
-		(uuid "2a332b14-e4e3-424d-8df6-c82a4bb1d791")
+		(uuid "be55b1b5-feef-4e06-8a85-92f5cd65fa3b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 356.87 299.72 0)
 			(effects
@@ -10530,7 +10539,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "8a5c1e8d-3b93-49f1-bafe-ea987c6d343a")
+		(uuid "7983b5d8-490f-4b53-85a1-450adffcc73a")
 		(property "Reference" "C23"
 			(at 388.62 318.77 0)
 			(effects
@@ -10577,14 +10586,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "0ca8c733-14a2-4d7e-bf0d-0c2a106c68e9")
+			(uuid "b6ca8207-0534-4899-9af7-684193393b89")
 		)
 		(pin "2"
-			(uuid "19425eed-7f81-4f5c-9d8f-c4e62de997c1")
+			(uuid "5b9db093-8f0f-4132-be79-3d8a16d087d8")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C23")
 					(unit 1)
 				)
@@ -10601,7 +10610,7 @@
 			)
 			(justify left)
 		)
-		(uuid "ecae1928-d861-4455-8ad4-92d3a901e53d")
+		(uuid "1abb5350-a5a8-44d7-a184-40bc7b9667cb")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 386.08 316.23 0)
 			(effects
@@ -10622,7 +10631,7 @@
 			)
 			(justify right)
 		)
-		(uuid "e298f353-6322-4670-9698-8a32e2772c30")
+		(uuid "d8fa1f6f-b5c4-4e9c-94fb-53117de46807")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 386.08 323.85 0)
 			(effects
@@ -10641,7 +10650,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "1e0ae8bc-5141-402a-a2ae-54166bd080e0")
+		(uuid "293fe665-c6f4-4400-ae3e-f06d40478072")
 		(property "Reference" "U7"
 			(at 429.26 316.54 0)
 			(effects
@@ -10686,17 +10695,17 @@
 			)
 		)
 		(pin "3"
-			(uuid "6eaf0c83-c304-49e9-9f02-b53e0d815fba")
+			(uuid "a634b171-6f47-4966-a4b0-473eb8fb7fc9")
 		)
 		(pin "2"
-			(uuid "5eed742a-34eb-4033-887e-d178e3b57170")
+			(uuid "f03eaed2-dc07-4a2c-a36a-6c1a50574608")
 		)
 		(pin "1"
-			(uuid "442cd0fd-b6df-4983-ab8d-f45465993aac")
+			(uuid "9383b3bd-0cbd-427f-8c5e-f263f178e96a")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "U7")
 					(unit 1)
 				)
@@ -10713,7 +10722,7 @@
 			)
 			(justify right)
 		)
-		(uuid "f5931404-87dc-44a3-ae6f-c50e2d7334e0")
+		(uuid "b64c9f2c-8309-4b51-a71a-75afd8903218")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 419.1 320.04 0)
 			(effects
@@ -10734,7 +10743,7 @@
 			)
 			(justify left)
 		)
-		(uuid "517108b7-4db6-40ce-aad9-9bf7d3b2f42d")
+		(uuid "cc093ba9-44fd-4558-9a9a-44d4822731ad")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 439.42 320.04 0)
 			(effects
@@ -10755,7 +10764,7 @@
 			)
 			(justify right)
 		)
-		(uuid "b7915b3b-e6d6-4dc4-8b7e-239a1605ca54")
+		(uuid "0895bba7-b517-433f-a0ae-7526df2298d0")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 429.26 327.66 0)
 			(effects
@@ -10774,7 +10783,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "69ab0471-f680-4c84-a9ca-23ca0d4d66e9")
+		(uuid "80989906-b417-4dc7-9318-34195c94922b")
 		(property "Reference" "C29"
 			(at 472.44 298.45 0)
 			(effects
@@ -10821,14 +10830,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "5ea61572-6094-4192-ae48-b967870210af")
+			(uuid "7035f286-2f2b-4d2d-bd7d-5a13152a8501")
 		)
 		(pin "2"
-			(uuid "35c5dca6-341a-4b9a-9b9e-fc9667669d1c")
+			(uuid "eb9407c6-f3ff-4393-a0f5-5b76d48ec086")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C29")
 					(unit 1)
 				)
@@ -10845,7 +10854,7 @@
 			)
 			(justify left)
 		)
-		(uuid "c4b17850-7f74-4ba6-87ee-b4433eaa24c1")
+		(uuid "3701e839-7070-4e6a-a0e6-4120c2516d2a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 469.9 295.91 0)
 			(effects
@@ -10866,7 +10875,7 @@
 			)
 			(justify right)
 		)
-		(uuid "bc19f046-e6d2-42b1-b0a6-8fb3181290ed")
+		(uuid "30076702-c390-4377-b27c-a447e680d969")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 469.9 303.53 0)
 			(effects
@@ -10887,7 +10896,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "07a784c4-a38d-4c32-837e-99b7395be931")
+		(uuid "009beeb5-2b47-43f3-885f-9f92f054409e")
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_02x06_Odd_Even")
@@ -10897,7 +10906,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "c8859331-e255-4d08-9d85-47e1030c24f5")
+		(uuid "db30af0f-fbda-4bec-b648-86df260ef938")
 		(property "Reference" "J3"
 			(at 370.84 80.32 0)
 			(effects
@@ -10932,45 +10941,54 @@
 				(hide yes)
 			)
 		)
+		(property "LCSC" "C60565"
+			(at 370.84 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
-			(uuid "3c12578f-e35a-4044-954d-4d0078df359a")
+			(uuid "2da04b02-6c0f-4c9a-805c-482fae311801")
 		)
 		(pin "2"
-			(uuid "59377bd3-335b-400d-aa51-9857f4ac6bda")
+			(uuid "24a77ff9-e696-4e59-a51e-1ce2127623a1")
 		)
 		(pin "3"
-			(uuid "67550e9c-a4a2-4359-86b9-4388b2d76349")
+			(uuid "402fbbee-9208-4d72-8a6c-34169f2a3ac4")
 		)
 		(pin "4"
-			(uuid "714c736d-85e1-4694-a030-e5dc7b693d42")
+			(uuid "a9d2c5e9-f12f-42f4-ab8d-46a84e61e1a3")
 		)
 		(pin "5"
-			(uuid "d55dade8-8253-4f2c-a7e4-21aa3260c8a2")
+			(uuid "1e0c9e43-7e10-4828-9419-9f94de0e2950")
 		)
 		(pin "6"
-			(uuid "a31e74e9-1124-434c-a4ac-f0c4fdd42531")
+			(uuid "9fcc0813-2491-465e-b047-5906653c0662")
 		)
 		(pin "7"
-			(uuid "145d99e8-60d9-4b2e-bdc8-e9abd9c92907")
+			(uuid "2e2c89a9-bbd7-47eb-957d-fecd3d5aa104")
 		)
 		(pin "8"
-			(uuid "4c7ed4a0-4516-46dd-a949-e5642d506b77")
+			(uuid "6ac6e112-8486-47f7-9c11-ba3d544e7bf6")
 		)
 		(pin "9"
-			(uuid "95e5d25e-94f9-4634-8c69-47dfd9ea609c")
+			(uuid "c859f867-2842-4852-81d1-950b50946408")
 		)
 		(pin "10"
-			(uuid "6301aa29-c722-4e7a-9faf-8443d87cb61d")
+			(uuid "6507e6e6-1060-41f2-8d95-356e641e8f16")
 		)
 		(pin "11"
-			(uuid "df183e9b-7e74-4296-aad2-f190ea8bfdd7")
+			(uuid "029ad95f-1593-49c1-b0db-1c554f1d71b6")
 		)
 		(pin "12"
-			(uuid "7d585393-4de8-4e2c-8e0a-1cc5f03d5c74")
+			(uuid "3400b344-8c34-42e3-ba70-947590745511")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "J3")
 					(unit 1)
 				)
@@ -10987,7 +11005,7 @@
 			)
 			(justify right)
 		)
-		(uuid "da8fb1d1-2b00-4aaa-be0b-08a495c9230f")
+		(uuid "8b077544-009b-4925-b9be-da2ed9688ad4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 365.76 83.82 0)
 			(effects
@@ -11000,7 +11018,7 @@
 	)
 	(no_connect
 		(at 365.76 86.36)
-		(uuid "93ccaa61-2999-4694-9dd5-475cd2304fa0")
+		(uuid "5a21beac-4c55-48eb-83d3-f5292c532119")
 	)
 	(global_label "SDO"
 		(shape passive)
@@ -11012,7 +11030,7 @@
 			)
 			(justify right)
 		)
-		(uuid "89fccde0-815f-4fb5-b090-44defda315cc")
+		(uuid "6edba6aa-a5fd-4ffa-b53b-3083d9d671a7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 365.76 88.9 0)
 			(effects
@@ -11033,7 +11051,7 @@
 			)
 			(justify right)
 		)
-		(uuid "e5caf68a-2c9d-4a19-8362-f705ae262cd0")
+		(uuid "4aa5b439-6d2e-41b6-ba86-69bc42e6f4f9")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 365.76 91.44 0)
 			(effects
@@ -11054,7 +11072,7 @@
 			)
 			(justify right)
 		)
-		(uuid "a411c1f7-ef07-4002-8dc3-77347d252cd2")
+		(uuid "970834e0-8d24-49f6-bbea-77408fd32327")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 365.76 93.98 0)
 			(effects
@@ -11075,7 +11093,7 @@
 			)
 			(justify right)
 		)
-		(uuid "e5530a66-cfa1-4074-8182-798927b2e36b")
+		(uuid "f64c47fa-14a8-4d5c-bcc7-e4d4774d65ed")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 365.76 96.52 0)
 			(effects
@@ -11088,15 +11106,15 @@
 	)
 	(no_connect
 		(at 378.46 83.82)
-		(uuid "9699d02c-1420-457c-955f-f3eab5190839")
+		(uuid "d61d09d4-0606-4596-80e4-6cffb1520692")
 	)
 	(no_connect
 		(at 378.46 86.36)
-		(uuid "464aa6ca-10d9-435f-9835-2a7aad9f1243")
+		(uuid "d8327201-4c68-4d39-8e92-1621c1a9b5d5")
 	)
 	(no_connect
 		(at 378.46 88.9)
-		(uuid "04de01dc-9d30-4802-b753-fe90870d95f6")
+		(uuid "c3151770-47d5-447f-8e78-df6692cc5b09")
 	)
 	(global_label "WAKE_N"
 		(shape passive)
@@ -11108,7 +11126,7 @@
 			)
 			(justify left)
 		)
-		(uuid "2d35a2e7-5ab4-42a6-bfa3-88ab0730030f")
+		(uuid "0539496e-b64b-4589-9888-0fa60a58e6c6")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 378.46 91.44 0)
 			(effects
@@ -11129,7 +11147,7 @@
 			)
 			(justify left)
 		)
-		(uuid "7da0d112-2850-42a6-9b2e-1379e523f72e")
+		(uuid "b925e2b7-ff58-47de-a5e6-04315a5e8565")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 378.46 93.98 0)
 			(effects
@@ -11150,7 +11168,7 @@
 			)
 			(justify left)
 		)
-		(uuid "328ebddf-0803-44b1-b28d-64731aace0e4")
+		(uuid "cae9da91-4bbc-486d-ae51-bce693c3b1e5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 378.46 96.52 0)
 			(effects
@@ -11171,7 +11189,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "6e8ea56e-e533-4498-95bc-cae271ed5987")
+		(uuid "b39e4a9e-aa03-499d-96c2-c07af98317b2")
 	)
 	(symbol
 		(lib_id "Device:R")
@@ -11181,7 +11199,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "0525285e-92d5-48b8-85d2-e693b0181c57")
+		(uuid "57f01f75-b7a6-4133-a304-424ed4408166")
 		(property "Reference" "R25"
 			(at 490.22 85.7 0)
 			(effects
@@ -11226,14 +11244,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "54f1e31a-2716-4749-bbe9-1f64144af8ac")
+			(uuid "bad0af43-cfef-46f1-a1d1-4d351f68aff0")
 		)
 		(pin "2"
-			(uuid "af5a34cf-2b9f-462b-9931-5ab65a8f065d")
+			(uuid "99e06d2c-55d9-4a84-9c2b-439a1569137b")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "R25")
 					(unit 1)
 				)
@@ -11250,7 +11268,7 @@
 			)
 			(justify right)
 		)
-		(uuid "8cc6b0b5-94d7-4ca6-930a-2220e6a62fac")
+		(uuid "f82c0639-aa24-4569-a41e-afb8c5efb300")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 486.41 88.9 0)
 			(effects
@@ -11271,7 +11289,7 @@
 			)
 			(justify left)
 		)
-		(uuid "76f96214-4d79-49d3-bfdb-f4ebf9aff2eb")
+		(uuid "c00bd516-dea8-4535-81bb-844641854cdb")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 494.03 88.9 0)
 			(effects
@@ -11290,7 +11308,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "75872b6e-d700-48ba-adb8-13a8b8a0a1d9")
+		(uuid "ae72ba3b-1f34-4ac0-ad93-24a573659b41")
 		(property "Reference" "J4"
 			(at 520.7 85.4 0)
 			(effects
@@ -11299,7 +11317,7 @@
 				)
 			)
 		)
-		(property "Value" "SMA MON (hand-solder)"
+		(property "Value" "SMA MON"
 			(at 520.7 97.48 0)
 			(effects
 				(font
@@ -11335,14 +11353,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "d92ff8d3-ac4f-4d34-82ad-9ef788b554a5")
+			(uuid "0fb1223a-a610-4e54-9ee9-96c1a1546cf3")
 		)
 		(pin "2"
-			(uuid "204cec11-6dcd-4a53-b97d-7dd0af945d10")
+			(uuid "689de6da-aa6b-438f-a533-011766f179b0")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "J4")
 					(unit 1)
 				)
@@ -11359,7 +11377,7 @@
 			)
 			(justify right)
 		)
-		(uuid "6bd01974-f5f1-4f8d-8877-0115aedd36f1")
+		(uuid "164b36d5-2f2f-4570-9c87-a8b51563a256")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 515.62 88.9 0)
 			(effects
@@ -11380,7 +11398,7 @@
 			)
 			(justify right)
 		)
-		(uuid "ed33a712-d19f-48dd-a0a6-9d0dc409ad8a")
+		(uuid "a9f1532d-567a-4781-bb03-513cd525df2d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 520.7 93.98 0)
 			(effects
@@ -11399,7 +11417,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp yes)
-		(uuid "80dabf78-abef-4ac5-9d9b-928a0f519042")
+		(uuid "a0b5fa2d-d671-4dfd-b2f6-9102a5ebcb87")
 		(property "Reference" "C31"
 			(at 251.46 328.93 0)
 			(effects
@@ -11437,14 +11455,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "215a2c8b-997d-43e4-89e4-af3300374fb0")
+			(uuid "b5ff3179-9cd4-4bd8-b500-595de115b00a")
 		)
 		(pin "2"
-			(uuid "371eb887-912b-40a9-9b3f-d953efe3f906")
+			(uuid "26153210-8482-4009-8c14-3ef83b9a989a")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "C31")
 					(unit 1)
 				)
@@ -11461,7 +11479,7 @@
 			)
 			(justify left)
 		)
-		(uuid "0c3de49e-7ac9-4f61-8f20-20bb6c3cb471")
+		(uuid "cfb2602d-0cc0-4a1f-a1ba-f8cc7c734c1f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 248.92 326.39 0)
 			(effects
@@ -11482,7 +11500,7 @@
 			)
 			(justify right)
 		)
-		(uuid "4514fb4c-4a83-462d-9773-55d32b9b585e")
+		(uuid "f6fac97b-6441-409d-8f68-37e882bca335")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 248.92 334.01 0)
 			(effects
@@ -11501,7 +11519,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "21365d6b-c418-45e3-acc5-9bc375204613")
+		(uuid "6feca461-c7b2-475a-be9f-56347b972730")
 		(property "Reference" "H1"
 			(at 480.06 146.36 0)
 			(effects
@@ -11538,7 +11556,7 @@
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "H1")
 					(unit 1)
 				)
@@ -11553,7 +11571,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "4b9a7e66-b3b6-4177-85da-8ea2a7174e45")
+		(uuid "5436c88b-bb67-46c7-ad0c-c2a81ba79938")
 		(property "Reference" "H2"
 			(at 500.38 146.36 0)
 			(effects
@@ -11590,7 +11608,7 @@
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "H2")
 					(unit 1)
 				)
@@ -11605,7 +11623,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "75712a9e-ce88-4759-a854-3118e6f9f326")
+		(uuid "2ee23317-a1cb-452a-ba54-669cc05d3a18")
 		(property "Reference" "#FLG1"
 			(at 365.76 245.42 0)
 			(effects
@@ -11642,11 +11660,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "ac88984d-de08-4fe0-a9d1-e66e676f9019")
+			(uuid "ec1ba0e1-1534-4686-ac17-9abc5cb4107e")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "#FLG1")
 					(unit 1)
 				)
@@ -11663,7 +11681,7 @@
 			)
 			(justify right)
 		)
-		(uuid "a3d4847c-2a7a-48e2-94c2-cda439d8cdb9")
+		(uuid "2f1b311c-4f68-45f5-b796-f68eb735d7a5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 365.76 248.92 0)
 			(effects
@@ -11682,7 +11700,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "0ca5fcc9-ecc8-4656-817f-915549db0b94")
+		(uuid "42613e60-57b6-4516-8840-7a67631de141")
 		(property "Reference" "#FLG2"
 			(at 381.0 245.42 0)
 			(effects
@@ -11719,11 +11737,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "2e1329eb-203c-4afe-bbae-b6678de0a865")
+			(uuid "0b621f79-13cf-4507-8819-dd823daa4188")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "#FLG2")
 					(unit 1)
 				)
@@ -11740,7 +11758,7 @@
 			)
 			(justify right)
 		)
-		(uuid "96e17287-c611-40ed-a9fa-dbe00184e6d8")
+		(uuid "8dbef08c-59e9-4834-8ffb-127b22a13afc")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 381.0 248.92 0)
 			(effects
@@ -11759,7 +11777,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "e3b6f521-2311-461d-999b-a0ab572ed213")
+		(uuid "6d475878-9831-42f3-8d8c-734a7c8f17c1")
 		(property "Reference" "#FLG3"
 			(at 396.24 245.42 0)
 			(effects
@@ -11796,11 +11814,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "b743457f-ff48-407b-9573-f24f447e76c2")
+			(uuid "e83b90fc-7531-4581-83b4-3f0f1408adb4")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "#FLG3")
 					(unit 1)
 				)
@@ -11817,7 +11835,7 @@
 			)
 			(justify right)
 		)
-		(uuid "ae681e32-635b-4394-becd-2695d8045abe")
+		(uuid "517701cb-ff1a-427c-9798-516e3bffd899")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 396.24 248.92 0)
 			(effects
@@ -11836,7 +11854,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "b062fc09-b394-4faa-8a22-44cc0c32a7c3")
+		(uuid "05e1aceb-94ab-4a39-9391-715f47266871")
 		(property "Reference" "#FLG4"
 			(at 408.94 245.42 0)
 			(effects
@@ -11873,11 +11891,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "8484d6a0-82fa-4367-a172-c85fc8562a21")
+			(uuid "b26d42bf-3c8d-44ee-a5be-26415dbeeb16")
 		)
 		(instances
 			(project "ADC_Test"
-				(path "/62b6a2a4-3795-4810-89b1-4f90502222f1"
+				(path "/8c88ae54-ea0c-40e3-95d4-f9c4b68f6df3"
 					(reference "#FLG4")
 					(unit 1)
 				)
@@ -11894,7 +11912,7 @@
 			)
 			(justify right)
 		)
-		(uuid "118da85a-af33-4f14-8a03-e0fd61c1cbf4")
+		(uuid "f41f99fa-5cac-4339-a4a5-9d8f73ea9b50")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 408.94 248.92 0)
 			(effects
