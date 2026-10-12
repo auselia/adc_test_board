@@ -78,40 +78,49 @@ Before you plug the board into JA–JD, check that pins 5/6 and 11/12 line up wi
 
 ## Cost (JLCPCB Economic PCBA, shipped to Chile)
 
-Always 5 bare PCBs. N = boards assembled. Run `python3 hw/tools/cost.py 2 3 5` for the figures below. It reads the BOM in `hw/fab`.
+The 5-board column is the real quote from the JLCPCB site (2026-10-12). The 2- and 3-board columns come from `python3 hw/tools/cost.py 2 3 5`, which is calibrated on that quote. JLCPCB solders the through-hole parts.
 
-JLCPCB assembles the through-hole parts too (two SMAs, the trimmer and two headers). Economic assembly allows through-hole parts on the top side, which is the only side used. The cost depends on one detail I could not confirm without an order: whether the four through-hole part types also pay the $3.07 extended-part fee. The table gives both cases.
+Real quote for 5 boards:
+
+| Item | Price |
+|---|---|
+| PCB, 5 pcs, 2 layers, HASL with lead, 24 h build | $4.00 |
+| Components, 27 part types | $80.14 |
+| Setup fee | $8.24 |
+| Stencil | $1.55 |
+| Extended components fee, 4 types | $12.36 |
+| SMT assembly | $1.32 |
+| Hand-soldering labor | $3.61 |
+| Manual assembly, through-hole joints | $2.23 |
+| Nitrogen reflow | $0.91 |
+| **Order total** | **$114.36** |
+
+The ADS7057 pays no X-ray fee in Economic assembly. The four through-hole part types (SMA, header, header, trimmer) pay no extended-part fee.
 
 | | 2 boards | 3 boards | 5 boards |
 |---|---|---|---|
-| Components (JLC buys and places) | $33.33 | $49.99 | $83.32 |
-| JLC fees (PCB, setup, stencil, 4 extended parts, X-ray, joints, through-hole labor) | $34.68 | $37.01 | $41.67 |
-| Shipping, Global Standard (13–22 days) | $9.00 | $9.00 | $9.00 |
-| IVA 19% | $14.63 | $18.24 | $25.46 |
-| **Total, JLC solders through-hole (low)** | **$91.64** | **$114.24** | **$159.45** |
-| **Total, JLC solders through-hole (high)** | **$106.25** | **$128.86** | **$174.07** |
-| Total if you solder the through-hole parts yourself | $85.66 | $107.40 | $150.88 |
+| JLCPCB order | $63.60 | $80.52 | $114.36 |
+| Shipping, Global Standard (13–22 days) | $10.75 | $10.75 | $10.75 |
+| IVA 19% | $14.13 | $17.34 | $23.77 |
+| **Total** | **$88.48** | **$108.61** | **$148.88** |
+| Per board | $44.24 | $36.20 | $29.78 |
 
-The difference between letting JLC solder and doing it yourself is about $6 to $9 for 2 to 5 boards in the low case. The high case adds $14.63.
+- DHL Express costs $42.51 instead (3–7 days), and the IVA is then collected on arrival.
+- "Confirm Parts Placement" adds $0.45 and is not in the quote.
+- If you solder the through-hole parts yourself, the 5-board total is about $140.32.
 
-DHL instead of Global Standard: +$33.51 (3–7 days). Prices were checked on 2026-10-12. Upload the files to get the official quote.
+## JLCPCB placement check
 
-## Simulation
+The JLCPCB viewer showed four problems, and the CPL now corrects them. These rotations assume JLCPCB counts counter-clockwise like KiCad, so check them again in the viewer after you upload the new CPL.
 
-`sim/adc_chain.py` runs the circuit in ngspice with the same behavioral models as the AFE repo. Results are in `sim/results.txt`. They use the final values.
-
-| Check | Result | Target |
+| Part | Problem | CPL rotation |
 |---|---|---|
-| DC points | VMID5 2.50 V, VOCM 1.65 V, ADC inputs 1.65 V | |
-| Gain at 250 kHz | 13.4 dB (×4.7) | |
-| Variation 230 to 280 kHz | 0.05 dB | < 1 dB |
-| Loss at 10 kHz, relative to 250 kHz | 41.6 dB | ≥ 40 dB |
-| Loss at 2 MHz | 23.5 dB | ≥ 20 dB |
-| −3 dB band | 108 to 522 kHz | |
-| Board noise at the ADC input | 82 µV rms, 0.2 LSB | |
-| Comparator window | 7 to 123 mV at the perfboard output | 50 to 100 mV trigger |
+| U5 (XC6206) | Model rotated 90° against the pads | 270 → 180 |
+| C29 (tantalum) | Plus sign on the wrong side | 180 → 0 |
+| J2 (1×2 header) | Pins horizontal, pads vertical | 0 → 90 |
+| J3 (2×6 header) | Row horizontal, pads vertical | 0 → 90 |
 
-The 10 kHz margin is only 1.6 dB. A bench measurement should confirm it.
+U1, U2, U3, U6 (pin 1), U4 (pin 1), U7, D1 (cathode) and the SMD passives matched the pads.
 
 ## Files (`hw/`)
 
@@ -131,6 +140,6 @@ hw/tools/drc.sh && hw/tools/fab.sh && python3 hw/tools/jlc_files.py
 
 ## At JLCPCB checkout
 
-- Check the rotations in the parts-placement preview, and keep "Confirm Parts Placement" ($0.45). The CPL applies the JLC offsets for SOIC (+270), SOT-23 (−90), SOT-223 (+180) and tantalum (+180).
-- Not covered by the offset table, so check them by eye: ADS7057 U4 (pin 1), SS14 D1 (cathode band), and the through-hole J1 to J4 and RV1.
+- Upload the new CPL, then open Component Placements and check U5, C29, J2 and J3 (see "JLCPCB placement check").
+- Look at J1 and J4 as well. The SMA model looked offset against its four legs.
 - Check pin 1 of U4 (ADS7057) in particular.

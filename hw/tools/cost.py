@@ -1,9 +1,6 @@
-"""Cost estimate for a JLCPCB Economic PCBA order shipped to Chile, read from fab/ADC_Test_BOM_JLC.csv.
-Prices: JLCPCB parts library and PCBA fee page, checked 2026-10-12.
+"""Cost model for a JLCPCB Economic PCBA order shipped to Chile, calibrated on the real quote of 2026-10-12
+(5 assembled boards: PCB $4.00 + PCBA $110.36 = $114.36, see README). Part prices come from the JLC library.
 usage: python3 cost.py [N ...]       N = assembled boards (5 bare PCBs are always made)
-Two ways to get the through-hole parts (SMA x2, trimmer, two headers):
-  jlc   JLCPCB solders them (manual-assembly joints + hand-soldering labor, and maybe the extended-part fee)
-  self  you buy and solder them yourself (LCSC prices as a proxy)
 """
 import csv,json,os,sys
 HW=os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)),'..'))
@@ -11,48 +8,41 @@ PRICE={'C14858':0.0086,'C14663':0.0140,'C15849':0.0163,'C19702':0.0305,'C19666':
  'C2480':0.0191,'C496549':0.4023,'C492401':0.0186,'C60565':0.0815,'C25804':0.0022,'C4184':0.0020,'C23018':0.0020,
  'C21190':0.0022,'C4190':0.0020,'C22859':0.0032,'C23345':0.0025,'C4216':0.0020,'C23197':0.0020,'C34845':0.8600,
  'C130011':1.3828,'C705347':2.9920,'C2669902':7.9823,'C5446':0.1429,'C7955':0.0662,'C6187':0.2546}
-EXT={'C130011','C705347','C2669902','C11366'}                  # extended SMD parts
-EXT_THT={'C496549','C492401','C60565','C34845'}                 # extended through-hole parts
+PRICE_SCALE=80.14/83.32                  # quote: components $80.14 for 5 boards, table sum $83.32
+EXT_SMD={'C130011','C705347','C2669902','C11366'}
 THT_REFS={'J1','J2','J3','J4','RV1'}
-XRAY_REFS={'U4'}                                                # ADS7057 (QFN, hidden joints)
-FIX={'PCB fabrication (5 pcs, 2 layers, 50x32 mm)':4.00,'PCBA setup fee':8.18,'Stencil':1.53,'Confirm parts placement':0.45}
-EXT_FEE=3.07; XRAY=1.64; SMT=0.0016; MANUAL=0.0164; LABOR=3.58; IVA=0.19
+PCB=4.00; SETUP=8.24; STENCIL=1.55
+EXT_FEE=12.36/4          # 4 extended SMD part types; the 4 through-hole types were NOT charged
+SMT=1.32/775; MANUAL=2.23/135; LABOR=3.61; NITROGEN=0.91/5      # per joint, per joint, per order, per board
+CONFIRM=0.45             # optional "Confirm Parts Placement", not in the quote
+SHIP=10.75               # Global Standard Direct Line, 0.41 kg; DHL Express was $42.51
+IVA=0.19
 def load():
     rows=list(csv.DictReader(open(os.path.join(HW,'fab','ADC_Test_BOM_JLC.csv'))))
     j=json.load(open(os.path.join(HW,'fab','joints.json')))
     smd=[];tht=[]
     for r in rows:
-        refs=r['Designator'].split(','); l=r['LCSC Part #']
-        for ref in refs: (tht if ref in THT_REFS else smd).append((ref,l,r['Comment']))
+        for ref in r['Designator'].split(','): (tht if ref in THT_REFS else smd).append((ref,r['LCSC Part #']))
     return smd,tht,j
-def quote(N,mode,ext_tht=False,show=False):
+def quote(N,mode='jlc',confirm=False,ship=SHIP):
     smd,tht,j=load()
-    p_smd=sum(PRICE[l] for _,l,_ in smd)*N
-    p_tht=sum(PRICE[l] for _,l,_ in tht)*N
-    fees=sum(FIX.values())+len({l for _,l,_ in smd if l in EXT})*EXT_FEE+XRAY*N+SMT*j['smd']*N
-    parts=p_smd
-    hand=0
-    if mode=='jlc':
-        parts+=p_tht
-        fees+=MANUAL*j['tht']*N+LABOR
-        if ext_tht: fees+=len({l for _,l,_ in tht if l in EXT_THT})*EXT_FEE
-    else: hand=p_tht
-    goods=parts+fees
-    ship=9.00 if goods<=150 else 37.04
+    p_smd=sum(PRICE[l] for _,l in smd)*N*PRICE_SCALE
+    p_tht=sum(PRICE[l] for _,l in tht)*N*PRICE_SCALE
+    fees=SETUP+STENCIL+len({l for _,l in smd if l in EXT_SMD})*EXT_FEE+SMT*j['smd']*N+NITROGEN*N+(CONFIRM if confirm else 0)
+    parts=p_smd; own=0
+    if mode=='jlc': parts+=p_tht; fees+=MANUAL*j['tht']*N+LABOR
+    else: own=p_tht
+    goods=PCB+parts+fees
     iva=IVA*(goods+ship)
-    total=goods+ship+iva+hand
-    return dict(parts=parts,fees=fees,goods=goods,ship=ship,iva=iva,hand=hand,total=total)
+    return dict(parts=parts,fees=fees,pcb=PCB,goods=goods,ship=ship,iva=iva,own=own,total=goods+ship+iva+own)
 def main(Ns):
-    smd,tht,j=load()
-    print(f'{len(smd)} SMD parts, {len(tht)} through-hole parts, {j["smd"]} SMD joints, {j["tht"]} THT joints per board')
-    print(f'{"":34s}'+''.join(f'{n:>10d}' for n in Ns)+'   boards')
-    for label,mode,e in (('JLC solders THT (low)','jlc',False),('JLC solders THT (high: +4 ext fees)','jlc',True),('You solder THT','self',False)):
-        print(f'{label:34s}'+''.join(f'{quote(n,mode,e)["total"]:10.2f}' for n in Ns)+'   total $')
+    print('Model, calibrated on the 5-board JLCPCB quote (goods $114.36).')
+    print(f'{"":42s}'+''.join(f'{n:>10d}' for n in Ns)+'  boards')
+    for label,mode in (('JLC solders through-hole','jlc'),('You solder through-hole','self')):
+        print(f'{label+": order (goods)":42s}'+''.join(f'{quote(n,mode)["goods"]:10.2f}' for n in Ns))
+        print(f'{label+": total with shipping and IVA":42s}'+''.join(f'{quote(n,mode)["total"]:10.2f}' for n in Ns))
     print()
     for n in Ns:
-        for label,mode,e in (('JLC solders THT (low)','jlc',False),('JLC solders THT (high)','jlc',True),('You solder THT','self',False)):
-            q=quote(n,mode,e)
-            print(f'N={n} {label:24s} parts {q["parts"]:7.2f} fees {q["fees"]:6.2f} ship {q["ship"]:5.2f} IVA {q["iva"]:6.2f} own {q["hand"]:5.2f} = {q["total"]:7.2f}')
-        print()
-if __name__=='__main__':
-    main([int(a) for a in sys.argv[1:]] or [2,3,5])
+        q=quote(n)
+        print(f'N={n}: PCB {q["pcb"]:.2f} + parts {q["parts"]:.2f} + fees {q["fees"]:.2f} = goods {q["goods"]:.2f}; ship {q["ship"]:.2f}; IVA {q["iva"]:.2f}; total {q["total"]:.2f} (${q["total"]/n:.2f} per board)')
+if __name__=='__main__': main([int(a) for a in sys.argv[1:]] or [2,3,5])
