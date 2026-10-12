@@ -122,6 +122,8 @@ The JLCPCB viewer showed four problems, and the CPL now corrects them. These rot
 
 U1, U2, U3, U6 (pin 1), U4 (pin 1), U7, D1 (cathode) and the SMD passives matched the pads.
 
+RV1 (trimmer) had the right rotation but the wrong position. JLCPCB draws its model about 2.5 mm to the right and 1 mm below the footprint, so it overhung the board edge. JLCPCB places through-hole parts from the model origin, not from pin 1. The CPL now shifts RV1 by −2.54 mm in x and +1.0 mm in y. J1 and J4 (SMA) have their four legs on the pads. J2 and J3 may have a similar offset, which can only be read after the rotation change, so check them in the viewer.
+
 ## Files (`hw/`)
 
 - `ADC_Test.kicad_pro/.kicad_sch/.kicad_pcb`: the KiCad 10 project.

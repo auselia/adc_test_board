@@ -15,6 +15,10 @@ ROT_RULES=[(r'^SOT-223',180),(r'^SOT-23',-90),(r'^SOIC-',270),(r'^CP_EIA-',180)]
 #   J2  1x2 header       : viewer showed the pins horizontal, our pads are vertical        -> 0 -> 90
 #   J3  2x6 right angle  : viewer showed the row horizontal, our pads run vertically       -> 0 -> 90
 ROT_ABS={'U5':180,'C29':0,'J2':90,'J3':90}
+# Position offsets in mm (CPL frame: x right, y up) for parts whose JLC 3D model has a different origin than our
+# footprint. Measured in the viewer at 35.25 px/mm.
+#   RV1: model body centre was 2.5 mm right of the pins' centre and 1.0 mm low, hanging 0.6 mm off the board edge.
+POS_OFF={'RV1':(-2.54,1.0)}
 def rot_off(pkg):
     for rx,off in ROT_RULES:
         if re.match(rx,pkg): return off
@@ -44,6 +48,6 @@ with open(os.path.join(HW,'fab','ADC_Test_CPL_JLC.csv'),'w',newline='') as f:
     for r in rows:
         if r['Ref'] in SKIP: continue
         rot=ROT_ABS.get(r['Ref'],(float(r['Rot'])+rot_off(r['Package']))%360)
-        w.writerow([r['Ref'],'%.3fmm'%float(r['PosX']),'%.3fmm'%float(r['PosY']),'Top','%g'%rot])
+        dx,dy=POS_OFF.get(r['Ref'],(0,0)); w.writerow([r['Ref'],'%.3fmm'%(float(r['PosX'])+dx),'%.3fmm'%(float(r['PosY'])+dy),'Top','%g'%rot])
 missing=[r for r,c in comps.items() if r not in SKIP and not c['lcsc']]
 print('BOM lines',len(groups),'parts',sum(len(v) for v in groups.values()),'missing LCSC',missing)
