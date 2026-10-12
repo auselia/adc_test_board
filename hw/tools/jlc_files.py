@@ -1,0 +1,31 @@
+"""JLCPCB BOM + CPL from the netlist and the KiCad position file.
+THT parts (J1 SMA, J2/J3 headers, RV1 trimmer) are left out: hand-soldered."""
+import csv,os,sys,collections
+sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
+from sexp import *
+HW=os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)),'..'))
+SKIP={'J1','J2','J3','RV1'}   # THT: hand-soldered, keeps them out of the extended-part fee
+ROT={}   # ref-prefix/package rotation corrections for JLC, filled after checking the JLC preview
+t=parse(open(os.path.join(HW,'ADC_Test.net')).read())
+comps={}
+for c in find(get(t,'components'),'comp'):
+    ref=get(c,'ref')[1]
+    fields={f[1][1]:f[2] for f in find(get(c,'fields') or [],'field') if len(f)>2}
+    comps[ref]=dict(value=get(c,'value')[1],fp=get(c,'footprint')[1].split(':')[1],lcsc=fields.get('LCSC',''))
+groups=collections.OrderedDict()
+key=lambda r:(r.rstrip('0123456789'),int(''.join(ch for ch in r if ch.isdigit())))
+for ref in sorted(comps,key=key):
+    if ref in SKIP: continue
+    c=comps[ref]; groups.setdefault((c['value'],c['fp'],c['lcsc']),[]).append(ref)
+with open(os.path.join(HW,'fab','ADC_Test_BOM_JLC.csv'),'w',newline='') as f:
+    w=csv.writer(f); w.writerow(['Comment','Designator','Footprint','LCSC Part #'])
+    for (v,fp,l),refs in groups.items(): w.writerow([v,','.join(refs),fp,l])
+rows=list(csv.DictReader(open(os.path.join(HW,'fab','ADC_Test_pos_kicad.csv'))))
+with open(os.path.join(HW,'fab','ADC_Test_CPL_JLC.csv'),'w',newline='') as f:
+    w=csv.writer(f); w.writerow(['Designator','Mid X','Mid Y','Layer','Rotation'])
+    for r in rows:
+        if r['Ref'] in SKIP: continue
+        rot=(float(r['Rot'])+ROT.get(r['Package'],0))%360
+        w.writerow([r['Ref'],'%.3fmm'%float(r['PosX']),'%.3fmm'%float(r['PosY']),'Top','%g'%rot])
+missing=[r for r,c in comps.items() if r not in SKIP and not c['lcsc']]
+print('BOM lines',len(groups),'parts',sum(len(v) for v in groups.values()),'missing LCSC',missing)
