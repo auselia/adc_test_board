@@ -74,6 +74,9 @@ Before you plug the board into JA–JD, check that pins 5/6 and 11/12 line up wi
 
 - CS falling edge starts a conversion.
 - Read 18 SCLK cycles on SDO. The frame is a leading 0, then D13..D0, then zeros (datasheet Fig. 1).
+- Each frame returns the result of the **previous** conversion. The first frame after power-up returns all zeros.
+- After power-up, send **24 SCLKs** in the first frame. That starts the offset calibration (datasheet 8.4.3.1), and SDO stays at zero. Then wait at least 95 ns before the next CS fall.
+- Repeat the calibration when AVDD or the temperature changes a lot.
 - SCLK can go up to 60 MHz. Start at 10–20 MHz.
 
 ## Cost (JLCPCB Economic PCBA, shipped to Chile)
@@ -123,6 +126,55 @@ The JLCPCB viewer showed four problems, and the CPL now corrects them. These rot
 U1, U2, U3, U6 (pin 1), U4 (pin 1), U7, D1 (cathode) and the SMD passives matched the pads.
 
 RV1 (trimmer) had the right rotation but the wrong position. JLCPCB draws its model about 2.5 mm to the right and 1 mm below the footprint, so it overhung the board edge. JLCPCB places through-hole parts from the model origin, not from pin 1. The CPL now shifts RV1 by −2.54 mm in x and +1.0 mm in y. J1 and J4 (SMA) have their four legs on the pads. J2 and J3 may have a similar offset, which can only be read after the rotation change, so check them in the viewer.
+
+## Verification
+
+| Check | Status | Result |
+|---|---|---|
+| ERC, DRC, schematic-to-board parity | Done | 0 errors, 0 unconnected, 0 mismatches |
+| Pinouts and polarity against the datasheets | Done | All ICs, SS14, tantalum |
+| JLCPCB placement viewer | Done once | 4 rotations fixed, RV1 moved. Check again after the new CPL |
+| DC bias, AC response, noise | Done | Table below |
+| Tolerance Monte Carlo, 150 runs | Done | 10 kHz loss under 40 dB in 11 of 150 runs |
+| 250 kHz burst, headroom | Done | A 120 mV event reaches 16 % of full scale. Clipping starts near 0.54 V |
+| ADC input settling | Done | 30 to 55 ns against 95 ns minimum |
+| Cable on the SCOPE OUT SMA | Done | No peaking up to 5 nF |
+| THS4531 into 10 Ω and 400 pF | **Open** | TI's model fails in ngspice. Run `sim/ltspice/ths4531_cap_load.cir` in LTspice |
+| Print the PCB 1:1 and test-fit parts | Open | |
+| Fit on the ZedBoard PMOD | Open | |
+| Bench bring-up | Open | See below |
+
+`sim/vendor_chain.py` runs the checks and `sim/vendor_results.txt` holds the output. The OPA365 is TI's own model. The THS4531 is a datasheet-based model (27 MHz, 2.5 Ω), because TI's model gives a −3 dB point at 17 kHz in ngspice. The ADC input is the datasheet model: 50 Ω and 16 pF per leg. Run `python3 sim/models/fetch_models.py` to download the TI models, which are not stored in the repo.
+
+| Result | Value | Target |
+|---|---|---|
+| DC points | VMID5 2.50 V, VOCM 1.65 V, ADC inputs 1.65 V | |
+| Gain at 250 kHz, SMA to ADC | 12.2 dB (×4.1) | |
+| Flatness 230 to 280 kHz | 0.08 dB | < 1 dB |
+| Loss at 10 kHz, re 250 kHz | 40.5 dB, worst of 150 runs 39.7 dB | ≥ 40 dB |
+| Loss at 2 MHz | 24.0 dB | ≥ 20 dB |
+| −3 dB band | 106 to 502 kHz | |
+| Board noise at the ADC | 77 µV rms, 0.2 LSB | |
+
+Things the simulation does not cover:
+
+- THS4531 stability with the 400 pF load. TI's guidance is a 2 pF differential load without an isolation resistor, so 20 Ω and 400 pF needs a measurement. If it rings, raise R16 and R17 from 10 Ω to 20 or 30 Ω.
+- Temperature, battery droop and regulator noise.
+- Layout coupling and the real ZedBoard supply.
+
+Paper checks:
+
+- The AMS1117-5.0 drops up to 1.3 V and the SS14 about 0.4 V, so the board works down to a battery of about 6.7 V.
+- The 5 V rail dissipates under 0.1 W at 9 V.
+
+## Bring-up
+
+1. Power J2 from a bench supply at 9 V with a 50 mA limit. Check +5V, AVDD (3.30 V), VOCM (1.65 V) and VMID5 (2.50 V) before the PMOD connects.
+2. Plug the board into the ZedBoard and check that nWAKE reads high.
+3. Feed J1 from the Analog Discovery 2 with a 250 kHz, 100 mV sine. Compare SCOPE OUT with the input on the scope (1 MΩ input).
+4. Read SPI codes. Check the idle code and the amplitude against the scope.
+5. Sweep 10 kHz to 2 MHz and compare with the table above. The 10 kHz loss is the thinnest margin.
+6. Turn the trimmer until nWAKE drops as the amplitude crosses the window. Check the response time.
 
 ## Files (`hw/`)
 
