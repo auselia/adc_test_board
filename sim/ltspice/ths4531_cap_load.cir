@@ -1,0 +1,30 @@
+* THS4531 driving the ADS7057 input filter, TI vendor model. Open this file in LTspice and run it.
+* Not run by the author: LTspice batch mode was not available. ngspice runs TI's model wrongly (-3 dB at 17 kHz).
+* Model: sim/models/THS4531.lib (python3 sim/models/fetch_models.py), or the TI zip https://www.ti.com/lit/zip/slom263
+.include ../models/THS4531.lib
+.param Ro=10 Cdiff=400p Rg=1k
+Vcc vcc 0 5
+Vocm vocm 0 1.65
+Vpd pd 0 5
+* single-ended drive, gain 1, VOCM 1.65 V (same as the board)
+Vin in 0 PULSE(1.65 1.95 1u 5n 5n 2u 6u) AC 1
+Rg1 in inp {Rg}
+Rg2 vocm inn {Rg}
+Rf1 op inn {Rg}
+Rf2 om inp {Rg}
+X1 inp inn vocm vcc 0 op om pd THS4531
+* 10 ohm per leg and 4 x 100 pF across the ADC inputs, then the 50 ohm + 16 pF sampling legs
+R16 op ainp {Ro}
+R17 om ainm {Ro}
+C14 ainp ainm {Cdiff}
+Rs1 ainp s1 50
+Rs2 ainm s2 50
+Cs1 s1 0 16p
+Cs2 s2 0 16p
+.ac dec 100 10k 200meg
+.tran 0 8u 0 2n
+.meas ac peak_db max db(mag(v(ainp)-v(ainm)))
+.meas ac f3db when db(mag(v(ainp)-v(ainm)))=-3 fall=1
+.meas tran overshoot max v(ainp)-v(ainm)
+.step param Ro list 5 10 20 30
+.end
