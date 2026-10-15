@@ -145,3 +145,20 @@ for i, row in enumerate(rows):
     pg.line(4, yy + 6.2, 130, yy + 6.2, '#bbb', 0.15)
     pg.text(5, yy + 4.4, row[0], 2.6, INK, 'start', i == 0)
     pg.text(70, yy + 4.4, row[1], 2.6, INK, 'start', i == 0)
+
+# head top view page (after step 60) ------------------------------------------------------------
+m4lib._finish_page()
+pg = new_page('head view')
+chrome(pg, len(pages), 'Step 58  /  the sensor head  /  rendered views', divider=False)
+IWH, IHH = 13.98, 25.99                 # mm covered by doc/assets/head_top.png (board 10 x 22 plus 2 mm all round)
+KH = 4.0
+hx, hy = 24, 28
+image(pg, os.path.join(REPO, 'doc', 'assets', 'head_top.png'), hx, hy, IWH * KH, IHH * KH)
+pg.text(hx + IWH * KH / 2, hy + IHH * KH + 7, f'Top view at 4 : 1, board {HW_:.0f} × {HH_:.0f} mm', 2.8, MUTED, 'middle')
+from PIL import Image as _I
+_w, _h = _I.open(os.path.join(REPO, 'doc', 'assets', 'head_angled.jpg')).size
+AW = 100.0
+image(pg, os.path.join(REPO, 'doc', 'assets', 'head_angled.jpg'), 100, 30, AW, AW * _h / _w)
+pg.text(150, 30 + AW * _h / _w + 8, 'The same board seen at an angle. The piezo goes on the other face, over the two wire holes.', 2.8, MUTED, 'middle')
+image(pg, os.path.join(REPO, 'doc', 'assets', 'head_top.png'), 225, 40, IWH, IHH)
+pg.text(222, 40 + IHH + 6, 'Real size, 1 : 1', 2.6, INK, 'start', True)
