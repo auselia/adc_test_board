@@ -1,0 +1,6 @@
+option | noise rms worst (mV at 47 pF) | noise peak max in 18 noise captures | smallest event peak | margin event/noise-peak
+1st order HP 100 kHz + LP 500 kHz (passive)                    |   8.3 |  26.1 |  52.0 | 2.0
+1st order HP 150 kHz + LP 500 kHz (passive)                    |   7.2 |  19.8 |  48.3 | 2.4
+2 x 1st order HP 100 kHz, LP 500 kHz (passive, buffered)       |   6.6 |  13.8 |  33.7 | 2.4
+2nd order Butterworth HP 120 kHz + LP 500 kHz (one op-amp)     |   7.2 |  14.9 |  33.9 | 2.3
+3rd order: 2nd order HP 120 kHz + 1st order 120 kHz            |   6.0 |  14.3 |  30.7 | 2.1

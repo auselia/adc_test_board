@@ -1,0 +1,19 @@
+S2  listener on 25 real captures (perfboard output, Cf 47 pF; charge = V x 47 pF)
+  after the 100 kHz high-pass: noise rms median 4.00 mV (0.188 pC), worst 9.15 mV (0.430 pC)
+  true events 7: peak 52 to 188 mV (2.4 to 8.8 pC)
+  largest peak in the 18 noise captures: 26.1 mV (1.23 pC)
+  threshold (pC) -> volts at 47 pF | events detected | noise captures that fire
+   0.50 pC   10.6 mV   7 of 7      18 of 18
+   0.75 pC   16.0 mV   7 of 7      7 of 18
+   1.00 pC   21.3 mV   7 of 7      2 of 18
+   1.50 pC   31.9 mV   7 of 7      0 of 18
+  The 18 noise captures were selected by the scope trigger (70 mV), so they are the worst excursions the scope saw.
+  A threshold above their largest peak gives no false alarm in them. The false-alarm rate per hour must be measured (T5).
+
+S4  charge amplifier loop (ESTIMATE: OPA314-class 3 MHz, second pole 10 MHz, output pole from 1 kohm open-loop Ro and 100 pF)
+  Cf   47 pF: noise gain  35.0, -3 dB at   86 kHz, crossover phase margin 86 deg, 5 pC gives 106.4 mV
+  Cf  100 pF: noise gain  17.0, -3 dB at  176 kHz, crossover phase margin 83 deg, 5 pC gives  50.0 mV
+  Cf  150 pF: noise gain  11.7, -3 dB at  257 kHz, crossover phase margin 79 deg, 5 pC gives  33.3 mV
+  Cf  220 pF: noise gain   8.3, -3 dB at  363 kHz, crossover phase margin 75 deg, 5 pC gives  22.7 mV
+  Cf  330 pF: noise gain   5.8, -3 dB at  513 kHz, crossover phase margin 69 deg, 5 pC gives  15.2 mV
+  Cf  470 pF: noise gain   4.4, -3 dB at  681 kHz, crossover phase margin 63 deg, 5 pC gives  10.6 mV

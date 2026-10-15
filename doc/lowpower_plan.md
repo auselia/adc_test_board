@@ -1,6 +1,6 @@
 # Low-power 3.3 V revision (v3): plan
 
-Status: plan. Nothing is built. Date: 2026-10-15.
+Status: G1 done (simulations and parameters). Schematic not started. Date: 2026-10-15. Section 13 holds the G1 results and the decisions that supersede earlier sections.
 Authors' note: numbers marked ESTIMATE or "verify" are not from a datasheet I read in full. The part data comes from the JLCPCB library listing and from my memory of the TI families.
 
 ## 1. What this revision is for
@@ -10,10 +10,10 @@ The product must run on a battery for one year. Today's board draws about 27 mA 
 This revision does three things:
 
 1. It runs from **3.3 V only**, taken from the ZedBoard PMOD pins. No USB, no 5 V, no regulator in the signal path.
-2. It splits the board into an **always-on listener** and a **switchable capture chain**.
+2. It keeps the whole chain **always on** (your decision) and adds a small **listener** that watches the same signal in parallel. The listener only reports; it never gates the chain.
 3. It lets you **measure** what the plant really does (events per hour, amplitude, noise) and what each block really draws. That decides the product architecture.
 
-It is a learning board, not the product. The default mode keeps everything on, as today.
+It is a learning board, not the product. Everything stays on. The listener runs next to the full capture so you can compare its decisions with the waveforms, which is the data that decides whether a listener-only product is acceptable.
 
 ## 2. Findings that shape the design
 
@@ -189,3 +189,107 @@ Estimated work on my side: G1 about one day, G2 and G3 about one to two days, G4
 | O8 | Extended part fees: OPA314, TLV7022, TPS22916, 74AUP1G74 = +$12 per order. | cost step |
 
 Decisions I made without asking: single-ended ADC chain stays (it does not change power), the head keeps the bias-T, LAB is the default. Say if any of these should change.
+
+
+## 13. G1 results and decisions (supersede sections 3 to 5 where they differ)
+
+### 13.1 Decisions
+
+| # | Decision |
+|---|---|
+| D1 | **Always on.** No load switch (TPS22916), no latch (74AUP1G74), no CAP_EN, no SJ_CAP. Dropped from the plan. The capture chain runs from `+3V3`. |
+| D2 | **Keep the listener as an observer.** It is 2 comparators (TLV7022), a filter and a few resistors. It drives WAKE_N and BIG_N on the PMOD. The FPGA logs its hits next to the waveforms. If the listener is not wanted, it can be left unpopulated. |
+| D3 | **Power from the ZedBoard only.** PMOD pins 6 and 12. No USB. A 2-pin header stays for a battery later, with a solder jumper SJ_PMOD to cut the PMOD supply. |
+| D4 | **Head amplifier: one footprint, two parts.** SOT-23-5, same pinout for the OPA365 (50 MHz, 4.6 mA, Cf 47 pF, today's fidelity) and the OPA314 (3 MHz, 150 µA, Cf 220 pF). Cf is two 0402 positions in parallel (47 pF fitted for HQ, 47 pF + 180 pF for LP). Rf stays 1 MΩ. |
+| D5 | **Gain stage R3** becomes a population option: 3.9 kΩ (×4.9) for HQ, 19.1 kΩ (×20) for LP, 2 kΩ (×3) if you want more headroom. |
+| D6 | The ADS7057 chain stays differential. Single-ended is not worth changing now. |
+
+### 13.2 ZedBoard PMOD supply
+
+Source: ZedBoard Hardware User's Guide v1.9, section 2.9.2 and Table 19.
+
+- The Pmod 3.3 V pins (6 and 12) come from the **3.3 V "Vcco/FMC/Pmod" rail of the TPS65708, rated 3 A, 5 % tolerance**. The rail is shared with Bank 13 and the FMC.
+- The guide gives **no per-connector limit** for the Pmod pins. The Digilent Pmod specification says the host supplies 3.3 V. A Digilent forum post quotes up to 1 A for VCC and GND. I could not read the specification itself. Treat 1 A as unverified.
+- Our load is 5 mA in the listener, about 35 mA with the OPA365 head and 32 mA of chain. Four boards are about 140 mA. That is far below any plausible limit.
+- The Pmod data lines have ESD arrays but no stated current limit on the supply pins. Noise on this rail is still unknown (test S10).
+- **Mechanical:** the guide says pin 6 of one Pmod and pin 1 of the next are 10 mm apart. The pitch of adjacent Pmods is about 23 mm. Our board is 37.6 mm along the header, so two boards cannot sit side by side on JA and JB. Use short Pmod extension cables, or reduce the board width (open item O9).
+
+### 13.3 S1: the chain on 3.3 V (OPA365 vendor model, `sim/g1_chain33.py`)
+
+| Quantity | 3.3 V result | 4.6 V result (today) |
+|---|---|---|
+| Gain at 250 kHz | 12.26 dB | 12.26 dB |
+| Loss at 10 kHz | 40.5 dB | 40.5 dB |
+| Loss at 2 MHz | 24.0 dB | 24.0 dB |
+| Band | 106 to 502 kHz | 106 to 502 kHz |
+| Noise at the ADC | 77 µV rms, 0.19 LSB | 77 µV |
+| Monte Carlo, runs under 40 dB at 10 kHz | 5 of 100 | 5 of 100 |
+| Gain stage output for a 0.12 V burst | 1.13 to 2.17 V | 1.78 to 2.82 V |
+| Clips at about | 0.36 V at the head output | 0.5 V |
+
+The signal path is unchanged. Only the headroom drops. The largest recorded event is 0.24 V (100 to 500 kHz peak at 47 pF). That is 1.5× below the clip level at gain ×4.9. A gain of ×3 (R3 = 2 kΩ) gives 2.2×.
+
+### 13.4 S2: the listener on the 25 real captures (`sim/g1_listener.py`)
+
+7 true events and 18 noise triggers (the scope trigger selected the noise at 70 mV, so these are the worst excursions it saw).
+
+| Input filter | Worst noise peak (18 noise captures), mV at 47 pF | Smallest event, mV | Margin |
+|---|---|---|---|
+| 1st order HP 100 kHz + LP 500 kHz, passive | 26.1 | 52.0 | 2.0 |
+| 1st order HP 150 kHz + LP 500 kHz, passive | 19.8 | 48.3 | 2.4 |
+| 2 × 1st order HP 100 kHz, buffered | 13.8 | 33.7 | 2.4 |
+| 2nd order Butterworth HP 120 kHz (one op-amp) | 14.9 | 33.9 | 2.3 |
+
+- Margin is the smallest event over the largest noise peak, measured after the same filter.
+- **Threshold:** at 47 pF, 1.5 pC (32 mV) catches all 7 events and no noise capture. At 0.75 pC, 7 of the 18 noise captures fire. So **the threshold moves from 0.75 pC to 1.5 pC**, and the margin to the smallest event is about 1.6×.
+- At Cf = 220 pF, 1.5 pC is 6.8 mV. BIG stays at 4 pC (18 mV).
+- The first-order 100 kHz high-pass is the weakest option. A passive 150 kHz section gives 2.4× with no extra power. The two-section option gives the same margin and a lower threshold in volts.
+- The false-alarm rate per hour cannot come from 25 windows of 250 µs. The noise is not Gaussian. It must be measured (T5).
+
+### 13.5 S3: the bias-T at 3.3 V (`sim/head_bias_t.py 3.3`)
+
+| | OPA365 head (4.7 mA) | OPA314 head (150 µA) |
+|---|---|---|
+| Voltage at the head V+ | 2.90 V | about 3.29 V (ESTIMATE) |
+| Loss at 250 kHz | 0.17 dB | about the same |
+| Loss at 10 kHz | 18.7 dB | about the same |
+
+The bias-T works at 3.3 V without changes. With the OPA365 the head sits near 2.9 V, still above the 2.2 V minimum of the part.
+
+### 13.6 S4: charge amplifier stability and bandwidth (ESTIMATE)
+
+Model: 3 MHz amplifier, second pole at 10 MHz, 1 kΩ open-loop output resistance into 100 pF. These are assumptions. The TI model is not run yet.
+
+| Cf | Noise gain | −3 dB | Phase margin | 5 pC gives |
+|---|---|---|---|---|
+| 47 pF | 35.0 | 86 kHz | 86° | 106 mV |
+| 150 pF | 11.7 | 257 kHz | 79° | 33 mV |
+| **220 pF** | **8.3** | **363 kHz** | **75°** | **23 mV** |
+| 330 pF | 5.8 | 513 kHz | 69° | 15 mV |
+| 470 pF | 4.4 | 681 kHz | 63° | 11 mV |
+
+The OPA314 is unity-gain stable and the noise gain is above 4, so stability is not the problem. The bandwidth is. At 220 pF the capture sees events 2 dB down at 250 kHz and 4 dB down near 400 kHz. That is acceptable for a listener and visible in LAB waveforms. The OPA365 option keeps today's waveforms.
+
+### 13.7 Updated parameter table
+
+| Parameter | LP head (listener) | HQ head (LAB) |
+|---|---|---|
+| Amplifier | OPA314AIDBVR (SOT-23-5, C130194, $1.77, stock 177) | OPA365AIDBVR (C96626, $2.67) |
+| Cf | 220 pF (47 + 180) | 47 pF |
+| Rf | 1 MΩ | 1 MΩ |
+| Current | about 150 µA | about 4.7 mA |
+| R3 (gain stage) | 19.1 kΩ for ×20, or 3.9 kΩ if you accept ×4.9 of a 4.7× smaller signal | 3.9 kΩ (×4.9) or 2 kΩ (×3) |
+| Listener filter | passive 150 kHz section, LP 500 kHz | same |
+| WAKE threshold | ±1.5 pC (6.8 mV at 220 pF, 32 mV at 47 pF) | |
+| BIG threshold | ±4 pC (18 mV at 220 pF, 85 mV at 47 pF) | |
+| Comparator reference | 1 MΩ / 1 MΩ + 1 µF from `+3V3` | |
+| Mid-rail and VOCM | as today (10k / 10k, 1k / 1k), always on | |
+| AVDD | `+3V3` through 10 Ω and 10 µF, then the 4.7 µF and 100 nF at the pin | |
+
+The OPA314 SOT-23-5 version replaces the SC-70-5 part I listed before. It has the same pinout as the OPA365, so one footprint takes either.
+
+### 13.8 What changes in the remaining steps
+
+- G2 schematic: remove the load switch, latch and enable jumpers. Add SJ_PMOD, the dual Cf footprint, the R3 option, the listener filter and comparators, and the five current-measurement links (M1 to M5).
+- G3 layout: adopt rules L1 to L12 of section 8. Check the Pmod width (O9).
+- Open items updated: O1 is answered (see 13.2). O9 is new (Pmod pitch against board width). O10: S1 to S4 with the TI OPA314 and TLV7022 models, still to fetch.

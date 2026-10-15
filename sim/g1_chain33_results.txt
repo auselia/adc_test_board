@@ -1,0 +1,10 @@
+S1  chain on 3.3 V, vendor OPA365
+  nominal: gain 12.26 dB, flatness 0.08 dB, loss at 10 kHz 40.5 dB, loss at 2 MHz 24.0 dB, band 106 to 502 kHz
+  noise at the ADC input, 1 kHz to 2.5 MHz: 77 uV rms = 0.19 LSB
+  Monte Carlo 100 runs: loss at 10 kHz min 39.8 mean 40.6 dB, runs under 40 dB: 5
+  gain at 250 kHz min 12.00 max 12.57 dB
+  bursts at the head output (gain 4.9 stage output, rail 0 to 3.3 V):
+    0.12 V burst: 1.13 to 2.17 V ok
+    0.20 V burst: 0.79 to 2.51 V ok
+    0.30 V burst: 0.36 to 2.94 V ok
+    0.40 V burst: 0.01 to 3.29 V CLIPS
