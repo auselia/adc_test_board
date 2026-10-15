@@ -1,24 +1,12 @@
 ** Drc report for ADC_Head.kicad_pcb **
-** Created on 2026-10-15T17:46:00 **
+** Created on 2026-10-15T20:05:27 **
 ** Report includes: Errors, Warnings, Exclusions **
 
-** Found 4 DRC violations **
+** Found 1 DRC violations **
 [courtyards_overlap]: Courtyards overlap
     Rule: board setup constraints courtyard; error
-    @(107.4000 mm, 103.6000 mm): Footprint TP2
+    @(105.0000 mm, 103.6000 mm): Footprint TP1
     @(105.0000 mm, 106.6000 mm): Footprint L1
-[courtyards_overlap]: Courtyards overlap
-    Rule: board setup constraints courtyard; error
-    @(102.6000 mm, 103.6000 mm): Footprint TP1
-    @(105.0000 mm, 106.6000 mm): Footprint L1
-[silk_over_copper]: Silkscreen clipped by solder mask
-    Local override; warning
-    @(105.0000 mm, 121.1000 mm): PCB text 'HEAD v1' on B.Silkscreen
-    @(107.5400 mm, 120.4400 mm): PTH pad 2 [HGND] of J6
-[silk_over_copper]: Silkscreen clipped by solder mask
-    Local override; warning
-    @(105.0000 mm, 121.1000 mm): PCB text 'HEAD v1' on B.Silkscreen
-    @(102.4600 mm, 120.4400 mm): PTH pad 2 [HGND] of J6
 
 ** Found 0 unconnected pads **
 

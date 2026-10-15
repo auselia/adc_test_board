@@ -13,7 +13,7 @@ m4lib.OUT = os.path.abspath(os.path.join(m4lib.HERE, '..', 'manual_build'))
 m4lib.TEXDIR = os.path.join(m4lib.OUT, 'tex')
 os.makedirs(m4lib.TEXDIR, exist_ok=True)
 
-PARTS = sys.argv[1:] or ['adc_part_a', 'adc_part_b', 'adc_part_c', 'adc_part_d', 'adc_part_e', 'adc_part_f', 'adc_part_g']
+PARTS = sys.argv[1:] or ['adc_part_a', 'adc_part_b', 'adc_part_c', 'adc_part_d', 'adc_part_e', 'adc_part_f', 'adc_part_h', 'adc_part_g']
 for p in PARTS:
     importlib.import_module(p)
 from m4lib import pages, WARN, ste_report, steps_done, HERE

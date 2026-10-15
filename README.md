@@ -49,7 +49,7 @@ The perfboard circuit (TRL3 schematic), on its own board:
 | Reference | R29, R30 10k, C35 10 µF | VREF = V+/2, about 2.1 V (perfboard: 4.5 V on 9 V) |
 | Output | R31 49.9 Ω, C38 100 nF | Same 50 Ω, AC-coupled onto the coax |
 | Power from the coax | L1 470 µH, C36 100 nF, C37 10 µF | 5 V comes in on the coax centre. About 4.7 mA |
-| Piezo | TP1 (+, to the summing node), TP2 (−, to ground) | Two 1 mm holes, 4.8 mm apart. The piezo sits on the other face |
+| Piezo | TP1 (+, to the summing node), TP2 (−, to ground) | Two 1 mm holes. TP1 is on the centre line of the board and sets the piezo position, TP2 is 3.4 mm to the side for the side wire. The piezo sits on the back face, which carries the Auselia mark |
 | Output connector | J6 SMA, vertical | To SENSOR IN (J1) on the main board |
 
 Differences from the perfboard that you should know about:

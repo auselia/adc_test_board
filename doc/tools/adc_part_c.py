@@ -97,7 +97,7 @@ pg.text(70, 78, 'the 25× rule: 16 pF × 20 = 320 pF minimum', 2.5, MUTED, 'midd
 # 20 --------------------------------------------------------------------------------------------
 pg = step('What the ADC input looks like',
           [f'The sampling switch of the ADC is 50 Ω in series with 16 pF on each leg. The simulation closes the switch on a signal that was left at the previous sample. The input settles to half an LSB in {s1:.0f} ns for a typical step and {s2:.0f} ns for a large one.',
-           'The ADC needs the input settled within 95 ns at the highest rate. So the margin is a factor of about two on the worst case.'])
+           'How to read the graph: at time 0 the switch closes and the input is wrong by the step (340 or 560 mV). The curve is the remaining error as it shrinks. When it falls under the red line, the sample is right to half an LSB. The ADC allows 95 ns.'])
 chip(pg, label='SIMULATION, SETTLING')
 X0, Y0, W_, H_ = 14, 36, 112, 40
 pg.rect(X0, Y0, W_, H_, '#fff', '#999', 0.3)
@@ -115,7 +115,17 @@ for t_ in (0, 25, 50, 75, 100):
     pg.text(tx_(t_), Y0 + H_ + 4, t_, 2.5, MUTED, 'middle')
 for mv, nm in ((1000, '1 V'), (10, '10 mV'), (0.1, '0.1 mV')):
     pg.text(X0 - 1.5, ey(mv) + 0.9, nm, 2.5, MUTED, 'end')
-pg.text(X0 + W_ / 2, Y0 + H_ + 8.4, 'ns after the switch closes. Error against the final value, log scale.', 2.5, MUTED, 'middle')
+pg.text(X0 + W_ / 2, Y0 + H_ + 8.4, 'ns after the switch closes. Vertical: remaining error, log scale.', 2.5, MUTED, 'middle')
+pg.rect(X0, ey(0.2), tx_(95) - X0, Y0 + H_ - ey(0.2), '#e4f2e0', 'none', 0, 0)
+pg.text(X0 + 2, Y0 + H_ - 2, 'settled in time', 2.4, '#2f7a3f', 'start', True)
+for key, c_, nm in (('0.34', PUR, 'typical step, 0.34 V'), ('0.56', BLU, 'worst step, 0.56 V')):
+    d_ = st[key]
+    err_ = [(tt, abs(vv - d_['final']) * 1e3) for tt, vv in zip(d_['t'], d_['v']) if 0 <= tt <= 100]
+    tcross = max((tt for tt, ee in err_ if ee >= 0.2), default=None)       # the last time the error is above half an LSB
+    if tcross is not None:
+        pg.circle(tx_(tcross), ey(0.2), 1.1, c_, '#fff', 0.3)
+        pg.text(tx_(tcross) + (-1.5 if key == '0.34' else 1.5), ey(0.2) + 5.0, f'{tcross:.0f} ns', 2.4, c_, 'end' if key == '0.34' else 'start', True)
+    pg.text(X0 + 4, ey(d_['final'] and abs(d_['v'][0] - d_['final']) * 1e3) + (3.2 if key == '0.34' else -1.0), nm, 2.4, c_, 'start', True)
 
 # 21 --------------------------------------------------------------------------------------------
 pg = step('What the ADS7057 is',

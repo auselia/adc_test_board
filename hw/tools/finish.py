@@ -113,29 +113,30 @@ def shape(kind,layer=pcbnew.F_SilkS,width=0.1,fill=False):
     s=pcbnew.PCB_SHAPE(b); s.SetShape(kind); s.SetLayer(layer); s.SetWidth(mm(width))
     if fill: s.SetFilled(True)
     b.Add(s); return s
-def logo(x0,y0,s=0.1):
-    """Auselia mark (platform/brand/mark/svg/auselia-mark-mono-bone.svg), top-left of its bounding box at (x0,y0) mm, s mm per SVG unit."""
-    P=lambda u,v: V(OX+x0+(u-7.0)*s, OY+y0+(v-9.5)*s)
-    st=shape(pcbnew.SHAPE_T_SEGMENT,width=5*s); st.SetStart(P(28,58)); st.SetEnd(P(28,12))                # stem
+def logo(x0,y0,s=0.1,layer=pcbnew.F_SilkS,mirror=False):
+    """Auselia mark (platform/brand/mark/svg/auselia-mark-mono-bone.svg), top-left of its bounding box at (x0,y0) mm, s mm per SVG unit.
+    mirror=True draws it for the back side (seen from the back it reads correctly)."""
+    if mirror: P=lambda u,v: V(OX+x0+(50-u)*s, OY+y0+(v-9.5)*s)
+    else: P=lambda u,v: V(OX+x0+(u-7.0)*s, OY+y0+(v-9.5)*s)
+    st=shape(pcbnew.SHAPE_T_SEGMENT,layer=layer,width=5*s); st.SetStart(P(28,58)); st.SetEnd(P(28,12))                # stem
     def bez(p0,c1,c2,p3,n=14):
         return [((1-t)**3*p0[0]+3*(1-t)**2*t*c1[0]+3*(1-t)*t*t*c2[0]+t**3*p3[0],
                  (1-t)**3*p0[1]+3*(1-t)**2*t*c1[1]+3*(1-t)*t*t*c2[1]+t**3*p3[1]) for t in [k/n for k in range(n+1)]]
     pts=bez((28,48),(28,37),(18,31),(7,31))+bez((7,31),(7,42),(17,50),(28,48))[1:]                    # leaf
-    lf=shape(pcbnew.SHAPE_T_POLY,width=0.05,fill=True)
+    lf=shape(pcbnew.SHAPE_T_POLY,layer=layer,width=0.05,fill=True)
     ch=pcbnew.SHAPE_LINE_CHAIN()
     for u,v in pts: ch.Append(P(u,v))
     ch.SetClosed(True); lf.SetPolyShape(pcbnew.SHAPE_POLY_SET(ch))
-    c=shape(pcbnew.SHAPE_T_CIRCLE,width=0.05,fill=True); c.SetCenter(P(28,24)); c.SetEnd(P(34,24))   # bud
+    c=shape(pcbnew.SHAPE_T_CIRCLE,layer=layer,width=0.05,fill=True); c.SetCenter(P(28,24)); c.SetEnd(P(34,24))   # bud
     for r in (14,22):                                                                                  # two sound arcs
-        a=shape(pcbnew.SHAPE_T_ARC,width=3.6*s)
-        dy=(r*r-(r*r-8.0**2 if r==14 else r*r-12.6**2))**0.5
+        a=shape(pcbnew.SHAPE_T_ARC,layer=layer,width=3.6*s)
         h=8.0 if r==14 else 12.6; dx=(r*r-h*h)**0.5
         a.SetArcGeometry(P(28+dx,24-h),P(28+r,24),P(28+dx,24+h))
 # front: labels a person can read without the schematic
 if TARGET=='head':
-    text('+',1.0,2.2,1.0)
-    text('PZT',5.0,5.2,0.8,layer=pcbnew.B_SilkS,thick=0.15,mirror=True); text('+',2.6,5.6,0.9,layer=pcbnew.B_SilkS,thick=0.15,mirror=True); text('-',7.4,5.6,0.9,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
-    text('HEAD v1',5.0,HEADH-0.9,0.8,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
+    text('+ centre',5.0,6.0,0.8,layer=pcbnew.B_SilkS,thick=0.15,mirror=True); text('-',8.4,5.8,0.9,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
+    logo(2.9,9.0,0.1,layer=pcbnew.B_SilkS,mirror=True)                        # back, the face the piezo sits on
+    text('HEAD v1',5.0,7.8,0.8,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
 else:
     text('SENSOR IN',4.6+DX,1.1,0.9); [text(l_,4.0+3.0*i_,35.5+(1.1 if i_%2 else 0.0),0.8) for i_,l_ in enumerate(['SIG','HPF','GAIN','LPF','DRV+','DRV-','AIN+','AIN-','5V','AVDD','MID5','VOCM','3V3','WAKE','TH+','TH-','GND','GND'])]; text('USB-C 5V',3.6,19.1,0.8); text('5V IN',16.2,29.4,0.8); text('+5V on centre',4.6+DX,2.3,0.7)                                  # J1, from the perfboard
     text('SCOPE OUT',36.6+DX,0.9,0.9)                                 # J4, same signal the ADC sees (51 ohm)
