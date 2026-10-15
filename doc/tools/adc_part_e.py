@@ -62,32 +62,32 @@ for i, (nm, d_, c_) in enumerate(items):
 assert 'C31' not in {r for row in bom for r in row['Designator'].split(',')}
 
 # 46 --------------------------------------------------------------------------------------------
-ext = ['C130011', 'C705347', 'C2669902', 'C11366', 'C75644']
+ext = ['C130011', 'C705347', 'C2669902', 'C165948', 'C75644']
 names = {r['LCSC Part #']: r for r in bom}
 pg = step('What is in the BOM',
           [f'{n_lines} lines hold {n_parts} parts. Five lines hold extended parts, and JLCPCB charges a fee for each type. All other lines hold basic parts.',
-           'The ADC, the driver and the two op-amps are the extended parts, with the tantalum capacitor and the 470 µH inductor of the bias-T.'])
+           'The ADC, the driver and the two op-amps are the extended parts, with the USB-C connector and the 470 µH inductor of the bias-T.'])
 chip(pg, label='EXTENDED PARTS, PRICE PER PART')
 rows = [['Ref', 'Part', 'LCSC', 'Price']]
 for l in ext:
     r = names[l]
     rows.append([r['Designator'], r['Comment'], l, f"${cost.PRICE[l]:.2f}"])
 table(pg, 4, 38, [24, 46, 28, 22], rows, rh=6.4, size=2.7)
-pg.text(4, 80, f'Through-hole parts: J1 J4 SMA, J2, J3, RV1. JLCPCB solders them by hand, for a fee per joint.', 2.5, MUTED)
+pg.text(4, 80, f'Through-hole parts: J1 J4 SMA, J7, J3, RV1. The USB-C J2 has four through-hole tabs. JLCPCB solders them by hand, for a fee per joint.', 2.5, MUTED)
 assert all(l in cost.EXT_SMD for l in ext)
 
 # 47 --------------------------------------------------------------------------------------------
 pos = {r['Ref']: r for r in csv.DictReader(open(os.path.join(FAB, 'ADC_Test_pos_kicad.csv')))}
 cplr = {r['Designator']: r for r in cpl}
 fix = []
-for ref, why in (('U5', 'viewer showed it turned; set absolute angle'), ('C29', 'library offset would turn it; kept KiCad angle'),
-                 ('J2', 'viewer showed it turned; set absolute angle'), ('J3', 'viewer showed it turned; set absolute angle')):
+for ref, why in (('U5', 'viewer showed it turned; set absolute angle'), ('J7', 'viewer showed it turned; set absolute angle'),
+                 ('J3', 'viewer showed it turned; set absolute angle')):
     k_ = float(pos[ref]['Rot']) % 360
     c_ = float(cplr[ref]['Rotation'])
-    assert k_ != c_ or ref == 'C29'
+    assert k_ != c_
     fix.append([ref, f'{k_:.0f}°', f'{c_:.0f}°', why])
 pg = step('What the placement viewer corrected',
-          ['The JLCPCB viewer showed four parts turned wrong on the first revision. The new parts (U8, L1, L2, J6) are not checked yet. The KiCad footprints and the JLC library disagree on the zero angle. Each fix sits in `jlc_files.py`, not in the board.',
+          ['The JLCPCB viewer showed three parts turned wrong on the first revision. The new parts (J2 USB-C, U8, L1, L2, J6) are not checked yet. The KiCad footprints and the JLC library disagree on the zero angle. Each fix sits in `jlc_files.py`, not in the board.',
            'The trimmer RV1 also moved 2.54 mm in X and 1 mm in Y, because its library origin differs from the pin 1 pad.'])
 chip(pg, label='KICAD ROTATION AGAINST CPL ROTATION')
 table(pg, 4, 40, [14, 18, 18, 86], [['Ref', 'KiCad', 'CPL', 'Why']] + fix, rh=7.0, size=2.6)
@@ -128,16 +128,16 @@ section('BRING-UP AND CHECKS', 'Bring-up and checks', 'Section 8', 'Steps 49 to 
 
 # 49 --------------------------------------------------------------------------------------------
 pg = step('What to check before the PMOD goes in',
-          ['Feed 9 V to J2 with the PMOD unplugged. Measure each rail against GND with a meter. Unplug the supply if the 5 V rail is off by more than 0.25 V.',
+          ['Feed 5 V to the USB-C J2 or the header J7 with the PMOD unplugged. Measure each rail at the test points against GND. Unplug the supply if the 5 V rail is off by more than 0.25 V.',
            'The 3.3 V line comes from the ZedBoard through the PMOD. With no PMOD it reads 0 V, and that is correct.'])
-chip(pg, label='EXPECTED VOLTAGES, 9 V IN')
-rows = [['Node', 'Where', 'Expect'],
-        ['+5V', 'C29 plus side', '5.0 V'],
-        ['AVDD', 'C18 or U4 pin 6', '3.30 V'],
-        ['VMID5', 'U2 pin 7', '2.50 V'],
-        ['VOCM', 'R14 and R15 joint', f'{AVDD/2:.2f} V'],
-        ['+3V3', 'J3 pin 11', '0 V (no PMOD)'],
-        ['nWAKE', 'J3 pin 8', 'floats, no pull-up']]
+chip(pg, label='EXPECTED VOLTAGES, 5 V IN')
+rows = [['Node', 'Test point', 'Expect'],
+        ['+5V', 'TP11, 5V', '4.6 V (5.0 V − SS14)'],
+        ['AVDD', 'TP12, AVDD', '3.30 V'],
+        ['VMID5', 'TP13, MID5', '2.30 V (half of +5V)'],
+        ['VOCM', 'TP14, VOCM', f'{AVDD/2:.2f} V'],
+        ['+3V3', 'TP15, 3V3', '0 V (no PMOD)'],
+        ['nWAKE', 'TP16, WAKE', 'floats, no pull-up']]
 table(pg, 4, 40, [30, 52, 44], rows, rh=6.6, size=2.6)
 
 # 50 --------------------------------------------------------------------------------------------
@@ -145,11 +145,11 @@ vin = 0.100
 vadc = vin * ADC_GAIN_250
 pg = step('The first signal test',
           [f'Plug the PMOD in. Put 100 mV peak at 250 kHz on J1 from the Analog Discovery 2 and send a burst of ten cycles. Look at SCOPE OUT and read the SPI words.',
-           f'The scope shows {vin*LPF_GAIN*1000:.0f} mV peak above 2.5 V. The ADC sees {vadc*1000:.0f} mV peak between its inputs, which is {vadc/LSB:.0f} codes.'])
+           f'The scope shows {vin*LPF_GAIN*1000:.0f} mV peak above {MID:.1f} V. The ADC sees {vadc*1000:.0f} mV peak between its inputs, which is {vadc/LSB:.0f} codes.'])
 chip(pg, label='EXPECTED, 100 mV PEAK AT J1')
 rows = [['Where', 'Expect'],
         ['J1', f'{vin*1000:.0f} mV peak, 250 kHz'],
-        ['SCOPE OUT (J4)', f'{vin*LPF_GAIN*1000:.0f} mV peak on 2.5 V'],
+        ['SCOPE OUT (J4)', f'{vin*LPF_GAIN*1000:.0f} mV peak on {MID:.1f} V'],
         ['ADC input, differential', f'{vadc*1000:.0f} mV peak'],
         ['Code, peak', f'about {vadc/LSB:.0f} (0x{int(vadc/LSB):04X})'],
         ['Code, no signal', 'near 0 (0x0000), ± 1']]
@@ -188,7 +188,7 @@ pg = step('What if it does not work',
            'Most first-board failures are a short, a part turned the wrong way or a missing 3.3 V.'])
 chip(pg, label='SYMPTOM, CAUSE, CHECK')
 rows = [['Symptom', 'Likely cause', 'Check'],
-        ['5 V low', 'Battery under 6.7 V', 'J2 voltage'],
+        ['5 V low', 'Weak USB source', 'TP11 under load'],
         ['SCOPE OUT flat', 'U1 or U2 not powered', '5 V at pin 8'],
         ['SDO all zeros', 'First frame only', 'Read twice'],
         ['SDO stuck', 'No 3.3 V from PMOD', 'J3 pin 11'],

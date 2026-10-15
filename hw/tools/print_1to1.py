@@ -7,7 +7,7 @@ import pymupdf as fitz
 MM=72/25.4
 top,assy,bot,out=sys.argv[1:5]
 NAME=sys.argv[5] if len(sys.argv)>5 else 'ADS7057 test board'
-NOTE=sys.argv[6] if len(sys.argv)>6 else 'Board outline 57.0 x 32.0 mm. The right-angle PMOD header J3 sticks out 5.9 mm past the right edge and is not drawn.'
+NOTE=sys.argv[6] if len(sys.argv)>6 else 'Board outline 57.0 x 37.6 mm. The right-angle PMOD header J3 sticks out 5.9 mm past the right edge and is not drawn.'
 rev=subprocess.run(['git','rev-parse','--short','HEAD'],capture_output=True,text=True).stdout.strip()
 PAGES=[(top,'Top side: pads and silkscreen','Place the real parts on the pads to check every footprint before you order.'),
        (assy,'Top side: pads and reference designators','Use it to find a part. The names are the same as in the schematic and the BOM.'),

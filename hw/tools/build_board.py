@@ -10,7 +10,7 @@ FPDIR='/Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/'
 mm=pcbnew.FromMM
 def V(x,y): return pcbnew.VECTOR2I(mm(x),mm(y))
 OX,OY=100.0,100.0
-W,H=57.0,32.0                  # main board
+W,H=57.0,37.6                  # main board (the bottom 3 mm carry the test-point strip)
 DX=7.0                         # strip added on the left for the bias-T parts
 TARGET=os.environ.get('BOARD','adc')   # 'adc' main board, 'head' sensor head (its own board file)
 HW_,HH_=10.0,float(os.environ.get('HEADH','22'))   # sensor head outline (panel coordinates)
@@ -33,8 +33,6 @@ POS={
  'U4':(33.6,20.6,180),'C18':(30.6,19.2,90),'C20':(35.45,18.6,0),'C19':(32.3,18.2,0),'C22':(32.0,15.6,0),
  'R19':(38.6,20.4,0),'R20':(38.6,18.6,180),'R18':(38.95,14.8,0),               # 22R SPI
  'J3':(43.42,11.0,0),                                                           # PMOD, body flush with the right edge
- # 9 V -> 5 V (bottom left)
- 'J2':(2.6,23.4,0),'D1':(7.4,23.6,0),'C23':(7.4,27.8,0),'U7':(13.8,28.0,0),'C29':(7.6,30.4,0),
  # window comparator (bottom middle/right)
  'RV1':(25.2,29.0,0),'R21':(30.2,26.4,0),'R22':(30.2,28.2,0),'R23':(30.2,30.0,0),'C26':(33.6,26.4,0),'C27':(33.6,30.0,0),
  'U6':(38.6,28.36,0),'C28':(37.8,24.6,0),'R24':(40.85,23.3,90),'C31':(38.6,22.4,0),'H2':(46.6,29.1,0),
@@ -43,7 +41,11 @@ POS={
 HEAD_REFS=set()
 # bias-T strip (left of the old board) and the sensor head (second board, panel coordinates x 4..14, y 34..54)
 NEW={'C33':(10.0,10.8,90),'R27':(10.0,13.6,90),
-     'JP1':(3.2,14.4,90),'L2':(3.2,18.4,90),'R26':(3.2,22.8,90),'C32':(3.2,26.4,90)}
+     'JP1':(3.2,12.8,90),'L2':(3.2,16.6,90),'R26':(12.0,24.9,90),'C32':(10.4,24.9,90),
+     # 5 V input: USB-C on the left edge (mouth to the left), header, two SS14, ferrite, 22 uF
+     'J2':(3.6,25.2,270),'J7':(11.6,29.4,90),'R32':(3.2,31.5,0),'R33':(6.2,31.5,0),'D1':(16.8,23.6,0),'D2':(16.8,26.6,0),
+     'FB1':(21.4,24.4,0),'C23':(21.2,27.2,0)}
+for _i,_r in enumerate(['TP%d'%k for k in range(3,21)]): NEW[_r]=(4.0+3.0*_i,33.9,0)
 HEAD={'TP1':(2.6,3.6,0),'TP2':(7.4,3.6,0),
       'R31':(1.1,13.0,0),
       'C34':(3.05,13.0,0),
@@ -68,7 +70,7 @@ POS.update(NEW)
 if TARGET=='head':
     POS=dict(HEAD); W,H=HW_,HH_
 PCBFILE='ADC_Head.kicad_pcb' if TARGET=='head' else 'ADC_Test.kicad_pcb'
-FIXED={'J1','J2','J3','J4','J6','U4','H1','H2','TP1','TP2','U8','L1'}
+FIXED={'J1','J2','J3','J4','J6','U4','H1','H2','TP1','TP2','U8','L1','J7'}
 def legalize(b,gap=0.1,iters=200):
     """Push the smaller of two overlapping courtyards out along the shorter axis."""
     T=pcbnew.ToMM
@@ -118,7 +120,7 @@ def build(out):
         m.SetReference(ref); m.SetValue(c['value'])
         lib,name=c['fp'].split(':'); m.SetFPID(pcbnew.LIB_ID(lib,name))
         m.SetDNP(c['dnp'])
-        if ref.startswith('H') or ref.startswith('JP'): m.SetAttributes(m.GetAttributes() & ~pcbnew.FP_EXCLUDE_FROM_BOM)
+        if ref.startswith('H') or ref.startswith('JP') or ref.startswith('TP'): m.SetAttributes(m.GetAttributes() & ~pcbnew.FP_EXCLUDE_FROM_BOM)
         if 'LCSC' in c['fields']:
             m.SetField('LCSC',c['fields']['LCSC'])
             f=m.GetField('LCSC'); f.SetVisible(False); f.SetLayer(pcbnew.F_Fab)

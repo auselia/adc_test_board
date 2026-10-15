@@ -37,7 +37,8 @@ NOM=dict(R1=10e3,R2=20e3,R3=3.9e3,R4=1e3,R5=2.2e3,R6=2.2e3,R7=10e3,R8=10e3,R9=10
          C1=100e-12,C2=100e-12,C4=100e-12,C5=100e-12,C6=100e-12,C7=1e-6,C8=10e-6,C9=100e-9,C11=1e-6,C13=1e-6,
          C14=100e-12,C15=100e-12,C16=100e-12,C17=100e-12)
 TOL={k:(0.01 if k.startswith('R') else (0.05 if NOM[k]<=1e-9 else 0.10)) for k in NOM}
-def chain(v=None,opa='vendor',cl=0.0,v5=5.0,avdd=3.3,body='',vin='DC 4.8 AC 1'):
+V5 = 4.6          # the 5 V rail after the SS14 (5.0 V from USB minus about 0.4 V)
+def chain(v=None,opa='vendor',cl=0.0,v5=V5,avdd=3.3,body='',vin='DC 4.8 AC 1'):
     v=dict(NOM,**(v or {}))
     def op(n,p,m,o):
         return f"X{n} {p} {m} v5 0 {o} OPA365" if opa=='vendor' else f"X{n} {p} {m} {o} v5 0 OA gbw=50meg en=5n"
@@ -90,7 +91,7 @@ C17 ainp ainm {v['C17']}
 Cs1 ainp 0 8p
 Cs2 ainm 0 8p
 {body}
-.nodeset v(vdiv)=2.5 v(vbuf)=2.5 v(mid5)=2.5 v(hpf)=2.5 v(hpb)=2.5 v(gnfb)=2.5 v(gout)=2.5 v(lpa)=2.5 v(lpb)=2.5 v(lpf)=2.5
+.nodeset v(vdiv)={v5/2} v(vbuf)={v5/2} v(mid5)={v5/2} v(hpf)={v5/2} v(hpb)={v5/2} v(gnfb)={v5/2} v(gout)={v5/2} v(lpa)={v5/2} v(lpb)={v5/2} v(lpf)={v5/2}
 .nodeset v(vocm)=1.65 v(op)=1.65 v(om)=1.65 v(dinp)=1.65 v(dinn)=1.65 v(ainp)=1.65 v(ainm)=1.65
 """
 def ngspice(text,control):
@@ -139,7 +140,7 @@ def main(mc=100):
         d,_=ngspice(t,"tran 20n 45u\nlet dd=v(ainp)-v(ainm)\nwrdata tr.txt v(gout) v(lpf) dd v(op) v(om) v(mid5)")
         r=load_cols(d,'tr.txt')
         g=[x[1] for x in r]; l=[x[3] for x in r]; a=[x[5] for x in r]; po=[x[7] for x in r]; pm=[x[9] for x in r]
-        if abs(r[0][11]-2.5)>0.05: print('  WARNING: transient started at the wrong bias (mid5 = %.2f V), result not valid'%r[0][11])
+        if abs(r[0][11]-V5/2)>0.05: print('  WARNING: transient started at the wrong bias (mid5 = %.2f V), result not valid'%r[0][11])
         print(f'  burst {amp*1e3:3.0f} mV peak at the perfboard output: gout {min(g):.2f}..{max(g):.2f} V, ADC diff peak {max(a):.2f}/{min(a):.2f} V '
               f'({max(a)/3.3*100:.0f} % of full scale), legs {min(pm):.2f}..{max(po):.2f} V')
     print('== 6. ADC acquisition: 16 pF + 50 ohm per leg (datasheet 8.3.2), step from the previous sample')
@@ -165,7 +166,7 @@ Csb sp2 vb 16p
         t=t.replace("C11 lpf drva","Rsrc srcn drva 0.001")   # drive R10 directly from a DC source
         d,_=ngspice(t,"tran 1n 3u\nwrdata st.txt v(sp1) v(sp2) v(mid5)")
         r=load_cols(d,'st.txt'); T=[x[0] for x in r]
-        if abs(r[0][5]-2.5)>0.05: print('  WARNING: settling run started at the wrong bias (mid5 = %.2f V)'%r[0][5])
+        if abs(r[0][5]-V5/2)>0.05: print('  WARNING: settling run started at the wrong bias (mid5 = %.2f V)'%r[0][5])
         diff=[x[1]-x[3] for x in r]; fin=diff[-1]
         thr=0.2e-3   # half an LSB (0.4 mV) on the differential
         settled=None

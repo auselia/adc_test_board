@@ -6,8 +6,8 @@ import os,re,subprocess,tempfile
 HERE=os.path.dirname(os.path.abspath(__file__))
 NET=f"""* head board + bias-T
 .include {HERE}/models/OPA365.lib
-V5 v5 0 5
-Vmid vmid 0 2.5
+V5 v5 0 4.6
+Vmid vmid 0 2.3
 Vpz pz 0 DC 0 AC 1
 Cp pz sum 1.6n
 * head: U8 OPA365, Rf 1M, Cf 47p, VREF 10k/10k + 10u, Rs 49.9, Cac 100n, L1 470u (22.5 ohm), C37 10u + C36 100n
@@ -38,7 +38,7 @@ C1 sig a 100p
 R1 a vmid 10k
 * reference: perfboard (same amplifier, 5 V) through 49.9 ohm straight to J1
 Xu2 vref2 sum2 v5 0 out2 OPA365
-Vref2 vref2 0 2.5
+Vref2 vref2 0 2.3
 Cp2 pz sum2 1.6n
 Rf2 sum2 out2 1meg
 Cf2 sum2 out2 47p

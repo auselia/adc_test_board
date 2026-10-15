@@ -69,14 +69,16 @@ assert 111e3 < HP_F0 < 114e3 and abs(HP_Q - 0.7071) < 0.01
 assert 510e3 < LP_F0 < 513e3 and abs(LP_Q - 0.7071) < 0.01
 assert abs(GAIN - 4.9) < 1e-9
 RP_MAX = 20e3
+RAIL = 4.6                       # the 5 V rail after the SS14 (5.0 V from USB minus about 0.4 V), as simulated
+MID = RAIL / 2                   # VMID5
 
 
 def window(rp):
     """half width of the comparator window at LPF_OUT, volts"""
-    return 2.5 * (val('R22') + rp) / (val('R21') + val('R23') + val('R22') + rp)
+    return MID * (val('R22') + rp) / (val('R21') + val('R23') + val('R22') + rp)
 
 
-assert abs(window(0) - 0.0373) < 0.001 and abs(window(RP_MAX) - 0.6034) < 0.001
+assert abs(window(0) - 0.0343) < 0.001 and abs(window(RP_MAX) - 0.5551) < 0.001
 SIM_GAIN = SIM['adc']
 F = SIM['f']
 
@@ -112,10 +114,11 @@ BLOCKS = [
     ('ADS7057 and bypass', '#0e6e7a', ['U4', 'C18', 'C19', 'C20', 'C22']),
     ('SPI series resistors', '#6aa8b0', ['R18', 'R19', 'R20']),
     ('AVDD regulator', '#6aa84f', ['U5', 'C21', 'C30']),
-    ('9 V to 5 V', GRN, ['D1', 'C23', 'U7', 'C29']),
+    ('5 V input', GRN, ['J2', 'J7', 'D1', 'D2', 'FB1', 'C23', 'R32', 'R33']),
     ('Wake-up comparator', '#d89cc8', ['U6', 'R21', 'R22', 'R23', 'RV1', 'C26', 'C27', 'C28', 'R24', 'C31']),
     ('Bias-T for the head', '#d9822b', ['JP1', 'L2', 'R26', 'R27', 'C32', 'C33']),
-    ('Connectors', '#8a8a8a', ['J1', 'J2', 'J3', 'J4', 'R25']),
+    ('Test points', '#e0c040', ['TP%d' % k for k in range(3, 21)]),
+    ('Connectors', '#8a8a8a', ['J1', 'J3', 'J4', 'R25']),
     ('Holes', '#bbbbbb', ['H1', 'H2']),
 ]
 BLOCK_OF = {r: n for n, c, rs in BLOCKS for r in rs}

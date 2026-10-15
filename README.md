@@ -6,12 +6,12 @@ There are **two boards**, ordered separately:
 
 | Board | What it is | Size |
 |---|---|---|
-| ADC test board (`ADC_Test`) | HPF, gain, LPF, driver, ADS7057, wake-up comparator, PMOD, 9 V supply, bias-T for the head | 57 × 32 mm |
+| ADC test board (`ADC_Test`) | HPF, gain, LPF, driver, ADS7057, wake-up comparator, PMOD, 5 V input (USB-C or header), bias-T for the head, test points | 57 × 37.6 mm |
 | Sensor head (`ADC_Head`) | The perfboard charge amplifier on a PCB. The piezo wires solder to it. It is powered through the coax | 10 × 22 mm |
 
 The head connects to **SENSOR IN (J1)** with one coax cable. The coax carries 5 V to the head (a bias-T) and the signal back. The perfboard is replaced by the head. To use a function generator instead, cut the solder jumper **JP1** (it is a copper bridge, so you scratch it through with a knife) so the centre pin carries no DC. Re-bridge it with a blob of solder.
 
-The topology is the one in the AFE v0.1 design description, rebuilt around JLCPCB **Basic** parts. The extended-part fee ($3.09 per type) is paid for the ADS7057, OPA2365, THS4531, the tantalum C29 and the 470 µH inductor (both boards), plus the OPA365 on the head.
+The topology is the one in the AFE v0.1 design description, rebuilt around JLCPCB **Basic** parts. The extended-part fee ($3.09 per type) is paid for the ADS7057, OPA2365, THS4531, the USB-C receptacle and the 470 µH inductor (main board), plus the 470 µH inductor and the OPA365 on the head.
 
 ## Uses
 
@@ -24,19 +24,19 @@ The board serves two purposes. In the plant experiments, four boards sit on ZedB
 | High-pass filter | Sallen-Key, U1A | 100 pF C0G ×2, 10k, 20k: f0 = 113 kHz, Q = 0.71 (AFE: 119 kHz) |
 | Gain | U1B | 1 + 3.9k/1k = 4.9 (AFE ×5 for Cf = 47 pF) |
 | Low-pass filter | Sallen-Key, U2A | 2.2k ×2, C1 = 2 × 100 pF, C2 = 100 pF: f0 = 512 kHz, Q = 0.71 (AFE: 495 kHz) |
-| VMID5 (2.5 V signal ground) | 10k/10k divider, U2B buffer | 10 Ω, 10 µF (same as AFE) |
+| VMID5 (signal ground, half of the 5 V rail, 2.3 V) | 10k/10k divider, U2B buffer | 10 Ω, 10 µF (same as AFE) |
 | Driver | THS4531, gain 1 | 1k in and feedback; VOCM = 1k/1k divider on AVDD |
 | ADC input filter | | 10 Ω per leg, 4 × 100 pF C0G = 400 pF (25 × the 16 pF sampling C) |
 | AVDD (reference) | XC6206P332 from 5 V | 1 µF at the LDO, 4.7 µF + 100 nF at the ADS7057 AVDD pin |
-| 5 V | 9 V → SS14 → AMS1117-5.0 | 22 µF tantalum output (C29) |
+| 5 V input | USB-C J2 (CC1/CC2 5.1k) or header J7 → SS14 each → ferrite FB1 → 22 µF C23 | The rail is about 4.6 V. A switching power bank adds ripple, so FB1 and C23 filter it |
 | MON output | 51 Ω from LPF_OUT to SMA J4 | The scope sees the same signal the ADC samples |
 | nWAKE filter | C31, 0603 to GND near J3 | Not fitted (DNP). No hysteresis, since the outputs are wired together |
 | Bias-T on SENSOR IN (J1) | JP1 solder jumper (bridged), R26 47R + C32 10 µF, L2 470 µH, C33 100 nF, R27 1M | 5 V reaches the coax centre through 47 Ω and 470 µH. C33 passes the head signal to SIG_IN. R27 sets the DC level of SIG_IN to VMID5 |
-| Wake comparator | LM393 window | Half window = 2.5 V × (1k + Rp)/(67k + Rp) = 37–603 mV with the 20k RV1, about 7–120 mV at the perfboard output |
+| Wake comparator | LM393 window | Half window = 2.3 V × (1k + Rp)/(67k + Rp) = 34–555 mV with the 20k RV1, about 8–135 mV at the head output |
 
 The two LM393 open-collector outputs are tied together and pulled up to 3.3 V. **nWAKE goes low** when the signal leaves the window.
 
-Main board: 57 × 32 mm, 2 layers, all SMD parts on top, GND pour on both layers.
+Main board: 57 × 37.6 mm, 2 layers, all SMD parts on top, GND pour on both layers.
 
 ### Sensor head
 
@@ -46,7 +46,7 @@ The perfboard circuit (TRL3 schematic), on its own board:
 |---|---|---|
 | Charge amplifier | U8 OPA365 (SOT-23-5) | Same silicon as the OPA2365 on the main board, 50 MHz. Perfboard used an OPA1642 on 9 V |
 | Feedback | R28 1 MΩ, C34 47 pF C0G | Same as the perfboard. Corner 3.4 kHz, gain 1/Cf |
-| Reference | R29, R30 10k, C35 10 µF | VREF = V+/2 = 2.5 V (perfboard: 4.5 V on 9 V) |
+| Reference | R29, R30 10k, C35 10 µF | VREF = V+/2, about 2.1 V (perfboard: 4.5 V on 9 V) |
 | Output | R31 49.9 Ω, C38 100 nF | Same 50 Ω, AC-coupled onto the coax |
 | Power from the coax | L1 470 µH, C36 100 nF, C37 10 µF | 5 V comes in on the coax centre. About 4.7 mA |
 | Piezo | TP1 (+, to the summing node), TP2 (−, to ground) | Two 1 mm holes, 4.8 mm apart. The piezo sits on the other face |
@@ -54,7 +54,7 @@ The perfboard circuit (TRL3 schematic), on its own board:
 
 Differences from the perfboard that you should know about:
 
-- Supply 5 V instead of 9 V, so the output rests at 2.5 V, not 4.8 V. The coupling capacitors make this invisible downstream.
+- Supply 5 V instead of 9 V, so the output rests near 2.1 V, not 4.8 V. The coupling capacitors make this invisible downstream.
 - The OPA365 has 4.5× the gain-bandwidth of the OPA1642, so the charge amplifier loses 0.2 dB at 250 kHz instead of 2.2 dB. Events read about 25 % higher than on the perfboard for the same charge.
 - The bias-T costs 0.16 dB at 250 kHz and 19 dB at 10 kHz (`python3 sim/head_bias_t.py`).
 - The board is 22 mm long, not the 20 mm of the capsule drawing v3. The extra 2 mm sticks out of the capsule with the SMA.
@@ -65,7 +65,8 @@ Differences from the perfboard that you should know about:
 |---|---|
 | SENSOR IN, +5V on centre (J1) | SMA input for the sensor head. The centre pin carries 5 V while the jumper JP1 is bridged. Cut JP1 before you connect a function generator. |
 | SCOPE OUT (J4) | SMA monitor output. It carries the same signal the ADC samples, through 51 Ω. Use a 1 MΩ scope input. A 50 Ω input halves the signal. |
-| +9V / GND (J2) | 9 V battery input. The square pad is +9V. |
+| USB-C 5V (J2), 5V IN (J7) | 5 V supply inputs. Use either one, or both. The square pad of the header is +5 V |
+| SIG, HPF, GAIN, LPF, DRV+, DRV-, AIN+, AIN-, 5V, AVDD, MID5, VOCM, 3V3, WAKE, TH+, TH-, GND, GND | Test points along the bottom edge, in the order of the signal chain, then the rails, the wake-up comparator and two grounds |
 | WAKE LEVEL (RV1) | Trimmer that sets how large a signal must be to pull nWAKE low. Clockwise should widen the window. Check with a multimeter on the 33k resistors. |
 | CH and box | Write the channel number in the box with a marker. Four boards go on JA to JD. |
 | 1 (next to J3) | PMOD pin 1. The pin list is on the back of the board. |
@@ -73,9 +74,15 @@ Differences from the perfboard that you should know about:
 
 Reference designators (R1, C4 and so on) are on the F.Fab layer, not on the silkscreen. Open the KiCad file to see them.
 
-## Regulators
+## Power
 
-The AMS1117 datasheet (LCSC C6186, C6187) says the output capacitor is part of the frequency compensation. It asks for 22 µF solid tantalum and gives no ESR range. So the board uses option (b) for AVDD: the XC6206P332 (C5446, Basic) is stable with ceramic capacitors. It has no noise spec. Reference noise scales with the signal, and events reach 17 % of full scale, so 500 µV rms on AVDD adds about 0.2 LSB. The 5 V AMS1117 keeps option (a): a 22 µF tantalum (C11366) on its output. That part is Extended and adds one $3.07 fee.
+The board takes 5 V from the USB-C receptacle (J2, HRO TYPE-C-31-M-12, power only: the CC pins have 5.1 kΩ to ground so any charger or power bank gives 5 V) or from the 2-pin header J7. Each input goes through its own SS14, which blocks a reversed supply and lets you connect both. A ferrite bead (FB1) and a 22 µF ceramic (C23) filter the rail. The rail is about 4.6 V.
+
+AVDD is made by the XC6206P332 (C5446, Basic) from the 5 V rail. It is stable with ceramic capacitors and has no noise spec. Reference noise scales with the signal, and events reach 17 % of full scale, so 500 µV rms on AVDD adds about 0.2 LSB. The sensor head takes about 5 mA through the bias-T.
+
+The first revision used a 9 V battery, an AMS1117-5.0 and a 22 µF tantalum. They are gone. A 9 V alkaline battery lasts about 12 to 15 hours at this load, which is too short for the plant experiments.
+
+A future battery system should be a LiPo with a separate boost board, or a USB power bank on the USB-C. A boost converter on this board would put switching noise next to a 14-bit ADC.
 
 ## Through-hole parts
 
@@ -85,7 +92,8 @@ JLCPCB solders these. They are in the BOM and the pick-and-place file.
 |---|---|---|
 | J1, J4 (and J6 on the head) | SMA jack, vertical, 5 pins (sensor in, MON, head out) | C496549 |
 | RV1 | 20k Bourns 3296W trimmer | C34845 |
-| J2 | 1×2 pin header, 2.54 mm | C492401 |
+| J7 | 1×2 pin header, 2.54 mm (5 V input) | C492401 |
+| J2 | USB-C receptacle, 16 pads and 4 through-hole shell tabs (SMD part) | C165948 |
 | J3 | 2×6 right-angle pin header, 2.54 mm | C60565 |
 
 If JLCPCB declines a through-hole part, delete its line from the BOM and solder it yourself. The board has the same footprints either way.
@@ -94,7 +102,7 @@ If JLCPCB declines a through-hole part, delete its line from the BOM and solder 
 
 - **J1 SENSOR IN:** SMA for the sensor head, carries +5 V on the centre pin (JP1 bridged).
 - **J4 MON:** SMA monitor output, LPF_OUT through 51 Ω.
-- **J2:** +9 V (square pad), GND.
+- **J2 USB-C and J7 header:** 5 V input. Use either one.
 - **H1, H2:** M3 mounting holes.
 - **CH box:** silkscreen field at the top edge. Write the channel number by hand.
 - **J3 PMOD:** 1 CS, 3 SDO, 4 SCLK, 5/11 GND, 6/12 3V3, 10 nWAKE.
@@ -116,9 +124,9 @@ The two boards are two JLCPCB orders (or one checkout with two designs). `python
 
 | Order | Goods (parts + PCB + fees) | Parts | Fees |
 |---|---|---|---|
-| ADC board × 2 | $66.99 | $32.32 | $30.67 |
-| ADC board × 3 | $84.06 | $48.48 | $31.58 |
-| ADC board × 5 | $118.20 | $80.80 | $33.40 |
+| ADC board × 2 | $67.00 | $32.13 | $30.86 |
+| ADC board × 3 | $84.07 | $48.20 | $31.87 |
+| ADC board × 5 | $118.21 | $80.33 | $33.88 |
 | Sensor head × 5 | $40.76 | $15.64 | $21.12 |
 | Sensor head × 10 | $57.94 | $31.29 | $22.65 |
 
@@ -126,8 +134,8 @@ Both orders together, with shipping (Global Standard $10.75 per parcel) and 19 %
 
 | | One parcel | Two parcels |
 |---|---|---|
-| 2 ADC boards + 5 heads | $141.01 | $153.81 |
-| 2 ADC boards + 10 heads | $161.46 | $174.25 |
+| 2 ADC boards + 5 heads | $141.02 | $153.81 |
+| 2 ADC boards + 10 heads | $161.46 | $174.26 |
 
 - The head's fixed fees (setup $8.24, stencil $1.55, hand-solder labor $3.61, PCB $4.00, one more extended type) are about $20 per order. A single panel would save them, but it forces equal quantities and mouse-bite tabs. Two orders let you buy 2 ADC boards and 10 heads.
 - The OPA365 ($2.67) is the most expensive part of a head. The OPA2365 (SOIC-8) would be $1.38 and needs no new extended fee, but it does not fit in 10 mm × 22 mm with the SMA.
@@ -158,8 +166,7 @@ The JLCPCB viewer showed four problems on the first revision, and the CPL now co
 | Part | Problem | CPL rotation |
 |---|---|---|
 | U5 (XC6206) | Model rotated 90° against the pads | 270 → 180 |
-| C29 (tantalum) | Plus sign on the wrong side | 180 → 0 |
-| J2 (1×2 header) | Pins horizontal, pads vertical | 0 → 90 |
+| J7 (1×2 header) | Pins horizontal, pads vertical | 0 → 90 |
 | J3 (2×6 header) | Row horizontal, pads vertical | 0 → 90 |
 
 U1, U2, U3, U6 (pin 1), U4 (pin 1), U7, D1 (cathode) and the SMD passives matched the pads.
@@ -171,7 +178,7 @@ RV1 (trimmer) had the right rotation but the wrong position. JLCPCB draws its mo
 | Check | Status | Result |
 |---|---|---|
 | ERC, DRC, schematic-to-board parity | Done | 0 errors, 0 unconnected, 0 mismatches |
-| Pinouts and polarity against the datasheets | Done | All ICs, SS14, tantalum |
+| Pinouts and polarity against the datasheets | Done | All ICs, SS14 |
 | JLCPCB placement viewer | Done once | 4 rotations fixed, RV1 moved. Check again after the new CPL |
 | DC bias, AC response, noise | Done | Table below |
 | Tolerance Monte Carlo, 150 runs | Done | 10 kHz loss under 40 dB in 11 of 150 runs |
@@ -190,7 +197,7 @@ RV1 (trimmer) had the right rotation but the wrong position. JLCPCB draws its mo
 
 | Result | Value | Target |
 |---|---|---|
-| DC points | VMID5 2.50 V, VOCM 1.65 V, ADC inputs 1.65 V | |
+| DC points | VMID5 2.30 V, VOCM 1.65 V, ADC inputs 1.65 V | |
 | Gain at 250 kHz, SMA to ADC | 12.2 dB (×4.1) | |
 | Flatness 230 to 280 kHz | 0.08 dB | < 1 dB |
 | Loss at 10 kHz, re 250 kHz | 40.5 dB, worst of 150 runs 39.7 dB | ≥ 40 dB |
@@ -201,19 +208,19 @@ RV1 (trimmer) had the right rotation but the wrong position. JLCPCB draws its mo
 Things the simulation does not cover:
 
 - THS4531 stability with the 400 pF load. TI's guidance is a 2 pF differential load without an isolation resistor, so 20 Ω and 400 pF needs a measurement. If it rings, raise R16 and R17 from 10 Ω to 20 or 30 Ω.
-- Temperature, battery droop and regulator noise.
+- Temperature and the noise of a real power bank.
 - Layout coupling and the real ZedBoard supply.
 
 Paper checks:
 
-- The AMS1117-5.0 drops up to 1.3 V and the SS14 about 0.4 V, so the board works down to a battery of about 6.7 V.
-- The 5 V rail dissipates under 0.1 W at 9 V.
+- The SS14 drops about 0.4 V, so a 5.0 V USB source gives a 4.6 V rail. The chain was simulated at 4.6 V (sim/vendor_chain.py).
+- The board draws about 27 mA plus 5 mA for the head, about 0.15 W.
 
 ## Bring-up
 
-With the sensor head: connect it to J1 with the coax, power J2 at 9 V, and the head runs from the 5 V rail (about +5 mA). Measure 2.5 V on the OPA365 output, VREF and C35. Then continue from step 2.
+With the sensor head: connect it to J1 with the coax, power the board from 5 V, and the head runs from the 5 V rail (about +5 mA). Measure about 4.2 V on C37 and 2.1 V on the OPA365 output, VREF and C35. Then continue from step 2.
 
-1. Power J2 from a bench supply at 9 V with a 50 mA limit. Check +5V, AVDD (3.30 V), VOCM (1.65 V) and VMID5 (2.50 V) before the PMOD connects.
+1. Power J2 (USB-C) or J7 (header) from 5 V with a 100 mA limit. Check +5V (4.6 V), AVDD (3.30 V), VOCM (1.65 V) and VMID5 (2.30 V) at the test points before the PMOD connects.
 2. Plug the board into the ZedBoard and check that nWAKE reads high.
 3. Feed J1 from the Analog Discovery 2 with a 250 kHz, 100 mV sine. Compare SCOPE OUT with the input on the scope (1 MΩ input).
 4. Read SPI codes. Check the idle code and the amplitude against the scope.
@@ -253,6 +260,6 @@ Freerouting 2.4.1 needs Java 25 (the macOS .dmg bundles it).
 ## At JLCPCB checkout
 
 - Two orders: upload `ADC_Test_*` and `ADC_Head_*` separately.
-- Upload the new CPL, then open Component Placements and check U5, C29, J2 and J3 (see "JLCPCB placement check"). On the head also check U8 pin 1, L1, J6.
+- Upload the new CPL, then open Component Placements and check U5, J7, J3 and the USB-C J2 (see "JLCPCB placement check"). On the head also check U8 pin 1, L1, J6.
 - Look at J1, J4 and J6 as well. The SMA model looked offset against its four legs.
 - Check pin 1 of U4 (ADS7057) in particular.

@@ -6,7 +6,7 @@ TARGET=os.environ.get('BOARD','adc'); NAME='ADC_Head' if TARGET=='head' else 'AD
 PCB=os.path.join(HW,NAME+'.kicad_pcb')
 b=pcbnew.LoadBoard(PCB)
 OX,OY=100.0,100.0
-BOARDS=[('HGND',0.0,0.0,10.0,float(os.environ.get('HEADH','22')))] if TARGET=='head' else [('GND',0.0,0.0,57.0,32.0)]
+BOARDS=[('HGND',0.0,0.0,10.0,float(os.environ.get('HEADH','22')))] if TARGET=='head' else [('GND',0.0,0.0,57.0,37.6)]
 def add_zone(layer,net,x0,y0,x1,y1,inset=0.3):
     x0,y0,x1,y1=x0+OX,y0+OY,x1+OX,y1+OY
     z=pcbnew.ZONE(b); z.SetLayer(layer); z.SetNet(b.FindNet(net))
@@ -21,11 +21,11 @@ pcbnew.ZONE_FILLER(b).Fill(b.Zones())
 b.Save(PCB)
 pcbnew.ExportSpecctraDSN(b,os.path.join(HW,NAME+'.dsn'))
 s=open(os.path.join(HW,NAME+'.dsn')).read()
-s=s.replace('(clearance 200)','(clearance 175)',1)
-power=['+5V','VMID5','+9VP','+9V_IN','HV']   # AVDD/+3V3 stay 0.2 mm: they enter the 0.5 mm-pitch ADC pads
+CLR=os.environ.get('CLR','175'); s=s.replace('(clearance 200)','(clearance '+CLR+')',1)
+power=['+5V','VMID5','+5V_IN','HV']   # AVDD/+3V3 stay 0.2 mm: they enter the 0.5 mm-pitch ADC pads
 m=re.search(r'\(class kicad_default (.*?)\n\s+\(circuit',s,re.S)
 names=m.group(1).split(); rest=[n for n in names if n not in power]
-blk=lambda nm,ns,w:("    (class %s %s\n      (circuit\n        (use_via \"Via[0-1]_600:300_um\")\n      )\n      (rule\n        (width %d)\n        (clearance 175)\n      )\n    )\n"%(nm,' '.join(ns),w))
+blk=lambda nm,ns,w:("    (class %s %s\n      (circuit\n        (use_via \"Via[0-1]_600:300_um\")\n      )\n      (rule\n        (width %d)\n        (clearance %s)\n      )\n    )\n"%(nm,' '.join(ns),w,CLR))
 a=s.index("    (class kicad_default"); e=s.index("  (wiring")
 s=s[:a]+blk('kicad_default',rest,200)+blk('Power',[n for n in power if n in names],350)+"  )\n"+s[e:]
 open(os.path.join(HW,NAME+'_route.dsn'),'w').write(s)

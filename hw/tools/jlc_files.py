@@ -6,17 +6,17 @@ from sexp import *
 HW=os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)),'..'))
 HEAD_REFS={'TP1','TP2','L1','C34','C35','C36','C37','C38','U8','R28','R29','R30','R31','J6'}
 TARGET=os.environ.get('BOARD','adc'); PFX='ADC_Head' if TARGET=='head' else 'ADC_Test'
-SKIP={'H1','H2','C31','TP1','TP2','JP1'}   # mounting holes, DNP, wire pads
+SKIP={'H1','H2','C31','JP1'}|{'TP%d'%k for k in range(1,21)}   # mounting holes, DNP, wire pads
 import re
 # JLC rotation offsets, from matthewlai/JLCKicadTools cpl_rotations_db.csv (the table kicad-jlcpcb-tools uses)
 ROT_RULES=[(r'^SOT-223',180),(r'^SOT-23',-90),(r'^SOIC-',270),(r'^CP_EIA-',180)]
 # Absolute CPL rotations taken from the JLCPCB placement viewer (upload of 2026-10-12), where the community
 # table was wrong for these parts. Assumes JLC rotation is counter-clockwise positive, like KiCad.
 #   U5  XC6206 SOT-23-3L : viewer showed the single leg on top, our pad 3 is on the right -> 270 -> 180
-#   C29 tantalum         : viewer showed + on the right, our pad 1 (+) is on the left      -> 180 -> 0
-#   J2  1x2 header       : viewer showed the pins horizontal, our pads are vertical        -> 0 -> 90
+#   (C29, the tantalum capacitor of the first revision, is gone)
+#   J7  1x2 header (J2 in the first revision) : viewer showed the pins horizontal, our pads are vertical        -> 0 -> 90
 #   J3  2x6 right angle  : viewer showed the row horizontal, our pads run vertically       -> 0 -> 90
-ROT_ABS={'U5':180,'C29':0,'J2':90,'J3':90}
+ROT_ABS={'U5':180,'J7':180,'J3':90}   # J7 is placed at 90 degrees in KiCad, the viewer needed +90 on top of that
 # Position offsets in mm (CPL frame: x right, y up) for parts whose JLC 3D model has a different origin than our
 # footprint. Measured in the viewer at 35.25 px/mm.
 #   RV1: model body centre was 2.5 mm right of the pins' centre and 1.0 mm low, hanging 0.6 mm off the board edge.
@@ -37,8 +37,8 @@ for ref in sorted(comps,key=key):
     if ref in SKIP or (ref in HEAD_REFS)!=(TARGET=='head'): continue
     c=comps[ref]
     # one BOM line per LCSC part for the connectors (JLC warns when two lines match the same part)
-    names={'C496549':'SMA jack','C492401':'Header 1x2','C60565':'Header 2x6 right angle','C34845':'20k trimmer'}
-    val=names.get(c['lcsc'],c['value']) if ref in ('J1','J2','J3','J4','J6','RV1') else c['value']
+    names={'C496549':'SMA jack','C492401':'Header 1x2','C60565':'Header 2x6 right angle','C34845':'20k trimmer','C165948':'USB-C receptacle'}
+    val=names.get(c['lcsc'],c['value']) if ref in ('J1','J2','J3','J4','J6','J7','RV1') else c['value']
     fpn=c['fp'] if val==c['value'] else {'C496549':'SMA_Amphenol_132134-11_Vertical'}.get(c['lcsc'],c['fp'])
     groups.setdefault((val,fpn,c['lcsc']),[]).append(ref)
 with open(os.path.join(HW,'fab',PFX+'_BOM_JLC.csv'),'w',newline='') as f:

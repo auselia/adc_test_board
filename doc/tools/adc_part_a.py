@@ -85,10 +85,10 @@ pbox(pg, *B['ADC'], 'ADS7057', ['14 bit, SPI', 'U4'], 'mem')
 pbox(pg, *B['SPI port'], 'PMOD J3', ['CS, SCLK, SDO', 'nWAKE, GND, 3V3'], 'bus')
 pbox(pg, *B['Scope out'], 'SCOPE OUT', ['J4, 51 Ω'], 'ext')
 pbox(pg, *B['Wake-up'], 'Wake-up', ['LM393 window', 'U6, trimmer RV1'], 'ctrl')
-pbox(pg, 9, 134, 28, 22, '9 V in', ['J2'], 'ext')
-pbox(pg, 44, 134, 40, 22, '+5 V', ['SS14, AMS1117', 'U7'], 'bus')
+pbox(pg, 9, 134, 28, 22, '5 V in', ['USB-C J2', 'header J7'], 'ext')
+pbox(pg, 44, 134, 40, 22, '+5 V', ['SS14, ferrite', 'FB1'], 'bus')
 pbox(pg, 91, 134, 36, 22, 'AVDD 3.3 V', ['XC6206', 'U5'], 'bus')
-pbox(pg, 150, 134, 50, 22, 'VMID5 2.5 V', ['divider and buffer'], 'ctrl')
+pbox(pg, 150, 134, 50, 22, f'VMID5 {MID:.1f} V', ['divider and buffer'], 'ctrl')
 pbox(pg, 208, 134, 50, 22, 'VOCM 1.65 V', ['AVDD / 2'], 'ctrl')
 for a, b in (('Input', 'High-pass'), ('High-pass', 'Gain'), ('Gain', 'Low-pass'), ('Low-pass', 'Driver'), ('Driver', 'ADC'), ('ADC', 'SPI port')):
     ax = B[a][0] + B[a][2]
@@ -111,7 +111,7 @@ pg.arrow([(197, 88), (197, 100)], '#8c8c8c', 0.4, '1.2,1.0')
 lab(pg, 199, 98, 'DVDD 3.3 V from the PMOD', 'start', 2.3, MUTED)
 cards = [
     ('THE BASICS', 'part 0', 'What the signal is, why the mid-rails, what an ADC measures and why the filter comes first.'),
-    ('POWER', 'steps 1 to 6', '9 V to 5 V to 3.3 V, then the 2.5 V and 1.65 V mid-rails that the signal rides on.'),
+    ('POWER', 'steps 1 to 6', '5 V in, 3.3 V for the ADC, then the 2.3 V and 1.65 V mid-rails that the signal rides on.'),
     ('SIGNAL AND ADC', 'steps 7 to 24', 'High-pass, gain, low-pass, then the driver and the ADC with its input filter.'),
     ('SPI AND WAKE-UP', 'steps 25 to 35', 'The four SPI wires, the frame and its power-up rule, and the window comparator.'),
     ('THE BOARD', 'steps 36 to 48', 'Layers, floor plan, every part and where it sits, routing, files for the factory and the cost.'),
@@ -142,7 +142,7 @@ pg = step('What the board is for',
            'This board takes that voltage, filters it and measures it with a 14-bit ADC. It hands the numbers to the ZedBoard over SPI. It also raises a wake-up line when a click is strong.'])
 chip(pg, label='CHAIN')
 xs_ = [2, 36, 72, 108]
-subs_ = [('Sensor', ['1.6 nF piezo', 'on the stem'], 'ext'), ('Perfboard', ['OPA1642 charge', 'amplifier, 9 V'], 'ctrl'),
+subs_ = [('Sensor', ['1.6 nF piezo', 'on the stem'], 'ext'), ('Head board', ['OPA365 charge', 'amplifier, 5 V'], 'ctrl'),
          ('This board', ['filters, ADC,', 'wake-up'], 'arith'), ('ZedBoard', ['FPGA reads', 'SPI and nWAKE'], 'dev')]
 for x_, (t_, s_, k_) in zip(xs_, subs_):
     pbox(pg, x_, 40, 30, 24, t_, s_, k_)
@@ -182,12 +182,12 @@ pg.text(X0 + W_ / 2, Y0 + H_ + 8.4, 'peak frequency, kHz', 2.5, MUTED, 'middle')
 pg.text(2, Y0 - 3, 'mV pp', 2.5, MUTED, 'start')
 
 # 0.3 -------------------------------------------------------------------------------------------
-pg = step('Why 2.5 V and 1.65 V',
+pg = step('Why 2.3 V and 1.65 V',
           ['This board has no negative supply. A signal that swings below 0 V would be cut off. So each stage rests at the middle of its own supply, and the signal swings around that level.',
-           'The op-amps run from 0 to 5 V, so they rest at **2.5 V**. The ADC runs from 0 to 3.3 V, so its inputs rest at **1.65 V**.'])
+           'The op-amps run from the 5 V rail (4.6 V after the diode), so they rest at **2.3 V**. The ADC runs from 0 to 3.3 V, so its inputs rest at **1.65 V**.'])
 chip(pg, label='VOLTAGE LADDER')
-rails = [(0.0, '0 V  ground', INK), (1.65, '1.65 V  VOCM, ADC inputs rest here', BLU), (2.5, '2.5 V  VMID5, op-amp stages rest here', PUR),
-         (3.3, '3.3 V  AVDD, ADC reference', GRN), (4.8, '4.8 V  perfboard output rests here', MUTED), (5.0, '5.0 V  op-amp supply', GRN)]
+rails = [(0.0, '0 V  ground', INK), (1.65, '1.65 V  VOCM, ADC inputs rest here', BLU), (MID, f'{MID:.1f} V  VMID5, op-amp stages rest here', PUR),
+         (3.3, '3.3 V  AVDD, ADC reference', GRN), (RAIL, f'{RAIL:.1f} V  op-amp supply, the 5 V rail', GRN)]
 ly = lambda v: 78 - v * 8.6
 pg.line(20, ly(0), 20, ly(5.0), INK, 0.6)
 for v_, t_, c_ in rails:

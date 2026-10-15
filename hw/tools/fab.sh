@@ -17,13 +17,14 @@ ls -la fab/*.zip
 $PYK - <<'PY' 2>&1 | grep -v -E "assert|Warn"
 import pcbnew,json
 out={}
-for name,skip in (('ADC_Test',('H1','H2','C31','JP1')),('ADC_Head',('TP1','TP2'))):
+for name,skip in (('ADC_Test',('H1','H2','C31','JP1')+tuple('TP%d'%k for k in range(1,21))),('ADC_Head',('TP1','TP2'))):
     b=pcbnew.LoadBoard(name+'.kicad_pcb'); smd=tht=0
     for f in b.GetFootprints():
         if f.GetReference() in skip or f.GetReference().startswith('MB'): continue
-        n=len([p for p in f.Pads() if p.GetNumber()]); t=any(p.GetAttribute()==pcbnew.PAD_ATTRIB_PTH for p in f.Pads())
-        if t: tht+=n
-        else: smd+=n
+        for p in f.Pads():
+            if not p.GetNumber(): continue
+            if p.GetAttribute()==pcbnew.PAD_ATTRIB_PTH: tht+=1
+            else: smd+=1
     out[name]={'smd':smd,'tht':tht}
 out['smd']=out['ADC_Test']['smd']; out['tht']=out['ADC_Test']['tht']     # keeps cost.py's reading of the main board
 json.dump(out,open('fab/joints.json','w')); print('joints',out)

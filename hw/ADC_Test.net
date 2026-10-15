@@ -2,7 +2,7 @@
 	(version "E")
 	(design
 		(source "/Users/nico/Documents/GitHub/adc_test_board/hw/ADC_Test.kicad_sch")
-		(date "2026-10-15T16:50:09")
+		(date "2026-10-15T17:12:27")
 		(tool "Eeschema 10.0.6")
 		(sheet
 			(number "1")
@@ -99,7 +99,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "01038c4b-891b-488b-8719-1df76dd6a29d")
+			(tstamps "b4b966dc-2a6c-4dd8-825c-42132e0027bd")
 			(units
 				(unit
 					(name "A")
@@ -159,7 +159,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "a1054df5-25f0-443a-aac1-1d61c25a7175")
+			(tstamps "e5e7f8b8-50df-481f-9bb4-d6a5be76be5e")
 			(units
 				(unit
 					(name "A")
@@ -219,7 +219,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "48bf5572-fb59-4a8f-828d-c3bb8af4ea0e")
+			(tstamps "f729a963-1957-4129-a440-65c47c02f184")
 			(units
 				(unit
 					(name "A")
@@ -279,7 +279,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "1947c4fb-1676-4bc1-b700-314d8d2ba935")
+			(tstamps "0f983a55-de6a-4abe-9ac4-d58d07b38a88")
 			(units
 				(unit
 					(name "A")
@@ -339,7 +339,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "c64b9a32-4252-42be-a946-590e288a614e")
+			(tstamps "0792de33-6657-429d-bc9a-e042c7e1f8d5")
 			(units
 				(unit
 					(name "A")
@@ -399,7 +399,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "12afb011-e901-486a-b8cd-ebfa368e3c31")
+			(tstamps "5c6decb7-8c4f-4089-975e-3cd28138974c")
 			(units
 				(unit
 					(name "A")
@@ -459,7 +459,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "2b2d1ce9-71fd-401b-b075-32ebe912e829")
+			(tstamps "694e85b5-dbdd-4dc2-8069-7c3e9321f982")
 			(units
 				(unit
 					(name "A")
@@ -519,7 +519,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "9af44c0d-e8c7-4029-8b3f-75f1e6b12334")
+			(tstamps "25bab860-8e2f-4af6-a15e-4e7637db5e61")
 			(units
 				(unit
 					(name "A")
@@ -579,7 +579,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "c08b9c5c-8a70-481f-9c62-09142123caa1")
+			(tstamps "f32854e7-7502-4d0f-892a-ee8f0989aa78")
 			(units
 				(unit
 					(name "A")
@@ -639,7 +639,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "0c208d2e-559d-4c95-be97-a73213d86b26")
+			(tstamps "79b24eee-fec7-4ea3-bb52-cc73d7bfb2ad")
 			(units
 				(unit
 					(name "A")
@@ -699,7 +699,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "d8a137fa-0429-41b0-b039-5353596ee592")
+			(tstamps "b48e87c3-cd4a-47c0-a9b7-0760a97fd748")
 			(units
 				(unit
 					(name "A")
@@ -759,7 +759,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "e060715e-fd89-45e5-9098-2b9b50190fd6")
+			(tstamps "5fac1b49-4587-4512-9860-8348250cdc32")
 			(units
 				(unit
 					(name "A")
@@ -819,7 +819,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "346b6e92-0d86-4347-8ace-03d5135cc480")
+			(tstamps "55061cdf-be19-47f3-b3e8-d4f4f73eeb9d")
 			(units
 				(unit
 					(name "A")
@@ -879,7 +879,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "87676deb-3352-4558-a939-2431b771133c")
+			(tstamps "dd90173a-1e37-49b5-bcc7-69aa8f28a4d5")
 			(units
 				(unit
 					(name "A")
@@ -939,7 +939,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "46e75c93-59cb-4fe7-a741-c0eaed9a26fa")
+			(tstamps "ff19e0b5-c4c3-411a-a923-8e0fd72ec26e")
 			(units
 				(unit
 					(name "A")
@@ -999,7 +999,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "c1dd1405-2b2a-40aa-99be-fb04ecb86917")
+			(tstamps "191c949f-a491-452b-b8b5-a6732c73b2ba")
 			(units
 				(unit
 					(name "A")
@@ -1059,7 +1059,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "6e18ee26-c995-4d00-bbaa-ac95cf3c5982")
+			(tstamps "ca5f485d-42e1-4f4d-b11c-c29b5880692e")
 			(units
 				(unit
 					(name "A")
@@ -1119,7 +1119,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "971e910d-dbb1-4c94-afb8-dd2ac7b3f15f")
+			(tstamps "477e27ef-25de-45f5-b182-c90e87db2927")
 			(units
 				(unit
 					(name "A")
@@ -1179,7 +1179,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "29b5cd16-ad95-43ad-aba0-3f4b4112620e")
+			(tstamps "1926b102-d012-4c25-b5dd-506ece0e28c6")
 			(units
 				(unit
 					(name "A")
@@ -1239,7 +1239,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "d6706c35-9ae2-4ca6-b500-11b418679a5d")
+			(tstamps "31e2fa41-78eb-440e-85af-71df3e19e78c")
 			(units
 				(unit
 					(name "A")
@@ -1299,7 +1299,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "6d33d4d4-3dc5-42b7-a183-3bb607d73889")
+			(tstamps "367ffb68-497d-4061-8595-7de0e4664b5e")
 			(units
 				(unit
 					(name "A")
@@ -1359,7 +1359,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "6b5e8c3d-37e9-4c21-8bec-4b49cc4bec62")
+			(tstamps "8e0c03de-50e1-4691-adca-46929585af09")
 			(units
 				(unit
 					(name "A")
@@ -1376,11 +1376,11 @@
 		)
 		(comp
 			(ref "C23")
-			(value "10uF 25V")
+			(value "22uF 25V")
 			(footprint "Capacitor_SMD:C_0805_2012Metric")
 			(fields
 				(field
-					(name "LCSC") "C15850")
+					(name "LCSC") "C45783")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
 				(field
@@ -1397,7 +1397,7 @@
 			)
 			(property
 				(name "LCSC")
-				(value "C15850")
+				(value "C45783")
 			)
 			(property
 				(name "Sheetname")
@@ -1419,7 +1419,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "2e05a309-d7fb-4f27-8283-180c1df3cb70")
+			(tstamps "d917da38-c62a-4096-846b-a7ec5c09fba0")
 			(units
 				(unit
 					(name "A")
@@ -1479,7 +1479,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "8440e712-7d0e-4534-8551-9de0e4845435")
+			(tstamps "bf683bf0-704f-405c-b50d-4e4592bbebe0")
 			(units
 				(unit
 					(name "A")
@@ -1539,7 +1539,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "27a70ffc-c059-4bfa-a099-8f17a906c46a")
+			(tstamps "092da940-86e9-42b9-8b7e-5d996615fe73")
 			(units
 				(unit
 					(name "A")
@@ -1599,67 +1599,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "32059eec-3fc9-4b20-84fb-d1bd90122d9b")
-			(units
-				(unit
-					(name "A")
-					(pins
-						(pin
-							(num "1")
-						)
-						(pin
-							(num "2")
-						)
-					)
-				)
-			)
-		)
-		(comp
-			(ref "C29")
-			(value "22uF 10V tantalum")
-			(footprint "Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A")
-			(fields
-				(field
-					(name "LCSC") "C11366")
-				(field
-					(name "Footprint") "Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A")
-				(field
-					(name "Datasheet")
-				)
-				(field
-					(name "Description")
-				)
-			)
-			(libsource
-				(lib "Device")
-				(part "C_Polarized")
-				(description "Polarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "C11366")
-			)
-			(property
-				(name "Sheetname")
-				(value "ADC_Test")
-			)
-			(property
-				(name "Sheetfile")
-				(value "ADC_Test.kicad_sch")
-			)
-			(property
-				(name "ki_keywords")
-				(value "cap capacitor")
-			)
-			(property
-				(name "ki_fp_filters")
-				(value "CP_*")
-			)
-			(sheetpath
-				(names "/")
-				(tstamps "/")
-			)
-			(tstamps "2d3b457e-6c95-47e3-90e2-67b657a5ff4e")
+			(tstamps "1cee49e5-2a7a-4658-b09c-14ffa1f34d9a")
 			(units
 				(unit
 					(name "A")
@@ -1719,7 +1659,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "0e1b81c1-f8f9-461c-8d0d-f9038753cd55")
+			(tstamps "670bc2dc-e864-4ed1-8cf4-fb1d0315ff59")
 			(units
 				(unit
 					(name "A")
@@ -1776,7 +1716,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "50ec96f8-4ae9-40e4-8182-486ed92d8775")
+			(tstamps "a977c580-a781-4e7b-905c-02a0be1edb5c")
 			(units
 				(unit
 					(name "A")
@@ -1836,7 +1776,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "ee318e88-8672-4c9a-bba1-860b6333c836")
+			(tstamps "d414e5d3-b874-4e7a-8e92-5a1d9fe9314d")
 			(units
 				(unit
 					(name "A")
@@ -1896,7 +1836,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "18a5a70c-7834-486b-b39e-aaece940a0a3")
+			(tstamps "7257a7fa-2602-4bb6-b712-fad107c5706e")
 			(units
 				(unit
 					(name "A")
@@ -1956,7 +1896,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "dca77694-88f8-4f80-9d5b-f14454fafa77")
+			(tstamps "1eda75b9-78af-4a96-a9d0-e00555d98461")
 			(units
 				(unit
 					(name "A")
@@ -2016,7 +1956,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "c0392b2d-1236-4079-a4e2-f7584e706eef")
+			(tstamps "e8707245-541f-4ad8-938c-e32b3c390475")
 			(units
 				(unit
 					(name "A")
@@ -2076,7 +2016,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "9b079f94-c572-499e-8075-67040674c9f4")
+			(tstamps "2c4562c9-a637-4ba9-82a9-eab2d9284068")
 			(units
 				(unit
 					(name "A")
@@ -2136,7 +2076,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "bd174cdd-e2d1-4a8a-acda-044fe13b1605")
+			(tstamps "1851a313-cdea-4f57-a119-7d82215cd071")
 			(units
 				(unit
 					(name "A")
@@ -2196,7 +2136,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "153611dd-adac-4b8c-b0fa-911f60571ce2")
+			(tstamps "35791707-8b31-42fc-badb-1e32554f18c8")
 			(units
 				(unit
 					(name "A")
@@ -2256,7 +2196,127 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "8d3fc48b-79ff-45fe-9077-68016d87e273")
+			(tstamps "58408053-0fc3-400d-8fcf-d222d553b123")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "D2")
+			(value "SS14")
+			(footprint "Diode_SMD:D_SMA")
+			(fields
+				(field
+					(name "LCSC") "C2480")
+				(field
+					(name "Footprint") "Diode_SMD:D_SMA")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Device")
+				(part "D_Schottky")
+				(description "Schottky diode")
+			)
+			(property
+				(name "LCSC")
+				(value "C2480")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "diode Schottky")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "TO-???* *_Diode_* *SingleDiode* D_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "3624a8b9-014f-4d48-96f0-47520e2dc4a1")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "FB1")
+			(value "120R 2A")
+			(footprint "Inductor_SMD:L_0603_1608Metric")
+			(fields
+				(field
+					(name "LCSC") "C14709")
+				(field
+					(name "Footprint") "Inductor_SMD:L_0603_1608Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Device")
+				(part "FerriteBead")
+				(description "Ferrite bead")
+			)
+			(property
+				(name "LCSC")
+				(value "C14709")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "L ferrite bead inductor filter")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Inductor_* L_* *Ferrite*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "ae4190c7-bc1d-47ba-a9b1-8eac241b9f85")
 			(units
 				(unit
 					(name "A")
@@ -2310,7 +2370,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "41f28bfe-8775-4084-bb60-7923b0a9fd0f")
+			(tstamps "e41e32c6-0adb-4d97-9617-3f95a9f479ff")
 			(units
 				(unit
 					(name "A")
@@ -2357,7 +2417,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "bc6b7a97-1333-4622-92a3-bb0b427b65a5")
+			(tstamps "a60110f0-8809-40ce-bff7-03596a64277a")
 			(units
 				(unit
 					(name "A")
@@ -2410,7 +2470,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "2bc8efd6-e42a-4281-be6c-82ac9f470e04")
+			(tstamps "e2680bbc-1186-4104-8a1a-6427c2edea3e")
 			(units
 				(unit
 					(name "A")
@@ -2427,13 +2487,13 @@
 		)
 		(comp
 			(ref "J2")
-			(value "9V IN")
-			(footprint "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
+			(value "USB-C 5V")
+			(footprint "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12")
 			(fields
 				(field
-					(name "LCSC") "C492401")
+					(name "LCSC") "C165948")
 				(field
-					(name "Footprint") "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
+					(name "Footprint") "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12")
 				(field
 					(name "Datasheet")
 				)
@@ -2442,13 +2502,13 @@
 				)
 			)
 			(libsource
-				(lib "Connector_Generic")
-				(part "Conn_01x02")
-				(description "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)")
+				(lib "Connector")
+				(part "USB_C_Receptacle_USB2.0_16P")
+				(description "USB 2.0-only 16P Type-C Receptacle connector")
 			)
 			(property
 				(name "LCSC")
-				(value "C492401")
+				(value "C165948")
 			)
 			(property
 				(name "Sheetname")
@@ -2460,26 +2520,71 @@
 			)
 			(property
 				(name "ki_keywords")
-				(value "connector")
+				(value "usb universal serial bus type-C USB2.0")
 			)
 			(property
 				(name "ki_fp_filters")
-				(value "Connector*:*_1x??_*")
+				(value "USB*C*Receptacle*")
 			)
 			(sheetpath
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "315c085d-91d7-4a44-9a1f-618c7d9e23c1")
+			(tstamps "0ac31d57-4d15-4682-a376-83e640e5a956")
 			(units
 				(unit
 					(name "A")
 					(pins
 						(pin
-							(num "1")
+							(num "SH")
 						)
 						(pin
-							(num "2")
+							(num "A1")
+						)
+						(pin
+							(num "A12")
+						)
+						(pin
+							(num "B1")
+						)
+						(pin
+							(num "B12")
+						)
+						(pin
+							(num "A4")
+						)
+						(pin
+							(num "A9")
+						)
+						(pin
+							(num "B4")
+						)
+						(pin
+							(num "B9")
+						)
+						(pin
+							(num "A5")
+						)
+						(pin
+							(num "B5")
+						)
+						(pin
+							(num "A7")
+						)
+						(pin
+							(num "B7")
+						)
+						(pin
+							(num "A6")
+						)
+						(pin
+							(num "B6")
+						)
+						(pin
+							(num "A8")
+						)
+						(pin
+							(num "B8")
 						)
 					)
 				)
@@ -2530,7 +2635,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "ff3862d0-4d2b-4a99-9c91-fb8414f80ec9")
+			(tstamps "4d6dafa5-d5e2-45db-81e7-93584c8303dc")
 			(units
 				(unit
 					(name "A")
@@ -2620,7 +2725,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "9048896a-e820-46c9-803d-12ddcfff92a5")
+			(tstamps "6bf011f3-b596-4a7d-953d-2c6e4426f6a6")
 			(units
 				(unit
 					(name "A")
@@ -2680,7 +2785,67 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "1545529c-a56b-464d-8cea-8eca48434487")
+			(tstamps "da6b28bb-b152-4253-8e2f-11cba6f73e78")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "J7")
+			(value "5V IN")
+			(footprint "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
+			(fields
+				(field
+					(name "LCSC") "C492401")
+				(field
+					(name "Footprint") "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Connector_Generic")
+				(part "Conn_01x02")
+				(description "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)")
+			)
+			(property
+				(name "LCSC")
+				(value "C492401")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "connector")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Connector*:*_1x??_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "03d9fdc9-3ddb-4928-8ab4-39c331b0c6f0")
 			(units
 				(unit
 					(name "A")
@@ -2734,7 +2899,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "15a1fcfb-3c87-4a2e-9199-0d4199920eff")
+			(tstamps "5ae6026a-f543-4dc2-9f4d-82b57ec944cf")
 			(units
 				(unit
 					(name "A")
@@ -2794,7 +2959,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "82dc271e-1e61-407b-b765-5a7c0b43e3d6")
+			(tstamps "2f1b8daf-a992-4ce4-ae4f-285b6de99ca6")
 			(units
 				(unit
 					(name "A")
@@ -2854,7 +3019,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "4bc35f6a-3042-4360-9a74-09ec1631b8db")
+			(tstamps "ce6abbd4-2939-463d-a741-e5deddc8b6e9")
 			(units
 				(unit
 					(name "A")
@@ -2914,7 +3079,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "616fb88d-def0-44fe-a4d2-adfb745a6cd9")
+			(tstamps "13ea9e74-8cd4-4545-b874-ea6824af379c")
 			(units
 				(unit
 					(name "A")
@@ -2974,7 +3139,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "9223467e-8d2c-4141-9112-6377869f47fa")
+			(tstamps "225d715c-45f4-4033-9fef-0fdf39362719")
 			(units
 				(unit
 					(name "A")
@@ -3034,7 +3199,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "35824fe6-320b-4b89-ba44-ccad946bc1a7")
+			(tstamps "cc18d2eb-2ce6-49e1-b431-236f1952d4dc")
 			(units
 				(unit
 					(name "A")
@@ -3094,7 +3259,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "4b531af2-da03-401e-832e-46e7eac6e1f6")
+			(tstamps "34829519-97c0-4014-903e-e6b611e2d8e2")
 			(units
 				(unit
 					(name "A")
@@ -3154,7 +3319,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "36b068e4-3982-4347-99f2-359e96f33952")
+			(tstamps "cf92c389-05fc-47ea-afd3-7a48a2e5edd3")
 			(units
 				(unit
 					(name "A")
@@ -3214,7 +3379,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "e8778ec6-61c9-4fa0-ac9a-935f73ae496f")
+			(tstamps "033ccf0d-e49f-4066-badd-8d4eecd57b42")
 			(units
 				(unit
 					(name "A")
@@ -3274,7 +3439,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "3806e8fd-86b9-4b59-aba1-3e5125880da1")
+			(tstamps "c327418b-471b-4ade-9d2c-1af1e1d77d82")
 			(units
 				(unit
 					(name "A")
@@ -3334,7 +3499,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "f4346382-2c24-4ddd-80a0-6ac693584e01")
+			(tstamps "8fd56934-fe9f-4d00-9de8-aa1b4a563689")
 			(units
 				(unit
 					(name "A")
@@ -3394,7 +3559,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "d4e93e0f-b674-41f8-9435-8b4d05c30024")
+			(tstamps "6de9e157-c8cd-4e9c-9c71-f316835ad409")
 			(units
 				(unit
 					(name "A")
@@ -3454,7 +3619,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "d2e5b693-305e-4b9c-bf81-f021ea0b3d45")
+			(tstamps "f8e01f3b-effa-4efe-9682-747d2dd71dfd")
 			(units
 				(unit
 					(name "A")
@@ -3514,7 +3679,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "3dee9aee-e993-4fd3-b1b8-c9bcd4847798")
+			(tstamps "de70e8b2-956d-49fb-a9db-1ba84d602093")
 			(units
 				(unit
 					(name "A")
@@ -3574,7 +3739,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "c0141709-e2f1-4ff3-b093-28ee6cb322db")
+			(tstamps "b062f0d6-f036-4603-a2fd-e188f142f42c")
 			(units
 				(unit
 					(name "A")
@@ -3634,7 +3799,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "f0dcba70-458f-4459-abe7-f0e03dc6a143")
+			(tstamps "3a65656f-0bd8-4a47-8a5f-5b86654e345f")
 			(units
 				(unit
 					(name "A")
@@ -3694,7 +3859,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "bebc0484-9e09-4253-ac6b-31c94464151e")
+			(tstamps "d2a1bd1f-f01b-4eb4-9e02-d8b93c4efc82")
 			(units
 				(unit
 					(name "A")
@@ -3754,7 +3919,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "427cd66c-3eaf-45e3-92ca-a531c1be835f")
+			(tstamps "8eb61628-9e04-418b-8cde-f154816f1292")
 			(units
 				(unit
 					(name "A")
@@ -3814,7 +3979,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "d108e356-b4e7-42f1-95cd-926ec76f61de")
+			(tstamps "cbb1c901-0002-4654-b116-2446e9405137")
 			(units
 				(unit
 					(name "A")
@@ -3874,7 +4039,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "e2a7fec5-eb53-40ee-b631-59216378adc3")
+			(tstamps "a12373f9-4a63-4c0d-806f-983f53360a7d")
 			(units
 				(unit
 					(name "A")
@@ -3934,7 +4099,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "948e1f22-66d3-403d-b10c-c77d7ec7c864")
+			(tstamps "26158d22-6f3b-4e6f-a1c4-c7147723a32e")
 			(units
 				(unit
 					(name "A")
@@ -3994,7 +4159,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "4c8b8ba8-77f6-4a5c-ba25-6ad362016d81")
+			(tstamps "9db04af1-195f-4cc3-8308-4b866f54f44b")
 			(units
 				(unit
 					(name "A")
@@ -4054,7 +4219,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "43dc8189-57cd-4e0c-a8ea-ab388f49d1f7")
+			(tstamps "d9a0d53d-c202-4f7b-9559-1b723ecb05ad")
 			(units
 				(unit
 					(name "A")
@@ -4114,7 +4279,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "bf7ce0e0-2fc3-43ba-b5b5-d680da7ddfe6")
+			(tstamps "4f2c9771-6b60-4185-a143-b974256d6e7e")
 			(units
 				(unit
 					(name "A")
@@ -4174,7 +4339,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "bb37773d-6cee-458f-9a4e-5d273c29d315")
+			(tstamps "868338cd-366b-4ac6-b72c-0ad79b5e447f")
 			(units
 				(unit
 					(name "A")
@@ -4234,7 +4399,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "d1272cda-16a3-40ae-aa7a-7fd1a795bb16")
+			(tstamps "79c21740-4e4c-458d-ac70-22557f884c75")
 			(units
 				(unit
 					(name "A")
@@ -4294,7 +4459,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "77432e30-f3bd-46ad-a9a6-906559fa31b3")
+			(tstamps "1b63b8b5-67e5-455d-b970-5c08e274a72d")
 			(units
 				(unit
 					(name "A")
@@ -4354,7 +4519,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "0e7bb12b-838b-44cd-81ce-375c5ebfd654")
+			(tstamps "4b1216da-bdbf-4a7b-8df3-4fd6f05eb5a2")
 			(units
 				(unit
 					(name "A")
@@ -4414,7 +4579,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "ede01865-b571-4250-97e4-91264b54a72c")
+			(tstamps "134ca43e-d8b7-4e47-bd0c-7c64e4860fa6")
 			(units
 				(unit
 					(name "A")
@@ -4474,7 +4639,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "61e67d75-eee5-4e1b-b6fb-cdfa49ee4647")
+			(tstamps "13a243cb-6bba-411b-bd46-79f4ce0c7623")
 			(units
 				(unit
 					(name "A")
@@ -4534,7 +4699,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "4313b56c-5409-4d8f-8500-7ae6b6310298")
+			(tstamps "e5042b7c-c287-4d7f-b5cc-70cb05d5ae1f")
 			(units
 				(unit
 					(name "A")
@@ -4594,7 +4759,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "3f8384c7-fa78-4ebd-ac59-f51fdedbd786")
+			(tstamps "27165b0d-3e6a-411b-a041-26c6d719854c")
 			(units
 				(unit
 					(name "A")
@@ -4654,7 +4819,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "73afd338-d24f-4228-b8bb-ed2f914e20c4")
+			(tstamps "17eb11a4-68ed-4dd8-882f-c19df8423b7e")
 			(units
 				(unit
 					(name "A")
@@ -4714,7 +4879,127 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "ba4a2ec1-a49d-4b1e-8d90-685426319fc5")
+			(tstamps "48a0ad75-7d60-4c81-937e-e9d560d1f321")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R32")
+			(value "5.1k")
+			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(fields
+				(field
+					(name "LCSC") "C23186")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "LCSC")
+				(value "C23186")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "5e3e2f00-ee20-44b7-be9f-019bce3150b6")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R33")
+			(value "5.1k")
+			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(fields
+				(field
+					(name "LCSC") "C23186")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "LCSC")
+				(value "C23186")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "a6d88947-3d7e-41e7-95d3-7343f550b1cd")
 			(units
 				(unit
 					(name "A")
@@ -4774,7 +5059,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "85092009-180f-4208-87e3-584e7353fc04")
+			(tstamps "b7ac95ad-1046-47b4-bded-273bff2a50f9")
 			(units
 				(unit
 					(name "A")
@@ -4831,7 +5116,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "0090520c-d838-42f5-878e-8b3d702475ec")
+			(tstamps "273f1250-5bc3-4b05-aee3-8c76194ca286")
 			(units
 				(unit
 					(name "A")
@@ -4882,7 +5167,925 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "08de2027-7629-4016-93d3-1efe1b0099a8")
+			(tstamps "660dcc69-a735-4331-9bf0-01cd4984585e")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP3")
+			(value "SIG_IN")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "bea22944-67a0-4a8c-9100-79f867f40970")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP4")
+			(value "HPF_OUT")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "01d9380a-5bfa-4c3c-84f5-8092052a8f3b")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP5")
+			(value "GAIN_OUT")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "c87cb5c7-d517-4aac-9fb4-8a17f3bfaed8")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP6")
+			(value "LPF_OUT")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "a8f89d02-738c-45d2-a8ac-14e9683e9b97")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP7")
+			(value "DRV_OUTP")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "c8b4f43c-ccd1-4538-8b47-5eb6dd52f4c5")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP8")
+			(value "DRV_OUTN")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "7896bd4a-a272-4d69-ad4c-b96ea3c0c560")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP9")
+			(value "AINP")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "0963f1e0-dd83-4529-a66a-d007df5ca0f4")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP10")
+			(value "AINM")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "deed7516-ce1b-4554-bc85-dd105b05aefc")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP11")
+			(value "+5V")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "dcb035bc-505e-4754-94d6-24087e841402")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP12")
+			(value "AVDD")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "1dad778c-b9e4-4670-9229-c003f1c2d9a3")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP13")
+			(value "VMID5")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "db6f3a1e-f710-4ee1-98dc-2a87c90c8761")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP14")
+			(value "VOCM")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "6bccb4ef-6c0f-47e4-94ca-08eb85d73751")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP15")
+			(value "+3V3")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "5b3a8054-6d8c-4f0a-8ab8-53da883bfc09")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP16")
+			(value "WAKE_N")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "914d5e0f-7042-4bfb-9596-e0e936df988c")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP17")
+			(value "VTH_H")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "a58fc514-05e9-4628-933e-d90eaa2ae668")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP18")
+			(value "VTH_L")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "c4b74578-dd7c-434e-b3e4-6da5e54226a3")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP19")
+			(value "GND")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "28a369ac-d3c6-49ef-a2b4-cf4b9471b1b5")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP20")
+			(value "GND")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADC_Test")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ADC_Test.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "2280ffca-c3c6-408d-b695-f53016abf148")
 			(units
 				(unit
 					(name "A")
@@ -4931,7 +6134,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "3e49e438-f367-46e2-be74-41ba108996cc")
+			(tstamps "c11974da-64a0-4030-94f6-2425a61bdef7")
 			(units
 				(unit
 					(name "A")
@@ -5001,7 +6204,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "f7fe9b9c-6225-4d07-82bf-aebc78eba5f9")
+			(tstamps "41bf2f08-0090-4c83-8121-841bcbcfa536")
 			(units
 				(unit
 					(name "A")
@@ -5071,7 +6274,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "e3e04068-e6c7-49aa-a5a9-c8130491ed58")
+			(tstamps "32845464-7a7b-48b4-ac6f-105b84c06d6c")
 			(units
 				(unit
 					(name "A")
@@ -5141,7 +6344,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "fe4d606a-dd74-4013-bbb2-14946626d550")
+			(tstamps "209ca597-20bd-49d2-9857-8a72c9fc3769")
 			(units
 				(unit
 					(name "A")
@@ -5211,7 +6414,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "7d5dc8ff-2993-454f-957e-ede718a49e4f")
+			(tstamps "2b3ef1ae-2c0d-450c-9a8c-759b462e45f5")
 			(units
 				(unit
 					(name "A")
@@ -5266,7 +6469,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "9574da7e-58e6-46ec-a93a-4721bb52d3ba")
+			(tstamps "36a7ef4c-bae2-499c-9585-8d05c0080e1e")
 			(units
 				(unit
 					(name "A")
@@ -5294,61 +6497,6 @@
 						)
 						(pin
 							(num "7")
-						)
-					)
-				)
-			)
-		)
-		(comp
-			(ref "U7")
-			(value "AMS1117-5.0")
-			(footprint "Package_TO_SOT_SMD:SOT-223-3_TabPin2")
-			(fields
-				(field
-					(name "LCSC") "C6187")
-				(field
-					(name "Footprint") "Package_TO_SOT_SMD:SOT-223-3_TabPin2")
-				(field
-					(name "Datasheet")
-				)
-				(field
-					(name "Description")
-				)
-			)
-			(libsource
-				(lib "Auselia")
-				(part "AMS1117-5.0")
-				(description "1 A LDO, fixed 5.0 V, SOT-223")
-			)
-			(property
-				(name "LCSC")
-				(value "C6187")
-			)
-			(property
-				(name "Sheetname")
-				(value "ADC_Test")
-			)
-			(property
-				(name "Sheetfile")
-				(value "ADC_Test.kicad_sch")
-			)
-			(sheetpath
-				(names "/")
-				(tstamps "/")
-			)
-			(tstamps "04fb100f-cc19-4638-b551-2710df0c8e82")
-			(units
-				(unit
-					(name "A")
-					(pins
-						(pin
-							(num "3")
-						)
-						(pin
-							(num "1")
-						)
-						(pin
-							(num "2")
 						)
 					)
 				)
@@ -5391,7 +6539,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "22bbe55a-4ef6-4e0f-8655-6f211a6f7a8d")
+			(tstamps "30810e86-a7fc-4533-b65d-5fcc23c82420")
 			(units
 				(unit
 					(name "A")
@@ -5476,41 +6624,6 @@
 					(num "8")
 					(name "AINM")
 					(type "input")
-				)
-			)
-		)
-		(libpart
-			(lib "Auselia")
-			(part "AMS1117-5.0")
-			(description "1 A LDO, fixed 5.0 V, SOT-223")
-			(docs "http://www.advanced-monolithic.com/pdf/ds1117.pdf")
-			(fields
-				(field
-					(name "Reference") "U")
-				(field
-					(name "Value") "AMS1117-5.0")
-				(field
-					(name "Footprint") "Package_TO_SOT_SMD:SOT-223-3_TabPin2")
-				(field
-					(name "Datasheet") "http://www.advanced-monolithic.com/pdf/ds1117.pdf")
-				(field
-					(name "Description") "1 A LDO, fixed 5.0 V, SOT-223")
-			)
-			(pins
-				(pin
-					(num "1")
-					(name "GND")
-					(type "power_in")
-				)
-				(pin
-					(num "2")
-					(name "VOUT")
-					(type "power_out")
-				)
-				(pin
-					(num "3")
-					(name "VIN")
-					(type "power_in")
 				)
 			)
 		)
@@ -5847,6 +6960,115 @@
 			)
 		)
 		(libpart
+			(lib "Connector")
+			(part "USB_C_Receptacle_USB2.0_16P")
+			(description "USB 2.0-only 16P Type-C Receptacle connector")
+			(docs "https://www.usb.org/sites/default/files/documents/usb_type-c.zip")
+			(footprints
+				(fp "USB*C*Receptacle*")
+			)
+			(fields
+				(field
+					(name "Reference") "J")
+				(field
+					(name "Value") "USB_C_Receptacle_USB2.0_16P")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet") "https://www.usb.org/sites/default/files/documents/usb_type-c.zip")
+				(field
+					(name "Description") "USB 2.0-only 16P Type-C Receptacle connector")
+			)
+			(pins
+				(pin
+					(num "A1")
+					(name "GND")
+					(type "passive")
+				)
+				(pin
+					(num "A4")
+					(name "VBUS")
+					(type "passive")
+				)
+				(pin
+					(num "A5")
+					(name "CC1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "A6")
+					(name "D+")
+					(type "bidirectional")
+				)
+				(pin
+					(num "A7")
+					(name "D-")
+					(type "bidirectional")
+				)
+				(pin
+					(num "A8")
+					(name "SBU1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "A9")
+					(name "VBUS")
+					(type "passive")
+				)
+				(pin
+					(num "A12")
+					(name "GND")
+					(type "passive")
+				)
+				(pin
+					(num "B1")
+					(name "GND")
+					(type "passive")
+				)
+				(pin
+					(num "B4")
+					(name "VBUS")
+					(type "passive")
+				)
+				(pin
+					(num "B5")
+					(name "CC2")
+					(type "bidirectional")
+				)
+				(pin
+					(num "B6")
+					(name "D+")
+					(type "bidirectional")
+				)
+				(pin
+					(num "B7")
+					(name "D-")
+					(type "bidirectional")
+				)
+				(pin
+					(num "B8")
+					(name "SBU2")
+					(type "bidirectional")
+				)
+				(pin
+					(num "B9")
+					(name "VBUS")
+					(type "passive")
+				)
+				(pin
+					(num "B12")
+					(name "GND")
+					(type "passive")
+				)
+				(pin
+					(num "SH")
+					(name "SHIELD")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
 			(lib "Connector_Generic")
 			(part "Conn_01x02")
 			(description "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)")
@@ -6000,40 +7222,6 @@
 		)
 		(libpart
 			(lib "Device")
-			(part "C_Polarized")
-			(description "Polarized capacitor")
-			(footprints
-				(fp "CP_*")
-			)
-			(fields
-				(field
-					(name "Reference") "C")
-				(field
-					(name "Value") "C_Polarized")
-				(field
-					(name "Footprint")
-				)
-				(field
-					(name "Datasheet")
-				)
-				(field
-					(name "Description") "Polarized capacitor")
-			)
-			(pins
-				(pin
-					(num "1")
-					(name "")
-					(type "passive")
-				)
-				(pin
-					(num "2")
-					(name "")
-					(type "passive")
-				)
-			)
-		)
-		(libpart
-			(lib "Device")
 			(part "D_Schottky")
 			(description "Schottky diode")
 			(footprints
@@ -6065,6 +7253,42 @@
 				(pin
 					(num "2")
 					(name "A")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "Device")
+			(part "FerriteBead")
+			(description "Ferrite bead")
+			(footprints
+				(fp "Inductor_*")
+				(fp "L_*")
+				(fp "*Ferrite*")
+			)
+			(fields
+				(field
+					(name "Reference") "FB")
+				(field
+					(name "Value") "FerriteBead")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Ferrite bead")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
 					(type "passive")
 				)
 			)
@@ -6301,6 +7525,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "TP15")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "U4")
 				(pin "4")
 				(pinfunction "DVDD_4")
@@ -6322,12 +7552,12 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "C28")
+				(ref "C23")
 				(pin "1")
 				(pintype "passive")
 			)
 			(node
-				(ref "C29")
+				(ref "C28")
 				(pin "1")
 				(pintype "passive")
 			)
@@ -6339,6 +7569,11 @@
 			(node
 				(ref "C30")
 				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "FB1")
+				(pin "2")
 				(pintype "passive")
 			)
 			(node
@@ -6354,6 +7589,12 @@
 			(node
 				(ref "R7")
 				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP11")
+				(pin "1")
+				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
@@ -6392,22 +7633,28 @@
 				(pinfunction "VCC_8")
 				(pintype "power_in")
 			)
-			(node
-				(ref "U7")
-				(pin "2")
-				(pinfunction "VOUT_2")
-				(pintype "power_out")
-			)
 		)
 		(net
 			(code "3")
-			(name "+9VP")
-			(class "Power")
+			(name "+5V_EXT")
+			(class "Default")
 			(node
-				(ref "C23")
-				(pin "1")
+				(ref "D2")
+				(pin "2")
+				(pinfunction "A_2")
 				(pintype "passive")
 			)
+			(node
+				(ref "J7")
+				(pin "1")
+				(pinfunction "Pin_1_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "4")
+			(name "+5V_IN")
+			(class "Default")
 			(node
 				(ref "D1")
 				(pin "1")
@@ -6415,26 +7662,14 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "U7")
-				(pin "3")
-				(pinfunction "VIN_3")
-				(pintype "power_in")
-			)
-		)
-		(net
-			(code "4")
-			(name "+9V_IN")
-			(class "Power")
-			(node
-				(ref "D1")
-				(pin "2")
-				(pinfunction "A_2")
+				(ref "D2")
+				(pin "1")
+				(pinfunction "K_1")
 				(pintype "passive")
 			)
 			(node
-				(ref "J2")
+				(ref "FB1")
 				(pin "1")
-				(pinfunction "Pin_1_1")
 				(pintype "passive")
 			)
 		)
@@ -6465,6 +7700,12 @@
 			(node
 				(ref "R17")
 				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP10")
+				(pin "1")
+				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
@@ -6504,6 +7745,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "TP9")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "U4")
 				(pin "7")
 				(pinfunction "AINP_7")
@@ -6532,6 +7779,12 @@
 			(node
 				(ref "R14")
 				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP12")
+				(pin "1")
+				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
@@ -6651,6 +7904,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "TP8")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "U3")
 				(pin "5")
 				(pinfunction "VOUT-_5")
@@ -6672,6 +7931,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "TP7")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "U3")
 				(pin "4")
 				(pinfunction "VOUT+_4")
@@ -6690,6 +7955,12 @@
 			(node
 				(ref "R5")
 				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP5")
+				(pin "1")
+				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
@@ -6764,11 +8035,6 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "C29")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
 				(ref "C3")
 				(pin "2")
 				(pintype "passive")
@@ -6811,8 +8077,32 @@
 			)
 			(node
 				(ref "J2")
-				(pin "2")
-				(pinfunction "Pin_2_2")
+				(pin "A1")
+				(pinfunction "GND_A1")
+				(pintype "passive")
+			)
+			(node
+				(ref "J2")
+				(pin "A12")
+				(pinfunction "GND_A12")
+				(pintype "passive")
+			)
+			(node
+				(ref "J2")
+				(pin "B1")
+				(pinfunction "GND_B1")
+				(pintype "passive")
+			)
+			(node
+				(ref "J2")
+				(pin "B12")
+				(pinfunction "GND_B12")
+				(pintype "passive")
+			)
+			(node
+				(ref "J2")
+				(pin "SH")
+				(pinfunction "SHIELD_SH")
 				(pintype "passive")
 			)
 			(node
@@ -6834,6 +8124,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "J7")
+				(pin "2")
+				(pinfunction "Pin_2_2")
+				(pintype "passive")
+			)
+			(node
 				(ref "R15")
 				(pin "2")
 				(pintype "passive")
@@ -6844,8 +8140,30 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "R32")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R33")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
 				(ref "R8")
 				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP19")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP20")
+				(pin "1")
+				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
@@ -6882,12 +8200,6 @@
 				(ref "U6")
 				(pin "4")
 				(pinfunction "GND_4")
-				(pintype "power_in")
-			)
-			(node
-				(ref "U7")
-				(pin "1")
-				(pinfunction "GND_1")
 				(pintype "power_in")
 			)
 		)
@@ -7088,6 +8400,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "TP4")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "U1")
 				(pin "1")
 				(pinfunction "OUTA_1")
@@ -7254,6 +8572,12 @@
 			(node
 				(ref "R25")
 				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP6")
+				(pin "1")
+				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
@@ -7442,9 +8766,82 @@
 				(pin "1")
 				(pintype "passive")
 			)
+			(node
+				(ref "TP3")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
 		)
 		(net
 			(code "41")
+			(name "USB_CC1")
+			(class "Default")
+			(node
+				(ref "J2")
+				(pin "A5")
+				(pinfunction "CC1_A5")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R32")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "42")
+			(name "USB_CC2")
+			(class "Default")
+			(node
+				(ref "J2")
+				(pin "B5")
+				(pinfunction "CC2_B5")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R33")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "43")
+			(name "VBUS")
+			(class "Default")
+			(node
+				(ref "D1")
+				(pin "2")
+				(pinfunction "A_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "J2")
+				(pin "A4")
+				(pinfunction "VBUS_A4")
+				(pintype "passive")
+			)
+			(node
+				(ref "J2")
+				(pin "A9")
+				(pinfunction "VBUS_A9")
+				(pintype "passive")
+			)
+			(node
+				(ref "J2")
+				(pin "B4")
+				(pinfunction "VBUS_B4")
+				(pintype "passive")
+			)
+			(node
+				(ref "J2")
+				(pin "B9")
+				(pinfunction "VBUS_B9")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "44")
 			(name "VMID5")
 			(class "Power")
 			(node
@@ -7482,9 +8879,15 @@
 				(pin "2")
 				(pintype "passive")
 			)
+			(node
+				(ref "TP13")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
 		)
 		(net
-			(code "42")
+			(code "45")
 			(name "VMID_BUF")
 			(class "Default")
 			(node
@@ -7506,7 +8909,7 @@
 			)
 		)
 		(net
-			(code "43")
+			(code "46")
 			(name "VMID_DIV")
 			(class "Default")
 			(node
@@ -7532,7 +8935,7 @@
 			)
 		)
 		(net
-			(code "44")
+			(code "47")
 			(name "VOCM")
 			(class "Default")
 			(node
@@ -7556,6 +8959,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "TP14")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "U3")
 				(pin "2")
 				(pinfunction "VOCM_2")
@@ -7563,7 +8972,7 @@
 			)
 		)
 		(net
-			(code "45")
+			(code "48")
 			(name "VTH_H")
 			(class "Default")
 			(node
@@ -7582,6 +8991,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "TP17")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "U6")
 				(pin "3")
 				(pinfunction "1IN+_3")
@@ -7589,7 +9004,7 @@
 			)
 		)
 		(net
-			(code "46")
+			(code "49")
 			(name "VTH_L")
 			(class "Default")
 			(node
@@ -7615,6 +9030,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "TP18")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "U6")
 				(pin "6")
 				(pinfunction "2IN-_6")
@@ -7622,7 +9043,7 @@
 			)
 		)
 		(net
-			(code "47")
+			(code "50")
 			(name "WAKE_N")
 			(class "Default")
 			(node
@@ -7642,6 +9063,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "TP16")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "U6")
 				(pin "1")
 				(pinfunction "1OUT_1")
@@ -7655,7 +9082,73 @@
 			)
 		)
 		(net
-			(code "48")
+			(code "51")
+			(name "unconnected-(J2-D+-PadA6)")
+			(class "Default")
+			(node
+				(ref "J2")
+				(pin "A6")
+				(pinfunction "D+_A6")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "52")
+			(name "unconnected-(J2-D+-PadB6)")
+			(class "Default")
+			(node
+				(ref "J2")
+				(pin "B6")
+				(pinfunction "D+_B6")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "53")
+			(name "unconnected-(J2-D--PadA7)")
+			(class "Default")
+			(node
+				(ref "J2")
+				(pin "A7")
+				(pinfunction "D-_A7")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "54")
+			(name "unconnected-(J2-D--PadB7)")
+			(class "Default")
+			(node
+				(ref "J2")
+				(pin "B7")
+				(pinfunction "D-_B7")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "55")
+			(name "unconnected-(J2-SBU1-PadA8)")
+			(class "Default")
+			(node
+				(ref "J2")
+				(pin "A8")
+				(pinfunction "SBU1_A8")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "56")
+			(name "unconnected-(J2-SBU2-PadB8)")
+			(class "Default")
+			(node
+				(ref "J2")
+				(pin "B8")
+				(pinfunction "SBU2_B8")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "57")
 			(name "unconnected-(J3-Pin_2-Pad2)")
 			(class "Default")
 			(node
@@ -7666,7 +9159,7 @@
 			)
 		)
 		(net
-			(code "49")
+			(code "58")
 			(name "unconnected-(J3-Pin_3-Pad3)")
 			(class "Default")
 			(node
@@ -7677,7 +9170,7 @@
 			)
 		)
 		(net
-			(code "50")
+			(code "59")
 			(name "unconnected-(J3-Pin_4-Pad4)")
 			(class "Default")
 			(node
@@ -7688,7 +9181,7 @@
 			)
 		)
 		(net
-			(code "51")
+			(code "60")
 			(name "unconnected-(J3-Pin_6-Pad6)")
 			(class "Default")
 			(node

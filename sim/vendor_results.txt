@@ -1,9 +1,9 @@
 == 1. DC operating point, vendor OPA365
-  v(mid5)      2.500 V
+  v(mid5)      2.300 V
   v(vocm)      1.650 V
-  v(hpf)       2.500 V
-  v(gout)      2.500 V
-  v(lpf)       2.500 V
+  v(hpf)       2.300 V
+  v(gout)      2.300 V
+  v(lpf)       2.300 V
   v(op)        1.650 V
   v(om)        1.650 V
   v(ainp)      1.650 V
@@ -13,18 +13,18 @@
   behavioral (datasheet GBW)         gain  13.36 dB  flat 0.03 dB  10k  41.6 dB  2M  23.7 dB  band 112-532 kHz
 == 3. Noise at the ADC input, 1 kHz to 2.5 MHz (vendor model noise)
   77 uV rms = 0.19 LSB (LSB 0.40 mV); perfboard sensor noise is 40-53 LSB
-== 4. Tolerance Monte Carlo, 150 runs (R 1 %, C0G 5 %, X5R 10 %), vendor OPA365
+== 4. Tolerance Monte Carlo, 100 runs (R 1 %, C0G 5 %, X5R 10 %), vendor OPA365
   gain at 250 kHz (dB)         min   12.00  mean   12.24  max   12.57  sigma 0.13   target 
   flatness 230-280 kHz (dB)    min    0.00  mean    0.00  max    0.00  sigma 0.00   target < 1
-  loss at 10 kHz (dB)          min   39.71  mean   40.54  max   41.40  sigma 0.34   target >= 40
-  loss at 2 MHz (dB)           min   23.29  mean   23.97  max   24.59  sigma 0.27   target >= 20
-  low -3 dB edge (kHz)         min  100.11  mean  108.99  max  112.33  sigma 5.45   target 
+  loss at 10 kHz (dB)          min   39.82  mean   40.57  max   41.40  sigma 0.33   target >= 40
+  loss at 2 MHz (dB)           min   23.29  mean   23.97  max   24.50  sigma 0.27   target >= 20
+  low -3 dB edge (kHz)         min  100.11  mean  109.40  max  112.33  sigma 5.22   target 
   high -3 dB edge (kHz)        min  447.34  mean  483.37  max  501.93  sigma 25.86   target 
-  runs below 40 dB at 10 kHz: 11 of 150
+  runs below 40 dB at 10 kHz: 5 of 100
 == 5. Transient: 250 kHz burst, 10 cycles, vendor OPA365
-  burst 120 mV peak at the perfboard output: gout 1.97..3.04 V, ADC diff peak 0.52/-0.51 V (16 % of full scale), legs 1.39..1.91 V
-  burst 300 mV peak at the perfboard output: gout 1.17..3.85 V, ADC diff peak 1.29/-1.27 V (39 % of full scale), legs 1.00..2.30 V
-  burst 500 mV peak at the perfboard output: gout 0.29..4.74 V, ADC diff peak 2.16/-2.11 V (65 % of full scale), legs 0.57..2.73 V
+  burst 120 mV peak at the perfboard output: gout 1.77..2.84 V, ADC diff peak 0.52/-0.51 V (16 % of full scale), legs 1.39..1.91 V
+  burst 300 mV peak at the perfboard output: gout 0.97..3.65 V, ADC diff peak 1.29/-1.27 V (39 % of full scale), legs 1.00..2.30 V
+  burst 500 mV peak at the perfboard output: gout 0.09..4.54 V, ADC diff peak 2.16/-2.11 V (65 % of full scale), legs 0.57..2.73 V
 == 6. ADC acquisition: 16 pF + 50 ohm per leg (datasheet 8.3.2), step from the previous sample
   typical 250 kHz at 1.2 MSPS        step 0.34 V per leg: settles to 0.5 LSB in 30 ns (tACQ >= 95 ns, 1.2 MSPS gives about 400 ns)
   worst case, full 17 % FS swing     step 0.56 V per leg: settles to 0.5 LSB in 55 ns (tACQ >= 95 ns, 1.2 MSPS gives about 400 ns)

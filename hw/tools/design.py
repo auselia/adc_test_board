@@ -1,5 +1,5 @@
 """ADC test board (low-cost): perfboard SMA -> HPF -> gain x4.9 -> LPF -> THS4531 -> ADS7057 -> ZedBoard PMOD,
-plus a window comparator (WAKE_N) and a 9 V -> 5 V -> 3.3 V supply.
+plus a window comparator (WAKE_N), a 5 V input (USB-C or header), a bias-T for the sensor head and test points.
 Same topology as the Auselia AFE v0.1 (sections 5.2 to 5.5), rebuilt around JLCPCB Basic parts so only
 the ADS7057, OPA2365 and THS4531 pay the extended-part fee.
 Usage: python3 design.py <outdir>
@@ -19,12 +19,17 @@ FP_H2='Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical'
 FP_C8='Capacitor_SMD:C_0805_2012Metric'
 FP_R4='Resistor_SMD:R_0402_1005Metric'; FP_C4='Capacitor_SMD:C_0402_1005Metric'
 FP_L='Inductor_SMD:L_1210_3225Metric'
+FP_USBC='Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12'
+FP_TP='TestPoint:TestPoint_Pad_D1.5mm'
+# test points, in the order they sit on the strip (ref, net)
+TPS=[('TP3','SIG_IN'),('TP4','HPF_OUT'),('TP5','GAIN_OUT'),('TP6','LPF_OUT'),('TP7','DRV_OUTP'),('TP8','DRV_OUTN'),('TP9','AINP'),('TP10','AINM'),
+     ('TP11','+5V'),('TP12','AVDD'),('TP13','VMID5'),('TP14','VOCM'),('TP15','+3V3'),('TP16','WAKE_N'),('TP17','VTH_H'),('TP18','VTH_L'),('TP19','GND'),('TP20','GND')]
 FP_JP='Jumper:SolderJumper-2_P1.3mm_Bridged_Pad1.0x1.5mm'
 FP_PZ='TestPoint:TestPoint_THTPad_D2.0mm_Drill1.0mm'
 # LCSC part numbers, checked in the JLCPCB parts library on 2026-10-12. All are JLC "Basic" parts
-# except ADS7057, OPA2365, THS4531, the tantalum C29 and the THT parts J1/J4/J2/J3/RV1 (Extended).
+# except ADS7057, OPA2365, THS4531, the USB-C receptacle J2 and the THT parts J1/J4/J7/J3/RV1 (Extended).
 LCSC={'10R':'C22859','22R':'C23345','1.00k':'C21190','2.2k':'C4190','3.9k':'C23018','10k':'C25804','20k':'C4184','33k':'C4216',
-      '100pF C0G':'C14858','47pF C0G':'C1671','1M':'C22935','47R':'C23182','470uH':'C75644','100nF':'C14663','1uF':'C15849','4.7uF':'C19666','10uF':'C19702','10uF 25V':'C15850','22uF 25V':'C45783','51R':'C23197'}
+      '100pF C0G':'C14858','47pF C0G':'C1671','1M':'C22935','47R':'C23182','470uH':'C75644','100nF':'C14663','1uF':'C15849','4.7uF':'C19666','10uF':'C19702','10uF 25V':'C15850','22uF 25V':'C45783','51R':'C23197','5.1k':'C23186'}
 def R(sh,x,y,val,a,b,ref,rot=90): return add(sh,'Device:R',val,FP_R,x,y,{'1':a,'2':b},'R',rot,ref=ref,props={'LCSC':LCSC[val]})
 def C(sh,x,y,val,a,b,ref,rot=0): return add(sh,'Device:C',val,FP_C8 if '25V' in val else FP_C,x,y,{'1':a,'2':b},'C',rot,ref=ref,props={'LCSC':LCSC[val]})
 def R4(sh,x,y,val,a,b,ref,lcsc,rot=90): return add(sh,'Device:R',val,FP_R4,x,y,{'1':a,'2':b},'R',rot,ref=ref,props={'LCSC':lcsc})
@@ -36,7 +41,7 @@ def build():
     sh=r
     text(sh,"ADS7057 test board (low cost)",20,22,4,True)
     text(sh,"Sensor head (SMA, bias-T) -> 2nd-order HPF 113 kHz -> gain x4.9 -> 2nd-order LPF 512 kHz -> THS4531 -> 10R/400pF -> ADS7057 -> ZedBoard PMOD.",20,30,1.8)
-    text(sh,"AFE v0.1 topology rebuilt around JLC Basic parts (100 pF C0G, E12 resistors, AMS1117, LM393). Power: 9 V -> AMS1117-5.0 -> AMS1117-3.3 (AVDD). DVDD = PMOD 3.3 V.",20,35,1.8)
+    text(sh,"AFE v0.1 topology rebuilt around JLC Basic parts (100 pF C0G, E12 resistors, AMS1117, LM393). Power: 5 V (USB-C or header) -> SS14 -> ferrite -> +5V, AVDD = XC6206 3.3 V from 5 V. DVDD = PMOD 3.3 V.",20,35,1.8)
     # ---- input + HPF + gain (U1)
     text(sh,"Input, high-pass filter (Sallen-Key, 100 pF / 10k / 20k: f0 = 113 kHz, Q = 0.71), gain 1 + 3.9k/1k = 4.9",20,55,2.2,True)
     add(sh,'Connector:Conn_Coaxial','SMA SENSOR IN',FP_SMA,30,90,{'1':'HEAD_LINE','2':'GND'},'J',ref='J1',props={'LCSC':'C496549'})
@@ -79,13 +84,21 @@ def build():
     R(sh,100,300,'33k','VTH_L','GND','R23',0); C(sh,40,330,'100nF','VTH_H','GND','C26'); C(sh,55,330,'100nF','VTH_L','GND','C27')
     C(sh,190,345,'100nF','+5V','GND','C28'); R(sh,230,315,'10k','+3V3','WAKE_N','R24',0)
     text(sh,"C31: optional filter on nWAKE, not fitted. No hysteresis: the outputs are wired together.",200,295,1.6)
-    # ---- power: 9 V in -> SS14 -> AMS1117-5.0
-    text(sh,"Power: 9 V battery -> SS14 -> AMS1117-5.0 (+5V). AMS1117 needs a 22 uF solid tantalum output capacitor for stability (datasheet).",320,275,1.8)
-    add(sh,'Connector_Generic:Conn_01x02','9V IN',FP_H2,330,300,{'1':'+9V_IN','2':'GND'},'J',ref='J2',props={'LCSC':'C492401'})
-    add(sh,'Device:D_Schottky','SS14','Diode_SMD:D_SMA',360,300,{'2':'+9V_IN','1':'+9VP'},'D',rot=0,ref='D1',props={'LCSC':'C2480'})
-    C(sh,385,320,'10uF 25V','+9VP','GND','C23')
-    add(sh,'Auselia:AMS1117-5.0','AMS1117-5.0','Package_TO_SOT_SMD:SOT-223-3_TabPin2',430,320,{'3':'+9VP','2':'+5V','1':'GND'},'U',ref='U7',props={'LCSC':'C6187'})
-    add(sh,'Device:C_Polarized','22uF 10V tantalum','Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A',470,300,{'1':'+5V','2':'GND'},'C',ref='C29',props={'LCSC':'C11366'})
+    # ---- power: 5 V from USB-C (J2) or the header (J7) -> SS14 each (reverse protection, OR) -> ferrite -> +5V
+    text(sh,"Power: 5 V from USB-C (J2, CC1/CC2 5.1k request 5 V from any charger) or the 2-pin header J7. SS14 per input = reverse protection and OR. Ferrite FB1 + 22 uF C23 filter the rail.",320,275,1.8)
+    add(sh,'Connector:USB_C_Receptacle_USB2.0_16P','USB-C 5V',FP_USBC,330,300,
+        {'A1':'GND','A12':'GND','B1':'GND','B12':'GND','SH':'GND','A4':'VBUS','A9':'VBUS','B4':'VBUS','B9':'VBUS','A5':'USB_CC1','B5':'USB_CC2',
+         'A6':'NC','A7':'NC','B6':'NC','B7':'NC','A8':'NC','B8':'NC'},'J',ref='J2',props={'LCSC':'C165948'})
+    R(sh,370,330,'5.1k','USB_CC1','GND','R32',0); R(sh,385,330,'5.1k','USB_CC2','GND','R33',0)
+    add(sh,'Connector_Generic:Conn_01x02','5V IN',FP_H2,330,350,{'1':'+5V_EXT','2':'GND'},'J',ref='J7',props={'LCSC':'C492401'})
+    add(sh,'Device:D_Schottky','SS14','Diode_SMD:D_SMA',400,300,{'2':'VBUS','1':'+5V_IN'},'D',rot=0,ref='D1',props={'LCSC':'C2480'})
+    add(sh,'Device:D_Schottky','SS14','Diode_SMD:D_SMA',400,330,{'2':'+5V_EXT','1':'+5V_IN'},'D',rot=0,ref='D2',props={'LCSC':'C2480'})
+    add(sh,'Device:FerriteBead','120R 2A','Inductor_SMD:L_0603_1608Metric',430,300,{'1':'+5V_IN','2':'+5V'},'FB',rot=90,ref='FB1',props={'LCSC':'C14709'})
+    C(sh,455,320,'22uF 25V','+5V','GND','C23')
+    # ---- test points after each stage (SMD pads 1.5 mm, not placed by JLCPCB)
+    text(sh,"Test points: one after each stage of the signal chain, then the rails, WAKE_N and two grounds for the scope clip.",20,400,1.8,True)
+    for k_,(ref_,net_) in enumerate(TPS):
+        add(sh,'Connector:TestPoint',net_,FP_TP,20+k_*11,408,{'1':net_},'TP',ref=ref_)
     # ---- ZedBoard PMOD (Digilent type 2A SPI: 1 CS, 2 MOSI, 3 MISO, 4 SCK, 5 GND, 6 VCC; 7..10 extra I/O)
     text(sh,"ZedBoard PMOD JA..JD (3.3 V). Pin 6/12 = 3.3 V from the ZedBoard -> DVDD. Pin 10 = WAKE_N (active low).",330,55,2.2,True)
     pm={'1':'CS','3':'NC','5':'SDO','7':'SCLK','9':'GND','11':'+3V3',     # PMOD pins 1..6 (top row)
@@ -116,7 +129,7 @@ def build():
     R4(sh,350,410,'49.9R','HOUT','HAC','R31','C25120',90); C4(sh,375,410,'100nF','HAC','HLINE','C38','C307331',90)
     add(sh,'Device:L','470uH',FP_L,400,395,{'1':'HLINE','2':'HV'},'L',rot=90,ref='L1',props={'LCSC':LCSC['470uH']})
     add(sh,'Connector:Conn_Coaxial','SMA HEAD OUT',FP_SMA,430,395,{'1':'HLINE','2':'HGND'},'J',ref='J6',props={'LCSC':'C496549'})
-    flag(sh,365,250,'+3V3'); flag(sh,380,250,'GND'); flag(sh,395,250,'+9V_IN'); flag(sh,410,250,'+9VP'); flag(sh,425,250,'HGND'); flag(sh,440,250,'HV')
+    flag(sh,365,250,'+3V3'); flag(sh,380,250,'GND'); flag(sh,395,250,'+5V_IN'); flag(sh,410,250,'+5V'); flag(sh,425,250,'HGND'); flag(sh,440,250,'HV')
     return r
 if __name__=='__main__':
     out=sys.argv[1]

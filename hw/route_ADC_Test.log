@@ -1,23 +1,22 @@
-2026-10-15 16:52:41.571 INFO   Freerouting v2.4.1 (build-date: 2026-09-03)
-2026-10-15 16:52:42.987 INFO   [E77C0F\BA96AC] Loading board file 'ADC_Test_route.dsn'...
-2026-10-15 16:52:42.992 INFO   New version available: v2.5.0
-2026-10-15 16:52:43.036 INFO   [E77C0F\BA96AC] Job 'E77C0F\BA96AC' started at 2026-10-15T19:52:43.036304Z.
-2026-10-15 16:52:43.100 INFO   [E77C0F\BA96AC] Fanout stage started on board 'ef617298795ea1f475d83a54a8b3bbc9' with 169 of 169 SMD pins needing fanout (0 already connected, 0 netless).
-2026-10-15 16:52:44.511 INFO   [E77C0F\BA96AC] Fanout pass #1 on board '0d51d2492b3bb7007980640d1c254484' completed in 1.38 seconds with 151 SMD pins fanouted, 0 not routed, 0 insert errors, +36 extra vias (0 SMD pins still to check in pass, ripup costs=100).
-2026-10-15 16:52:44.806 INFO   [E77C0F\BA96AC] Fanout pass #2 on board 'f97c4ad94e9073af64388d03acf84d6c' completed in 0.28 seconds with 13 SMD pins fanouted, 0 not routed, 0 insert errors, +7 extra vias (0 SMD pins still to check in pass, ripup costs=200).
-2026-10-15 16:52:44.972 INFO   [E77C0F\BA96AC] Fanout pass #3 on board '53c654b3285a2000606ee0cea751cbf5' completed in 0.16 seconds with 3 SMD pins fanouted, 0 not routed, 0 insert errors, +1 extra via (0 SMD pins still to check in pass, ripup costs=300).
-2026-10-15 16:52:45.115 INFO   [E77C0F\BA96AC] Fanout pass #4 on board '1101edc6c2d2c85292cd94d18ea64209' completed in 0.13 seconds with 1 SMD pin fanouted, 0 not routed, 0 insert errors, +1 extra via (0 SMD pins still to check in pass, ripup costs=400).
-2026-10-15 16:52:45.248 INFO   [E77C0F\BA96AC] Fanout pass #5 on board '1101edc6c2d2c85292cd94d18ea64209' completed in 0.12 seconds with 0 SMD pins fanouted, 0 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=500).
-2026-10-15 16:52:45.278 INFO   [E77C0F\BA96AC] Fanout stage completed: started with 169 total SMD pins, completed in 2.16 seconds, escaped pins: 169/169 (100.0%), using 2.08 total CPU seconds, 17.30 GB total allocated, and 343.5 MB peak heap usage.
-2026-10-15 16:52:45.284 INFO   [E77C0F\BA96AC] Auto-routing stage started on board '1101edc6c2d2c85292cd94d18ea64209' for 27 unrouted items.
-2026-10-15 16:52:46.315 INFO   [E77C0F\BA96AC] Auto-routing pass #1 on board '1101edc6c2d2c85292cd94d18ea64209' was completed in 0.95 seconds with score 973.85 (4 unrouted and 0 violations), using 2.87 CPU seconds and the job allocated 25.56 GB of memory so far.
-2026-10-15 16:52:46.826 INFO   [E77C0F\BA96AC] Auto-routing pass #2 on board '70c16bce2a6a8e2775c8c5ff55569c0d' was completed in 0.43 seconds with score 986.92 (2 unrouted and 0 violations), using 2.87 CPU seconds and the job allocated 25.56 GB of memory so far.
-2026-10-15 16:52:47.143 INFO   [E77C0F\BA96AC] Auto-routing pass #3 on board '556310a05cc82663696a7b41bb2b39c3' was completed in 0.24 seconds with score 999.99 (0 unrouted and 0 violations), using 3.84 CPU seconds and the job allocated 37.51 GB of memory so far.
-2026-10-15 16:52:47.269 INFO   [E77C0F\BA96AC] Auto-routing pass #4 on board '11e1c0b97d6746c6226063c76dc3154d' was completed in 0.04 seconds with score 999.99 (0 unrouted and 0 violations), using 3.84 CPU seconds and the job allocated 37.51 GB of memory so far.
-2026-10-15 16:52:47.359 INFO   [E77C0F\BA96AC] Auto-routing stage completed: started with 142 unrouted nets, completed in 4.25 seconds, final score: 999.99 (0 unrouted and 0 violations), using 3.84 total CPU seconds, 37.51 GB total allocated, and 343.5 MB peak heap usage.
-2026-10-15 16:52:47.400 INFO   [E77C0F\BA96AC] Optimization stage started on board '04d7cbb21b1b5ec626a0569d55f40b12' with score 999.99 (0 unrouted and 0 violations).
-2026-10-15 16:52:47.438 INFO   [E77C0F\BA96AC] Stopping optimizer because the current board score (999.99) is already close to the maximum score (1000). Remaining potential improvement is less than the threshold (1.00%).
-2026-10-15 16:52:47.476 INFO   [E77C0F\BA96AC] Optimization stage completed: started with score 999.99 (0 unrouted and 0 violations), completed in 0.04 seconds, final score: 999.99 (0 unrouted and 0 violations), using 0.04 total CPU seconds, 0.54 GB total allocated, and 263.8 MB peak heap usage.
-2026-10-15 16:52:47.483 INFO   [E77C0F\BA96AC] Job 'E77C0F\BA96AC' finished with state: COMPLETED (elapsed: 4.45 seconds, finished at UTC: 2026-10-15T19:52:47.482919Z).
-2026-10-15 16:52:47.775 INFO   Saving output file '/Users/nico/Documents/GitHub/adc_test_board/hw/ADC_Test_route.ses' (SES)...
-2026-10-15 16:52:47.778 INFO   Successfully saved output file '/Users/nico/Documents/GitHub/adc_test_board/hw/ADC_Test_route.ses' (43175 bytes).
+2026-10-15 17:34:32.388 INFO   Freerouting v2.4.1 (build-date: 2026-09-03)
+2026-10-15 17:34:33.804 INFO   [5AA54B\0893B1] Loading board file 'ADC_Test_route.dsn'...
+2026-10-15 17:34:33.821 INFO   New version available: v2.5.0
+2026-10-15 17:34:33.860 INFO   [5AA54B\0893B1] Job '5AA54B\0893B1' started at 2026-10-15T20:34:33.859925Z.
+2026-10-15 17:34:33.932 INFO   [5AA54B\0893B1] Fanout stage started on board '3ffc54ebbe0fd9a35216a6d2c800abdf' with 199 of 205 SMD pins needing fanout (6 already connected, 0 netless).
+2026-10-15 17:34:36.179 INFO   [5AA54B\0893B1] Fanout pass #1 on board 'c53cbe611882fb907244c0b8178bf7f6' completed in 2.21 seconds with 183 SMD pins fanouted, 0 not routed, 0 insert errors, +56 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+2026-10-15 17:34:36.924 INFO   [5AA54B\0893B1] Fanout pass #2 on board '4b4511a93f1e95932544c604c3648acf' completed in 0.73 seconds with 24 SMD pins fanouted, 0 not routed, 0 insert errors, +16 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+2026-10-15 17:34:37.186 INFO   [5AA54B\0893B1] Fanout pass #3 on board '30ac1e7ae2117f372bbdb37a052b656f' completed in 0.25 seconds with 3 SMD pins fanouted, 0 not routed, 0 insert errors, +1 extra via (0 SMD pins still to check in pass, ripup costs=300).
+2026-10-15 17:34:37.402 INFO   [5AA54B\0893B1] Fanout pass #4 on board '30ac1e7ae2117f372bbdb37a052b656f' completed in 0.20 seconds with 0 SMD pins fanouted, 0 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=400).
+2026-10-15 17:34:37.452 INFO   [5AA54B\0893B1] Fanout stage completed: started with 205 total SMD pins, completed in 3.50 seconds, escaped pins: 199/205 (97.1%), using 3.25 total CPU seconds, 23.13 GB total allocated, and 357.6 MB peak heap usage.
+2026-10-15 17:34:37.462 INFO   [5AA54B\0893B1] Auto-routing stage started on board '30ac1e7ae2117f372bbdb37a052b656f' for 45 unrouted items.
+2026-10-15 17:34:40.281 INFO   [5AA54B\0893B1] Auto-routing pass #1 on board '30ac1e7ae2117f372bbdb37a052b656f' was completed in 2.69 seconds with score 967.38 (5 unrouted and 5 violations), using 5.56 CPU seconds and the job allocated 42.45 GB of memory so far.
+2026-10-15 17:34:41.061 INFO   [5AA54B\0893B1] Auto-routing pass #2 on board '46514c89ed64d3cd40cc30ad410ef8fe' was completed in 0.67 seconds with score 978.25 (3 unrouted and 5 violations), using 6.52 CPU seconds and the job allocated 52.08 GB of memory so far.
+2026-10-15 17:34:41.857 INFO   [5AA54B\0893B1] Auto-routing pass #3 on board '8e59746302dac521bb9eca78535f5f62' was completed in 0.67 seconds with score 994.56 (0 unrouted and 5 violations), using 6.52 CPU seconds and the job allocated 52.08 GB of memory so far.
+2026-10-15 17:34:42.044 INFO   [5AA54B\0893B1] Auto-routing pass #4 on board '19ba784ad5e95b6f984b04cf022be9cd' was completed in 0.06 seconds with score 994.56 (0 unrouted and 5 violations), using 7.46 CPU seconds and the job allocated 62.04 GB of memory so far.
+2026-10-15 17:34:42.193 INFO   [5AA54B\0893B1] Auto-routing stage completed: started with 165 unrouted nets, completed in 8.24 seconds, final score: 994.56 (0 unrouted and 5 violations), using 7.46 total CPU seconds, 62.04 GB total allocated, and 283.4 MB peak heap usage.
+2026-10-15 17:34:42.250 INFO   [5AA54B\0893B1] Optimization stage started on board '1dd580e21c60969ab863c063b1c3f597' with score 994.56 (0 unrouted and 5 violations).
+2026-10-15 17:34:42.310 INFO   [5AA54B\0893B1] Stopping optimizer because the current board score (994.56) is already close to the maximum score (1000). Remaining potential improvement is less than the threshold (1.00%).
+2026-10-15 17:34:42.365 INFO   [5AA54B\0893B1] Optimization stage completed: started with score 994.56 (0 unrouted and 5 violations), completed in 0.06 seconds, final score: 994.56 (0 unrouted and 5 violations), using 0.06 total CPU seconds, 0.70 GB total allocated, and 198.1 MB peak heap usage.
+2026-10-15 17:34:42.374 INFO   [5AA54B\0893B1] Job '5AA54B\0893B1' finished with state: COMPLETED (elapsed: 8.51 seconds, finished at UTC: 2026-10-15T20:34:42.373355Z).
+2026-10-15 17:34:42.626 INFO   Saving output file '/Users/nico/Documents/GitHub/adc_test_board/hw/ADC_Test_route.ses' (SES)...
+2026-10-15 17:34:42.628 INFO   Successfully saved output file '/Users/nico/Documents/GitHub/adc_test_board/hw/ADC_Test_route.ses' (55647 bytes).

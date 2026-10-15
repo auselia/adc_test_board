@@ -1,8 +1,8 @@
 ** Drc report for ADC_Test.kicad_pcb **
-** Created on 2026-10-15T16:53:10 **
+** Created on 2026-10-15T17:45:58 **
 ** Report includes: Errors, Warnings, Exclusions **
 
-** Found 8 DRC violations **
+** Found 12 DRC violations **
 [silk_edge_clearance]: Silkscreen clipped by board edge
     Rule: board setup constraints silk; warning
     @(157.0000 mm, 100.0000 mm): Segment on Edge.Cuts
@@ -27,12 +27,29 @@
     Rule: board setup constraints silk; warning
     @(157.0000 mm, 100.0000 mm): Segment on Edge.Cuts
     @(154.3500 mm, 109.6200 mm): Rectangle of J3 on F.Silkscreen
-[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)
-    Rule: board setup constraints silk text height; warning
-    @(103.2000 mm, 111.6000 mm): PCB text '5V' on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(100.0000 mm, 137.6000 mm): Segment on Edge.Cuts
+    @(101.6000 mm, 120.5000 mm): Segment of J2 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(100.0000 mm, 137.6000 mm): Segment on Edge.Cuts
+    @(101.6000 mm, 129.9000 mm): Segment of J2 on F.Silkscreen
 [text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)
     Rule: board setup constraints silk text height; warning
     @(111.6000 mm, 102.3000 mm): PCB text '+5V on centre' on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(115.5200 mm, 130.7800 mm): Segment of J7 on F.Silkscreen
+    @(116.2000 mm, 129.4000 mm): PCB text '5V IN' on F.Silkscreen
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(103.6000 mm, 119.1000 mm): PCB text 'USB-C 5V' on F.Silkscreen
+    @(103.2000 mm, 118.0000 mm): Pad 1 [HEAD_LINE] of L2 on F.Cu
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(116.2000 mm, 129.4000 mm): PCB text '5V IN' on F.Silkscreen
+    @(114.1400 mm, 129.4000 mm): PTH pad 2 [GND] of J7
 
 ** Found 0 unconnected pads **
 
