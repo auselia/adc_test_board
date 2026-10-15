@@ -9,7 +9,7 @@ There are **two boards**, ordered separately:
 | ADC test board (`ADC_Test`) | HPF, gain, LPF, driver, ADS7057, wake-up comparator, PMOD, 9 V supply, bias-T for the head | 57 × 32 mm |
 | Sensor head (`ADC_Head`) | The perfboard charge amplifier on a PCB. The piezo wires solder to it. It is powered through the coax | 10 × 22 mm |
 
-The head connects to **SENSOR IN (J1)** with one coax cable. The coax carries 5 V to the head (a bias-T) and the signal back. The perfboard is replaced by the head. To use a function generator instead, remove R26 so the centre pin carries no DC.
+The head connects to **SENSOR IN (J1)** with one coax cable. The coax carries 5 V to the head (a bias-T) and the signal back. The perfboard is replaced by the head. To use a function generator instead, cut the solder jumper **JP1** (it is a copper bridge, so you scratch it through with a knife) so the centre pin carries no DC. Re-bridge it with a blob of solder.
 
 The topology is the one in the AFE v0.1 design description, rebuilt around JLCPCB **Basic** parts. The extended-part fee ($3.09 per type) is paid for the ADS7057, OPA2365, THS4531, the tantalum C29 and the 470 µH inductor (both boards), plus the OPA365 on the head.
 
@@ -31,7 +31,7 @@ The board serves two purposes. In the plant experiments, four boards sit on ZedB
 | 5 V | 9 V → SS14 → AMS1117-5.0 | 22 µF tantalum output (C29) |
 | MON output | 51 Ω from LPF_OUT to SMA J4 | The scope sees the same signal the ADC samples |
 | nWAKE filter | C31, 0603 to GND near J3 | Not fitted (DNP). No hysteresis, since the outputs are wired together |
-| Bias-T on SENSOR IN (J1) | R26 47R + C32 10 µF, L2 470 µH, C33 100 nF, R27 1M | 5 V reaches the coax centre through 47 Ω and 470 µH. C33 passes the head signal to SIG_IN. R27 sets the DC level of SIG_IN to VMID5 |
+| Bias-T on SENSOR IN (J1) | JP1 solder jumper (bridged), R26 47R + C32 10 µF, L2 470 µH, C33 100 nF, R27 1M | 5 V reaches the coax centre through 47 Ω and 470 µH. C33 passes the head signal to SIG_IN. R27 sets the DC level of SIG_IN to VMID5 |
 | Wake comparator | LM393 window | Half window = 2.5 V × (1k + Rp)/(67k + Rp) = 37–603 mV with the 20k RV1, about 7–120 mV at the perfboard output |
 
 The two LM393 open-collector outputs are tied together and pulled up to 3.3 V. **nWAKE goes low** when the signal leaves the window.
@@ -63,7 +63,7 @@ Differences from the perfboard that you should know about:
 
 | Label | What it is |
 |---|---|
-| SENSOR IN, +5V on centre (J1) | SMA input for the sensor head. The centre pin carries 5 V while R26 is fitted. Remove R26 before you connect a function generator. |
+| SENSOR IN, +5V on centre (J1) | SMA input for the sensor head. The centre pin carries 5 V while the jumper JP1 is bridged. Cut JP1 before you connect a function generator. |
 | SCOPE OUT (J4) | SMA monitor output. It carries the same signal the ADC samples, through 51 Ω. Use a 1 MΩ scope input. A 50 Ω input halves the signal. |
 | +9V / GND (J2) | 9 V battery input. The square pad is +9V. |
 | WAKE LEVEL (RV1) | Trimmer that sets how large a signal must be to pull nWAKE low. Clockwise should widen the window. Check with a multimeter on the 33k resistors. |
@@ -92,7 +92,7 @@ If JLCPCB declines a through-hole part, delete its line from the BOM and solder 
 
 ## Connectors
 
-- **J1 SENSOR IN:** SMA for the sensor head, carries +5 V on the centre pin (R26 fitted).
+- **J1 SENSOR IN:** SMA for the sensor head, carries +5 V on the centre pin (JP1 bridged).
 - **J4 MON:** SMA monitor output, LPF_OUT through 51 Ω.
 - **J2:** +9 V (square pad), GND.
 - **H1, H2:** M3 mounting holes.

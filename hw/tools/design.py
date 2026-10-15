@@ -19,6 +19,7 @@ FP_H2='Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical'
 FP_C8='Capacitor_SMD:C_0805_2012Metric'
 FP_R4='Resistor_SMD:R_0402_1005Metric'; FP_C4='Capacitor_SMD:C_0402_1005Metric'
 FP_L='Inductor_SMD:L_1210_3225Metric'
+FP_JP='Jumper:SolderJumper-2_P1.3mm_Bridged_Pad1.0x1.5mm'
 FP_PZ='TestPoint:TestPoint_THTPad_D2.0mm_Drill1.0mm'
 # LCSC part numbers, checked in the JLCPCB parts library on 2026-10-12. All are JLC "Basic" parts
 # except ADS7057, OPA2365, THS4531, the tantalum C29 and the THT parts J1/J4/J2/J3/RV1 (Extended).
@@ -98,8 +99,9 @@ def build():
     add(sh,'Mechanical:MountingHole','M3','MountingHole:MountingHole_3.2mm_M3',500,150,{},'H',ref='H2')
     # ---- SENSOR IN (J1): bias-T. +5 V through R26/L2 onto the coax centre = power for the sensor head; C33 passes its signal to SIG_IN.
     text(sh,"SENSOR IN (J1) = bias-T for the sensor head. +5V -> 47R (R26, C32 filter) -> 470 uH (L2) -> coax centre. C33 100 nF passes the head's signal to SIG_IN.",20,360,1.8,True)
-    text(sh,"R27 1M gives SIG_IN a DC level (VMID5). To feed a function generator or a perfboard instead, remove R26 so the centre pin carries no DC.",20,366,1.8)
-    add(sh,'Device:L','470uH',FP_L,80,390,{'1':'HEAD_LINE','2':'HEAD_PWR'},'L',rot=90,ref='L2',props={'LCSC':LCSC['470uH']})
+    text(sh,"R27 1M gives SIG_IN a DC level (VMID5). To feed a function generator or a perfboard instead, cut the solder jumper JP1 (bridged by a copper trace) so the centre pin carries no DC.",20,366,1.8)
+    add(sh,'Device:L','470uH',FP_L,80,390,{'1':'HEAD_LINE','2':'HEAD_PWR_L'},'L',rot=90,ref='L2',props={'LCSC':LCSC['470uH']})
+    add(sh,'Jumper:SolderJumper_2_Bridged','HEAD PWR',FP_JP,95,390,{'1':'HEAD_PWR','2':'HEAD_PWR_L'},'JP',rot=90,ref='JP1')
     R(sh,110,380,'47R','+5V','HEAD_PWR','R26',90); C(sh,130,400,'10uF','HEAD_PWR','GND','C32')
     C(sh,150,380,'100nF','HEAD_LINE','SIG_IN','C33',90); R(sh,170,400,'1M','SIG_IN','VMID5','R27',0)
     # ---- SENSOR HEAD (separate 10 x 20 mm board in the same panel): perfboard charge amp, powered through the coax

@@ -31,7 +31,7 @@ for x_, t_, s_, k_ in bx_:
     pbox(pg, x_, 44, 24, 16, t_, s_, k_)
 for x_ in (26, 54, 82, 110):
     pg.arrow([(x_, 52), (x_ + 4, 52)])
-pg.text(70, 72, f'The head loses {abs(SB["loss_250k"]):.2f} dB at 250 kHz to the bias-T. To use a generator or a perfboard instead, remove R26.', 2.5, MUTED, 'middle')
+pg.text(70, 72, f'The head loses {abs(SB["loss_250k"]):.2f} dB at 250 kHz to the bias-T. To use a generator or a perfboard instead, cut the solder jumper JP1.', 2.5, MUTED, 'middle')
 
 # 56 --------------------------------------------------------------------------------------------
 gn = 1 + CP / CF
@@ -79,7 +79,7 @@ res_h(pg, 98, 46, 12, 'R26', '47 Ω')
 pg.line(110, 46, 114, 46, INK, 0.5); pg.text(116, 47, '+5 V', 2.5, INK, 'start', True)
 cap_h(pg, 32, yL, 6, 'C38', '100 nF', INK, above=False)
 cap_h(pg, 90, yL, 6, 'C33', '100 nF', INK, above=False)
-pg.text(65, 86, f'L1 and L2 are the same part. R26 and C32 also filter the 5 V rail at the ADC board.', 2.3, MUTED, 'middle')
+pg.text(65, 86, f'L1 and L2 are the same part. Cut the solder jumper JP1 (between C32 and L2) to turn the 5 V off.', 2.3, MUTED, 'middle')
 
 # 58 --------------------------------------------------------------------------------------------
 refs_h = sorted(HFP)

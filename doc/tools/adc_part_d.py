@@ -179,9 +179,9 @@ for i, (nm, c_, rs) in enumerate(names):
 # 38 --------------------------------------------------------------------------------------------
 n_tht = sum(1 for f in FP.values() if any(p['tht'] for p in f['pads']) and not f['fp'].startswith('Mounting'))
 n_hole = sum(1 for r in FP if r.startswith('H'))
-n_smd = len(FP) - n_tht - n_hole - 1
+n_smd = len(FP) - n_tht - n_hole - 2        # not the DNP capacitor and not the solder jumper
 pg = step('Where every part is',
-          [f'The table lists the blocks, the references and the count. The main board has {len(FP)} footprints: {n_smd} surface-mount parts, {n_tht} through-hole parts and {n_hole} mounting holes, plus one not-fitted capacitor.',
+          [f'The table lists the blocks, the references and the count. The main board has {len(FP)} footprints: {n_smd} surface-mount parts, {n_tht} through-hole parts and {n_hole} mounting holes, plus one not-fitted capacitor and the solder jumper JP1.',
            'Every part has a place in exactly one block, and the same reference appears in the schematic, the BOM and the placement file.'])
 chip(pg, label='BLOCKS, REFERENCES')
 tot_ = 0

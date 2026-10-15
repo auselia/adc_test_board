@@ -114,7 +114,7 @@ BLOCKS = [
     ('AVDD regulator', '#6aa84f', ['U5', 'C21', 'C30']),
     ('9 V to 5 V', GRN, ['D1', 'C23', 'U7', 'C29']),
     ('Wake-up comparator', '#d89cc8', ['U6', 'R21', 'R22', 'R23', 'RV1', 'C26', 'C27', 'C28', 'R24', 'C31']),
-    ('Bias-T for the head', '#d9822b', ['L2', 'R26', 'R27', 'C32', 'C33']),
+    ('Bias-T for the head', '#d9822b', ['JP1', 'L2', 'R26', 'R27', 'C32', 'C33']),
     ('Connectors', '#8a8a8a', ['J1', 'J2', 'J3', 'J4', 'R25']),
     ('Holes', '#bbbbbb', ['H1', 'H2']),
 ]

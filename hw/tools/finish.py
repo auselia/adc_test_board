@@ -137,7 +137,7 @@ if TARGET=='head':
     text('PZT',5.0,5.2,0.8,layer=pcbnew.B_SilkS,thick=0.15,mirror=True); text('+',2.6,5.6,0.9,layer=pcbnew.B_SilkS,thick=0.15,mirror=True); text('-',7.4,5.6,0.9,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
     text('HEAD v1',5.0,HEADH-0.9,0.8,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
 else:
-    text('SENSOR IN',4.6+DX,1.1,0.9); text('+5V on centre',4.6+DX,2.3,0.7)                                  # J1, from the perfboard
+    text('SENSOR IN',4.6+DX,1.1,0.9); text('+5V on centre',4.6+DX,2.3,0.7); text('5V',3.2,11.6,0.7)                                  # J1, from the perfboard
     text('SCOPE OUT',36.6+DX,0.9,0.9)                                 # J4, same signal the ADC sees (51 ohm)
     text('+9V',2.6+DX,21.2); text('GND',2.6+DX,28.1)                     # J2
     text('WAKE LEVEL',23.2+DX,25.3,0.8)                               # RV1
@@ -160,7 +160,7 @@ for _ in range(3):
     pcbnew.ZONE_FILLER(b).Fill(b.Zones()); b.Save(PCB)
     rpt=os.path.join(HW,'_therm.rpt')
     subprocess.run([K,'pcb','drc','--severity-all','-o',rpt,PCB],capture_output=True)
-    bad=set(re.findall(r'\[starved_thermal\][^\n]*\n[^\n]*\n[^\n]*\n\s*@\([^)]*\): Pad (\S+) \[H?GND\] of (\S+)',open(rpt).read()))
+    bad=set(re.findall(r'\[starved_thermal\][^\n]*\n[^\n]*\n[^\n]*\n\s*@\([^)]*\): [Pp][Aa][Dd] (\S+) \[H?GND\] of (\S+)',open(rpt).read()))
     if not bad: break
     for num,ref in bad:
         for fp in b.GetFootprints():

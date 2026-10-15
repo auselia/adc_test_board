@@ -6,7 +6,7 @@ from sexp import *
 HW=os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)),'..'))
 HEAD_REFS={'TP1','TP2','L1','C34','C35','C36','C37','C38','U8','R28','R29','R30','R31','J6'}
 TARGET=os.environ.get('BOARD','adc'); PFX='ADC_Head' if TARGET=='head' else 'ADC_Test'
-SKIP={'H1','H2','C31','TP1','TP2'}   # mounting holes, DNP, wire pads
+SKIP={'H1','H2','C31','TP1','TP2','JP1'}   # mounting holes, DNP, wire pads
 import re
 # JLC rotation offsets, from matthewlai/JLCKicadTools cpl_rotations_db.csv (the table kicad-jlcpcb-tools uses)
 ROT_RULES=[(r'^SOT-223',180),(r'^SOT-23',-90),(r'^SOIC-',270),(r'^CP_EIA-',180)]

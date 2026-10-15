@@ -43,7 +43,7 @@ POS={
 HEAD_REFS=set()
 # bias-T strip (left of the old board) and the sensor head (second board, panel coordinates x 4..14, y 34..54)
 NEW={'C33':(10.0,10.8,90),'R27':(10.0,13.6,90),
-     'L2':(3.2,18.0,90),'R26':(3.2,22.6,90),'C32':(3.2,26.2,90)}
+     'JP1':(3.2,14.4,90),'L2':(3.2,18.4,90),'R26':(3.2,22.8,90),'C32':(3.2,26.4,90)}
 HEAD={'TP1':(2.6,3.6,0),'TP2':(7.4,3.6,0),
       'R31':(1.1,13.0,0),
       'C34':(3.05,13.0,0),
@@ -118,7 +118,7 @@ def build(out):
         m.SetReference(ref); m.SetValue(c['value'])
         lib,name=c['fp'].split(':'); m.SetFPID(pcbnew.LIB_ID(lib,name))
         m.SetDNP(c['dnp'])
-        if ref.startswith('H'): m.SetAttributes(m.GetAttributes() & ~pcbnew.FP_EXCLUDE_FROM_BOM)
+        if ref.startswith('H') or ref.startswith('JP'): m.SetAttributes(m.GetAttributes() & ~pcbnew.FP_EXCLUDE_FROM_BOM)
         if 'LCSC' in c['fields']:
             m.SetField('LCSC',c['fields']['LCSC'])
             f=m.GetField('LCSC'); f.SetVisible(False); f.SetLayer(pcbnew.F_Fab)
