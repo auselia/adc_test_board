@@ -176,6 +176,14 @@ Paper checks:
 5. Sweep 10 kHz to 2 MHz and compare with the table above. The 10 kHz loss is the thinnest margin.
 6. Turn the trimmer until nWAKE drops as the amplitude crosses the window. Check the response time.
 
+## Manual (`doc/`)
+
+`doc/ADS7057_test_board_hardware_manual_letter_v0.1.pdf` explains the board in 54 steps: the basics, every block, the layout, the order and the bring-up. Two print versions (`_print`, `_print_duplex`) have a 14 mm binding margin.
+
+Rebuild: `M4_PDF_PYTHON=<python with pymupdf> python3 doc/tools/make_adc_manual.py`. The figures read `doc/data/board.json` and `doc/data/sim.json`, made by `doc/tools/export_board.py` (KiCad python) and `doc/tools/export_sim.py`.
+
+Correction: the board uses only 0.2 mm and 0.15 mm tracks, with no separate 0.35 mm power class.
+
 ## Files (`hw/`)
 
 - `ADC_Test.kicad_pro/.kicad_sch/.kicad_pcb`: the KiCad 10 project.

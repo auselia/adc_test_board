@@ -11,3 +11,4 @@ hw/route.log
 # Python
 __pycache__/
 .DS_Store
+doc/manual_build/
