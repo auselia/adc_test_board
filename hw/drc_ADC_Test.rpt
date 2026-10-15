@@ -1,0 +1,73 @@
+** Drc report for ADC_Test.kicad_pcb **
+** Created on 2026-10-15T16:29:23 **
+** Report includes: Errors, Warnings, Exclusions **
+
+** Found 7 DRC violations **
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(164.0000 mm, 100.0000 mm): Segment on Edge.Cuts
+    @(161.3500 mm, 112.2700 mm): Segment of J3 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(164.0000 mm, 100.0000 mm): Segment on Edge.Cuts
+    @(161.3500 mm, 114.8100 mm): Segment of J3 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(164.0000 mm, 100.0000 mm): Segment on Edge.Cuts
+    @(161.3500 mm, 117.3500 mm): Segment of J3 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(164.0000 mm, 100.0000 mm): Segment on Edge.Cuts
+    @(161.3500 mm, 119.8900 mm): Segment of J3 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(164.0000 mm, 100.0000 mm): Segment on Edge.Cuts
+    @(161.3500 mm, 122.4300 mm): Segment of J3 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(164.0000 mm, 100.0000 mm): Segment on Edge.Cuts
+    @(161.3500 mm, 109.6200 mm): Rectangle of J3 on F.Silkscreen
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)
+    Rule: board setup constraints silk text height; warning
+    @(105.0000 mm, 102.3000 mm): PCB text '+5V on centre' on F.Silkscreen
+
+** Found 0 unconnected pads **
+
+** Found 14 Footprint errors **
+[missing_footprint]: Missing footprint C34 (47pF C0G)
+    Local override; warning
+[missing_footprint]: Missing footprint C35 (10uF)
+    Local override; warning
+[missing_footprint]: Missing footprint C36 (100nF)
+    Local override; warning
+[missing_footprint]: Missing footprint C37 (10uF)
+    Local override; warning
+[missing_footprint]: Missing footprint C38 (100nF)
+    Local override; warning
+[missing_footprint]: Missing footprint J6 (SMA HEAD OUT)
+    Local override; warning
+[missing_footprint]: Missing footprint L1 (470uH)
+    Local override; warning
+[missing_footprint]: Missing footprint R28 (1M)
+    Local override; warning
+[missing_footprint]: Missing footprint R29 (10k)
+    Local override; warning
+[missing_footprint]: Missing footprint R30 (10k)
+    Local override; warning
+[missing_footprint]: Missing footprint R31 (49.9R)
+    Local override; warning
+[missing_footprint]: Missing footprint TP1 (PIEZO +)
+    Local override; warning
+[missing_footprint]: Missing footprint TP2 (PIEZO -)
+    Local override; warning
+[missing_footprint]: Missing footprint U8 (OPA365)
+    Local override; warning
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **

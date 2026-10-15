@@ -10,7 +10,10 @@ FPDIR='/Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/'
 mm=pcbnew.FromMM
 def V(x,y): return pcbnew.VECTOR2I(mm(x),mm(y))
 OX,OY=100.0,100.0
-W,H=50.0,32.0
+W,H=64.0,32.0                  # main board
+DX=14.0                        # strip added on the left for the HEAD IN connector and its bias-T
+TARGET=os.environ.get('BOARD','adc')   # 'adc' main board, 'head' sensor head (its own board file)
+HW_,HH_=10.0,float(os.environ.get('HEADH','22'))   # sensor head outline (panel coordinates)
 # ref: (x, y, rotation) in mm from the top-left corner of the board
 POS={
  'J1':(4.6,7.6,0),                     # SMA in (hand-solder)
@@ -37,11 +40,35 @@ POS={
  'U6':(38.6,28.36,0),'C28':(37.8,24.6,0),'R24':(40.85,23.3,90),'C31':(38.6,22.4,0),'H2':(46.6,29.1,0),
  'J4':(45.6,4.4,0),'R25':(40.0,6.0,90),                                        # MON output
 }
+HEAD_REFS=set()
+# bias-T strip (left of the old board) and the sensor head (second board, panel coordinates x 4..14, y 34..54)
+NEW={'J5':(5.0,7.6,0),'C33':(11.4,7.6,90),'R27':(11.4,10.6,90),
+     'L2':(4.6,15.0,0),'R26':(9.6,15.0,0),'C32':(9.6,17.2,0)}
+HEAD={'TP1':(2.6,3.6,0),'TP2':(7.4,3.6,0),
+      'R31':(1.1,13.0,0),
+      'C34':(3.05,13.0,0),
+      'R28':(5.0,13.0,180),
+      'R29':(6.95,13.0,180),
+      'R30':(8.9,13.0,180),
+      'C38':(1.5,1.1,0),
+      'C36':(3.4,1.1,180),
+      'C37':(5.3,1.1,0),
+      'C35':(7.2,1.1,180),
+      'U8':(5.0,10.5,180),
+      'L1':(5.0,6.6,180),
+      'J6':(5.0,HH_-4.1,0)}
+import json
+if os.environ.get('HEADJSON'): HEAD.update({k:tuple(v) for k,v in json.loads(os.environ['HEADJSON']).items()})
 def load_fp(fpid):
     lib,name=fpid.split(':')
     path=os.path.join(HW,'Auselia.pretty') if lib=='Auselia' else FPDIR+lib+'.pretty'
     return pcbnew.FootprintLoad(path,name)
-FIXED={'J1','J2','J3','J4','U4','H1','H2'}
+POS={r:(x+DX,y,rot) for r,(x,y,rot) in POS.items()}
+POS.update(NEW)
+if TARGET=='head':
+    POS=dict(HEAD); W,H=HW_,HH_
+PCBFILE='ADC_Head.kicad_pcb' if TARGET=='head' else 'ADC_Test.kicad_pcb'
+FIXED={'J1','J2','J3','J4','J5','J6','U4','H1','H2','TP1','TP2','U8','L1'}
 def legalize(b,gap=0.1,iters=200):
     """Push the smaller of two overlapping courtyards out along the shorter axis."""
     T=pcbnew.ToMM
@@ -77,11 +104,14 @@ def build(out):
         comps[ref]=dict(value=get(c,'value')[1],fp=get(c,'footprint')[1],fields=fields,dnp=dnp,
                         path=get(get(c,'sheetpath'),'tstamps')[1]+get(c,'tstamps')[1])
     nets={get(n,'name')[1]:[(get(x,'ref')[1],get(x,'pin')[1]) for x in find(n,'node')] for n in find(get(t,'nets'),'net')}
+    nets={n:[(r,p) for r,p in pins if r in POS] for n,pins in nets.items()}
+    nets={n:pins for n,pins in nets.items() if pins}
     b=pcbnew.BOARD(); b.SetCopperLayerCount(2)
     ni={}
     for name in nets:
         it=pcbnew.NETINFO_ITEM(b,name); b.Add(it); ni[name]=it
     pinnet={(r,p):n for n,pins in nets.items() for r,p in pins}
+    comps={r:c for r,c in comps.items() if r in POS}
     for ref,c in comps.items():
         m=load_fp(c['fp']); b.Add(m)
         x,y,rot=POS[ref]
@@ -110,4 +140,4 @@ def build(out):
     b.Save(out)
     print('saved',out,len(comps),'parts')
 if __name__=='__main__':
-    build(os.path.join(HW,'ADC_Test.kicad_pcb'))
+    build(os.path.join(HW,PCBFILE))

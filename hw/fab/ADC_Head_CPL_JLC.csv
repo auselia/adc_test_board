@@ -1,0 +1,13 @@
+Designator,Mid X,Mid Y,Layer,Rotation
+C34,3.050mm,9.000mm,Top,0
+C35,7.200mm,20.900mm,Top,180
+C36,3.400mm,20.900mm,Top,180
+C37,5.300mm,20.900mm,Top,0
+C38,1.500mm,20.900mm,Top,0
+J6,5.000mm,4.100mm,Top,0
+L1,5.000mm,15.400mm,Top,180
+R28,5.000mm,9.000mm,Top,180
+R29,6.950mm,9.000mm,Top,180
+R30,8.900mm,9.000mm,Top,180
+R31,1.100mm,9.000mm,Top,0
+U8,5.000mm,11.500mm,Top,90

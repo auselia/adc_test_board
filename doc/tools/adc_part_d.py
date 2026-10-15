@@ -137,11 +137,11 @@ n_via = len(BOARD['vias']); n_gvia = sum(1 for v in BOARD['vias'] if v['net'] ==
 widths = {}
 for t in BOARD['tracks']:
     widths[t['w']] = widths.get(t['w'], 0) + 1
-assert sorted(widths) == [0.15, 0.2] and n_via == 107
+assert sorted(widths) == [0.15, 0.2]
 
 # 36 --------------------------------------------------------------------------------------------
 pg = step('The stack and the size',
-          [f'The board is 50 × 32 mm with two copper layers on 1.6 mm FR-4. Both layers carry a ground pour. {n_gvia} of the {n_via} vias are ground stitching vias that tie the two pours together.',
+          [f'The main board is {BW:.0f} × {BH:.0f} mm with two copper layers on 1.6 mm FR-4. Both layers carry a ground pour. {n_gvia} of the {n_via} vias are ground stitching vias that tie the two pours together.',
            f'All {n_top + n_bot} track segments are 0.2 mm wide, except {widths[0.15]} short segments of 0.15 mm near the fine-pitch pads. Vias are 0.6 mm with a 0.3 mm drill.'])
 chip(pg, label='FROM THE BOARD FILE')
 layers_ = [('top copper', 'F.Cu', f'{n_top} track segments, all parts, ground pour', PUR, 9),
@@ -158,27 +158,30 @@ pg.text(36, 80, 'via', 2.5, GRN, 'middle', True)
 # 37 --------------------------------------------------------------------------------------------
 pg = step('How the floor is planned',
           ['The signal runs left to right across the top half, as in the block diagram. The driver and the ADC sit in the middle. The power parts take the bottom left. The comparator sits in the bottom right.',
-           'The PMOD connector is on the right edge so the board hangs on the ZedBoard. The SMA connectors stand at the top, away from the ADC.'])
+           'The PMOD connector is on the right edge so the board hangs on the ZedBoard. The SMA connectors stand at the top, away from the ADC. The left strip holds HEAD IN and its bias-T.'])
 chip(pg, label='TOP VIEW, COLORS BY BLOCK')
-k = 1.9
+k = 1.35
 bx, by = 4, 36
-pg.rect(bx, by, 50 * k, 32 * k, '#f8f8f4', INK, 0.5, 1)
+pg.rect(bx, by, BW * k, BH * k, '#f8f8f4', INK, 0.5, 1)
 for ref, f in FP.items():
     x0, y0, x1, y1 = f['bbox']
     c_ = BLOCK_COLOR[BLOCK_OF[ref]]
-    pg.rect(bx + max(x0, 0) * k, by + max(y0, 0) * k, (min(x1, 50) - max(x0, 0)) * k, (min(y1, 32) - max(y0, 0)) * k, c_, INK, 0.12, 0.3)
+    pg.rect(bx + max(x0, 0) * k, by + max(y0, 0) * k, (min(x1, BW) - max(x0, 0)) * k, (min(y1, BH) - max(y0, 0)) * k, c_, INK, 0.12, 0.3)
 leg = [('Input and high-pass', 'in'), ('Gain', 'gain'), ('Low-pass', 'lp'), ('Op-amps U1, U2 and bypass', 'U1 U2'), ('Mid-rail VMID5', 'VMID5'),
        ('Driver THS4531', 'drv'), ('VOCM 1.65 V', 'VOCM'), ('ADC input filter', 'filt'), ('ADS7057 and bypass', 'ADC'), ('SPI series resistors', 'SPI R'),
        ('AVDD regulator', 'AVDD'), ('9 V to 5 V', '5 V'), ('Wake-up comparator', 'wake'), ('Connectors', 'conn')]
 names = [b for b in BLOCKS if b[0] != 'Holes']
 for i, (nm, c_, rs) in enumerate(names):
-    yy = 36 + i * 5.6
-    pg.rect(bx + 50 * k + 6, yy, 4, 4, c_, INK, 0.2)
-    pg.text(bx + 50 * k + 12, yy + 3.4, nm, 2.5, INK, 'start')
+    yy = 36 + i * 3.6
+    pg.rect(bx + BW * k + 4, yy, 2.8, 2.8, c_, INK, 0.2)
+    pg.text(bx + BW * k + 8.5, yy + 2.5, nm, 2.2, INK, 'start')
 
 # 38 --------------------------------------------------------------------------------------------
+n_tht = sum(1 for f in FP.values() if any(p['tht'] for p in f['pads']) and not f['fp'].startswith('Mounting'))
+n_hole = sum(1 for r in FP if r.startswith('H'))
+n_smd = len(FP) - n_tht - n_hole - 1
 pg = step('Where every part is',
-          ['The table lists the blocks, the references and the count. The board has 69 footprints: 61 surface-mount parts, 5 through-hole parts and 2 mounting holes, plus one not-fitted capacitor.',
+          [f'The table lists the blocks, the references and the count. The main board has {len(FP)} footprints: {n_smd} surface-mount parts, {n_tht} through-hole parts and {n_hole} mounting holes, plus one not-fitted capacitor.',
            'Every part has a place in exactly one block, and the same reference appears in the schematic, the BOM and the placement file.'])
 chip(pg, label='BLOCKS, REFERENCES')
 tot_ = 0
@@ -190,10 +193,10 @@ for i, (nm, c_, rs) in enumerate(BLOCKS):
     pg.text(x_ + 5.4, y_ + 3.0, nm, 2.4, INK, 'start', True)
     pg.text(x_ + 5.4, y_ + 6.0, refs if len(refs) < 44 else refs[:42] + '…', 2.2, MUTED, 'start')
     tot_ += len(rs)
-assert tot_ == 69
+assert tot_ == len(FP)
 
 # 39 --------------------------------------------------------------------------------------------
-RX0, RY0, RX1, RY1 = 28.0, 14.0, 42.0, 25.0
+RX0, RY0, RX1, RY1 = FP['U4']['x'] - 7.0, FP['U4']['y'] - 5.5, FP['U4']['x'] + 7.0, FP['U4']['y'] + 5.5
 S = 4.6
 nets_hi = {'AINP': PUR, 'AINM': BLU}
 dAINP, dAINM = net_length('AINP'), net_length('AINM')
@@ -238,7 +241,7 @@ sel = ['SIG_IN', 'HPF_OUT', 'GAIN_OUT', 'LPF_OUT', 'DRV_OUTP', 'DRV_OUTN', 'AINP
 lens = {n: net_length(n) for n in sel}
 vcount = {n: sum(1 for v in BOARD['vias'] if v['net'] == n) for n in sel}
 pg = step('How the analog tracks are routed',
-          [f'The longest analog net is LPF_OUT at {lens["LPF_OUT"]:.0f} mm, because it feeds the SCOPE OUT connector, the comparator and the driver. All other analog nets are under 20 mm.',
+          [f'The longest analog net is LPF_OUT at {lens["LPF_OUT"]:.0f} mm, because it feeds the SCOPE OUT connector, the comparator and the driver. All other analog nets are under {sorted(lens.values())[-2]:.0f} mm.',
            'The router chose the paths, and the board is small enough that none of them matters at 500 kHz. The figure lists the lengths.'])
 chip(pg, label='NET LENGTH, mm')
 mxl = max(lens.values())
@@ -253,10 +256,10 @@ for i, n_ in enumerate(sel):
 pw = ['+5V', 'AVDD', '+3V3', '+9VP', 'VMID5', 'VOCM']
 plen = {n: net_length(n) for n in pw}
 rho, thick = 1.7e-8, 35e-6
-drop5 = rho * plen['+5V'] * 1e-3 / (0.2e-3 * thick) * (I_BAT_A := 0.022)
+drop5 = rho * plen['+5V'] * 1e-3 / (0.2e-3 * thick) * (I_BAT_A := 0.027)
 pg = step('How power and ground are routed',
           [f'Ground is a pour on both layers, tied by {n_gvia} vias, so every ground pad finds a short path. The power nets are ordinary 0.2 mm tracks, not wide ones, because the currents are small.',
-           f'The +5 V net is {plen["+5V"]:.0f} mm of track in total. With 22 mA this drops about {drop5*1e3:.0f} mV across its whole length (ESTIMATE, worst case).'])
+           f'The +5 V net is {plen["+5V"]:.0f} mm of track in total. With 27 mA (22 mA, plus 5 mA for the sensor head) this drops about {drop5*1e3:.0f} mV across its whole length (ESTIMATE, worst case).'])
 chip(pg, label='POWER NET LENGTH, mm')
 mxp = max(plen.values())
 for i, n_ in enumerate(pw):
@@ -270,18 +273,18 @@ pg = step('What each label on the silkscreen means',
           ['The front carries the labels that a user needs. The names of the parts (R16, C29 and so on) are not on the silkscreen, because the board is dense. They are in the KiCad file and in the 1:1 print.',
            'The back carries the PMOD pin list and the title.'])
 chip(pg, label='FRONT SIDE')
-k = 1.9
+k = 1.35
 bx, by = 2, 38
-pg.rect(bx, by, 50 * k, 32 * k, '#f8f8f4', INK, 0.5, 1)
-marks = [('SENSOR IN', 4.6, 1.1, 1), ('CH', 12.0, 1.2, 2), ('SCOPE OUT', 36.6, 0.9, 3), ('+9V', 2.6, 21.2, 4), ('GND', 2.6, 28.1, 4),
-         ('WAKE LEVEL', 23.2, 25.3, 5), ('1', 42.0, 11.0, 6), ('logo', 18, 14.2, 7)]
+pg.rect(bx, by, BW * k, BH * k, '#f8f8f4', INK, 0.5, 1)
+marks = [('HEAD IN', 5.0, 1.1, 1), ('SENSOR IN', 18.6, 1.1, 2), ('CH', 26.0, 1.2, 3), ('SCOPE OUT', 50.6, 0.9, 4), ('+9V', 16.6, 21.2, 5), ('GND', 16.6, 28.1, 5),
+         ('WAKE LEVEL', 37.2, 25.3, 6), ('1', 56.0, 11.0, 7), ('logo', 32, 14.2, 8)]
 for nm, x_, y_, n_ in marks:
     pg.circle(bx + x_ * k, by + y_ * k + 2.5, 2.2, AMBT, INK, 0.3)
     pg.text(bx + x_ * k, by + y_ * k + 3.4, n_, 2.5, INK, 'middle', True)
-lst = ['SENSOR IN: J1, from the perfboard', 'CH box: write the channel number', 'SCOPE OUT: J4, the signal at the ADC', '+9V and GND: battery, square pad is +', 'WAKE LEVEL: trimmer RV1',
-       '1: PMOD pin 1', 'logo: Auselia mark']
+lst = ['HEAD IN: J5, sensor head, +5 V on the centre', 'SENSOR IN: J1, perfboard or generator', 'CH box: write the channel number', 'SCOPE OUT: J4, the signal at the ADC', '+9V and GND: battery, square pad is +',
+       'WAKE LEVEL: trimmer RV1', '1: PMOD pin 1', 'logo: Auselia mark']
 for i, t_ in enumerate(lst):
-    pg.text(bx + 50 * k + 5, 41 + i * 5.6, f'{i+1}  {t_}', 2.5, INK, 'start', i == 0 or True)
+    pg.text(bx + BW * k + 4, 41 + i * 5.0, f'{i+1}  {t_}', 2.3, INK, 'start', True)
 
 # 43 --------------------------------------------------------------------------------------------
 u4p = FP['U4']['pads']
@@ -301,19 +304,18 @@ for i, (a_, b_, c_) in enumerate(cards_):
 
 # 44 --------------------------------------------------------------------------------------------
 pg = step('What the board looks like',
-          ['The render is from the final KiCad file. J1 and J4 stand on the top left and right. The PMOD header J3 points off the right edge. The blue trimmer RV1 is at the bottom.',
+          ['The render is from the final KiCad file. J5 and J1 stand on the top left and J4 on the top right. The PMOD header J3 points off the right edge. The blue trimmer RV1 is at the bottom.',
            'The two holes are M3 mounting holes.'])
 chip(pg, label='3D RENDER, KICAD')
-image(pg, os.path.join(REPO, 'doc', 'assets', 'render_angled.jpg'), 0, 38, 76, 76 * 759 / 1100)
-for i, t_ in enumerate(['J1: SMA in, top left', 'J4: SCOPE OUT, top right', 'J3: PMOD, right edge', 'RV1: wake level trimmer', 'U4: ADS7057, centre right']):
+image(pg, os.path.join(REPO, 'doc', 'assets', 'render_angled.jpg'), 0, 38, 76, 76 * 1568 / 2384)
+for i, t_ in enumerate(['J5: HEAD IN, top left', 'J1: SMA in, next to it', 'J4: SCOPE OUT, top right', 'J3: PMOD, right edge', 'RV1: wake level trimmer', 'U4: ADS7057, centre right']):
     pg.text(82, 44 + i * 6, t_, 2.6, INK, 'start', True)
 
 # top view page (after step 44) -----------------------------------------------------------------
 m4lib._finish_page()
 pg = new_page('top view')
 chrome(pg, len(pages), 'Step 44  /  the board  /  top view at 3 : 1', divider=False)
-IW, IH = 60.934, 37.951            # mm covered by the render; board starts 3 mm from the left and top edges
-BW, BH = 49.9872, 31.9786
+IW, IH = 74.99, 37.98            # mm covered by the render; board starts 3 mm from the left and top edges
 K = 3.0
 RND = os.path.join(REPO, 'doc', 'assets', 'top_render.png')
 x0, y0 = (PW - IW * K) / 2, 24

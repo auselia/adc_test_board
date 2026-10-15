@@ -1,6 +1,6 @@
 # Plan for the ADS7057 test board manual
 
-Status: plan, not built. It follows `Auselia_AFE_v1/doc/manual_method.md`.
+Status: built as version 0.2 (54 steps of the plan, plus section 9 for the sensor head, steps 55 to 60). It follows `Auselia_AFE_v1/doc/manual_method.md`.
 
 ## 1. Reader and goal
 

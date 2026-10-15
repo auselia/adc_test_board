@@ -46,6 +46,8 @@ def build():
     S.append(mk_ic('OPA2365','U','OPA2365',SOIC,TI+'opa365.pdf','Dual 50 MHz zero-crossover RRIO op-amp, 2.2-5.5 V, SOIC-8',
         [('3','+INA','input'),('2','-INA','input'),('5','+INB','input'),('6','-INB','input')],
         [('1','OUTA','output'),('7','OUTB','output')],[('8','V+','power_in')],[('4','V-','power_in')]))
+    S.append(mk_ic('OPA365','U','OPA365','Package_TO_SOT_SMD:SOT-23-5',TI+'opa365.pdf','50 MHz zero-crossover RRIO op-amp, 2.2-5.5 V, SOT-23-5 (DBV)',
+        [('3','+IN','input'),('4','-IN','input')],[('1','OUT','output')],[('5','V+','power_in')],[('2','V-','power_in')]))
     S.append(mk_ic('THS4531','U','THS4531',SOIC,TI+'ths4531.pdf','Low-power fully-differential amplifier, 2.5-5.5 V, SOIC-8',
         [('8','VIN+','input'),('1','VIN-','input'),('2','VOCM','input'),('7','~{PD}','input')],
         [('4','VOUT+','output'),('5','VOUT-','output')],[('3','VS+','power_in')],[('6','VS-','power_in')]))

@@ -41,7 +41,7 @@ bom = list(csv.DictReader(open(os.path.join(FAB, 'ADC_Test_BOM_JLC.csv'))))
 n_lines = len(bom)
 n_parts = sum(len(r['Designator'].split(',')) for r in bom)
 cpl = list(csv.DictReader(open(os.path.join(FAB, 'ADC_Test_CPL_JLC.csv'))))
-assert n_parts == len(cpl) == 66
+assert n_parts == len(cpl) == 72
 zf = zipfile.ZipFile(os.path.join(FAB, 'ADC_Test_gerbers.zip'))
 n_gb = len(zf.namelist())
 joints = json.load(open(os.path.join(FAB, 'joints.json')))
@@ -49,7 +49,7 @@ joints = json.load(open(os.path.join(FAB, 'joints.json')))
 # 45 --------------------------------------------------------------------------------------------
 pg = step('Which files go to the factory',
           [f'JLCPCB needs three files. The Gerber zip makes the bare board. The BOM names every part. The CPL gives the position and angle of each part.',
-           f'The zip holds {n_gb} files. The BOM has {n_lines} lines and {n_parts} parts. The CPL has {len(cpl)} rows. The two mounting holes and the not-fitted capacitor C31 are in none of the two lists.'])
+           f'The main board zip holds {n_gb} files. The BOM has {n_lines} lines and {n_parts} parts. The CPL has {len(cpl)} rows. The mounting holes and the not-fitted capacitor C31 are in none of them. The sensor head has its own zip, BOM and CPL.'])
 chip(pg, label='FILES IN hw/fab')
 items = [('ADC_Test_gerbers.zip', 'Copper, mask, silk, paste, outline, drill', PUR),
          ('ADC_Test_BOM_JLC.csv', 'Value, references, footprint, LCSC number', BLU),
@@ -62,18 +62,18 @@ for i, (nm, d_, c_) in enumerate(items):
 assert 'C31' not in {r for row in bom for r in row['Designator'].split(',')}
 
 # 46 --------------------------------------------------------------------------------------------
-ext = ['C130011', 'C705347', 'C2669902', 'C11366']
+ext = ['C130011', 'C705347', 'C2669902', 'C11366', 'C75644']
 names = {r['LCSC Part #']: r for r in bom}
 pg = step('What is in the BOM',
-          [f'{n_lines} lines hold {n_parts} parts. Four lines hold extended parts, and JLCPCB charges a fee for each type. All other lines hold basic parts.',
-           'The ADC, the driver and the two op-amps are the extended parts. The tantalum capacitor is the fourth.'])
+          [f'{n_lines} lines hold {n_parts} parts. Five lines hold extended parts, and JLCPCB charges a fee for each type. All other lines hold basic parts.',
+           'The ADC, the driver and the two op-amps are the extended parts, with the tantalum capacitor and the 470 µH inductor of the bias-T.'])
 chip(pg, label='EXTENDED PARTS, PRICE PER PART')
 rows = [['Ref', 'Part', 'LCSC', 'Price']]
 for l in ext:
     r = names[l]
     rows.append([r['Designator'], r['Comment'], l, f"${cost.PRICE[l]:.2f}"])
-table(pg, 4, 40, [24, 46, 28, 22], rows, rh=7.2, size=2.7)
-pg.text(4, 80, f'Through-hole parts ({len(cost.THT_REFS)} lines): J1 J4 SMA, J2, J3, RV1. JLCPCB solders them by hand, for a fee per joint.', 2.5, MUTED)
+table(pg, 4, 38, [24, 46, 28, 22], rows, rh=6.4, size=2.7)
+pg.text(4, 80, f'Through-hole parts: J1 J4 J5 SMA, J2, J3, RV1. JLCPCB solders them by hand, for a fee per joint.', 2.5, MUTED)
 assert all(l in cost.EXT_SMD for l in ext)
 
 # 47 --------------------------------------------------------------------------------------------
@@ -85,24 +85,26 @@ for ref, why in (('U5', 'viewer showed it turned; set absolute angle'), ('C29', 
     k_ = float(pos[ref]['Rot']) % 360
     c_ = float(cplr[ref]['Rotation'])
     assert k_ != c_ or ref == 'C29'
-fix.append([ref, f'{k_:.0f}°', f'{c_:.0f}°', why])
+    fix.append([ref, f'{k_:.0f}°', f'{c_:.0f}°', why])
 pg = step('What the placement viewer corrected',
-          ['The JLCPCB viewer showed four parts turned wrong. The KiCad footprints and the JLC library disagree on the zero angle. Each fix sits in `jlc_files.py`, not in the board.',
+          ['The JLCPCB viewer showed four parts turned wrong on the first revision. The new parts (U8, L1, L2, J5, J6) are not checked yet. The KiCad footprints and the JLC library disagree on the zero angle. Each fix sits in `jlc_files.py`, not in the board.',
            'The trimmer RV1 also moved 2.54 mm in X and 1 mm in Y, because its library origin differs from the pin 1 pad.'])
 chip(pg, label='KICAD ROTATION AGAINST CPL ROTATION')
 table(pg, 4, 40, [14, 18, 18, 86], [['Ref', 'KiCad', 'CPL', 'Why']] + fix, rh=7.0, size=2.6)
 pg.text(4, 80, 'Rule: look at every part in the viewer once. The viewer shows the real answer.', 2.5, MUTED)
 
 # 48 --------------------------------------------------------------------------------------------
+T_ = cost.two_orders(2, 5)
+A_, H_ = T_['adc'], T_['head']
 q5 = cost.quote(5)
-dhl = q5['total'] + cost.IVA * (42.51 - cost.SHIP) + (42.51 - cost.SHIP)
 pg = step('What the order costs',
-          [f"Five assembled boards cost ${q5['goods']:.2f} at the factory. Shipping and IVA take it to ${q5['total']:.2f}, or {q5['total']*CLP/1000:.0f} thousand CLP at {CLP:.0f} CLP per USD.",
-           f"That is ${q5['total']/5:.2f} per board. DHL Express would make the total ${dhl:.2f}, or {dhl*CLP/1000:.0f} thousand CLP."])
-chip(pg, label='REAL QUOTE, 5 BOARDS, USD')
-parts_ = [('PCB', q5['pcb'], PUR), ('Parts', q5['parts'], BLU), ('Fees', q5['fees'], GRN), ('Shipping', q5['ship'], AMB), ('IVA 19 %', q5['iva'], PNK)]
+          [f"Two ADC boards and five sensor heads are two JLCPCB orders. They cost ${T_['goods']:.2f} at the factory. With one parcel, shipping and IVA, the total is ${T_['one_parcel']:.2f}, or {T_['one_parcel']*CLP/1000:.0f} thousand CLP at {CLP:.0f} CLP per USD.",
+           f"The ADC order is ${A_['goods']:.2f} and the head order is ${H_['goods']:.2f}. Five ADC boards would cost ${q5['goods']:.2f}. These are estimates from the model of the first quote, until you upload the files."])
+chip(pg, label='ESTIMATE, 2 ADC BOARDS + 5 HEADS, USD')
+parts_ = [('PCB', A_['pcb'] + H_['pcb'], PUR), ('Parts', A_['parts'] + H_['parts'], BLU), ('Fees', A_['fees'] + H_['fees'], GRN),
+          ('Shipping', cost.SHIP, AMB), ('IVA 19 %', cost.IVA * (T_['goods'] + cost.SHIP), PNK)]
 tot = sum(v for _, v, _ in parts_)
-assert abs(tot - q5['total']) < 0.01 and abs(q5['total'] - 148.88) < 0.02
+assert abs(tot - T_['one_parcel']) < 0.01
 x_ = 4.0
 for nm, v, c_ in parts_:
     w_ = v / tot * 126
@@ -114,7 +116,7 @@ for i, (nm, v, c_) in enumerate(parts_):
     yy2 = yy + (i // 2) * 6.5
     pg.rect(xx, yy2, 3.4, 3.4, c_, INK, 0.15)
     pg.text(xx + 5, yy2 + 2.9, f'{nm}   ${v:.2f}   {v*CLP/1000:.1f} k CLP', 2.5, INK, 'start')
-pg.text(4, 80, f"Total ${q5['total']:.2f}.  2 boards ${cost.quote(2)['total']:.2f},  3 boards ${cost.quote(3)['total']:.2f}.", 2.7, INK, 'start', True)
+pg.text(4, 80, f"Total ${T_['one_parcel']:.2f}.  Two parcels ${T_['separate_parcels']:.2f}.  5 + 5 boards ${cost.two_orders(5, 5)['one_parcel']:.2f}.", 2.7, INK, 'start', True)
 
 # ================================================================================================
 # SECTION 8: BRING-UP AND CHECKS
@@ -203,33 +205,8 @@ rows = [['Item', 'Status', 'How'],
         ['ERC, DRC, parity', 'Done', 'KiCad, 0 errors'],
         ['Rotations', 'Done', 'JLC viewer'],
         ['Chain response, noise', 'Simulated', 'ngspice, vendor models'],
+        ['Head and bias-T', 'Simulated', 'ngspice, OPA365'],
         ['THS4531, 400 pF load', 'OPEN', 'LTspice netlist, not run'],
         ['PMOD fit on ZedBoard', 'OPEN', 'print 1:1 and test'],
         ['First board, bench', 'OPEN', 'steps 49 to 52']]
-table(pg, 4, 40, [44, 28, 54], rows, rh=6.4, size=2.6, colors={4: '#fde5e5', 5: '#fde5e5', 6: '#fde5e5'})
-
-# ================================================================================================
-# back cover
-# ================================================================================================
-m4lib.end_steps()
-pg = new_page('back cover')
-pg.bg = FOREST
-pg.cur = None
-pg.ox = pg.oy = 0
-pg.text(20, 40, 'WHERE THINGS LIVE', 3.0, SAP, 'start', mono=True, ls=0.9)
-pg.text(20, 62, 'Files, models and datasheets', min(12.0, 12.0 * 135 / text_w('Files, models and datasheets', 12.0, 'disp')), BONE, 'start', disp=True)
-lines = [('hw/', 'KiCad project, schematic and board'),
-         ('hw/fab/', 'Gerbers, BOM and CPL for JLCPCB'),
-         ('hw/tools/', 'Generators, DRC, cost model, 1:1 print'),
-         ('sim/', 'Chain simulation, vendor models list, LTspice netlist'),
-         ('doc/tools/', 'This manual, built from the files above'),
-         ('doc/data/', 'Board and simulation snapshots used in the figures')]
-for i, (a_, b_) in enumerate(lines):
-    pg.text(20, 84 + i * 9, a_, 3.4, AMBER, 'start', mono=True)
-    pg.text(60, 84 + i * 9, b_, 3.4, '#D8E4D2', 'start')
-pg.text(20, 150, 'DATASHEETS', 2.8, SAP, 'start', mono=True, ls=0.8)
-pg.text(20, 158, 'ADS7057, THS4531, OPA365 (OPA2365), LM393, XC6206, AMS1117', 3.4, '#D8E4D2', 'start')
-pg.text(20, 170, 'Rebuild: M4_PDF_PYTHON=<python with pymupdf> python3 doc/tools/make_adc_manual.py', 2.7, SAP, 'start', mono=True)
-pg.text(20, PH - 12, 'AUSELIA  /  ' + m4lib.DOC_NAME, 2.5, '#7E9C86', 'start', mono=True, ls=0.5)
-pg.text(PW - 20, PH - 12, f'{len(pages):02d}', 2.5, '#7E9C86', 'end', mono=True)
-draw_mark(pg, 172, 44, 84, BONE, BONE, AMBER, AMBER, rings=True)
+table(pg, 4, 38, [44, 28, 54], rows, rh=5.8, size=2.5, colors={5: '#fde5e5', 6: '#fde5e5', 7: '#fde5e5'})

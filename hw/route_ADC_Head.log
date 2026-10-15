@@ -1,0 +1,27 @@
+2026-10-15 16:28:22.551 INFO   Freerouting v2.4.1 (build-date: 2026-09-03)
+2026-10-15 16:28:23.963 INFO   [D5D991\E3EB35] Loading board file 'ADC_Head_route.dsn'...
+2026-10-15 16:28:23.997 INFO   [D5D991\E3EB35] Job 'D5D991\E3EB35' started at 2026-10-15T19:28:23.997751Z.
+2026-10-15 16:28:24.000 INFO   New version available: v2.5.0
+2026-10-15 16:28:24.046 INFO   [D5D991\E3EB35] Fanout stage started on board 'bf0fd00a06d228dfe58047042f3c11ce' with 25 of 25 SMD pins needing fanout (0 already connected, 0 netless).
+2026-10-15 16:28:24.441 INFO   [D5D991\E3EB35] Fanout pass #1 on board 'e8dd4d2d0d3d7b6c7d8a0ff87624dfa9' completed in 0.39 seconds with 24 SMD pins fanouted, 0 not routed, 0 insert errors, +3 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+2026-10-15 16:28:24.570 INFO   [D5D991\E3EB35] Fanout pass #2 on board 'f8847533976175eaf907a0f443a5bef2' completed in 0.12 seconds with 8 SMD pins fanouted, 0 not routed, 0 insert errors, +3 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+2026-10-15 16:28:24.609 INFO   [D5D991\E3EB35] Fanout pass #3 on board '2c42d2eba4e463c5c044eb228ec34a06' completed in 0.04 seconds with 3 SMD pins fanouted, 0 not routed, 0 insert errors, +1 extra via (0 SMD pins still to check in pass, ripup costs=300).
+2026-10-15 16:28:24.637 INFO   [D5D991\E3EB35] Fanout pass #4 on board 'b19ae7a13a09fb666bde1867a1a7e358' completed in 0.02 seconds with 2 SMD pins fanouted, 0 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=400).
+2026-10-15 16:28:24.668 INFO   [D5D991\E3EB35] Fanout pass #5 on board '15899e4a2b277a09947a506d3b4dcce0' completed in 0.03 seconds with 2 SMD pins fanouted, 0 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=500).
+2026-10-15 16:28:24.695 INFO   [D5D991\E3EB35] Fanout pass #6 on board '82d302bfabf7f8779d31994595478799' completed in 0.03 seconds with 2 SMD pins fanouted, 0 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=600).
+2026-10-15 16:28:24.719 INFO   [D5D991\E3EB35] Fanout pass #7 on board '231eb166d83f3d5848cba23e6b81ff9f' completed in 0.02 seconds with 2 SMD pins fanouted, 0 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=700).
+2026-10-15 16:28:24.720 INFO   Fanout stopped after 7 passes: no progress for 3 consecutive passes.
+2026-10-15 16:28:24.723 INFO   [D5D991\E3EB35] Fanout stage completed: started with 25 total SMD pins, completed in 0.67 seconds, escaped pins: 25/25 (100.0%), using 0.63 total CPU seconds, 2.35 GB total allocated, and 208.7 MB peak heap usage.
+2026-10-15 16:28:24.727 INFO   [D5D991\E3EB35] Auto-routing stage started on board '231eb166d83f3d5848cba23e6b81ff9f' for 5 unrouted items.
+2026-10-15 16:28:24.892 INFO   [D5D991\E3EB35] Auto-routing pass #1 on board '231eb166d83f3d5848cba23e6b81ff9f' was completed in 0.15 seconds with score 915.38 (1 unrouted and 6 violations).
+2026-10-15 16:28:24.933 INFO   [D5D991\E3EB35] Auto-routing pass #2 on board '8e2674c53e34e963b88d55549e105540' was completed in 0.03 seconds with score 915.38 (1 unrouted and 6 violations).
+2026-10-15 16:28:24.977 INFO   [D5D991\E3EB35] Auto-routing pass #3 on board '7938e00b66b148b49f5183ec8b1d210d' was completed in 0.03 seconds with score 953.84 (0 unrouted and 6 violations).
+2026-10-15 16:28:25.000 INFO   [D5D991\E3EB35] Auto-routing pass #4 on board '98c6430b1097a16eb3a0ae7202fe51a8' was completed in 0.00 seconds with score 953.84 (0 unrouted and 6 violations).
+2026-10-15 16:28:25.012 INFO   [D5D991\E3EB35] Auto-routing stage completed: started with 21 unrouted nets, completed in 0.98 seconds, final score: 953.84 (0 unrouted and 6 violations), using 0.94 total CPU seconds, 4.44 GB total allocated, and 237.2 MB peak heap usage.
+2026-10-15 16:28:25.020 INFO   [D5D991\E3EB35] Optimization stage started on board '4499e949173bb652558759da43f7b32e' with score 953.84 (0 unrouted and 6 violations).
+2026-10-15 16:28:27.966 INFO   [D5D991\E3EB35] Optimizer pass #1 on board 'b2092b5137b97f29d53e09682ef9f528' was completed in 2.93 seconds with the score of 953.84 (0 unrouted and 6 violations).
+2026-10-15 16:28:27.969 INFO   [D5D991\E3EB35] Stopping optimizer because the improvement in this pass (0.0001%) is below the threshold (1.00%).
+2026-10-15 16:28:27.973 INFO   [D5D991\E3EB35] Optimization stage completed: started with score 953.84 (0 unrouted and 6 violations), completed in 2.95 seconds, final score: 953.84 (0 unrouted and 6 violations), using 2.80 total CPU seconds, 27.48 GB total allocated, and 119.7 MB peak heap usage.
+2026-10-15 16:28:27.976 INFO   [D5D991\E3EB35] Job 'D5D991\E3EB35' finished with state: COMPLETED (elapsed: 3.98 seconds, finished at UTC: 2026-10-15T19:28:27.975941Z).
+2026-10-15 16:28:28.247 INFO   Saving output file '/Users/nico/Documents/GitHub/adc_test_board/hw/ADC_Head_route.ses' (SES)...
+2026-10-15 16:28:28.249 INFO   Successfully saved output file '/Users/nico/Documents/GitHub/adc_test_board/hw/ADC_Head_route.ses' (6921 bytes).

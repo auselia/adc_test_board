@@ -8,18 +8,18 @@ import os, sys, subprocess, importlib, json
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import m4lib
 
-m4lib.DOC_NAME = 'ADS7057 TEST BOARD  /  HARDWARE MANUAL  /  VERSION 0.1'
+m4lib.DOC_NAME = 'ADS7057 TEST BOARD  /  HARDWARE MANUAL  /  VERSION 0.2'
 m4lib.OUT = os.path.abspath(os.path.join(m4lib.HERE, '..', 'manual_build'))
 m4lib.TEXDIR = os.path.join(m4lib.OUT, 'tex')
 os.makedirs(m4lib.TEXDIR, exist_ok=True)
 
-PARTS = sys.argv[1:] or ['adc_part_a', 'adc_part_b', 'adc_part_c', 'adc_part_d', 'adc_part_e']
+PARTS = sys.argv[1:] or ['adc_part_a', 'adc_part_b', 'adc_part_c', 'adc_part_d', 'adc_part_e', 'adc_part_f', 'adc_part_g']
 for p in PARTS:
     importlib.import_module(p)
 from m4lib import pages, WARN, ste_report, steps_done, HERE
 
 
-def build(final_name='ADS7057_test_board_hardware_manual_letter_v0.1.pdf'):
+def build(final_name='ADS7057_test_board_hardware_manual_letter_v0.2.pdf'):
     out = m4lib.OUT
     files, runs = [], []
     for k, (pg, title) in enumerate(pages):

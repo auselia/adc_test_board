@@ -10,6 +10,10 @@ DATA = os.path.join(REPO, 'doc', 'data')
 BOARD = json.load(open(os.path.join(DATA, 'board.json')))
 SIM = json.load(open(os.path.join(DATA, 'sim.json')))
 FP = BOARD['footprints']
+HEAD = json.load(open(os.path.join(DATA, 'head.json')))
+HFP = HEAD['footprints']
+BW, BH = BOARD['size']                      # main board, mm
+HW_, HH_ = HEAD['size']                     # sensor head, mm
 
 # ------------------------------------------------------------------------------------------------
 # parts and values from the netlist
@@ -28,8 +32,8 @@ for _n in find(get(_t, 'nets'), 'net'):
 def val(ref):
     """numeric value of a resistor or capacitor from its value string"""
     s = COMP[ref]['value'].split()[0]
-    m = re.fullmatch(r'([\d.]+)(R|k|M|pF|nF|uF)', s)
-    mult = {'R': 1, 'k': 1e3, 'M': 1e6, 'pF': 1e-12, 'nF': 1e-9, 'uF': 1e-6}[m.group(2)]
+    m = re.fullmatch(r'([\d.]+)(R|k|M|pF|nF|uF|uH)', s)
+    mult = {'R': 1, 'k': 1e3, 'M': 1e6, 'pF': 1e-12, 'nF': 1e-9, 'uF': 1e-6, 'uH': 1e-6}[m.group(2)]
     return float(m.group(1)) * mult
 
 
@@ -110,6 +114,7 @@ BLOCKS = [
     ('AVDD regulator', '#6aa84f', ['U5', 'C21', 'C30']),
     ('9 V to 5 V', GRN, ['D1', 'C23', 'U7', 'C29']),
     ('Wake-up comparator', '#d89cc8', ['U6', 'R21', 'R22', 'R23', 'RV1', 'C26', 'C27', 'C28', 'R24', 'C31']),
+    ('HEAD IN bias-T', '#d9822b', ['J5', 'L2', 'R26', 'R27', 'C32', 'C33']),
     ('Connectors', '#8a8a8a', ['J1', 'J2', 'J3', 'J4', 'R25']),
     ('Holes', '#bbbbbb', ['H1', 'H2']),
 ]
@@ -199,20 +204,20 @@ def freq_axis(pg, x, y, w, xlo, xhi, ticks, size=2.3):
 
 
 def mini_map(pg, x, y, w, active, label_refs=False, fill_others='#e4e4df'):
-    """the board outline at scale w/50 with every part as a small box; parts in `active` are amber"""
-    k = w / 50.0
-    pg.rect(x, y, 50 * k, 32 * k, '#f8f8f4', INK, 0.4, 0.8)
+    """the board outline at scale w/BW with every part as a small box; parts in `active` are amber"""
+    k = w / BW
+    pg.rect(x, y, BW * k, BH * k, '#f8f8f4', INK, 0.4, 0.8)
     for ref, f in FP.items():
         x0, y0, x1, y1 = f['bbox']
         on = ref in active
-        pg.rect(x + max(x0, 0) * k, y + max(y0, 0) * k, (min(x1, 50) - max(x0, 0)) * k, (min(y1, 32) - max(y0, 0)) * k,
+        pg.rect(x + max(x0, 0) * k, y + max(y0, 0) * k, (min(x1, BW) - max(x0, 0)) * k, (min(y1, BH) - max(y0, 0)) * k,
                 AMB if on else fill_others, '#6c6c66' if not on else INK, 0.15, 0.3)
     if label_refs:
         for ref in active:
             f = FP[ref]
             x0, y0, x1, y1 = f['bbox']
             pg.text(x + (x0 + x1) / 2 * k, y + (y0 + y1) / 2 * k + 0.9, ref, 2.5, INK, 'middle', True)
-    return 50 * k, 32 * k
+    return BW * k, BH * k
 
 
 # ------------------------------------------------------------------------------------------------

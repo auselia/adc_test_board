@@ -17,12 +17,17 @@ FP_SMA='Connector_Coaxial:SMA_Amphenol_132134-11_Vertical'
 FP_PMOD='Connector_PinHeader_2.54mm:PinHeader_2x06_P2.54mm_Horizontal'
 FP_H2='Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical'
 FP_C8='Capacitor_SMD:C_0805_2012Metric'
+FP_R4='Resistor_SMD:R_0402_1005Metric'; FP_C4='Capacitor_SMD:C_0402_1005Metric'
+FP_L='Inductor_SMD:L_1210_3225Metric'
+FP_PZ='TestPoint:TestPoint_THTPad_D2.0mm_Drill1.0mm'
 # LCSC part numbers, checked in the JLCPCB parts library on 2026-10-12. All are JLC "Basic" parts
 # except ADS7057, OPA2365, THS4531, the tantalum C29 and the THT parts J1/J4/J2/J3/RV1 (Extended).
 LCSC={'10R':'C22859','22R':'C23345','1.00k':'C21190','2.2k':'C4190','3.9k':'C23018','10k':'C25804','20k':'C4184','33k':'C4216',
-      '100pF C0G':'C14858','100nF':'C14663','1uF':'C15849','4.7uF':'C19666','10uF':'C19702','10uF 25V':'C15850','22uF 25V':'C45783','51R':'C23197'}
+      '100pF C0G':'C14858','47pF C0G':'C1671','1M':'C22935','47R':'C23182','470uH':'C75644','100nF':'C14663','1uF':'C15849','4.7uF':'C19666','10uF':'C19702','10uF 25V':'C15850','22uF 25V':'C45783','51R':'C23197'}
 def R(sh,x,y,val,a,b,ref,rot=90): return add(sh,'Device:R',val,FP_R,x,y,{'1':a,'2':b},'R',rot,ref=ref,props={'LCSC':LCSC[val]})
 def C(sh,x,y,val,a,b,ref,rot=0): return add(sh,'Device:C',val,FP_C8 if '25V' in val else FP_C,x,y,{'1':a,'2':b},'C',rot,ref=ref,props={'LCSC':LCSC[val]})
+def R4(sh,x,y,val,a,b,ref,lcsc,rot=90): return add(sh,'Device:R',val,FP_R4,x,y,{'1':a,'2':b},'R',rot,ref=ref,props={'LCSC':lcsc})
+def C4(sh,x,y,val,a,b,ref,lcsc,rot=0): return add(sh,'Device:C',val,FP_C4,x,y,{'1':a,'2':b},'C',rot,ref=ref,props={'LCSC':lcsc})
 def flag(sh,x,y,net): return add(sh,'power:PWR_FLAG','PWR_FLAG','',x,y,{'1':net},'#FLG',0,hide_val=True)
 SO='Package_SO:SOIC-8_3.9x4.9mm_P1.27mm'
 def build():
@@ -91,7 +96,26 @@ def build():
     add(sh,'Device:C','DNP','Capacitor_SMD:C_0603_1608Metric',250,330,{'1':'WAKE_N','2':'GND'},'C',ref='C31',dnp=True)
     add(sh,'Mechanical:MountingHole','M3','MountingHole:MountingHole_3.2mm_M3',480,150,{},'H',ref='H1')
     add(sh,'Mechanical:MountingHole','M3','MountingHole:MountingHole_3.2mm_M3',500,150,{},'H',ref='H2')
-    flag(sh,365,250,'+3V3'); flag(sh,380,250,'GND'); flag(sh,395,250,'+9V_IN'); flag(sh,410,250,'+9VP')
+    # ---- HEAD IN: bias-T. 5 V through R26/L2 onto the coax centre, the head's AC signal comes back through C33.
+    text(sh,"HEAD IN (J5): bias-T. +5V -> 47R (R26, C32 filter) -> 470 uH (L2) -> coax centre = power for the sensor head. C33 100 nF passes the head's signal to SIG_IN.",20,360,1.8,True)
+    text(sh,"R27 1M gives SIG_IN a DC level (VMID5). J1 (SMA in) stays as before, for a perfboard or a function generator. Use one input at a time.",20,366,1.8)
+    add(sh,'Connector:Conn_Coaxial','SMA HEAD IN',FP_SMA,40,390,{'1':'HEAD_LINE','2':'GND'},'J',ref='J5',props={'LCSC':'C496549'})
+    add(sh,'Device:L','470uH',FP_L,80,390,{'1':'HEAD_LINE','2':'HEAD_PWR'},'L',rot=90,ref='L2',props={'LCSC':LCSC['470uH']})
+    R(sh,110,380,'47R','+5V','HEAD_PWR','R26',90); C(sh,130,400,'10uF','HEAD_PWR','GND','C32')
+    C(sh,150,380,'100nF','HEAD_LINE','SIG_IN','C33',90); R(sh,170,400,'1M','SIG_IN','VMID5','R27',0)
+    # ---- SENSOR HEAD (separate 10 x 20 mm board in the same panel): perfboard charge amp, powered through the coax
+    text(sh,"SENSOR HEAD (own board, same panel). Perfboard charge amp (TRL3): piezo -> summing node HSUM, Rf 1M || Cf 47 pF, Rs 49.9R. Runs from 5 V through the coax (L1), signal returns through C38.",220,360,1.8,True)
+    text(sh,"Single OPA365 (same die as the OPA2365 on the main board), VREF = 5 V / 2 = 2.5 V (10k/10k + 10 uF), all 0402. Head ground is HGND (a separate board).",220,366,1.8)
+    add(sh,'Connector:TestPoint','PIEZO +',FP_PZ,225,380,{'1':'HSUM'},'TP',ref='TP1')
+    add(sh,'Connector:TestPoint','PIEZO -',FP_PZ,225,392,{'1':'HGND'},'TP',ref='TP2')
+    add(sh,'Auselia:OPA365','OPA365','Package_TO_SOT_SMD:SOT-23-5',290,390,{'3':'HREF','4':'HSUM','1':'HOUT','5':'HV','2':'HGND'},'U',ref='U8',props={'LCSC':'C96626'})
+    R4(sh,265,370,'1M','HSUM','HOUT','R28','C26083',90); C4(sh,285,370,'47pF C0G','HSUM','HOUT','C34','C1567',90)
+    R4(sh,320,375,'10k','HV','HREF','R29','C25744',0); R4(sh,320,395,'10k','HREF','HGND','R30','C25744',0); C4(sh,340,395,'10uF','HREF','HGND','C35','C15525')
+    C4(sh,360,375,'100nF','HV','HGND','C36','C307331'); C4(sh,375,375,'10uF','HV','HGND','C37','C15525')
+    R4(sh,350,410,'49.9R','HOUT','HAC','R31','C25120',90); C4(sh,375,410,'100nF','HAC','HLINE','C38','C307331',90)
+    add(sh,'Device:L','470uH',FP_L,400,395,{'1':'HLINE','2':'HV'},'L',rot=90,ref='L1',props={'LCSC':LCSC['470uH']})
+    add(sh,'Connector:Conn_Coaxial','SMA HEAD OUT',FP_SMA,430,395,{'1':'HLINE','2':'HGND'},'J',ref='J6',props={'LCSC':'C496549'})
+    flag(sh,365,250,'+3V3'); flag(sh,380,250,'GND'); flag(sh,395,250,'+9V_IN'); flag(sh,410,250,'+9VP'); flag(sh,425,250,'HGND'); flag(sh,440,250,'HV')
     return r
 if __name__=='__main__':
     out=sys.argv[1]

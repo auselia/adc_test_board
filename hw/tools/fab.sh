@@ -1,22 +1,30 @@
 #!/bin/zsh
-# Gerbers + drill + pick-and-place, zipped for JLCPCB.  usage: tools/fab.sh
+# Gerbers + drill + pick-and-place, zipped for JLCPCB, for both boards.  usage: tools/fab.sh
 cd "$(dirname "$0")/.."
 S=/Applications/KiCad/KiCad.app/Contents/SharedSupport; K=/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli
 export KICAD10_FOOTPRINT_DIR=$S/footprints KICAD10_SYMBOL_DIR=$S/symbols
-rm -rf fab/gerber; mkdir -p fab/gerber
-$K pcb export gerbers --layers F.Cu,B.Cu,F.Paste,F.Silkscreen,B.Silkscreen,F.Mask,B.Mask,Edge.Cuts --subtract-soldermask --use-drill-file-origin -o fab/gerber/ ADC_Test.kicad_pcb | tail -1
-$K pcb export drill --format excellon --excellon-units mm --excellon-separate-th --generate-map --map-format gerberx2 -o fab/gerber/ ADC_Test.kicad_pcb | tail -1
-$K pcb export pos --format csv --units mm --side front --use-drill-file-origin -o fab/ADC_Test_pos_kicad.csv ADC_Test.kicad_pcb | tail -1
-(cd fab/gerber && rm -f ../ADC_Test_gerbers.zip && zip -q ../ADC_Test_gerbers.zip *)
-ls fab/gerber; ls -la fab/ADC_Test_gerbers.zip
+PYK=/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3
+rm -rf fab/gerber fab/gerber_head; mkdir -p fab/gerber fab/gerber_head
+for N in ADC_Test ADC_Head; do
+  G=fab/gerber; [ $N = ADC_Head ] && G=fab/gerber_head
+  $K pcb export gerbers --layers F.Cu,B.Cu,F.Paste,F.Silkscreen,B.Silkscreen,F.Mask,B.Mask,Edge.Cuts --subtract-soldermask --use-drill-file-origin -o $G/ $N.kicad_pcb | tail -1
+  $K pcb export drill --format excellon --excellon-units mm --excellon-separate-th --generate-map --map-format gerberx2 -o $G/ $N.kicad_pcb | tail -1
+  $K pcb export pos --format csv --units mm --side front --use-drill-file-origin -o fab/${N}_pos_kicad.csv $N.kicad_pcb | tail -1
+  (cd $G && rm -f ../${N}_gerbers.zip && zip -q ../${N}_gerbers.zip *)
+done
+ls -la fab/*.zip
 # solder-joint counts for tools/cost.py
-/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3 - <<'PY' 2>&1 | grep -v -E "assert|Warn"
+$PYK - <<'PY' 2>&1 | grep -v -E "assert|Warn"
 import pcbnew,json
-b=pcbnew.LoadBoard('ADC_Test.kicad_pcb'); smd=tht=0
-for f in b.GetFootprints():
-    if f.GetReference() in('H1','H2','C31'): continue
-    n=len([p for p in f.Pads() if p.GetNumber()]); t=any(p.GetAttribute()==pcbnew.PAD_ATTRIB_PTH for p in f.Pads())
-    if t: tht+=n
-    else: smd+=n
-json.dump({'smd':smd,'tht':tht},open('fab/joints.json','w')); print('joints: SMD',smd,'THT',tht)
+out={}
+for name,skip in (('ADC_Test',('H1','H2','C31')),('ADC_Head',('TP1','TP2'))):
+    b=pcbnew.LoadBoard(name+'.kicad_pcb'); smd=tht=0
+    for f in b.GetFootprints():
+        if f.GetReference() in skip or f.GetReference().startswith('MB'): continue
+        n=len([p for p in f.Pads() if p.GetNumber()]); t=any(p.GetAttribute()==pcbnew.PAD_ATTRIB_PTH for p in f.Pads())
+        if t: tht+=n
+        else: smd+=n
+    out[name]={'smd':smd,'tht':tht}
+out['smd']=out['ADC_Test']['smd']; out['tht']=out['ADC_Test']['tht']     # keeps cost.py's reading of the main board
+json.dump(out,open('fab/joints.json','w')); print('joints',out)
 PY

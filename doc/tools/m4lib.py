@@ -470,7 +470,7 @@ def draw_mark(pg, x, y, size, stem, leaf, node, arcs, rings=False):
 # document: pages and steps
 # ------------------------------------------------------------------------------------------------
 pages = []
-DOC_NAME = 'ADS7057 TEST BOARD  /  HARDWARE MANUAL  /  VERSION 0.1'
+DOC_NAME = 'ADS7057 TEST BOARD  /  HARDWARE MANUAL  /  VERSION 0.2'
 SECTIONS = []          # (first step, name), filled by section()
 _cur = {'page': None, 'n': 0, 'section': '', 'first': '', 'last': ''}
 

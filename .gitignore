@@ -12,3 +12,7 @@ hw/route.log
 __pycache__/
 .DS_Store
 doc/manual_build/
+hw/ADC_Head.dsn
+hw/ADC_Head_route.dsn
+hw/ADC_Head_route.ses
+hw/route_*.log

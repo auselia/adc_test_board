@@ -4,7 +4,9 @@ import csv,os,sys,collections
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 from sexp import *
 HW=os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)),'..'))
-SKIP={'H1','H2','C31'}   # THT: hand-soldered, keeps them out of the extended-part fee
+HEAD_REFS={'TP1','TP2','L1','C34','C35','C36','C37','C38','U8','R28','R29','R30','R31','J6'}
+TARGET=os.environ.get('BOARD','adc'); PFX='ADC_Head' if TARGET=='head' else 'ADC_Test'
+SKIP={'H1','H2','C31','TP1','TP2'}   # mounting holes, DNP, wire pads
 import re
 # JLC rotation offsets, from matthewlai/JLCKicadTools cpl_rotations_db.csv (the table kicad-jlcpcb-tools uses)
 ROT_RULES=[(r'^SOT-223',180),(r'^SOT-23',-90),(r'^SOIC-',270),(r'^CP_EIA-',180)]
@@ -32,22 +34,22 @@ for c in find(get(t,'components'),'comp'):
 groups=collections.OrderedDict()
 key=lambda r:(r.rstrip('0123456789'),int(''.join(ch for ch in r if ch.isdigit())))
 for ref in sorted(comps,key=key):
-    if ref in SKIP: continue
+    if ref in SKIP or (ref in HEAD_REFS)!=(TARGET=='head'): continue
     c=comps[ref]
     # one BOM line per LCSC part for the connectors (JLC warns when two lines match the same part)
     names={'C496549':'SMA jack','C492401':'Header 1x2','C60565':'Header 2x6 right angle','C34845':'20k trimmer'}
-    val=names.get(c['lcsc'],c['value']) if ref in ('J1','J2','J3','J4','RV1') else c['value']
+    val=names.get(c['lcsc'],c['value']) if ref in ('J1','J2','J3','J4','J5','J6','RV1') else c['value']
     fpn=c['fp'] if val==c['value'] else {'C496549':'SMA_Amphenol_132134-11_Vertical'}.get(c['lcsc'],c['fp'])
     groups.setdefault((val,fpn,c['lcsc']),[]).append(ref)
-with open(os.path.join(HW,'fab','ADC_Test_BOM_JLC.csv'),'w',newline='') as f:
+with open(os.path.join(HW,'fab',PFX+'_BOM_JLC.csv'),'w',newline='') as f:
     w=csv.writer(f); w.writerow(['Comment','Designator','Footprint','LCSC Part #'])
     for (v,fp,l),refs in groups.items(): w.writerow([v,','.join(refs),fp,l])
-rows=list(csv.DictReader(open(os.path.join(HW,'fab','ADC_Test_pos_kicad.csv'))))
-with open(os.path.join(HW,'fab','ADC_Test_CPL_JLC.csv'),'w',newline='') as f:
+rows=list(csv.DictReader(open(os.path.join(HW,'fab',PFX+'_pos_kicad.csv'))))
+with open(os.path.join(HW,'fab',PFX+'_CPL_JLC.csv'),'w',newline='') as f:
     w=csv.writer(f); w.writerow(['Designator','Mid X','Mid Y','Layer','Rotation'])
     for r in rows:
-        if r['Ref'] in SKIP: continue
+        if r['Ref'] in SKIP or r['Ref'].startswith('MB'): continue
         rot=ROT_ABS.get(r['Ref'],(float(r['Rot'])+rot_off(r['Package']))%360)
         dx,dy=POS_OFF.get(r['Ref'],(0,0)); w.writerow([r['Ref'],'%.3fmm'%(float(r['PosX'])+dx),'%.3fmm'%(float(r['PosY'])+dy),'Top','%g'%rot])
-missing=[r for r,c in comps.items() if r not in SKIP and not c['lcsc']]
-print('BOM lines',len(groups),'parts',sum(len(v) for v in groups.values()),'missing LCSC',missing)
+missing=[r for r,c in comps.items() if r not in SKIP and not c['lcsc'] and (r in HEAD_REFS)==(TARGET=='head')]
+print(TARGET,'BOM lines',len(groups),'parts',sum(len(v) for v in groups.values()),'missing LCSC',missing)
