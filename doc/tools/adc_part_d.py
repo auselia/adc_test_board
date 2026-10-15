@@ -307,3 +307,23 @@ chip(pg, label='3D RENDER, KICAD')
 image(pg, os.path.join(REPO, 'doc', 'assets', 'render_angled.jpg'), 0, 38, 76, 76 * 759 / 1100)
 for i, t_ in enumerate(['J1: SMA in, top left', 'J4: SCOPE OUT, top right', 'J3: PMOD, right edge', 'RV1: wake level trimmer', 'U4: ADS7057, centre right']):
     pg.text(82, 44 + i * 6, t_, 2.6, INK, 'start', True)
+
+# top view page (after step 44) -----------------------------------------------------------------
+m4lib._finish_page()
+pg = new_page('top view')
+chrome(pg, len(pages), 'Step 44  /  the board  /  top view at 3 : 1', divider=False)
+IW, IH = 60.934, 37.951            # mm covered by the render; board starts 3 mm from the left and top edges
+BW, BH = 49.9872, 31.9786
+K = 3.0
+RND = os.path.join(REPO, 'doc', 'assets', 'top_render.png')
+x0, y0 = (PW - IW * K) / 2, 24
+image(pg, RND, x0, y0, IW * K, IH * K)
+bx, by = x0 + 3 * K, y0 + 3 * K
+yb = y0 + IH * K + 6
+pg.line(bx, yb, bx + 10 * K, yb, INK, 0.5)
+pg.line(bx, yb - 1.5, bx, yb + 1.5, INK, 0.5)
+pg.line(bx + 10 * K, yb - 1.5, bx + 10 * K, yb + 1.5, INK, 0.5)
+pg.text(bx + 10 * K + 3, yb + 1, '10 mm at this scale (3 : 1)', 2.8, INK, 'start', True)
+pg.text(bx + BW * K, yb + 1, f'Board {BW:.1f} × {BH:.1f} mm, KiCad 3D render, view from the top', 2.8, MUTED, 'end')
+image(pg, RND, bx - 3, yb + 8, IW, IH)
+pg.text(bx + IW + 2, yb + 8 + IH / 2, 'The same view at real size, 1 : 1', 2.8, INK, 'start', True)

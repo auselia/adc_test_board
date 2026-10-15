@@ -217,7 +217,7 @@ pg.bg = FOREST
 pg.cur = None
 pg.ox = pg.oy = 0
 pg.text(20, 40, 'WHERE THINGS LIVE', 3.0, SAP, 'start', mono=True, ls=0.9)
-pg.text(20, 62, 'Files, models and datasheets', 12, BONE, 'start', disp=True)
+pg.text(20, 62, 'Files, models and datasheets', min(12.0, 12.0 * 135 / text_w('Files, models and datasheets', 12.0, 'disp')), BONE, 'start', disp=True)
 lines = [('hw/', 'KiCad project, schematic and board'),
          ('hw/fab/', 'Gerbers, BOM and CPL for JLCPCB'),
          ('hw/tools/', 'Generators, DRC, cost model, 1:1 print'),

@@ -481,14 +481,14 @@ def new_page(title):
     return p_
 
 
-def chrome(pg, number, kicker):
+def chrome(pg, number, kicker, divider=True):
     pg.cur = None
     pg.ox = pg.oy = 0
     pg.text(MARGIN_X, 11.0, kicker.upper(), 2.6, SAGE, 'start', mono=True, ls=0.5)
     draw_mark(pg, MARGIN_X - 1, PH - 14.2, 10, BONE, BONE, BONE, BONE)
     pg.text(MARGIN_X + 13, PH - 8.2, 'AUSELIA  /  ' + DOC_NAME, 2.3, SAGE, 'start', mono=True, ls=0.35)
     pg.text(PW - MARGIN_X, PH - 8.2, f'{number:02d}', 2.6, SAGE, 'end', mono=True)
-    if number >= 4:
+    if number >= 4 and divider:
         pg.line(MARGIN_X, TOP + CELL_H + GAP / 2, PW - MARGIN_X, TOP + CELL_H + GAP / 2, SAP, 0.25)
 
 
@@ -537,7 +537,8 @@ def section(name, title=None, part=None, rng=None, desc=None, active=None):
     pg.cur = None
     pg.ox = pg.oy = 0
     pg.text(20, 46, part.upper(), 3.0, SAP, 'start', mono=True, ls=0.9)
-    pg.text(20, 80, title, 18, BONE, 'start', disp=True)
+    ts_ = min(18.0, 18.0 * (125 if active is not None else 140) / text_w(title, 18.0, 'disp'))
+    pg.text(20, 80, title, ts_, BONE, 'start', disp=True)
     pg.text(20, 94, rng.upper(), 3.4, AMBER, 'start', mono=True, ls=0.8)
     cur, out = '', []
     for w_ in desc.split():
@@ -562,7 +563,7 @@ def section(name, title=None, part=None, rng=None, desc=None, active=None):
             pg.rect(X_(x), Y_(y), w * s_, h * s_, AMBER if on else 'none', AMBER if on else '#4d6b58', 0.4, 1.2)
             sz = min(2.5, (w * s_ - 1.5) / max(text_w(nm, 1.0, 'bold'), 0.1))
             pg.text(X_(x) + w * s_ / 2, Y_(y) + h * s_ / 2 + sz * 0.35, nm, sz, INK if on else '#7E9C86', 'middle', True)
-        pg.text(X_(9), Y_(40) + 120 * s_, 'BLOCKS AT WORK IN THIS SECTION (SEE PAGE 3)', 2.3, SAP, 'start', mono=True, ls=0.6)
+        pg.text(X_(9), Y_(fy) + fh * s_ + 4.5, 'BLOCKS AT WORK IN THIS SECTION (SEE PAGE 3)', 2.3, SAP, 'start', mono=True, ls=0.6)
     pg.text(20, PH - 12, 'AUSELIA  /  ' + DOC_NAME, 2.5, '#7E9C86', 'start', mono=True, ls=0.5)
     pg.text(PW - 20, PH - 12, f'{len(pages):02d}', 2.5, '#7E9C86', 'end', mono=True)
 
