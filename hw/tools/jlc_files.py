@@ -38,7 +38,7 @@ for ref in sorted(comps,key=key):
     c=comps[ref]
     # one BOM line per LCSC part for the connectors (JLC warns when two lines match the same part)
     names={'C496549':'SMA jack','C492401':'Header 1x2','C60565':'Header 2x6 right angle','C34845':'20k trimmer'}
-    val=names.get(c['lcsc'],c['value']) if ref in ('J1','J2','J3','J4','J5','J6','RV1') else c['value']
+    val=names.get(c['lcsc'],c['value']) if ref in ('J1','J2','J3','J4','J6','RV1') else c['value']
     fpn=c['fp'] if val==c['value'] else {'C496549':'SMA_Amphenol_132134-11_Vertical'}.get(c['lcsc'],c['fp'])
     groups.setdefault((val,fpn,c['lcsc']),[]).append(ref)
 with open(os.path.join(HW,'fab',PFX+'_BOM_JLC.csv'),'w',newline='') as f:

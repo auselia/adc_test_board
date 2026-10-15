@@ -1,22 +1,21 @@
-2026-10-15 16:29:08.591 INFO   Freerouting v2.4.1 (build-date: 2026-09-03)
-2026-10-15 16:29:09.997 INFO   [287737\21433A] Loading board file 'ADC_Test_route.dsn'...
-2026-10-15 16:29:10.006 INFO   New version available: v2.5.0
-2026-10-15 16:29:10.045 INFO   [287737\21433A] Job '287737\21433A' started at 2026-10-15T19:29:10.045350Z.
-2026-10-15 16:29:10.108 INFO   [287737\21433A] Fanout stage started on board '09b0a5712c610e8ea56af26a25698983' with 167 of 167 SMD pins needing fanout (0 already connected, 0 netless).
-2026-10-15 16:29:11.494 INFO   [287737\21433A] Fanout pass #1 on board '0396f1b1e473360c740684f297873296' completed in 1.36 seconds with 151 SMD pins fanouted, 0 not routed, 0 insert errors, +35 extra vias (0 SMD pins still to check in pass, ripup costs=100).
-2026-10-15 16:29:11.803 INFO   [287737\21433A] Fanout pass #2 on board 'fb435e5690f917b2e939a3abda3f93b0' completed in 0.30 seconds with 17 SMD pins fanouted, 0 not routed, 0 insert errors, +9 extra vias (0 SMD pins still to check in pass, ripup costs=200).
-2026-10-15 16:29:11.938 INFO   [287737\21433A] Fanout pass #3 on board '7ba9c5143da49cc1fbb4d96df717ae4b' completed in 0.12 seconds with 1 SMD pin fanouted, 0 not routed, 0 insert errors, +1 extra via (0 SMD pins still to check in pass, ripup costs=300).
-2026-10-15 16:29:12.064 INFO   [287737\21433A] Fanout pass #4 on board '7ba9c5143da49cc1fbb4d96df717ae4b' completed in 0.12 seconds with 0 SMD pins fanouted, 0 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=400).
-2026-10-15 16:29:12.092 INFO   [287737\21433A] Fanout stage completed: started with 167 total SMD pins, completed in 1.97 seconds, escaped pins: 167/167 (100.0%), using 1.89 total CPU seconds, 14.70 GB total allocated, and 331.4 MB peak heap usage.
-2026-10-15 16:29:12.100 INFO   [287737\21433A] Auto-routing stage started on board '7ba9c5143da49cc1fbb4d96df717ae4b' for 26 unrouted items.
-2026-10-15 16:29:13.063 INFO   [287737\21433A] Auto-routing pass #1 on board '7ba9c5143da49cc1fbb4d96df717ae4b' was completed in 0.88 seconds with score 974.52 (4 unrouted and 0 violations), using 2.85 CPU seconds and the job allocated 26.12 GB of memory so far.
-2026-10-15 16:29:13.455 INFO   [287737\21433A] Auto-routing pass #2 on board '9667ee3a8cd9fbba02459ec7394330ca' was completed in 0.31 seconds with score 993.62 (1 unrouted and 0 violations), using 2.85 CPU seconds and the job allocated 26.12 GB of memory so far.
-2026-10-15 16:29:13.741 INFO   [287737\21433A] Auto-routing pass #3 on board 'e6ef163244abb9f7b0bb0589114710d8' was completed in 0.20 seconds with score 999.99 (0 unrouted and 0 violations), using 2.85 CPU seconds and the job allocated 26.12 GB of memory so far.
-2026-10-15 16:29:13.862 INFO   [287737\21433A] Auto-routing pass #4 on board 'cafe276c97ff56981ab3b2869e19c765' was completed in 0.04 seconds with score 999.99 (0 unrouted and 0 violations), using 2.85 CPU seconds and the job allocated 26.12 GB of memory so far.
-2026-10-15 16:29:13.954 INFO   [287737\21433A] Auto-routing stage completed: started with 142 unrouted nets, completed in 3.84 seconds, final score: 999.99 (0 unrouted and 0 violations), using 2.85 total CPU seconds, 26.12 GB total allocated, and 311.5 MB peak heap usage.
-2026-10-15 16:29:13.993 INFO   [287737\21433A] Optimization stage started on board '2d1bb5b4feb61165ec41c2ea87ba9ed5' with score 999.99 (0 unrouted and 0 violations).
-2026-10-15 16:29:14.032 INFO   [287737\21433A] Stopping optimizer because the current board score (999.99) is already close to the maximum score (1000). Remaining potential improvement is less than the threshold (1.00%).
-2026-10-15 16:29:14.069 INFO   [287737\21433A] Optimization stage completed: started with score 999.99 (0 unrouted and 0 violations), completed in 0.04 seconds, final score: 999.99 (0 unrouted and 0 violations), using 0.04 total CPU seconds, 0.53 GB total allocated, and 201.1 MB peak heap usage.
-2026-10-15 16:29:14.075 INFO   [287737\21433A] Job '287737\21433A' finished with state: COMPLETED (elapsed: 4.03 seconds, finished at UTC: 2026-10-15T19:29:14.075379Z).
-2026-10-15 16:29:14.283 INFO   Saving output file '/Users/nico/Documents/GitHub/adc_test_board/hw/ADC_Test_route.ses' (SES)...
-2026-10-15 16:29:14.286 INFO   Successfully saved output file '/Users/nico/Documents/GitHub/adc_test_board/hw/ADC_Test_route.ses' (41897 bytes).
+2026-10-15 16:44:46.779 INFO   Freerouting v2.4.1 (build-date: 2026-09-03)
+2026-10-15 16:44:48.188 INFO   [450A91\A5D289] Loading board file 'ADC_Test_route.dsn'...
+2026-10-15 16:44:48.213 INFO   New version available: v2.5.0
+2026-10-15 16:44:48.242 INFO   [450A91\A5D289] Job '450A91\A5D289' started at 2026-10-15T19:44:48.242295Z.
+2026-10-15 16:44:48.303 INFO   [450A91\A5D289] Fanout stage started on board 'fbdcdc9db706a770e2119ca2b99082d2' with 167 of 167 SMD pins needing fanout (0 already connected, 0 netless).
+2026-10-15 16:44:49.657 INFO   [450A91\A5D289] Fanout pass #1 on board '9066c06257b89acf3a550e03d8300570' completed in 1.32 seconds with 151 SMD pins fanouted, 0 not routed, 0 insert errors, +39 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+2026-10-15 16:44:50.052 INFO   [450A91\A5D289] Fanout pass #2 on board 'd2d0a8dfad08c6de12ce122a59ad1c8d' completed in 0.38 seconds with 12 SMD pins fanouted, 0 not routed, 0 insert errors, +9 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+2026-10-15 16:44:50.209 INFO   [450A91\A5D289] Fanout pass #3 on board 'd2d0a8dfad08c6de12ce122a59ad1c8d' completed in 0.15 seconds with 0 SMD pins fanouted, 0 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=300).
+2026-10-15 16:44:50.238 INFO   [450A91\A5D289] Fanout stage completed: started with 167 total SMD pins, completed in 1.92 seconds, escaped pins: 167/167 (100.0%), using 1.83 total CPU seconds, 14.02 GB total allocated, and 300.5 MB peak heap usage.
+2026-10-15 16:44:50.246 INFO   [450A91\A5D289] Auto-routing stage started on board 'd2d0a8dfad08c6de12ce122a59ad1c8d' for 30 unrouted items.
+2026-10-15 16:44:51.332 INFO   [450A91\A5D289] Auto-routing pass #1 on board 'd2d0a8dfad08c6de12ce122a59ad1c8d' was completed in 1.00 seconds with score 980.26 (3 unrouted and 0 violations), using 2.86 CPU seconds and the job allocated 25.63 GB of memory so far.
+2026-10-15 16:44:51.667 INFO   [450A91\A5D289] Auto-routing pass #2 on board '53abc1bc4ab26b9f2ffe5e45e688a40d' was completed in 0.24 seconds with score 993.41 (1 unrouted and 0 violations), using 2.86 CPU seconds and the job allocated 25.63 GB of memory so far.
+2026-10-15 16:44:51.978 INFO   [450A91\A5D289] Auto-routing pass #3 on board 'ea09af7183878ef4247930d0014e5e0b' was completed in 0.22 seconds with score 999.99 (0 unrouted and 0 violations), using 2.86 CPU seconds and the job allocated 25.63 GB of memory so far.
+2026-10-15 16:44:52.102 INFO   [450A91\A5D289] Auto-routing pass #4 on board 'c792691f3af99b2c0e3d50d733c4ecf3' was completed in 0.04 seconds with score 999.99 (0 unrouted and 0 violations), using 2.86 CPU seconds and the job allocated 25.63 GB of memory so far.
+2026-10-15 16:44:52.198 INFO   [450A91\A5D289] Auto-routing stage completed: started with 141 unrouted nets, completed in 3.89 seconds, final score: 999.99 (0 unrouted and 0 violations), using 2.86 total CPU seconds, 25.63 GB total allocated, and 217.9 MB peak heap usage.
+2026-10-15 16:44:52.239 INFO   [450A91\A5D289] Optimization stage started on board '91223ed93d6b328f288331151fcd503c' with score 999.99 (0 unrouted and 0 violations).
+2026-10-15 16:44:52.277 INFO   [450A91\A5D289] Stopping optimizer because the current board score (999.99) is already close to the maximum score (1000). Remaining potential improvement is less than the threshold (1.00%).
+2026-10-15 16:44:52.315 INFO   [450A91\A5D289] Optimization stage completed: started with score 999.99 (0 unrouted and 0 violations), completed in 0.04 seconds, final score: 999.99 (0 unrouted and 0 violations), using 0.04 total CPU seconds, 0.53 GB total allocated, and 322.6 MB peak heap usage.
+2026-10-15 16:44:52.322 INFO   [450A91\A5D289] Job '450A91\A5D289' finished with state: COMPLETED (elapsed: 4.08 seconds, finished at UTC: 2026-10-15T19:44:52.322273Z).
+2026-10-15 16:44:52.478 INFO   Saving output file '/Users/nico/Documents/GitHub/adc_test_board/hw/ADC_Test_route.ses' (SES)...
+2026-10-15 16:44:52.479 INFO   Successfully saved output file '/Users/nico/Documents/GitHub/adc_test_board/hw/ADC_Test_route.ses' (42400 bytes).

@@ -10,8 +10,8 @@ FPDIR='/Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/'
 mm=pcbnew.FromMM
 def V(x,y): return pcbnew.VECTOR2I(mm(x),mm(y))
 OX,OY=100.0,100.0
-W,H=64.0,32.0                  # main board
-DX=14.0                        # strip added on the left for the HEAD IN connector and its bias-T
+W,H=57.0,32.0                  # main board
+DX=7.0                         # strip added on the left for the bias-T parts
 TARGET=os.environ.get('BOARD','adc')   # 'adc' main board, 'head' sensor head (its own board file)
 HW_,HH_=10.0,float(os.environ.get('HEADH','22'))   # sensor head outline (panel coordinates)
 # ref: (x, y, rotation) in mm from the top-left corner of the board
@@ -42,8 +42,8 @@ POS={
 }
 HEAD_REFS=set()
 # bias-T strip (left of the old board) and the sensor head (second board, panel coordinates x 4..14, y 34..54)
-NEW={'J5':(5.0,7.6,0),'C33':(11.4,7.6,90),'R27':(11.4,10.6,90),
-     'L2':(4.6,15.0,0),'R26':(9.6,15.0,0),'C32':(9.6,17.2,0)}
+NEW={'C33':(10.0,10.8,90),'R27':(10.0,13.6,90),
+     'L2':(3.2,18.0,90),'R26':(3.2,22.6,90),'C32':(3.2,26.2,90)}
 HEAD={'TP1':(2.6,3.6,0),'TP2':(7.4,3.6,0),
       'R31':(1.1,13.0,0),
       'C34':(3.05,13.0,0),
@@ -68,7 +68,7 @@ POS.update(NEW)
 if TARGET=='head':
     POS=dict(HEAD); W,H=HW_,HH_
 PCBFILE='ADC_Head.kicad_pcb' if TARGET=='head' else 'ADC_Test.kicad_pcb'
-FIXED={'J1','J2','J3','J4','J5','J6','U4','H1','H2','TP1','TP2','U8','L1'}
+FIXED={'J1','J2','J3','J4','J6','U4','H1','H2','TP1','TP2','U8','L1'}
 def legalize(b,gap=0.1,iters=200):
     """Push the smaller of two overlapping courtyards out along the shorter axis."""
     T=pcbnew.ToMM

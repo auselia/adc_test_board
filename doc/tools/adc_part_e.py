@@ -41,7 +41,7 @@ bom = list(csv.DictReader(open(os.path.join(FAB, 'ADC_Test_BOM_JLC.csv'))))
 n_lines = len(bom)
 n_parts = sum(len(r['Designator'].split(',')) for r in bom)
 cpl = list(csv.DictReader(open(os.path.join(FAB, 'ADC_Test_CPL_JLC.csv'))))
-assert n_parts == len(cpl) == 72
+assert n_parts == len(cpl)
 zf = zipfile.ZipFile(os.path.join(FAB, 'ADC_Test_gerbers.zip'))
 n_gb = len(zf.namelist())
 joints = json.load(open(os.path.join(FAB, 'joints.json')))
@@ -73,7 +73,7 @@ for l in ext:
     r = names[l]
     rows.append([r['Designator'], r['Comment'], l, f"${cost.PRICE[l]:.2f}"])
 table(pg, 4, 38, [24, 46, 28, 22], rows, rh=6.4, size=2.7)
-pg.text(4, 80, f'Through-hole parts: J1 J4 J5 SMA, J2, J3, RV1. JLCPCB solders them by hand, for a fee per joint.', 2.5, MUTED)
+pg.text(4, 80, f'Through-hole parts: J1 J4 SMA, J2, J3, RV1. JLCPCB solders them by hand, for a fee per joint.', 2.5, MUTED)
 assert all(l in cost.EXT_SMD for l in ext)
 
 # 47 --------------------------------------------------------------------------------------------
@@ -87,7 +87,7 @@ for ref, why in (('U5', 'viewer showed it turned; set absolute angle'), ('C29', 
     assert k_ != c_ or ref == 'C29'
     fix.append([ref, f'{k_:.0f}°', f'{c_:.0f}°', why])
 pg = step('What the placement viewer corrected',
-          ['The JLCPCB viewer showed four parts turned wrong on the first revision. The new parts (U8, L1, L2, J5, J6) are not checked yet. The KiCad footprints and the JLC library disagree on the zero angle. Each fix sits in `jlc_files.py`, not in the board.',
+          ['The JLCPCB viewer showed four parts turned wrong on the first revision. The new parts (U8, L1, L2, J6) are not checked yet. The KiCad footprints and the JLC library disagree on the zero angle. Each fix sits in `jlc_files.py`, not in the board.',
            'The trimmer RV1 also moved 2.54 mm in X and 1 mm in Y, because its library origin differs from the pin 1 pad.'])
 chip(pg, label='KICAD ROTATION AGAINST CPL ROTATION')
 table(pg, 4, 40, [14, 18, 18, 86], [['Ref', 'KiCad', 'CPL', 'Why']] + fix, rh=7.0, size=2.6)

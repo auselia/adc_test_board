@@ -158,7 +158,7 @@ pg.text(36, 80, 'via', 2.5, GRN, 'middle', True)
 # 37 --------------------------------------------------------------------------------------------
 pg = step('How the floor is planned',
           ['The signal runs left to right across the top half, as in the block diagram. The driver and the ADC sit in the middle. The power parts take the bottom left. The comparator sits in the bottom right.',
-           'The PMOD connector is on the right edge so the board hangs on the ZedBoard. The SMA connectors stand at the top, away from the ADC. The left strip holds HEAD IN and its bias-T.'])
+           'The PMOD connector is on the right edge so the board hangs on the ZedBoard. The SMA connectors stand at the top, away from the ADC. The left strip holds the bias-T.'])
 chip(pg, label='TOP VIEW, COLORS BY BLOCK')
 k = 1.35
 bx, by = 4, 36
@@ -276,12 +276,12 @@ chip(pg, label='FRONT SIDE')
 k = 1.35
 bx, by = 2, 38
 pg.rect(bx, by, BW * k, BH * k, '#f8f8f4', INK, 0.5, 1)
-marks = [('HEAD IN', 5.0, 1.1, 1), ('SENSOR IN', 18.6, 1.1, 2), ('CH', 26.0, 1.2, 3), ('SCOPE OUT', 50.6, 0.9, 4), ('+9V', 16.6, 21.2, 5), ('GND', 16.6, 28.1, 5),
-         ('WAKE LEVEL', 37.2, 25.3, 6), ('1', 56.0, 11.0, 7), ('logo', 32, 14.2, 8)]
+marks = [('SENSOR IN', 11.6, 1.1, 1), ('CH', 19.0, 1.2, 2), ('SCOPE OUT', 43.6, 0.9, 3), ('+9V', 9.6, 21.2, 4), ('GND', 9.6, 28.1, 4),
+         ('WAKE LEVEL', 30.2, 25.3, 5), ('1', 49.0, 11.0, 6), ('logo', 25, 14.2, 7)]
 for nm, x_, y_, n_ in marks:
     pg.circle(bx + x_ * k, by + y_ * k + 2.5, 2.2, AMBT, INK, 0.3)
     pg.text(bx + x_ * k, by + y_ * k + 3.4, n_, 2.5, INK, 'middle', True)
-lst = ['HEAD IN: J5, sensor head, +5 V on the centre', 'SENSOR IN: J1, perfboard or generator', 'CH box: write the channel number', 'SCOPE OUT: J4, the signal at the ADC', '+9V and GND: battery, square pad is +',
+lst = ['SENSOR IN: J1, sensor head, +5 V on the centre', 'CH box: write the channel number', 'SCOPE OUT: J4, the signal at the ADC', '+9V and GND: battery, square pad is +',
        'WAKE LEVEL: trimmer RV1', '1: PMOD pin 1', 'logo: Auselia mark']
 for i, t_ in enumerate(lst):
     pg.text(bx + BW * k + 4, 41 + i * 5.0, f'{i+1}  {t_}', 2.3, INK, 'start', True)
@@ -304,18 +304,18 @@ for i, (a_, b_, c_) in enumerate(cards_):
 
 # 44 --------------------------------------------------------------------------------------------
 pg = step('What the board looks like',
-          ['The render is from the final KiCad file. J5 and J1 stand on the top left and J4 on the top right. The PMOD header J3 points off the right edge. The blue trimmer RV1 is at the bottom.',
+          ['The render is from the final KiCad file. J1 stands on the top left and J4 on the top right. The PMOD header J3 points off the right edge. The blue trimmer RV1 is at the bottom.',
            'The two holes are M3 mounting holes.'])
 chip(pg, label='3D RENDER, KICAD')
 image(pg, os.path.join(REPO, 'doc', 'assets', 'render_angled.jpg'), 0, 38, 76, 76 * 1568 / 2384)
-for i, t_ in enumerate(['J5: HEAD IN, top left', 'J1: SMA in, next to it', 'J4: SCOPE OUT, top right', 'J3: PMOD, right edge', 'RV1: wake level trimmer', 'U4: ADS7057, centre right']):
+for i, t_ in enumerate(['J1: SENSOR IN, top left', 'J4: SCOPE OUT, top right', 'J3: PMOD, right edge', 'RV1: wake level trimmer', 'U4: ADS7057, centre right']):
     pg.text(82, 44 + i * 6, t_, 2.6, INK, 'start', True)
 
 # top view page (after step 44) -----------------------------------------------------------------
 m4lib._finish_page()
 pg = new_page('top view')
 chrome(pg, len(pages), 'Step 44  /  the board  /  top view at 3 : 1', divider=False)
-IW, IH = 74.99, 37.98            # mm covered by the render; board starts 3 mm from the left and top edges
+IW, IH = 67.96, 37.97            # mm covered by the render; board starts 3 mm from the left and top edges
 K = 3.0
 RND = os.path.join(REPO, 'doc', 'assets', 'top_render.png')
 x0, y0 = (PW - IW * K) / 2, 24

@@ -7,7 +7,7 @@ Comment,Designator,Footprint,LCSC Part #
 10uF 25V,C23,C_0805_2012Metric,C15850
 22uF 10V tantalum,C29,CP_EIA-3216-18_Kemet-A,C11366
 SS14,D1,D_SMA,C2480
-SMA jack,"J1,J4,J5",SMA_Amphenol_132134-11_Vertical,C496549
+SMA jack,"J1,J4",SMA_Amphenol_132134-11_Vertical,C496549
 Header 1x2,J2,PinHeader_1x02_P2.54mm_Vertical,C492401
 Header 2x6 right angle,J3,PinHeader_2x06_P2.54mm_Horizontal,C60565
 470uH,L2,L_1210_3225Metric,C75644

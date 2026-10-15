@@ -26,12 +26,12 @@ pg = step('What the sensor head does',
            'The same coax brings 5 V from the ADC board to the head. So the head needs one cable and no battery.'])
 chip(pg, label='CHAIN')
 bx_ = [(2, 'Piezo', ['1.6 nF'], 'ext'), (30, 'Head', ['charge amp', 'U8'], 'ctrl'), (58, 'Coax', ['5 V down', 'signal up'], 'bus'),
-       (86, 'HEAD IN', ['bias-T', 'J5'], 'arith'), (114, 'Filters', ['and ADC'], 'mem')]
+       (86, 'SENSOR IN', ['bias-T', 'J1'], 'arith'), (114, 'Filters', ['and ADC'], 'mem')]
 for x_, t_, s_, k_ in bx_:
     pbox(pg, x_, 44, 24, 16, t_, s_, k_)
 for x_ in (26, 54, 82, 110):
     pg.arrow([(x_, 52), (x_ + 4, 52)])
-pg.text(70, 72, f'The head loses {abs(SB["loss_250k"]):.2f} dB at 250 kHz to the bias-T. The old SENSOR IN (J1) stays for a perfboard.', 2.5, MUTED, 'middle')
+pg.text(70, 72, f'The head loses {abs(SB["loss_250k"]):.2f} dB at 250 kHz to the bias-T. To use a generator or a perfboard instead, remove R26.', 2.5, MUTED, 'middle')
 
 # 56 --------------------------------------------------------------------------------------------
 gn = 1 + CP / CF
@@ -128,14 +128,14 @@ for i, row in enumerate(rows):
 vref = 5.0 / 2
 ihead = 4.7e-3                                  # ngspice, OPA365 model (head_bias_t_results.txt, i(v5) minus the reference amplifier)
 pg = step('How to test the head',
-          ['Power the ADC board from 9 V and connect the head to HEAD IN with the coax. Measure the head first, then inject a known charge. A 10 pF capacitor from the function generator to the piezo + pad gives Q = 10 pF × ΔV.',
+          ['Power the ADC board from 9 V and connect the head to SENSOR IN (J1) with the coax. Measure the head first, then inject a known charge. A 10 pF capacitor from the function generator to the piezo + pad gives Q = 10 pF × ΔV.',
            f'A step of 100 mV injects 1 pC. The output moves by {1e-12/CF*1e3:.0f} mV, because Q / Cf = 1 pC / {CF*1e12:.0f} pF.'])
 chip(pg, label='EXPECTED VALUES')
 rows = [['Where', 'Expect'],
         ['C37 (V+ of U8)', 'about 4.5 V'],
         ['VREF, C35', f'{vref:.2f} V after 0.2 s'],
         ['U8 output, R31 pad 1', 'VREF, 2.5 V'],
-        ['J5 centre pin', 'about 4.7 V'],
+        ['J1 centre pin', 'about 4.7 V'],
         ['Extra current on J2', f'about {ihead*1e3:.0f} mA'],
         ['100 mV step via 10 pF', f'{1e-12/CF*1e3:.0f} mV step at SIG_IN']]
 for i, row in enumerate(rows):

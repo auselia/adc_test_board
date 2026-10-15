@@ -34,11 +34,11 @@ def build():
     r=D.root; r.paper='A2'; r.title='Auselia ADS7057 test board, low-cost version (JLC Basic parts)'; r.path='/'+r.uuid
     sh=r
     text(sh,"ADS7057 test board (low cost)",20,22,4,True)
-    text(sh,"Perfboard charge amp (SMA) -> 2nd-order HPF 113 kHz -> gain x4.9 -> 2nd-order LPF 512 kHz -> THS4531 -> 10R/400pF -> ADS7057 -> ZedBoard PMOD.",20,30,1.8)
+    text(sh,"Sensor head (SMA, bias-T) -> 2nd-order HPF 113 kHz -> gain x4.9 -> 2nd-order LPF 512 kHz -> THS4531 -> 10R/400pF -> ADS7057 -> ZedBoard PMOD.",20,30,1.8)
     text(sh,"AFE v0.1 topology rebuilt around JLC Basic parts (100 pF C0G, E12 resistors, AMS1117, LM393). Power: 9 V -> AMS1117-5.0 -> AMS1117-3.3 (AVDD). DVDD = PMOD 3.3 V.",20,35,1.8)
     # ---- input + HPF + gain (U1)
     text(sh,"Input, high-pass filter (Sallen-Key, 100 pF / 10k / 20k: f0 = 113 kHz, Q = 0.71), gain 1 + 3.9k/1k = 4.9",20,55,2.2,True)
-    add(sh,'Connector:Conn_Coaxial','SMA in (perfboard)',FP_SMA,30,90,{'1':'SIG_IN','2':'GND'},'J',ref='J1',props={'LCSC':'C496549'})
+    add(sh,'Connector:Conn_Coaxial','SMA SENSOR IN',FP_SMA,30,90,{'1':'HEAD_LINE','2':'GND'},'J',ref='J1',props={'LCSC':'C496549'})
     C(sh,55,80,'100pF C0G','SIG_IN','HP_A','C1',90); C(sh,75,80,'100pF C0G','HP_A','HP_B','C2',90)
     R(sh,65,65,'10k','HP_A','HPF_OUT','R1',90); R(sh,85,100,'20k','HP_B','VMID5','R2',0)
     add(sh,'Auselia:OPA2365','OPA2365',SO,140,90,{'3':'HP_B','2':'HPF_OUT','1':'HPF_OUT','5':'HPF_OUT','6':'GN_FB','7':'GAIN_OUT','8':'+5V','4':'GND'},'U',ref='U1',props={'LCSC':'C130011'})
@@ -96,10 +96,9 @@ def build():
     add(sh,'Device:C','DNP','Capacitor_SMD:C_0603_1608Metric',250,330,{'1':'WAKE_N','2':'GND'},'C',ref='C31',dnp=True)
     add(sh,'Mechanical:MountingHole','M3','MountingHole:MountingHole_3.2mm_M3',480,150,{},'H',ref='H1')
     add(sh,'Mechanical:MountingHole','M3','MountingHole:MountingHole_3.2mm_M3',500,150,{},'H',ref='H2')
-    # ---- HEAD IN: bias-T. 5 V through R26/L2 onto the coax centre, the head's AC signal comes back through C33.
-    text(sh,"HEAD IN (J5): bias-T. +5V -> 47R (R26, C32 filter) -> 470 uH (L2) -> coax centre = power for the sensor head. C33 100 nF passes the head's signal to SIG_IN.",20,360,1.8,True)
-    text(sh,"R27 1M gives SIG_IN a DC level (VMID5). J1 (SMA in) stays as before, for a perfboard or a function generator. Use one input at a time.",20,366,1.8)
-    add(sh,'Connector:Conn_Coaxial','SMA HEAD IN',FP_SMA,40,390,{'1':'HEAD_LINE','2':'GND'},'J',ref='J5',props={'LCSC':'C496549'})
+    # ---- SENSOR IN (J1): bias-T. +5 V through R26/L2 onto the coax centre = power for the sensor head; C33 passes its signal to SIG_IN.
+    text(sh,"SENSOR IN (J1) = bias-T for the sensor head. +5V -> 47R (R26, C32 filter) -> 470 uH (L2) -> coax centre. C33 100 nF passes the head's signal to SIG_IN.",20,360,1.8,True)
+    text(sh,"R27 1M gives SIG_IN a DC level (VMID5). To feed a function generator or a perfboard instead, remove R26 so the centre pin carries no DC.",20,366,1.8)
     add(sh,'Device:L','470uH',FP_L,80,390,{'1':'HEAD_LINE','2':'HEAD_PWR'},'L',rot=90,ref='L2',props={'LCSC':LCSC['470uH']})
     R(sh,110,380,'47R','+5V','HEAD_PWR','R26',90); C(sh,130,400,'10uF','HEAD_PWR','GND','C32')
     C(sh,150,380,'100nF','HEAD_LINE','SIG_IN','C33',90); R(sh,170,400,'1M','SIG_IN','VMID5','R27',0)

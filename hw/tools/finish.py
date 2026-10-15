@@ -5,10 +5,10 @@ TARGET=os.environ.get('BOARD','adc'); NAME='ADC_Head' if TARGET=='head' else 'AD
 PCB=os.path.join(HW,NAME+'.kicad_pcb')
 mm=pcbnew.FromMM; T=pcbnew.ToMM
 def V(x,y): return pcbnew.VECTOR2I(mm(x),mm(y))
-OX,OY,W,H=100.0,100.0,64.0,32.0
+OX,OY,W,H=100.0,100.0,57.0,32.0
 HEADH=float(os.environ.get('HEADH','22'))
-DX=14.0
-BOARDS=[('HGND',0.0,0.0,10.0,HEADH)] if TARGET=='head' else [('GND',0.0,0.0,64.0,32.0)]
+DX=7.0
+BOARDS=[('HGND',0.0,0.0,10.0,HEADH)] if TARGET=='head' else [('GND',0.0,0.0,57.0,32.0)]
 b=pcbnew.LoadBoard(PCB)
 GNDS=['HGND'] if TARGET=='head' else ['GND']; gndn={n:b.FindNet(n) for n in GNDS}
 # 1. drop Freerouting's 0.12 mm GND neck-down stubs (the GND pours connect those pads)
@@ -137,7 +137,7 @@ if TARGET=='head':
     text('PZT',5.0,5.2,0.8,layer=pcbnew.B_SilkS,thick=0.15,mirror=True); text('+',2.6,5.6,0.9,layer=pcbnew.B_SilkS,thick=0.15,mirror=True); text('-',7.4,5.6,0.9,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
     text('HEAD v1',5.0,HEADH-0.9,0.8,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
 else:
-    text('SENSOR IN',4.6+DX,1.1,0.9); text('HEAD IN',5.0,1.1,0.9); text('+5V on centre',5.0,2.3,0.7)                                  # J1, from the perfboard
+    text('SENSOR IN',4.6+DX,1.1,0.9); text('+5V on centre',4.6+DX,2.3,0.7)                                  # J1, from the perfboard
     text('SCOPE OUT',36.6+DX,0.9,0.9)                                 # J4, same signal the ADC sees (51 ohm)
     text('+9V',2.6+DX,21.2); text('GND',2.6+DX,28.1)                     # J2
     text('WAKE LEVEL',23.2+DX,25.3,0.8)                               # RV1

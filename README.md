@@ -6,10 +6,10 @@ There are **two boards**, ordered separately:
 
 | Board | What it is | Size |
 |---|---|---|
-| ADC test board (`ADC_Test`) | HPF, gain, LPF, driver, ADS7057, wake-up comparator, PMOD, 9 V supply, bias-T for the head | 64 × 32 mm |
+| ADC test board (`ADC_Test`) | HPF, gain, LPF, driver, ADS7057, wake-up comparator, PMOD, 9 V supply, bias-T for the head | 57 × 32 mm |
 | Sensor head (`ADC_Head`) | The perfboard charge amplifier on a PCB. The piezo wires solder to it. It is powered through the coax | 10 × 22 mm |
 
-The head connects to **HEAD IN (J5)** with one coax cable. The coax carries 5 V to the head (a bias-T) and the signal back. The old **SENSOR IN (J1)** stays, for a perfboard or a function generator. Use one input at a time.
+The head connects to **SENSOR IN (J1)** with one coax cable. The coax carries 5 V to the head (a bias-T) and the signal back. The perfboard is replaced by the head. To use a function generator instead, remove R26 so the centre pin carries no DC.
 
 The topology is the one in the AFE v0.1 design description, rebuilt around JLCPCB **Basic** parts. The extended-part fee ($3.09 per type) is paid for the ADS7057, OPA2365, THS4531, the tantalum C29 and the 470 µH inductor (both boards), plus the OPA365 on the head.
 
@@ -31,12 +31,12 @@ The board serves two purposes. In the plant experiments, four boards sit on ZedB
 | 5 V | 9 V → SS14 → AMS1117-5.0 | 22 µF tantalum output (C29) |
 | MON output | 51 Ω from LPF_OUT to SMA J4 | The scope sees the same signal the ADC samples |
 | nWAKE filter | C31, 0603 to GND near J3 | Not fitted (DNP). No hysteresis, since the outputs are wired together |
-| HEAD IN bias-T (J5) | R26 47R + C32 10 µF, L2 470 µH, C33 100 nF, R27 1M | 5 V reaches the coax centre through 47 Ω and 470 µH. C33 passes the head signal to SIG_IN. R27 sets the DC level of SIG_IN to VMID5 |
+| Bias-T on SENSOR IN (J1) | R26 47R + C32 10 µF, L2 470 µH, C33 100 nF, R27 1M | 5 V reaches the coax centre through 47 Ω and 470 µH. C33 passes the head signal to SIG_IN. R27 sets the DC level of SIG_IN to VMID5 |
 | Wake comparator | LM393 window | Half window = 2.5 V × (1k + Rp)/(67k + Rp) = 37–603 mV with the 20k RV1, about 7–120 mV at the perfboard output |
 
 The two LM393 open-collector outputs are tied together and pulled up to 3.3 V. **nWAKE goes low** when the signal leaves the window.
 
-Main board: 64 × 32 mm, 2 layers, all SMD parts on top, GND pour on both layers.
+Main board: 57 × 32 mm, 2 layers, all SMD parts on top, GND pour on both layers.
 
 ### Sensor head
 
@@ -50,7 +50,7 @@ The perfboard circuit (TRL3 schematic), on its own board:
 | Output | R31 49.9 Ω, C38 100 nF | Same 50 Ω, AC-coupled onto the coax |
 | Power from the coax | L1 470 µH, C36 100 nF, C37 10 µF | 5 V comes in on the coax centre. About 4.7 mA |
 | Piezo | TP1 (+, to the summing node), TP2 (−, to ground) | Two 1 mm holes, 4.8 mm apart. The piezo sits on the other face |
-| Output connector | J6 SMA, vertical | To HEAD IN on the main board |
+| Output connector | J6 SMA, vertical | To SENSOR IN (J1) on the main board |
 
 Differences from the perfboard that you should know about:
 
@@ -63,8 +63,7 @@ Differences from the perfboard that you should know about:
 
 | Label | What it is |
 |---|---|
-| HEAD IN, +5V on centre (J5) | SMA input for the sensor head. The centre pin carries 5 V. Do not connect a function generator here. |
-| SENSOR IN (J1) | SMA input. Connect the perfboard charge amplifier output or a generator here. |
+| SENSOR IN, +5V on centre (J1) | SMA input for the sensor head. The centre pin carries 5 V while R26 is fitted. Remove R26 before you connect a function generator. |
 | SCOPE OUT (J4) | SMA monitor output. It carries the same signal the ADC samples, through 51 Ω. Use a 1 MΩ scope input. A 50 Ω input halves the signal. |
 | +9V / GND (J2) | 9 V battery input. The square pad is +9V. |
 | WAKE LEVEL (RV1) | Trimmer that sets how large a signal must be to pull nWAKE low. Clockwise should widen the window. Check with a multimeter on the 33k resistors. |
@@ -84,7 +83,7 @@ JLCPCB solders these. They are in the BOM and the pick-and-place file.
 
 | Ref | Part | LCSC |
 |---|---|---|
-| J1, J4, J5 (and J6 on the head) | SMA jack, vertical, 5 pins (input, MON, head in, head out) | C496549 |
+| J1, J4 (and J6 on the head) | SMA jack, vertical, 5 pins (sensor in, MON, head out) | C496549 |
 | RV1 | 20k Bourns 3296W trimmer | C34845 |
 | J2 | 1×2 pin header, 2.54 mm | C492401 |
 | J3 | 2×6 right-angle pin header, 2.54 mm | C60565 |
@@ -93,8 +92,7 @@ If JLCPCB declines a through-hole part, delete its line from the BOM and solder 
 
 ## Connectors
 
-- **J1:** SMA input from the perfboard or a generator.
-- **J5 HEAD IN:** SMA for the sensor head, carries +5 V on the centre pin.
+- **J1 SENSOR IN:** SMA for the sensor head, carries +5 V on the centre pin (R26 fitted).
 - **J4 MON:** SMA monitor output, LPF_OUT through 51 Ω.
 - **J2:** +9 V (square pad), GND.
 - **H1, H2:** M3 mounting holes.
@@ -118,9 +116,9 @@ The two boards are two JLCPCB orders (or one checkout with two designs). `python
 
 | Order | Goods (parts + PCB + fees) | Parts | Fees |
 |---|---|---|---|
-| ADC board × 2 | $67.93 | $33.09 | $30.83 |
-| ADC board × 3 | $85.47 | $49.64 | $31.82 |
-| ADC board × 5 | $120.54 | $82.74 | $33.81 |
+| ADC board × 2 | $66.99 | $32.32 | $30.67 |
+| ADC board × 3 | $84.06 | $48.48 | $31.58 |
+| ADC board × 5 | $118.20 | $80.80 | $33.40 |
 | Sensor head × 5 | $40.76 | $15.64 | $21.12 |
 | Sensor head × 10 | $57.94 | $31.29 | $22.65 |
 
@@ -128,8 +126,8 @@ Both orders together, with shipping (Global Standard $10.75 per parcel) and 19 %
 
 | | One parcel | Two parcels |
 |---|---|---|
-| 2 ADC boards + 5 heads | $142.13 | $154.92 |
-| 2 ADC boards + 10 heads | $162.57 | $175.37 |
+| 2 ADC boards + 5 heads | $141.01 | $153.81 |
+| 2 ADC boards + 10 heads | $161.46 | $174.25 |
 
 - The head's fixed fees (setup $8.24, stencil $1.55, hand-solder labor $3.61, PCB $4.00, one more extended type) are about $20 per order. A single panel would save them, but it forces equal quantities and mouse-bite tabs. Two orders let you buy 2 ADC boards and 10 heads.
 - The OPA365 ($2.67) is the most expensive part of a head. The OPA2365 (SOIC-8) would be $1.38 and needs no new extended fee, but it does not fit in 10 mm × 22 mm with the SMA.
@@ -155,7 +153,7 @@ The ADS7057 pays no X-ray fee in Economic assembly. The through-hole part types 
 
 ## JLCPCB placement check
 
-The JLCPCB viewer showed four problems on the first revision, and the CPL now corrects them. **New parts are not checked yet:** U8 (SOT-23-5, head), L1 and L2 (1210 inductors), J5 and J6 (SMA). Look at them in the viewer. These rotations assume JLCPCB counts counter-clockwise like KiCad, so check them again in the viewer after you upload the new CPL.
+The JLCPCB viewer showed four problems on the first revision, and the CPL now corrects them. **New parts are not checked yet:** U8 (SOT-23-5, head), L1 and L2 (1210 inductors), J6 (SMA). Look at them in the viewer. These rotations assume JLCPCB counts counter-clockwise like KiCad, so check them again in the viewer after you upload the new CPL.
 
 | Part | Problem | CPL rotation |
 |---|---|---|
@@ -213,7 +211,7 @@ Paper checks:
 
 ## Bring-up
 
-With the sensor head: connect it to J5 with the coax, power J2 at 9 V, and the head runs from the 5 V rail (about +5 mA). Measure 2.5 V on the OPA365 output, VREF and C35. Then continue from step 2.
+With the sensor head: connect it to J1 with the coax, power J2 at 9 V, and the head runs from the 5 V rail (about +5 mA). Measure 2.5 V on the OPA365 output, VREF and C35. Then continue from step 2.
 
 1. Power J2 from a bench supply at 9 V with a 50 mA limit. Check +5V, AVDD (3.30 V), VOCM (1.65 V) and VMID5 (2.50 V) before the PMOD connects.
 2. Plug the board into the ZedBoard and check that nWAKE reads high.
@@ -256,5 +254,5 @@ Freerouting 2.4.1 needs Java 25 (the macOS .dmg bundles it).
 
 - Two orders: upload `ADC_Test_*` and `ADC_Head_*` separately.
 - Upload the new CPL, then open Component Placements and check U5, C29, J2 and J3 (see "JLCPCB placement check"). On the head also check U8 pin 1, L1, J6.
-- Look at J1, J4, J5 and J6 as well. The SMA model looked offset against its four legs.
+- Look at J1, J4 and J6 as well. The SMA model looked offset against its four legs.
 - Check pin 1 of U4 (ADS7057) in particular.

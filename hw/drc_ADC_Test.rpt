@@ -1,35 +1,35 @@
 ** Drc report for ADC_Test.kicad_pcb **
-** Created on 2026-10-15T16:29:23 **
+** Created on 2026-10-15T16:45:01 **
 ** Report includes: Errors, Warnings, Exclusions **
 
 ** Found 7 DRC violations **
 [silk_edge_clearance]: Silkscreen clipped by board edge
     Rule: board setup constraints silk; warning
-    @(164.0000 mm, 100.0000 mm): Segment on Edge.Cuts
-    @(161.3500 mm, 112.2700 mm): Segment of J3 on F.Silkscreen
+    @(157.0000 mm, 100.0000 mm): Segment on Edge.Cuts
+    @(154.3500 mm, 112.2700 mm): Segment of J3 on F.Silkscreen
 [silk_edge_clearance]: Silkscreen clipped by board edge
     Rule: board setup constraints silk; warning
-    @(164.0000 mm, 100.0000 mm): Segment on Edge.Cuts
-    @(161.3500 mm, 114.8100 mm): Segment of J3 on F.Silkscreen
+    @(157.0000 mm, 100.0000 mm): Segment on Edge.Cuts
+    @(154.3500 mm, 114.8100 mm): Segment of J3 on F.Silkscreen
 [silk_edge_clearance]: Silkscreen clipped by board edge
     Rule: board setup constraints silk; warning
-    @(164.0000 mm, 100.0000 mm): Segment on Edge.Cuts
-    @(161.3500 mm, 117.3500 mm): Segment of J3 on F.Silkscreen
+    @(157.0000 mm, 100.0000 mm): Segment on Edge.Cuts
+    @(154.3500 mm, 117.3500 mm): Segment of J3 on F.Silkscreen
 [silk_edge_clearance]: Silkscreen clipped by board edge
     Rule: board setup constraints silk; warning
-    @(164.0000 mm, 100.0000 mm): Segment on Edge.Cuts
-    @(161.3500 mm, 119.8900 mm): Segment of J3 on F.Silkscreen
+    @(157.0000 mm, 100.0000 mm): Segment on Edge.Cuts
+    @(154.3500 mm, 119.8900 mm): Segment of J3 on F.Silkscreen
 [silk_edge_clearance]: Silkscreen clipped by board edge
     Rule: board setup constraints silk; warning
-    @(164.0000 mm, 100.0000 mm): Segment on Edge.Cuts
-    @(161.3500 mm, 122.4300 mm): Segment of J3 on F.Silkscreen
+    @(157.0000 mm, 100.0000 mm): Segment on Edge.Cuts
+    @(154.3500 mm, 122.4300 mm): Segment of J3 on F.Silkscreen
 [silk_edge_clearance]: Silkscreen clipped by board edge
     Rule: board setup constraints silk; warning
-    @(164.0000 mm, 100.0000 mm): Segment on Edge.Cuts
-    @(161.3500 mm, 109.6200 mm): Rectangle of J3 on F.Silkscreen
+    @(157.0000 mm, 100.0000 mm): Segment on Edge.Cuts
+    @(154.3500 mm, 109.6200 mm): Rectangle of J3 on F.Silkscreen
 [text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)
     Rule: board setup constraints silk text height; warning
-    @(105.0000 mm, 102.3000 mm): PCB text '+5V on centre' on F.Silkscreen
+    @(111.6000 mm, 102.3000 mm): PCB text '+5V on centre' on F.Silkscreen
 
 ** Found 0 unconnected pads **
 

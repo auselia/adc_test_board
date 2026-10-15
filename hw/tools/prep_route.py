@@ -6,7 +6,7 @@ TARGET=os.environ.get('BOARD','adc'); NAME='ADC_Head' if TARGET=='head' else 'AD
 PCB=os.path.join(HW,NAME+'.kicad_pcb')
 b=pcbnew.LoadBoard(PCB)
 OX,OY=100.0,100.0
-BOARDS=[('HGND',0.0,0.0,10.0,float(os.environ.get('HEADH','22')))] if TARGET=='head' else [('GND',0.0,0.0,64.0,32.0)]
+BOARDS=[('HGND',0.0,0.0,10.0,float(os.environ.get('HEADH','22')))] if TARGET=='head' else [('GND',0.0,0.0,57.0,32.0)]
 def add_zone(layer,net,x0,y0,x1,y1,inset=0.3):
     x0,y0,x1,y1=x0+OX,y0+OY,x1+OX,y1+OY
     z=pcbnew.ZONE(b); z.SetLayer(layer); z.SetNet(b.FindNet(net))
