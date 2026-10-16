@@ -1,55 +1,56 @@
 ** Drc report for ADC_Test.kicad_pcb **
-** Created on 2026-10-15T17:45:58 **
+** Created on 2026-10-15T22:00:11 **
 ** Report includes: Errors, Warnings, Exclusions **
 
 ** Found 12 DRC violations **
 [silk_edge_clearance]: Silkscreen clipped by board edge
     Rule: board setup constraints silk; warning
-    @(157.0000 mm, 100.0000 mm): Segment on Edge.Cuts
-    @(154.3500 mm, 112.2700 mm): Segment of J3 on F.Silkscreen
+    @(225.0000 mm, 100.0000 mm): Segment on Edge.Cuts
+    @(222.3500 mm, 105.6700 mm): Segment of J3 on F.Silkscreen
 [silk_edge_clearance]: Silkscreen clipped by board edge
     Rule: board setup constraints silk; warning
-    @(157.0000 mm, 100.0000 mm): Segment on Edge.Cuts
-    @(154.3500 mm, 114.8100 mm): Segment of J3 on F.Silkscreen
+    @(225.0000 mm, 100.0000 mm): Segment on Edge.Cuts
+    @(222.3500 mm, 108.2100 mm): Segment of J3 on F.Silkscreen
 [silk_edge_clearance]: Silkscreen clipped by board edge
     Rule: board setup constraints silk; warning
-    @(157.0000 mm, 100.0000 mm): Segment on Edge.Cuts
-    @(154.3500 mm, 117.3500 mm): Segment of J3 on F.Silkscreen
+    @(225.0000 mm, 100.0000 mm): Segment on Edge.Cuts
+    @(222.3500 mm, 110.7500 mm): Segment of J3 on F.Silkscreen
 [silk_edge_clearance]: Silkscreen clipped by board edge
     Rule: board setup constraints silk; warning
-    @(157.0000 mm, 100.0000 mm): Segment on Edge.Cuts
-    @(154.3500 mm, 119.8900 mm): Segment of J3 on F.Silkscreen
+    @(225.0000 mm, 100.0000 mm): Segment on Edge.Cuts
+    @(222.3500 mm, 113.2900 mm): Segment of J3 on F.Silkscreen
 [silk_edge_clearance]: Silkscreen clipped by board edge
     Rule: board setup constraints silk; warning
-    @(157.0000 mm, 100.0000 mm): Segment on Edge.Cuts
-    @(154.3500 mm, 122.4300 mm): Segment of J3 on F.Silkscreen
+    @(225.0000 mm, 100.0000 mm): Segment on Edge.Cuts
+    @(222.3500 mm, 115.8300 mm): Segment of J3 on F.Silkscreen
 [silk_edge_clearance]: Silkscreen clipped by board edge
     Rule: board setup constraints silk; warning
-    @(157.0000 mm, 100.0000 mm): Segment on Edge.Cuts
-    @(154.3500 mm, 109.6200 mm): Rectangle of J3 on F.Silkscreen
-[silk_edge_clearance]: Silkscreen clipped by board edge
-    Rule: board setup constraints silk; warning
-    @(100.0000 mm, 137.6000 mm): Segment on Edge.Cuts
-    @(101.6000 mm, 120.5000 mm): Segment of J2 on F.Silkscreen
-[silk_edge_clearance]: Silkscreen clipped by board edge
-    Rule: board setup constraints silk; warning
-    @(100.0000 mm, 137.6000 mm): Segment on Edge.Cuts
-    @(101.6000 mm, 129.9000 mm): Segment of J2 on F.Silkscreen
-[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)
-    Rule: board setup constraints silk text height; warning
-    @(111.6000 mm, 102.3000 mm): PCB text '+5V on centre' on F.Silkscreen
+    @(225.0000 mm, 100.0000 mm): Segment on Edge.Cuts
+    @(222.3500 mm, 103.0200 mm): Rectangle of J3 on F.Silkscreen
 [silk_overlap]: Silkscreen clearance
     Rule: board setup constraints silk; warning
-    @(115.5200 mm, 130.7800 mm): Segment of J7 on F.Silkscreen
-    @(116.2000 mm, 129.4000 mm): PCB text '5V IN' on F.Silkscreen
+    @(180.6900 mm, 104.2000 mm): PCB text 'CAPTURE' on B.Silkscreen
+    @(194.0000 mm, 105.0000 mm): PCB text '1 CS    7 BIG_N' on B.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(194.0000 mm, 105.0000 mm): PCB text '1 CS    7 BIG_N' on B.Silkscreen
+    @(184.2800 mm, 105.8000 mm): PCB text 'MID5' on B.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(187.4700 mm, 105.8000 mm): PCB text 'VOCM' on B.Silkscreen
+    @(194.0000 mm, 106.5000 mm): PCB text '2 -     8 -' on B.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(194.0000 mm, 105.0000 mm): PCB text '1 CS    7 BIG_N' on B.Silkscreen
+    @(187.4700 mm, 105.8000 mm): PCB text 'VOCM' on B.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(190.6600 mm, 105.8000 mm): PCB text 'AVDD' on B.Silkscreen
+    @(194.0000 mm, 105.0000 mm): PCB text '1 CS    7 BIG_N' on B.Silkscreen
 [silk_over_copper]: Silkscreen clipped by solder mask
     Local override; warning
-    @(103.6000 mm, 119.1000 mm): PCB text 'USB-C 5V' on F.Silkscreen
-    @(103.2000 mm, 118.0000 mm): Pad 1 [HEAD_LINE] of L2 on F.Cu
-[silk_over_copper]: Silkscreen clipped by solder mask
-    Local override; warning
-    @(116.2000 mm, 129.4000 mm): PCB text '5V IN' on F.Silkscreen
-    @(114.1400 mm, 129.4000 mm): PTH pad 2 [GND] of J7
+    @(118.0000 mm, 116.5000 mm): PCB text 'ADS7057 test board v3' on B.Silkscreen
+    @(107.9400 mm, 117.9400 mm): PTH pad 2 [GND] of J4
 
 ** Found 0 unconnected pads **
 
@@ -70,9 +71,9 @@
     Local override; warning
 [missing_footprint]: Missing footprint R28 (1M)
     Local override; warning
-[missing_footprint]: Missing footprint R29 (10k)
+[missing_footprint]: Missing footprint R29 (1M)
     Local override; warning
-[missing_footprint]: Missing footprint R30 (10k)
+[missing_footprint]: Missing footprint R30 (1M)
     Local override; warning
 [missing_footprint]: Missing footprint R31 (49.9R)
     Local override; warning

@@ -6,7 +6,10 @@ TARGET=os.environ.get('BOARD','adc'); NAME='ADC_Head' if TARGET=='head' else 'AD
 PCB=os.path.join(HW,NAME+'.kicad_pcb')
 b=pcbnew.LoadBoard(PCB)
 OX,OY=100.0,100.0
-BOARDS=[('HGND',0.0,0.0,10.0,float(os.environ.get('HEADH','22')))] if TARGET=='head' else [('GND',0.0,0.0,57.0,37.6)]
+import sys
+sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
+from layout_v3 import W as _W, H as _H
+BOARDS=[('HGND',0.0,0.0,10.0,float(os.environ.get('HEADH','22')))] if TARGET=='head' else [('GND',0.0,0.0,_W,_H)]
 def add_zone(layer,net,x0,y0,x1,y1,inset=0.3):
     x0,y0,x1,y1=x0+OX,y0+OY,x1+OX,y1+OY
     z=pcbnew.ZONE(b); z.SetLayer(layer); z.SetNet(b.FindNet(net))
@@ -16,8 +19,9 @@ def add_zone(layer,net,x0,y0,x1,y1,inset=0.3):
     z.SetMinThickness(mm(0.2)); z.SetLocalClearance(mm(0.25)); z.SetPadConnection(pcbnew.ZONE_CONNECTION_THERMAL)
     z.SetThermalReliefGap(mm(0.25)); z.SetThermalReliefSpokeWidth(mm(0.3))
     b.Add(z); return z
-for net,x0,y0,x1,y1 in BOARDS: add_zone(pcbnew.B_Cu,net,x0,y0,x1,y1)
-pcbnew.ZONE_FILLER(b).Fill(b.Zones())
+if not os.environ.get('NOPLANE'):
+    for net,x0,y0,x1,y1 in BOARDS: add_zone(pcbnew.B_Cu,net,x0,y0,x1,y1)
+    pcbnew.ZONE_FILLER(b).Fill(b.Zones())
 b.Save(PCB)
 pcbnew.ExportSpecctraDSN(b,os.path.join(HW,NAME+'.dsn'))
 s=open(os.path.join(HW,NAME+'.dsn')).read()

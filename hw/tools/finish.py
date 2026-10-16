@@ -1,14 +1,16 @@
 """After routing: widen thin tracks, top GND pour + stitching vias, silkscreen labels, refs to F.Fab."""
-import pcbnew,os,math
+import pcbnew,os,math,sys
 HW=os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)),'..'))
 TARGET=os.environ.get('BOARD','adc'); NAME='ADC_Head' if TARGET=='head' else 'ADC_Test'
 PCB=os.path.join(HW,NAME+'.kicad_pcb')
 mm=pcbnew.FromMM; T=pcbnew.ToMM
 def V(x,y): return pcbnew.VECTOR2I(mm(x),mm(y))
-OX,OY,W,H=100.0,100.0,57.0,37.6
+OX,OY=100.0,100.0
+sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
+from layout_v3 import W,H
 HEADH=float(os.environ.get('HEADH','22'))
 DX=7.0
-BOARDS=[('HGND',0.0,0.0,10.0,HEADH)] if TARGET=='head' else [('GND',0.0,0.0,57.0,37.6)]
+BOARDS=[('HGND',0.0,0.0,10.0,HEADH)] if TARGET=='head' else [('GND',0.0,0.0,W,H)]
 b=pcbnew.LoadBoard(PCB)
 GNDS=['HGND'] if TARGET=='head' else ['GND']; gndn={n:b.FindNet(n) for n in GNDS}
 # 1. drop Freerouting's 0.12 mm GND neck-down stubs (the GND pours connect those pads)
@@ -61,9 +63,9 @@ for t in gnd_stubs():          # anything still dangling: the pours already carr
 for t in b.GetTracks():                     # Freerouting neck-downs below the 0.15 mm fab minimum
     if t.Type()==pcbnew.PCB_TRACE_T and t.GetWidth()<mm(0.15): t.SetWidth(mm(0.15))
 # 2. top GND pour on each board (the bottom pours exist from prep_route)
-for net,bx0,by0,bx1,by1 in BOARDS:
-    if any(z.GetLayer()==pcbnew.F_Cu and z.GetNetname()==net for z in b.Zones()): continue
-    z=pcbnew.ZONE(b); z.SetLayer(pcbnew.F_Cu); z.SetNet(gndn[net])
+for (net,bx0,by0,bx1,by1),LY in [(bd,ly) for bd in BOARDS for ly in (pcbnew.F_Cu,pcbnew.B_Cu)]:
+    if any(z.GetLayer()==LY and z.GetNetname()==net for z in b.Zones()): continue
+    z=pcbnew.ZONE(b); z.SetLayer(LY); z.SetNet(gndn[net])
     ch=pcbnew.SHAPE_LINE_CHAIN()
     for x,y in [(bx0+0.3,by0+0.3),(bx1-0.3,by0+0.3),(bx1-0.3,by1-0.3),(bx0+0.3,by1-0.3)]: ch.Append(mm(OX+x),mm(OY+y))
     ch.SetClosed(True); z.Outline().AddOutline(ch)
@@ -71,6 +73,10 @@ for net,bx0,by0,bx1,by1 in BOARDS:
     z.SetThermalReliefGap(mm(0.25)); z.SetThermalReliefSpokeWidth(mm(0.3)); z.SetIslandRemovalMode(pcbnew.ISLAND_REMOVAL_MODE_ALWAYS)
     b.Add(z)
 for z in b.Zones(): z.SetIslandRemovalMode(pcbnew.ISLAND_REMOVAL_MODE_ALWAYS)
+for fp in b.GetFootprints():
+    if fp.GetReference()=='J3':
+        for pd in fp.Pads():
+            if pd.GetNetname() in GNDS: pd.SetLocalZoneConnection(pcbnew.ZONE_CONNECTION_FULL)
 pcbnew.ZONE_FILLER(b).Fill(b.Zones())
 # 3. stitching vias on a 2 mm grid where both pours are solid and nothing else is near
 def clear_of_others(p,r):
@@ -104,6 +110,43 @@ for net,bx0,by0,bx1,by1 in BOARDS:
             gy+=2.0
         gx+=2.0
 print('stitching vias',len(added))
+# 3b. every GND pour island needs a via to the other layer (narrow boards cut the pours into pieces)
+def island_vias():
+    n=0
+    for _ in range(4):
+        pcbnew.ZONE_FILLER(b).Fill(b.Zones())
+        fixed=0
+        gvias=[(T(t.GetPosition().x),T(t.GetPosition().y)) for t in b.GetTracks() if t.Type()==pcbnew.PCB_VIA_T and t.GetNetname() in GNDS]
+        gpth=[(T(p.GetPosition().x),T(p.GetPosition().y)) for fp in b.GetFootprints() for p in fp.Pads() if p.GetNetname() in GNDS and p.GetAttribute()==pcbnew.PAD_ATTRIB_PTH]
+        for net in GNDS:
+            for layer in (pcbnew.F_Cu,pcbnew.B_Cu):
+                z=zones.get((net,layer))
+                if z is None: continue
+                polys=z.GetFilledPolysList(layer)
+                for i in range(polys.OutlineCount()):
+                    ol=polys.COutline(i); bb=ol.BBox()
+                    x0,y0,x1,y1=T(bb.GetX()),T(bb.GetY()),T(bb.GetRight()),T(bb.GetBottom())
+                    inside=lambda p: polys.Contains(V(*p),i)
+                    if any(inside(p) for p in gvias+gpth): continue
+                    done=False
+                    for vw,vd,hit,clr,step in ((0.6,0.3,0.45,0.65,0.3),(0.5,0.2,0.35,0.5,0.1)):
+                        gy=y0
+                        while gy<=y1 and not done:
+                            gx=x0
+                            while gx<=x1 and not done:
+                                p=(gx,gy)
+                                if inside(p) and all(zones[(net,l)].HitTestFilledArea(l,V(*p),mm(hit)) for l in (pcbnew.F_Cu,pcbnew.B_Cu)) and clear_of_others(p,clr):
+                                    v=pcbnew.PCB_VIA(b); v.SetPosition(V(*p)); v.SetViaType(pcbnew.VIATYPE_THROUGH); v.SetWidth(mm(vw)); v.SetDrill(mm(vd))
+                                    v.SetNet(gndn[net]); v.SetLayerPair(pcbnew.F_Cu,pcbnew.B_Cu); b.Add(v); added.append(p); fixed+=1; n+=1; done=True
+                                gx+=step
+                            gy+=step
+                        if done: break
+        if not fixed: break
+    return n
+print('island vias',island_vias())
+for z in b.Zones(): z.SetIslandRemovalMode(pcbnew.ISLAND_REMOVAL_MODE_ALWAYS)
+pcbnew.ZONE_FILLER(b).Fill(b.Zones())
+
 # 4. silkscreen. Reference designators go to F.Fab (the board is dense); the silk carries plain-language labels.
 for fp in b.GetFootprints(): fp.Reference().SetLayer(pcbnew.F_Fab)
 def text(s,x,y,size=0.8,just=pcbnew.GR_TEXT_H_ALIGN_CENTER,layer=pcbnew.F_SilkS,thick=None,mirror=False):
@@ -138,20 +181,24 @@ if TARGET=='head':
     logo(2.9,9.0,0.1,layer=pcbnew.B_SilkS,mirror=True)                        # back, the face the piezo sits on
     text('HEAD v1',5.0,7.8,0.8,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
 else:
-    text('SENSOR IN',4.6+DX,1.1,0.9); [text(l_,4.0+3.0*i_,35.5+(1.1 if i_%2 else 0.0),0.8) for i_,l_ in enumerate(['SIG','HPF','GAIN','LPF','DRV+','DRV-','AIN+','AIN-','5V','AVDD','MID5','VOCM','3V3','WAKE','TH+','TH-','GND','GND'])]; text('USB-C 5V',3.6,19.1,0.8); text('5V IN',16.2,29.4,0.8); text('+5V on centre',4.6+DX,2.3,0.7)                                  # J1, from the perfboard
-    text('SCOPE OUT',36.6+DX,0.9,0.9)                                 # J4, same signal the ADC sees (51 ohm)
-    text('WAKE LEVEL',23.2+DX,25.3,0.8)                               # RV1
-    text('1',42.0+DX,11.0,0.8)                                        # PMOD pin 1
-    text('CH',12.0+DX,1.2,1.0)                                        # channel number: write it in the box
-    r_=shape(pcbnew.SHAPE_T_RECT,width=0.15); r_.SetStart(V(OX+13.2+DX,OY+0.35)); r_.SetEnd(V(OX+21.5+DX,OY+2.15))
-    logo(15.6+DX,11.7,0.1)
-    text('AUSELIA',21.0+DX,13.4,1.0,pcbnew.GR_TEXT_H_ALIGN_LEFT)
-    text('TEST v2',21.0+DX,14.8,0.8,pcbnew.GR_TEXT_H_ALIGN_LEFT)
-    # back: the PMOD pin list and the title
-    for s_,y_,sz in (('ADS7057 test board v2',6.0,1.5),('Auselia 2026-10',8.4,1.2)):
-        text(s_,25+DX,y_,sz,layer=pcbnew.B_SilkS,thick=0.2,mirror=True)
-    for i,l in enumerate(['ZedBoard PMOD (J3)','1 CS    7 -','2 -     8 -','3 SDO   9 -','4 SCK  10 nWAKE','5 GND  11 GND','6 3V3  12 3V3']):
-        text(l,33.0+DX,16.5+i*1.4,1.0,pcbnew.GR_TEXT_H_ALIGN_LEFT,pcbnew.B_SilkS,0.15,True)
+    text('SENSOR IN',5.4,1.2,0.8); text('+3V3 on centre',5.4,20.6,0.0001) if False else None
+    text('SCOPE OUT',5.4,20.7,0.8)
+    TPN={'TP3':'SIG','TP4':'HPF','TP5':'GAIN','TP6':'LPF','TP7':'DRV+','TP8':'DRV-','TP9':'AIN+','TP10':'AIN-','TP11':'3V3','TP12':'AVDD','TP13':'MID5',
+         'TP14':'VOCM','TP15':'LST','TP16':'WAKE','TP17':'BIG','TP18':'REFL','TP19':'GND','TP20':'GND'}
+    from layout_v3 import POS as _P
+    for r_,n_ in TPN.items():
+        x_,y_,_r=_P[r_]
+        text(n_,x_,y_+1.6 if y_<10 else y_-1.6,0.8,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
+    # current links, named on the back below each jumper
+    for ref_,nm_ in (('JP1','HEAD'),('JP2','LISTEN'),('JP3','CAPTURE'),('JP4','AVDD'),('JP5','DVDD'),('JP6','PMOD 3V3')):
+        for fp_ in b.GetFootprints():
+            if fp_.GetReference()==ref_:
+                p_=fp_.GetPosition(); text(nm_,T(p_.x)-OX,T(p_.y)-OY,0.8,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
+    logo(44.0,7.0,0.1,layer=pcbnew.B_SilkS,mirror=True)
+    for s_,y_,sz in (('ADS7057 test board v3',16.5,1.2),('Auselia 2026-10',18.6,1.0)):
+        text(s_,18,y_,sz,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
+    for i,l in enumerate(['PMOD (J3)','1 CS    7 BIG_N','2 -     8 -','3 SDO   9 -','4 SCK  10 WAKE_N','5 GND  11 GND','6 3V3  12 3V3']):
+        text(l,W-31.0,3.5+i*1.5,0.9,pcbnew.GR_TEXT_H_ALIGN_LEFT,pcbnew.B_SilkS,0.15,True)
 b.GetDesignSettings().SetAuxOrigin(V(OX,OY+(HEADH if TARGET=='head' else H)))
 # pads that DRC reports with a starved thermal relief get a solid connection (self-correcting, up to 3 rounds)
 import subprocess,re

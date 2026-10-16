@@ -48,6 +48,9 @@ def build():
         [('1','OUTA','output'),('7','OUTB','output')],[('8','V+','power_in')],[('4','V-','power_in')]))
     S.append(mk_ic('OPA365','U','OPA365','Package_TO_SOT_SMD:SOT-23-5',TI+'opa365.pdf','50 MHz zero-crossover RRIO op-amp, 2.2-5.5 V, SOT-23-5 (DBV)',
         [('3','+IN','input'),('4','-IN','input')],[('1','OUT','output')],[('5','V+','power_in')],[('2','V-','power_in')]))
+    S.append(mk_ic('TLV7022','U','TLV7022','Package_TO_SOT_SMD:SOT-23-8',TI+'tlv7022.pdf','Dual open-drain comparator, 1.6-5.5 V, 5 uA per channel, 260 ns, SOT-23-8 (DDF)',
+        [('3','INA+','input'),('2','INA-','input'),('5','INB+','input'),('6','INB-','input')],
+        [('1','OUTA','open_collector'),('7','OUTB','open_collector')],[('8','VCC','power_in')],[('4','VEE','power_in')]))
     S.append(mk_ic('THS4531','U','THS4531',SOIC,TI+'ths4531.pdf','Low-power fully-differential amplifier, 2.5-5.5 V, SOIC-8',
         [('8','VIN+','input'),('1','VIN-','input'),('2','VOCM','input'),('7','~{PD}','input')],
         [('4','VOUT+','output'),('5','VOUT-','output')],[('3','VS+','power_in')],[('6','VS-','power_in')]))

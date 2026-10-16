@@ -17,7 +17,7 @@ ls -la fab/*.zip
 $PYK - <<'PY' 2>&1 | grep -v -E "assert|Warn"
 import pcbnew,json
 out={}
-for name,skip in (('ADC_Test',('H1','H2','C31','JP1')+tuple('TP%d'%k for k in range(1,21))),('ADC_Head',('TP1','TP2'))):
+for name,skip in (('ADC_Test',('H1','H2')+tuple('JP%d'%k for k in range(1,7))+tuple('TP%d'%k for k in range(1,21))),('ADC_Head',('TP1','TP2'))):
     b=pcbnew.LoadBoard(name+'.kicad_pcb'); smd=tht=0
     for f in b.GetFootprints():
         if f.GetReference() in skip or f.GetReference().startswith('MB'): continue

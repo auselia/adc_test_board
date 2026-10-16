@@ -69,6 +69,9 @@ POS={r:(x+DX,y,rot) for r,(x,y,rot) in POS.items()}
 POS.update(NEW)
 if TARGET=='head':
     POS=dict(HEAD); W,H=HW_,HH_
+else:
+    from layout_v3 import POS as _P3, W as _W3, H as _H3
+    POS=dict(_P3); W,H=_W3,_H3
 PCBFILE='ADC_Head.kicad_pcb' if TARGET=='head' else 'ADC_Test.kicad_pcb'
 FIXED={'J1','J2','J3','J4','J6','U4','H1','H2','TP1','TP2','U8','L1','J7'}
 def legalize(b,gap=0.1,iters=200):

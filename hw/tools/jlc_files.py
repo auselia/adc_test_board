@@ -6,7 +6,7 @@ from sexp import *
 HW=os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)),'..'))
 HEAD_REFS={'TP1','TP2','L1','C34','C35','C36','C37','C38','U8','R28','R29','R30','R31','J6'}
 TARGET=os.environ.get('BOARD','adc'); PFX='ADC_Head' if TARGET=='head' else 'ADC_Test'
-SKIP={'H1','H2','C31','JP1'}|{'TP%d'%k for k in range(1,21)}   # mounting holes, DNP, wire pads
+SKIP={'H1','H2'}|{'JP%d'%k for k in range(1,7)}|{'TP%d'%k for k in range(1,21)}   # mounting holes, DNP, wire pads
 import re
 # JLC rotation offsets, from matthewlai/JLCKicadTools cpl_rotations_db.csv (the table kicad-jlcpcb-tools uses)
 ROT_RULES=[(r'^SOT-223',180),(r'^SOT-23',-90),(r'^SOIC-',270),(r'^CP_EIA-',180)]
@@ -16,7 +16,7 @@ ROT_RULES=[(r'^SOT-223',180),(r'^SOT-23',-90),(r'^SOIC-',270),(r'^CP_EIA-',180)]
 #   (C29, the tantalum capacitor of the first revision, is gone)
 #   J7  1x2 header (J2 in the first revision) : viewer showed the pins horizontal, our pads are vertical        -> 0 -> 90
 #   J3  2x6 right angle  : viewer showed the row horizontal, our pads run vertically       -> 0 -> 90
-ROT_ABS={'U5':180,'J7':180,'J3':90}   # J7 is placed at 90 degrees in KiCad, the viewer needed +90 on top of that
+ROT_ABS={'J7':90,'J3':90}   # the viewer showed header J7 and J3 turned, as on the first revision. Check U6, U9, U8, J2 gone
 # Position offsets in mm (CPL frame: x right, y up) for parts whose JLC 3D model has a different origin than our
 # footprint. Measured in the viewer at 35.25 px/mm.
 #   RV1: model body centre was 2.5 mm right of the pins' centre and 1.0 mm low, hanging 0.6 mm off the board edge.
