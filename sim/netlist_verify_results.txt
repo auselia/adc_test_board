@@ -1,0 +1,39 @@
+== 1. DC operating point, all links closed, PMOD 3.3 V
+  +3V3                                   3.299 V    expect 3.25 .. 3.31   PASS
+  +3V3_L                                 3.299 V    expect 3.25 .. 3.31   PASS
+  +3V3_C                                 3.299 V    expect 3.25 .. 3.31   PASS
+  AVDD                                   3.271 V    expect 3.25 .. 3.31   PASS
+  DVDD                                   3.299 V    expect 3.25 .. 3.31   PASS
+  VMID5                                  1.649 V    expect 1.6 .. 1.7   PASS
+  VOCM                                   1.636 V    expect 1.6 .. 1.7   PASS
+  LST                                    1.643 V    expect 1.6 .. 1.7   PASS
+  WAKE_N                                 3.299 V    expect 3.25 .. 3.31   PASS
+  BIG_N                                  3.299 V    expect 3.25 .. 3.31   PASS
+  HEAD_LINE                              3.097 V    expect 2.8 .. 3.11   PASS
+  REFL against the resistor chain        1.643 V    expect 1.638 .. 1.662   PASS
+  TH1P against the resistor chain        1.667 V    expect 1.662 .. 1.686   PASS
+  TH1M against the resistor chain         1.62 V    expect 1.614 .. 1.638   PASS
+  TH2P against the resistor chain        1.719 V    expect 1.714 .. 1.738   PASS
+  TH2M against the resistor chain        1.568 V    expect 1.562 .. 1.586   PASS
+  ADC differential input                -4e-06 V    expect -0.005 .. 0.005   PASS
+  current from the PMOD                  24.77 mA   expect 15 .. 40   PASS
+== 2. AC gain from the head connector, SENSOR IN to nodes
+  SIG_IN to ADC at 250 kHz               12.28 dB   expect 11.5 .. 13   PASS
+  loss at 10 kHz re 250 kHz              40.52 dB   expect 38 .. 50   PASS
+  loss at 2 MHz re 250 kHz               23.97 dB   expect 18 .. 40   PASS
+  SIG_IN to LST at 250 kHz              -3.335 dB   expect -4.5 .. 0   PASS
+  thresholds at SIG_IN: WAKE_N 35 mV, BIG_N 111 mV (half windows at LST 23.6 and 75.6 mV, filter gain 0.68)
+  SIG_IN to LST at 10 kHz               -24.06 dB   expect -60 .. -12   PASS
+== 3. burst test, 250 kHz, 10 cycles, listener lines
+  burst    10 mV at the generator: SIG_IN  13.1 mV pk, LST  13.9 mV pk, WAKE_N high, BIG_N high, ADC    44 mV pk =  109 codes
+  burst    20 mV at the generator: SIG_IN  23.9 mV pk, LST  21.2 mV pk, WAKE_N high, BIG_N high, ADC    88 mV pk =  218 codes
+  burst    45 mV at the generator: SIG_IN  50.8 mV pk, LST  39.4 mV pk, WAKE_N LOW , BIG_N high, ADC   197 mV pk =  489 codes
+  burst   112 mV at the generator: SIG_IN 123.0 mV pk, LST  88.2 mV pk, WAKE_N LOW , BIG_N LOW , ADC   491 mV pk = 1218 codes
+  burst   200 mV at the generator: SIG_IN 217.9 mV pk, LST 152.2 mV pk, WAKE_N LOW , BIG_N LOW , ADC   876 mV pk = 2175 codes
+     10 mV: WAKE_N high, BIG_N high  PASS
+     20 mV: WAKE_N high, BIG_N high  PASS
+     45 mV: WAKE_N low, BIG_N high  PASS
+    112 mV: WAKE_N low, BIG_N low  PASS
+    200 mV: WAKE_N low, BIG_N low  PASS
+
+RESULT: ALL PASS

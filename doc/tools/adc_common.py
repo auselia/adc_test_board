@@ -78,7 +78,12 @@ L_I = RAIL / sum(_L)                         # chain current, A
 L_WAKE = L_I * _L[2]                         # half window of WAKE_N around REFL, volts
 L_BIG = L_I * (_L[2] + _L[1])                # half window of BIG_N
 L_REFL = RAIL * (_L[3] + _L[4] + _L[5]) / sum(_L)
-assert abs(L_REFL - 1.65) < 0.005 and abs(L_WAKE - 0.0283) < 0.001 and abs(L_BIG - 0.0801) < 0.001
+assert abs(L_REFL - 1.65) < 0.005 and abs(L_WAKE - 0.0236) < 0.001 and abs(L_BIG - 0.0756) < 0.001
+# gain from SIG_IN to LST at 250 kHz, from the netlist simulation (sim/netlist_verify.py), because the filters load each other
+_g = re.search(r'filter gain ([\d.]+)', open(os.path.join(REPO, 'sim', 'netlist_verify_results.txt')).read())
+LST_GAIN = float(_g.group(1))
+assert 0.6 < LST_GAIN < 0.8
+L_WAKE_IN, L_BIG_IN = L_WAKE / LST_GAIN, L_BIG / LST_GAIN       # thresholds referred to SIG_IN
 SIM_GAIN = SIM['adc']
 F = SIM['f']
 

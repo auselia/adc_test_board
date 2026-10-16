@@ -17,7 +17,7 @@ section('THE LISTENER', 'The listener', 'Section 5', 'Steps 31 to 35',
 
 # 31 --------------------------------------------------------------------------------------------
 pg = step('What the listener does',
-          [f'The listener is a second, very small circuit that watches SIG_IN, the same signal the chain sees. A 100 pF and 10 kΩ high-pass ({HP_L/1e3:.0f} kHz) and a 2.2 kΩ and 100 pF low-pass ({LP_L/1e3:.0f} kHz) keep only the AE band. Two comparators judge the result.',
+          [f'The listener is a second, very small circuit that watches SIG_IN, the same signal the chain sees. A 100 pF and 10 kΩ high-pass ({HP_L/1e3:.0f} kHz) and a 10 kΩ and 22 pF low-pass ({LP_L/1e3:.0f} kHz) keep only the AE band. The two filters pass {LST_GAIN:.2f} of the signal at 250 kHz. Two comparators judge the result.',
            'It is an **observer**. It never switches the capture chain. The chain stays on, so the FPGA has the full waveform and the listener decisions side by side. Both outputs are open-drain lines on the PMOD: WAKE_N for a medium burst and BIG_N for a large one.'])
 chip(pg, label='LISTENER, SIG_IN TO PMOD')
 xs_ = [2, 36, 70, 104]
@@ -34,22 +34,22 @@ assert ('C40', '1') in NET['SIG_IN'] and ('U6', '2') in NET['LST'] and ('U9', '2
 # 32 --------------------------------------------------------------------------------------------
 pg = step('How the thresholds are set',
           ['One resistor chain from 3.3 V to ground makes all four thresholds. Its middle node REFL rests at 1.65 V. Each comparator pair looks at LST against a node above REFL and a node below it, so it trips for a burst of either polarity.',
-           ('tex', r'V_{\mathrm{half}} = I \cdot R, \qquad I = \frac{3.3\,\mathrm{V}}{2.102\,\mathrm{M\Omega}} = 1.57\,\mu\mathrm{A}', 9.0),
-           f'The table converts each half window to charge with the head feedback capacitor Cf = {CF_HEAD*1e12:.0f} pF.'])
+           ('tex', r'V_{\mathrm{half}} = I \cdot R, \qquad I = \frac{3.3\,\mathrm{V}}{2.096\,\mathrm{M\Omega}} = 1.57\,\mu\mathrm{A}', 9.0),
+           f'The window at LST is divided by the filter gain {LST_GAIN:.2f} to refer it to SIG_IN, then converted to charge with Cf = {CF_HEAD*1e12:.0f} pF.'])
 chip(pg, label='THRESHOLDS, FROM THE RESISTORS')
-hdr = ['Output', 'Resistors', 'Half window', 'At head, Cf 47 pF']
+hdr = ['Output', 'Resistors', 'At LST', 'At SIG_IN', 'Charge, Cf 47 pF']
 rows = [hdr,
-        ['WAKE_N (U6)', 'R39, R40 18 kΩ', f'{L_WAKE*1e3:.0f} mV', f'{L_WAKE*CF_HEAD*1e12:.1f} pC'],
-        ['BIG_N (U9)', 'R22 + R39, 51 kΩ', f'{L_BIG*1e3:.0f} mV', f'{L_BIG*CF_HEAD*1e12:.1f} pC']]
+        ['WAKE_N (U6)', 'R39, R40 15 kΩ', f'{L_WAKE*1e3:.0f} mV', f'{L_WAKE_IN*1e3:.0f} mV', f'{L_WAKE_IN*CF_HEAD*1e12:.1f} pC'],
+        ['BIG_N (U9)', 'R22 + R39, 48 kΩ', f'{L_BIG*1e3:.0f} mV', f'{L_BIG_IN*1e3:.0f} mV', f'{L_BIG_IN*CF_HEAD*1e12:.1f} pC']]
 for i, row in enumerate(rows):
     yy = 42 + i * 7.4
     if i == 0:
         pg.rect(2, yy, 134, 7.4, '#e6ece4', 'none', 0)
     pg.line(2, yy + 7.4, 136, yy + 7.4, '#bbb', 0.15)
-    for xx, c_ in zip((4, 36, 76, 104), row):
+    for xx, c_ in zip((4, 32, 68, 90, 112), row):
         pg.text(xx, yy + 5.2, c_, 2.6, INK, 'start', i == 0)
-pg.text(4, 74, 'Chain: R21 1 MΩ, R22 33 kΩ, R39 18 kΩ, REFL, R40 18 kΩ, R41 33 kΩ, R23 1 MΩ.', 2.5, MUTED, 'start')
-pg.text(4, 80, 'For the low-power head (OPA314, Cf 220 pF) fit R39 and R40 as 6.8 kΩ and R22 and R41 as 15 kΩ.', 2.5, MUTED, 'start')
+pg.text(4, 74, 'Chain: R21 1 MΩ, R22 33 kΩ, R39 15 kΩ, REFL, R40 15 kΩ, R41 33 kΩ, R23 1 MΩ.', 2.5, MUTED, 'start')
+pg.text(4, 80, 'With the low-power head (OPA314, Cf 220 pF) the volts per pC fall by 4.7. The thresholds then sit near the comparator offset and need the ladder changed (plan, section 13).', 2.5, MUTED, 'start')
 
 # 33 --------------------------------------------------------------------------------------------
 pg = step('Why WAKE_N and BIG_N are open-drain',
@@ -79,11 +79,11 @@ assert ('R24', '2') in NET['WAKE_N'] and ('R42', '2') in NET['BIG_N'] and ('U6',
 
 # 34 --------------------------------------------------------------------------------------------
 pg = step('How fast and how accurate',
-          [f'The TLV7022 answers in about 260 ns and draws 5 µA per channel. Its input offset is up to ±8 mV and it adds about 7 mV of hysteresis. Against a half window of {L_WAKE*1e3:.0f} mV that is a quarter, so treat each threshold as ±8 mV.',
-           f'Real data decide the setting. On the 25 recorded captures the noise after the 100 kHz high-pass is 4.0 mV rms (worst 9.2 mV). The largest of the 18 noise captures peaks at 26 mV, under the {L_WAKE*1e3:.0f} mV of WAKE_N. The 7 true events peak at 52 to 188 mV, all above it (ESTIMATE, scaled to Cf 47 pF).'])
+          [f'The TLV7022 answers in about 260 ns and draws 5 µA per channel. Its input offset is up to ±8 mV and it adds about 7 mV of hysteresis. Against a half window of {L_WAKE*1e3:.0f} mV at LST that is a third, so treat each threshold as ±8 mV at LST, about ±{0.008/LST_GAIN*1e3:.0f} mV at SIG_IN.',
+           f'Real data decide the setting. On the 25 recorded captures the noise after the 100 kHz high-pass is 4.0 mV rms (worst 9.2 mV). The largest of the 18 noise captures peaks at 26 mV, under the {L_WAKE_IN*1e3:.0f} mV of WAKE_N at SIG_IN, a margin of only {L_WAKE_IN*1e3/26.1:.1f}×. The 7 true events peak at 52 to 188 mV, all above it (ESTIMATE, scaled to Cf 47 pF).'])
 chip(pg, label='THRESHOLD AGAINST DATA, MV AT THE HEAD')
-bars_ = [('noise rms, worst', 9.15, '#8c8c8c'), ('largest noise peak', 26.1, RED), ('WAKE_N half window', L_WAKE * 1e3, BLU),
-         ('smallest true event', 52.0, PUR), ('BIG_N half window', L_BIG * 1e3, BLU), ('largest true event', 188.0, PUR)]
+bars_ = [('noise rms, worst', 9.15, '#8c8c8c'), ('largest noise peak', 26.1, RED), ('WAKE_N at SIG_IN', L_WAKE_IN * 1e3, BLU),
+         ('smallest true event', 52.0, PUR), ('BIG_N at SIG_IN', L_BIG_IN * 1e3, BLU), ('largest true event', 188.0, PUR)]
 for k_, (nm, v_, c_) in enumerate(bars_):
     y_ = 40 + k_ * 7.4
     pg.text(2, y_ + 5.0, nm, 2.6, INK, 'start', True)
@@ -91,10 +91,10 @@ for k_, (nm, v_, c_) in enumerate(bars_):
     pg.text(48 + v_ / 200 * 80 + 2, y_ + 5.0, f'{v_:.0f} mV', 2.6, INK, 'start', True)
 
 # 35 --------------------------------------------------------------------------------------------
-v_w, v_b = L_WAKE, L_BIG
+v_w, v_b = L_WAKE_IN, L_BIG_IN
 pg = step('How to test the listener',
           [f'Feed a 250 kHz burst of ten cycles to J1 and watch TP15 (LST), TP16 (WAKE_N) and TP17 (BIG_N). At 20 mV the lines must stay high. At {1.6*v_w*1e3:.0f} mV WAKE_N must drop. At {1.4*v_b*1e3:.0f} mV both must drop. TP18 (REFL) must read 1.65 V all the time.',
-           'These amplitudes are at J1. The listener filters are close to unity at 250 kHz. Expect each threshold within ±8 mV because of the comparator offset. WAKE_N and BIG_N stay low only for the length of the burst.'])
+           'These amplitudes are at J1. The amplitudes are at SIG_IN, which J1 reaches through C33. Expect each threshold within about ±12 mV because of the comparator offset. WAKE_N and BIG_N stay low only for the length of the burst.'])
 chip(pg, label='BENCH STEPS')
 steps_ = [('1', 'TP18 REFL reads 1.65 V, TP16 and TP17 read 3.3 V'), ('2', 'Feed 250 kHz, 20 mV: both lines stay high'),
           ('3', f'Feed {1.6*v_w*1e3:.0f} mV: WAKE_N drops, BIG_N stays high'), ('4', f'Feed {1.4*v_b*1e3:.0f} mV: both drop'),

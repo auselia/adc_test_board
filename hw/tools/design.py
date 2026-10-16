@@ -29,7 +29,7 @@ FP_PZ='TestPoint:TestPoint_THTPad_D2.0mm_Drill1.0mm'
 # LCSC part numbers, checked in the JLCPCB parts library on 2026-10-12. All are JLC "Basic" parts
 # except ADS7057, OPA2365, THS4531, TLV7022, the 470 uH inductors and the THT parts J1/J4/J7/J3 (Extended).
 LCSC={'10R':'C22859','22R':'C23345','1.00k':'C21190','2.2k':'C4190','3.9k':'C23018','10k':'C25804','20k':'C4184','33k':'C4216',
-      '100pF C0G':'C14858','47pF C0G':'C1671','1M':'C22935','47R':'C23182','470uH':'C75644','100nF':'C14663','1uF':'C15849','4.7uF':'C19666','10uF':'C19702','10uF 25V':'C15850','22uF 25V':'C45783','51R':'C23197','5.1k':'C23186','47k':'C25819','15k':'C22809','6.8k':'C23212','18k':'C25810'}
+      '100pF C0G':'C14858','47pF C0G':'C1671','1M':'C22935','47R':'C23182','470uH':'C75644','100nF':'C14663','1uF':'C15849','4.7uF':'C19666','10uF':'C19702','10uF 25V':'C15850','22uF 25V':'C45783','51R':'C23197','5.1k':'C23186','47k':'C25819','15k':'C22809','6.8k':'C23212','18k':'C25810','22pF C0G':'C1653'}
 def R(sh,x,y,val,a,b,ref,rot=90): return add(sh,'Device:R',val,FP_R,x,y,{'1':a,'2':b},'R',rot,ref=ref,props={'LCSC':LCSC[val]})
 def C(sh,x,y,val,a,b,ref,rot=0): return add(sh,'Device:C',val,FP_C8 if '25V' in val else FP_C,x,y,{'1':a,'2':b},'C',rot,ref=ref,props={'LCSC':LCSC[val]})
 def R4(sh,x,y,val,a,b,ref,lcsc,rot=90): return add(sh,'Device:R',val,FP_R4,x,y,{'1':a,'2':b},'R',rot,ref=ref,props={'LCSC':lcsc})
@@ -77,11 +77,11 @@ def build():
     R(sh,350,205,'10R','AVDD_IN','AVDD','R34',90); C(sh,360,235,'10uF','AVDD','GND','C21'); C(sh,375,235,'100nF','AVDD','GND','C22')
     add(sh,'Jumper:SolderJumper_2_Bridged','DVDD LINK',FP_JP,390,205,{'1':'+3V3','2':'DVDD'},'JP',rot=90,ref='JP5')
     # ---- listener: passive band-pass on SIG_IN, two window comparators (WAKE_N small, BIG_N large), open drain
-    text(sh,"Listener (observer, never gates the chain). SIG_IN -> C40 100 pF / R35 10k to REFL (150 kHz high-pass) -> R36 2.2k / C41 100 pF (low-pass) -> LST.",20,275,1.8)
+    text(sh,"Listener (observer, never gates the chain). SIG_IN -> C40 100 pF / R35 10k to REFL (159 kHz high-pass) -> R36 10k / C41 22 pF (723 kHz low-pass, light load on the high-pass) -> LST.",20,275,1.8)
     text(sh,"TLV7022 open-drain comparators. Thresholds from the 1M / 33k / 18k ladder (about +-30 mV and +-84 mV for the 47 pF head, plus 3.6 mV of internal hysteresis). For the 100 pF head use 15k and 6.8k. WAKE_N = small window, BIG_N = large window. Pull-ups R24, R42 to +3V3.",20,281,1.8)
-    C(sh,40,300,'100pF C0G','SIG_IN','LST_A','C40',90); R(sh,60,300,'10k','LST_A','REFL','R35',0); R(sh,80,300,'2.2k','LST_A','LST','R36',90); C(sh,100,300,'100pF C0G','LST','GND','C41')
-    R(sh,40,330,'1M','+3V3_L','TH2P','R21',0); R(sh,55,330,'33k','TH2P','TH1P','R22',0); R(sh,70,330,'18k','TH1P','REFL','R39',0)
-    R(sh,85,330,'18k','REFL','TH1M','R40',0); R(sh,100,330,'33k','TH1M','TH2M','R41',0); R(sh,115,330,'1M','TH2M','GND','R23',0)
+    C(sh,40,300,'100pF C0G','SIG_IN','LST_A','C40',90); R(sh,60,300,'10k','LST_A','REFL','R35',0); R(sh,80,300,'10k','LST_A','LST','R36',90); C(sh,100,300,'22pF C0G','LST','GND','C41')
+    R(sh,40,330,'1M','+3V3_L','TH2P','R21',0); R(sh,55,330,'33k','TH2P','TH1P','R22',0); R(sh,70,330,'15k','TH1P','REFL','R39',0)
+    R(sh,85,330,'15k','REFL','TH1M','R40',0); R(sh,100,330,'33k','TH1M','TH2M','R41',0); R(sh,115,330,'1M','TH2M','GND','R23',0)
     C(sh,40,350,'100nF','TH2P','GND','C43'); C(sh,55,350,'100nF','TH1P','GND','C26'); C(sh,70,350,'1uF','REFL','GND','C42'); C(sh,85,350,'100nF','TH1M','GND','C27'); C(sh,100,350,'100nF','TH2M','GND','C44')
     add(sh,'Auselia:TLV7022','TLV7022','Package_TO_SOT_SMD:SOT-23-8',150,320,{'3':'TH1P','2':'LST','5':'LST','6':'TH1M','1':'WAKE_N','7':'WAKE_N','8':'+3V3_L','4':'GND'},'U',ref='U6',props={'LCSC':'C2862588'})
     add(sh,'Auselia:TLV7022','TLV7022','Package_TO_SOT_SMD:SOT-23-8',190,320,{'3':'TH2P','2':'LST','5':'LST','6':'TH2M','1':'BIG_N','7':'BIG_N','8':'+3V3_L','4':'GND'},'U',ref='U9',props={'LCSC':'C2862588'})

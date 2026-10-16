@@ -173,14 +173,14 @@ table(pg, 4, 40, [34, 48, 44], rows, rh=5.8, size=2.6)
 
 # 52 --------------------------------------------------------------------------------------------
 rows = [['Burst at J1', 'WAKE_N', 'BIG_N']]
-for v_ in (0.020, 1.6 * L_WAKE, 1.4 * L_BIG):
-    rows.append([f'{v_*1e3:.0f} mV peak', 'low' if v_ > L_WAKE else 'high', 'low' if v_ > L_BIG else 'high'])
+for v_ in (0.020, 1.3 * L_WAKE_IN, 1.4 * L_BIG_IN):
+    rows.append([f'{v_*1e3:.0f} mV peak', 'low' if v_ > L_WAKE_IN else 'high', 'low' if v_ > L_BIG_IN else 'high'])
 pg = step('How to test the listener thresholds',
-          [f'Sweep a 250 kHz burst at J1 from 10 mV upward. WAKE_N must drop between about {(L_WAKE-0.008)*1e3:.0f} and {(L_WAKE+0.008)*1e3:.0f} mV. BIG_N must drop between about {(L_BIG-0.008)*1e3:.0f} and {(L_BIG+0.008)*1e3:.0f} mV. The table gives the three points to check.',
-           f'The quiet perfboard noise is {INB:.1f} mV rms in the band, so WAKE_N at {L_WAKE*1e3:.0f} mV is about {L_WAKE*1e3/INB:.0f} times the noise. The comparator offset (up to ±8 mV, datasheet) moves each threshold by that much.'])
+          [f'Sweep a 250 kHz burst at J1 from 10 mV upward. WAKE_N must drop between about {(L_WAKE-0.008)/LST_GAIN*1e3:.0f} and {(L_WAKE+0.008)/LST_GAIN*1e3:.0f} mV. BIG_N must drop between about {(L_BIG-0.008)/LST_GAIN*1e3:.0f} and {(L_BIG+0.008)/LST_GAIN*1e3:.0f} mV. The table gives the three points to check.',
+           f'The quiet perfboard noise is {INB:.1f} mV rms in the band, so WAKE_N at {L_WAKE_IN*1e3:.0f} mV is about {L_WAKE_IN*1e3/INB:.0f} times the noise. The comparator offset (up to ±8 mV, datasheet) moves each threshold by that much.'])
 chip(pg, label='COMPUTED FROM THE RESISTORS')
 table(pg, 4, 40, [44, 40, 40], rows, rh=7.0, size=2.7)
-pg.text(4, 82, 'ESTIMATE: the high-pass and low-pass of the listener are close to unity at 250 kHz.', 2.4, MUTED)
+pg.text(4, 82, f'ESTIMATE: the listener filters pass {LST_GAIN:.2f} at 250 kHz, from the netlist simulation.', 2.4, MUTED)
 
 # 53 --------------------------------------------------------------------------------------------
 pg = step('What if it does not work',
@@ -207,7 +207,8 @@ rows = [['Item', 'Status', 'How'],
         ['Chain response, noise', 'Simulated', 'ngspice, vendor models'],
         ['Head and bias-T at 3.3 V', 'Simulated', 'ngspice, OPA365'],
         ['Listener on real captures', 'Simulated', 'Python, 25 captures'],
+        ['As-built netlist, rails to listener', 'Simulated', 'ngspice, netlist_verify'],
         ['ZedBoard 3.3 V rail noise', 'OPEN', 'probe TP11 and TP12'],
         ['PMOD fit, adjacent ports', 'OPEN', 'print 1:1 and test'],
         ['First board, bench', 'OPEN', 'steps 49 to 52']]
-table(pg, 4, 36, [44, 28, 54], rows, rh=5.4, size=2.5, colors={6: '#fde5e5', 7: '#fde5e5', 8: '#fde5e5'})
+table(pg, 4, 36, [44, 28, 54], rows, rh=5.0, size=2.5, colors={7: '#fde5e5', 8: '#fde5e5', 9: '#fde5e5'})

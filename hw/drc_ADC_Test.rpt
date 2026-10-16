@@ -1,5 +1,5 @@
 ** Drc report for ADC_Test.kicad_pcb **
-** Created on 2026-10-15T22:00:11 **
+** Created on 2026-10-15T22:33:56 **
 ** Report includes: Errors, Warnings, Exclusions **
 
 ** Found 12 DRC violations **
@@ -29,24 +29,24 @@
     @(222.3500 mm, 103.0200 mm): Rectangle of J3 on F.Silkscreen
 [silk_overlap]: Silkscreen clearance
     Rule: board setup constraints silk; warning
-    @(180.6900 mm, 104.2000 mm): PCB text 'CAPTURE' on B.Silkscreen
     @(194.0000 mm, 105.0000 mm): PCB text '1 CS    7 BIG_N' on B.Silkscreen
+    @(180.6900 mm, 104.2000 mm): PCB text 'CAPTURE' on B.Silkscreen
 [silk_overlap]: Silkscreen clearance
     Rule: board setup constraints silk; warning
     @(194.0000 mm, 105.0000 mm): PCB text '1 CS    7 BIG_N' on B.Silkscreen
     @(184.2800 mm, 105.8000 mm): PCB text 'MID5' on B.Silkscreen
 [silk_overlap]: Silkscreen clearance
     Rule: board setup constraints silk; warning
-    @(187.4700 mm, 105.8000 mm): PCB text 'VOCM' on B.Silkscreen
     @(194.0000 mm, 106.5000 mm): PCB text '2 -     8 -' on B.Silkscreen
+    @(187.4700 mm, 105.8000 mm): PCB text 'VOCM' on B.Silkscreen
 [silk_overlap]: Silkscreen clearance
     Rule: board setup constraints silk; warning
     @(194.0000 mm, 105.0000 mm): PCB text '1 CS    7 BIG_N' on B.Silkscreen
     @(187.4700 mm, 105.8000 mm): PCB text 'VOCM' on B.Silkscreen
 [silk_overlap]: Silkscreen clearance
     Rule: board setup constraints silk; warning
-    @(190.6600 mm, 105.8000 mm): PCB text 'AVDD' on B.Silkscreen
     @(194.0000 mm, 105.0000 mm): PCB text '1 CS    7 BIG_N' on B.Silkscreen
+    @(190.6600 mm, 105.8000 mm): PCB text 'AVDD' on B.Silkscreen
 [silk_over_copper]: Silkscreen clipped by solder mask
     Local override; warning
     @(118.0000 mm, 116.5000 mm): PCB text 'ADS7057 test board v3' on B.Silkscreen

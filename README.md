@@ -21,7 +21,7 @@ The board is a narrow strip (21.5 mm) so that boards fit on adjacent PMOD ports 
 |---|---|---|
 | Supply | USB-C or header, 5 V, SS14, ferrite, XC6206 for AVDD | **PMOD 3.3 V only** (header J7 for the bench). AVDD through 10 Ω and 10 µF |
 | Rails | 5 V, 2.3 V VMID5, 1.65 V VOCM | 3.3 V, **1.65 V** VMID5 and VOCM |
-| Wake-up | LM393 window, trimmer RV1, nWAKE | **Listener**: passive 159 kHz high-pass, 723 kHz low-pass, two TLV7022 comparators. WAKE_N (28 mV) and BIG_N (80 mV) on PMOD pins 10 and 7. Observer only |
+| Wake-up | LM393 window, trimmer RV1, nWAKE | **Listener**: passive 159 kHz high-pass, 723 kHz low-pass, two TLV7022 comparators. WAKE_N (35 mV) and BIG_N (111 mV) at SIG_IN, on PMOD pins 10 and 7. Observer only |
 | Current measurement | none | Jumpers JP2 (listener), JP3 (capture), JP4 (AVDD), JP5 (DVDD), JP6 (PMOD 3V3) |
 | Test points | TP3 to TP20 on a bottom strip | TP3 to TP20 inside each block, names on the back |
 | Size | 57 × 37.6 mm | 125 × 21.5 mm |
@@ -46,8 +46,8 @@ The board serves two purposes. In the plant experiments, four boards sit on ZedB
 | Rail links | JP2 → +3V3_L (listener), JP3 → +3V3_C (U1, U2, U3), JP4 → AVDD, JP5 → DVDD | Cut one to put an ammeter in series |
 | MON output | 51 Ω from LPF_OUT to SMA J4 | The scope sees the same signal the ADC samples |
 | Bias-T on SENSOR IN (J1) | JP1 (bridged), R26 47R + C32 10 µF, L2 470 µH, C33 100 nF, R27 1M | 3.3 V reaches the coax centre through 47 Ω and 470 µH. C33 passes the head signal to the filters |
-| Listener filter | C40 100 pF + R35 10k (high-pass 159 kHz), R36 2.2k + C41 100 pF (low-pass 723 kHz) | Output LST, TP15 |
-| Listener thresholds | R21 1M, R22 33k, R39 18k, R40 18k, R41 33k, R23 1M from +3V3_L to ground; REFL = 1.65 V | WAKE_N ±28 mV, BIG_N ±80 mV around REFL (1.3 pC and 3.8 pC at Cf 47 pF) |
+| Listener filter | C40 100 pF + R35 10k (high-pass 159 kHz), R36 10k + C41 22 pF (low-pass 723 kHz) | Output LST, TP15. Gain 0.68 at 250 kHz (the filters load each other) |
+| Listener thresholds | R21 1M, R22 33k, R39 15k, R40 15k, R41 33k, R23 1M from +3V3_L to ground; REFL = 1.65 V | WAKE_N ±24 mV and BIG_N ±76 mV at LST, which is 35 mV and 111 mV at SIG_IN (1.6 pC and 5.2 pC at Cf 47 pF) |
 | Listener comparators | U6 (WAKE_N), U9 (BIG_N), TLV7022, 5 µA per channel, 260 ns | Open drain, 47k pull-ups R24 and R42 to 3.3 V |
 
 Main board: 125 × 21.5 mm, 2 layers, all SMD parts on top, GND pour on both layers, 786 + 100 tracks.
@@ -190,7 +190,8 @@ J3 and J7 have their origin on pin 1 in the KiCad footprint, so they are placed 
 | DC bias, AC response, noise | Done | Table below |
 | Tolerance Monte Carlo, 150 runs | Done | 10 kHz loss under 40 dB in 11 of 150 runs |
 | 250 kHz burst, headroom at 3.3 V | Done | A 120 mV event reaches 16 % of full scale. Clipping starts near 0.37 V (`doc/data/sim.json`) |
-| Listener on 25 real captures | Done | 7 of 7 events above WAKE_N, none of the 18 noise captures (peak 26 mV against 28 mV). Rate of false alarms per hour is open (`sim/g1_listener.py`) |
+| As-built netlist, rails to listener | Done | `python3 sim/netlist_verify.py`: 18 DC checks, gains and bursts all pass. It found that the first listener filter passed only 0.45 of the signal, which was fixed (R36, C41, R39, R40) |
+| Listener on 25 real captures | Done | 7 of 7 events above WAKE_N, none of the 18 noise captures (peak 26 mV against 35 mV). Rate of false alarms per hour is open (`sim/g1_listener.py`) |
 | ADC input settling | Done | 30 to 55 ns against 95 ns minimum |
 | Cable on the SCOPE OUT SMA | Done | No peaking up to 5 nF |
 | THS4531 into 10 Ω and 400 pF | **Open** | TI's model fails in ngspice and LTspice batch mode does not run here. `sim/ths4531_stability_estimate.py` gives 48 to 77° of margin for assumed output impedances. Run `sim/ltspice/ths4531_cap_load.cir` in LTspice |
@@ -235,7 +236,7 @@ With the sensor head: connect it to J1 with the coax, power the board from the P
 3. Feed J1 from the Analog Discovery 2 with a 250 kHz, 100 mV sine. Compare SCOPE OUT with the input on the scope (1 MΩ input).
 4. Read SPI codes. Check the idle code and the amplitude against the scope.
 5. Sweep 10 kHz to 2 MHz and compare with the table above. The 10 kHz loss is the thinnest margin.
-6. Raise a 250 kHz burst from 10 mV: WAKE_N must drop near 28 mV and BIG_N near 80 mV (±8 mV comparator offset). Log TP15 to TP18 on the scope.
+6. Raise a 250 kHz burst from 10 mV: WAKE_N must drop near 35 mV and BIG_N near 111 mV at J1 (±12 mV from the comparator offset). Log TP15 to TP18 on the scope.
 7. Cut JP2 to JP5 one at a time and read the current of each block (listener about 25 µA).
 
 ## Manual (`doc/`)
