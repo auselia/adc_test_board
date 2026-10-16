@@ -33,9 +33,9 @@ assert ('C40', '1') in NET['SIG_IN'] and ('U6', '2') in NET['LST'] and ('U9', '2
 
 # 32 --------------------------------------------------------------------------------------------
 pg = step('How the thresholds are set',
-          ['One resistor chain from 3.3 V to ground makes all four thresholds. Its middle node REFL rests at 1.65 V. Each comparator pair looks at LST against a node above REFL and a node below it, so it trips for a burst of either polarity.',
+          ['One resistor chain from 3.3 V to ground makes all four thresholds. Its middle node REFL rests at 1.65 V. Each comparator pair compares LST with a node above and a node below REFL, so either polarity trips it.',
            ('tex', r'V_{\mathrm{half}} = I \cdot R, \qquad I = \frac{3.3\,\mathrm{V}}{2.096\,\mathrm{M\Omega}} = 1.57\,\mu\mathrm{A}', 9.0),
-           f'The window at LST is divided by the filter gain {LST_GAIN:.2f} to refer it to SIG_IN, then converted to charge with Cf = {CF_HEAD*1e12:.0f} pF.'])
+           f'Divide by the filter gain {LST_GAIN:.2f} to refer LST to SIG_IN. Charge uses Cf = {CF_HEAD*1e12:.0f} pF.'])
 chip(pg, label='THRESHOLDS, FROM THE RESISTORS')
 hdr = ['Output', 'Resistors', 'At LST', 'At SIG_IN', 'Charge, Cf 47 pF']
 rows = [hdr,
@@ -48,8 +48,9 @@ for i, row in enumerate(rows):
     pg.line(2, yy + 7.4, 136, yy + 7.4, '#bbb', 0.15)
     for xx, c_ in zip((4, 32, 68, 90, 112), row):
         pg.text(xx, yy + 5.2, c_, 2.6, INK, 'start', i == 0)
-pg.text(4, 74, 'Chain: R21 1 MΩ, R22 33 kΩ, R39 15 kΩ, REFL, R40 15 kΩ, R41 33 kΩ, R23 1 MΩ.', 2.5, MUTED, 'start')
-pg.text(4, 80, 'With the low-power head (OPA314, Cf 220 pF) the volts per pC fall by 4.7. The thresholds then sit near the comparator offset and need the ladder changed (plan, section 13).', 2.5, MUTED, 'start')
+pg.text(4, 70, 'Chain: R21 1 MΩ, R22 33 kΩ, R39 15 kΩ, REFL, R40 15 kΩ, R41 33 kΩ, R23 1 MΩ.', 2.5, MUTED, 'start')
+pg.text(4, 75, 'With the OPA314 head (Cf 220 pF) volts per pC fall by 4.7. The ladder then needs', 2.5, MUTED, 'start')
+pg.text(4, 80, 'changing, because the thresholds approach the comparator offset (plan, section 13).', 2.5, MUTED, 'start')
 
 # 33 --------------------------------------------------------------------------------------------
 pg = step('Why WAKE_N and BIG_N are open-drain',
