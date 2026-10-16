@@ -10,7 +10,7 @@ GBW = 50e6                                    # DS: OPA365 gain-bandwidth
 CF, RF = val('C34'), val('R28')
 Q_LO, Q_HI = 4e-12, 7e-12                     # AFE description 2.2: peak charge of the seven events, after the model correction
 SB = {}
-for _l in open(os.path.join(REPO, 'sim', 'head_bias_t_results.txt')):
+for _l in open(os.path.join(REPO, 'sim', 'head_bias_t_3v3_results.txt')):
     m_ = re.match(r'\s*([a-z_0-9()]+)\s*=\s*([-\d.e+]+)', _l)
     if m_:
         SB[m_.group(1)] = float(m_.group(2))
@@ -23,9 +23,9 @@ section('THE SENSOR HEAD', 'The sensor head', 'Section 9', 'Steps 55 to 60',
 # 55 --------------------------------------------------------------------------------------------
 pg = step('What the sensor head does',
           ['The head is the perfboard on a PCB. The piezo wires solder to it. It turns the charge of the piezo into a voltage and sends that voltage down one coax cable.',
-           'The same coax brings 5 V from the ADC board to the head. So the head needs one cable and no battery.'])
+           'The same coax brings 3.3 V from the ADC board to the head. So the head needs one cable and no battery. The OPA365 is the lab default. For the battery product, fit an OPA314 (150 µA) and Cf 220 pF on the same pads.'])
 chip(pg, label='CHAIN')
-bx_ = [(2, 'Piezo', ['1.6 nF'], 'ext'), (30, 'Head', ['charge amp', 'U8'], 'ctrl'), (58, 'Coax', ['5 V down', 'signal up'], 'bus'),
+bx_ = [(2, 'Piezo', ['1.6 nF'], 'ext'), (30, 'Head', ['charge amp', 'U8'], 'ctrl'), (58, 'Coax', ['3.3 V down', 'signal up'], 'bus'),
        (86, 'SENSOR IN', ['bias-T', 'J1'], 'arith'), (114, 'Filters', ['and ADC'], 'mem')]
 for x_, t_, s_, k_ in bx_:
     pbox(pg, x_, 44, 24, 16, t_, s_, k_)
@@ -76,10 +76,10 @@ pg.text(76, 41, f'L2 {val("L2")*1e6:.0f} µH', 2.5, INK, 'start', True)
 pg.line(84, yL, 84, 56, INK, 0.5); pg.rect(81.5, 52, 5, 4, '#fff', INK, 0.5)
 pg.line(84, 52, 84, 46, INK, 0.5); pg.line(84, 46, 98, 46, INK, 0.5)
 res_h(pg, 98, 46, 12, 'R26', '47 Ω')
-pg.line(110, 46, 114, 46, INK, 0.5); pg.text(116, 47, '+5 V', 2.5, INK, 'start', True)
+pg.line(110, 46, 114, 46, INK, 0.5); pg.text(116, 47, '+3V3', 2.5, INK, 'start', True)
 cap_h(pg, 32, yL, 6, 'C38', '100 nF', INK, above=False)
 cap_h(pg, 90, yL, 6, 'C33', '100 nF', INK, above=False)
-pg.text(65, 86, f'L1 and L2 are the same part. Cut the solder jumper JP1 (between C32 and L2) to turn the 5 V off.', 2.3, MUTED, 'middle')
+pg.text(65, 86, f'L1 and L2 are the same part. Cut the solder jumper JP1 (between C32 and L2) to turn the 3.3 V off.', 2.3, MUTED, 'middle')
 
 # 58 --------------------------------------------------------------------------------------------
 refs_h = sorted(HFP)
@@ -125,9 +125,9 @@ for i, row in enumerate(rows):
         pg.text(xx, yy + rh / 2 + 0.8, c_, 2.3, INK, 'start', i == 0)
 
 # 60 --------------------------------------------------------------------------------------------
-ihead = 4.7e-3                                  # ngspice, OPA365 model (head_bias_t_results.txt, i(v5) minus the reference amplifier)
+ihead = abs(SB['i(v5)']) / 2                    # ngspice, OPA365 model (head_bias_t_3v3_results.txt: head plus an identical reference amplifier)
 pg = step('How to test the head',
-          ['Power the ADC board from 5 V (USB-C or header) and connect the head to SENSOR IN (J1) with the coax. Measure the head first, then inject a known charge. A 10 pF capacitor from the function generator to the piezo + pad gives Q = 10 pF × ΔV.',
+          ['Power the ADC board from the PMOD or the header J7 and connect the head to SENSOR IN (J1) with the coax. Measure the head first, then inject a known charge. A 10 pF capacitor from the function generator to the piezo + pad gives Q = 10 pF × ΔV.',
            f'A step of 100 mV injects 1 pC. The output moves by {1e-12/CF*1e3:.0f} mV, because Q / Cf = 1 pC / {CF*1e12:.0f} pF.'])
 chip(pg, label='EXPECTED VALUES')
 rows = [['Where', 'Expect'],
@@ -135,7 +135,7 @@ rows = [['Where', 'Expect'],
         ['VREF, C35', f'about {SB["v(vref)"]:.1f} V after 0.2 s'],
         ['U8 output, R31 pad 1', 'equal to VREF'],
         ['J1 centre pin', f'about {SB["v(lh)"]:.1f} V'],
-        ['Extra current on the 5 V input', f'about {ihead*1e3:.0f} mA'],
+        ['Extra current on the 3.3 V input', f'about {ihead*1e3:.0f} mA'],
         ['100 mV step via 10 pF', f'{1e-12/CF*1e3:.0f} mV step at SIG_IN']]
 for i, row in enumerate(rows):
     yy = 38 + i * 6.2

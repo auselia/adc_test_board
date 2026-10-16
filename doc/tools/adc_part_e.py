@@ -49,7 +49,7 @@ joints = json.load(open(os.path.join(FAB, 'joints.json')))
 # 45 --------------------------------------------------------------------------------------------
 pg = step('Which files go to the factory',
           [f'JLCPCB needs three files. The Gerber zip makes the bare board. The BOM names every part. The CPL gives the position and angle of each part.',
-           f'The main board zip holds {n_gb} files. The BOM has {n_lines} lines and {n_parts} parts. The CPL has {len(cpl)} rows. The mounting holes and the not-fitted capacitor C31 are in none of them. The sensor head has its own zip, BOM and CPL.'])
+           f'The main board zip holds {n_gb} files. The BOM has {n_lines} lines and {n_parts} parts. The CPL has {len(cpl)} rows. The mounting holes, the solder jumpers JP1 to JP6 and the test points are in none of them. The sensor head has its own zip, BOM and CPL.'])
 chip(pg, label='FILES IN hw/fab')
 items = [('ADC_Test_gerbers.zip', 'Copper, mask, silk, paste, outline, drill', PUR),
          ('ADC_Test_BOM_JLC.csv', 'Value, references, footprint, LCSC number', BLU),
@@ -59,38 +59,39 @@ for i, (nm, d_, c_) in enumerate(items):
     pg.rect(6, yy, 124, 11, '#fff', c_, 0.6, 1.2)
     pg.text(9, yy + 4.6, nm, 3.0, INK, 'start', True)
     pg.text(9, yy + 8.6, d_, 2.5, MUTED, 'start')
-assert 'C31' not in {r for row in bom for r in row['Designator'].split(',')}
+assert not any(r.startswith(('JP', 'TP', 'H')) for row in bom for r in row['Designator'].split(','))
 
 # 46 --------------------------------------------------------------------------------------------
-ext = ['C130011', 'C705347', 'C2669902', 'C165948', 'C75644']
 names = {r['LCSC Part #']: r for r in bom}
+ext = [l for l in names if l in cost.EXT_SMD]
 pg = step('What is in the BOM',
-          [f'{n_lines} lines hold {n_parts} parts. Five lines hold extended parts, and JLCPCB charges a fee for each type. All other lines hold basic parts.',
-           'The ADC, the driver and the two op-amps are the extended parts, with the USB-C connector and the 470 µH inductor of the bias-T.'])
+          [f'{n_lines} lines hold {n_parts} parts. {len(ext)} lines hold extended parts, and JLCPCB charges a fee for each type. All other lines hold basic parts.',
+           'The ADC, the driver, the op-amps, the comparators and the 470 µH inductor of the bias-T are the extended parts.'])
 chip(pg, label='EXTENDED PARTS, PRICE PER PART')
 rows = [['Ref', 'Part', 'LCSC', 'Price']]
 for l in ext:
     r = names[l]
-    rows.append([r['Designator'], r['Comment'], l, f"${cost.PRICE[l]:.2f}"])
-table(pg, 4, 38, [24, 46, 28, 22], rows, rh=6.4, size=2.7)
-pg.text(4, 80, f'Through-hole parts: J1 J4 SMA, J7, J3, RV1. The USB-C J2 has four through-hole tabs. JLCPCB solders them by hand, for a fee per joint.', 2.5, MUTED)
-assert all(l in cost.EXT_SMD for l in ext)
+    rows.append([r['Designator'][:14], r['Comment'][:26], l, f"${cost.PRICE[l]:.2f}"])
+table(pg, 4, 38, [30, 48, 28, 20], rows, rh=5.6, size=2.5)
+pg.text(4, 82, f'Through-hole parts: J1 and J4 SMA, J7 and J3. JLCPCB solders them by hand, for a fee per joint.', 2.5, MUTED)
 
 # 47 --------------------------------------------------------------------------------------------
 pos = {r['Ref']: r for r in csv.DictReader(open(os.path.join(FAB, 'ADC_Test_pos_kicad.csv')))}
 cplr = {r['Designator']: r for r in cpl}
 fix = []
-for ref, why in (('U5', 'viewer showed it turned; set absolute angle'), ('J7', 'viewer showed it turned; set absolute angle'),
-                 ('J3', 'viewer showed it turned; set absolute angle')):
+for ref in sorted(pos, key=lambda r: (r[0], int(re.sub(r'\D', '', r) or 0))):
+    if ref not in cplr:
+        continue
     k_ = float(pos[ref]['Rot']) % 360
     c_ = float(cplr[ref]['Rotation'])
-    assert k_ != c_
-    fix.append([ref, f'{k_:.0f}°', f'{c_:.0f}°', why])
+    if k_ != c_:
+        fix.append([ref, f'{k_:.0f}°', f'{c_:.0f}°', 'viewer showed it turned; set absolute angle'])
+assert fix
 pg = step('What the placement viewer corrected',
-          ['The JLCPCB viewer showed three parts turned wrong on the first revision. The new parts (J2 USB-C, U8, L1, L2, J6) are not checked yet. The KiCad footprints and the JLC library disagree on the zero angle. Each fix sits in `jlc_files.py`, not in the board.',
-           'The trimmer RV1 also moved 2.54 mm in X and 1 mm in Y, because its library origin differs from the pin 1 pad.'])
+          [f'The JLCPCB viewer showed parts turned wrong on the first revision. {len(fix)} rotations are corrected in the CPL. The new parts of this revision (U6 and U9 TLV7022, U8, L1, L2, J6) are not checked in the viewer yet. Each fix sits in `jlc_files.py`, not in the board.',
+           'The KiCad footprints and the JLC library disagree on the zero angle. J3 and J7 also have their origin on pin 1, so they are placed by that pin.'])
 chip(pg, label='KICAD ROTATION AGAINST CPL ROTATION')
-table(pg, 4, 40, [14, 18, 18, 86], [['Ref', 'KiCad', 'CPL', 'Why']] + fix, rh=7.0, size=2.6)
+table(pg, 4, 40, [14, 18, 18, 86], [['Ref', 'KiCad', 'CPL', 'Why']] + fix[:8], rh=5.6, size=2.5)
 pg.text(4, 80, 'Rule: look at every part in the viewer once. The viewer shows the real answer.', 2.5, MUTED)
 
 # 48 --------------------------------------------------------------------------------------------
@@ -128,17 +129,18 @@ section('BRING-UP AND CHECKS', 'Bring-up and checks', 'Section 8', 'Steps 49 to 
 
 # 49 --------------------------------------------------------------------------------------------
 pg = step('What to check before the PMOD goes in',
-          ['Feed 5 V to the USB-C J2 or the header J7 with the PMOD unplugged. Measure each rail at the test points against GND. Unplug the supply if the 5 V rail is off by more than 0.25 V.',
-           'The 3.3 V line comes from the ZedBoard through the PMOD. With no PMOD it reads 0 V, and that is correct.'])
-chip(pg, label='EXPECTED VOLTAGES, 5 V IN')
+          ['Cut JP6 and feed 3.3 V to the header J7 from a bench supply set to 3.3 V with a 100 mA limit. Leave the PMOD unplugged. Measure each rail at the test points against GND. Switch off if +3V3 is off by more than 0.1 V or the current is above 60 mA.',
+           'With the PMOD plugged in and JP6 closed, the same readings must appear. Never feed J7 and the PMOD at the same time.'])
+chip(pg, label='EXPECTED VOLTAGES, 3.3 V IN')
 rows = [['Node', 'Test point', 'Expect'],
-        ['+5V', 'TP11, 5V', '4.6 V (5.0 V − SS14)'],
-        ['AVDD', 'TP12, AVDD', '3.30 V'],
-        ['VMID5', 'TP13, MID5', '2.30 V (half of +5V)'],
-        ['VOCM', 'TP14, VOCM', f'{AVDD/2:.2f} V'],
-        ['+3V3', 'TP15, 3V3', '0 V (no PMOD)'],
-        ['nWAKE', 'TP16, WAKE', 'floats, no pull-up']]
-table(pg, 4, 40, [30, 52, 44], rows, rh=6.6, size=2.6)
+        ['+3V3', 'TP11', '3.30 V'],
+        ['AVDD', 'TP12', '3.30 V'],
+        ['VMID5', 'TP13', f'{MID:.2f} V (half of +3V3_C)'],
+        ['VOCM', 'TP14', f'{AVDD/2:.2f} V (half of AVDD)'],
+        ['REFL', 'TP18', '1.65 V'],
+        ['LST', 'TP15', 'about 1.65 V'],
+        ['WAKE_N, BIG_N', 'TP16, TP17', '3.3 V (pulled up)']]
+table(pg, 4, 38, [30, 36, 60], rows, rh=5.9, size=2.6)
 
 # 50 --------------------------------------------------------------------------------------------
 vin = 0.100
@@ -170,17 +172,15 @@ chip(pg, label='SIMULATION, NOMINAL PARTS')
 table(pg, 4, 40, [34, 48, 44], rows, rh=5.8, size=2.6)
 
 # 52 --------------------------------------------------------------------------------------------
-rows = [['Trimmer', 'RV1', 'Threshold at J1']]
-for fr in (0.0, 0.25, 0.5, 0.75, 1.0):
-    rp = fr * RP_MAX
-    rows.append([f'{fr*100:.0f} %', eng(rp, 'Ω'), f'± {window(rp)/LPF_GAIN*1000:.0f} mV'])
-lo_ = window(0) / LPF_GAIN * 1000
-pg = step('How to test the wake-up',
-          [f'Sweep RV1 and keep a burst at J1. nWAKE must drop for a burst above the threshold and stay high below it. The table gives the threshold for five trimmer positions.',
-           f'The lowest setting is ± {lo_:.0f} mV at J1. The quiet perfboard noise is {INB:.1f} mV rms in the band, so that setting is only about {lo_/INB:.0f} times the noise.'])
+rows = [['Burst at J1', 'WAKE_N', 'BIG_N']]
+for v_ in (0.020, 1.6 * L_WAKE, 1.4 * L_BIG):
+    rows.append([f'{v_*1e3:.0f} mV peak', 'low' if v_ > L_WAKE else 'high', 'low' if v_ > L_BIG else 'high'])
+pg = step('How to test the listener thresholds',
+          [f'Sweep a 250 kHz burst at J1 from 10 mV upward. WAKE_N must drop between about {(L_WAKE-0.008)*1e3:.0f} and {(L_WAKE+0.008)*1e3:.0f} mV. BIG_N must drop between about {(L_BIG-0.008)*1e3:.0f} and {(L_BIG+0.008)*1e3:.0f} mV. The table gives the three points to check.',
+           f'The quiet perfboard noise is {INB:.1f} mV rms in the band, so WAKE_N at {L_WAKE*1e3:.0f} mV is about {L_WAKE*1e3/INB:.0f} times the noise. The comparator offset (up to ±8 mV, datasheet) moves each threshold by that much.'])
 chip(pg, label='COMPUTED FROM THE RESISTORS')
-table(pg, 4, 40, [30, 40, 56], rows, rh=6.2, size=2.6)
-pg.text(4, 82, 'ESTIMATE: comparator offset (up to 5 mV, datasheet) moves each threshold by that much.', 2.4, MUTED)
+table(pg, 4, 40, [44, 40, 40], rows, rh=7.0, size=2.7)
+pg.text(4, 82, 'ESTIMATE: the high-pass and low-pass of the listener are close to unity at 250 kHz.', 2.4, MUTED)
 
 # 53 --------------------------------------------------------------------------------------------
 pg = step('What if it does not work',
@@ -188,25 +188,26 @@ pg = step('What if it does not work',
            'Most first-board failures are a short, a part turned the wrong way or a missing 3.3 V.'])
 chip(pg, label='SYMPTOM, CAUSE, CHECK')
 rows = [['Symptom', 'Likely cause', 'Check'],
-        ['5 V low', 'Weak USB source', 'TP11 under load'],
-        ['SCOPE OUT flat', 'U1 or U2 not powered', '5 V at pin 8'],
+        ['3.3 V low', 'Weak PMOD supply or short', 'TP11 under load'],
+        ['SCOPE OUT flat', 'U1 or U2 not powered', '3.3 V at pin 8, JP3 closed'],
         ['SDO all zeros', 'First frame only', 'Read twice'],
-        ['SDO stuck', 'No 3.3 V from PMOD', 'J3 pin 11'],
-        ['Wake always low', 'RV1 near 0 and noise', 'Turn RV1 up'],
-        ['Code offset', 'VOCM or VMID off', 'Step 49 table']]
+        ['SDO stuck', 'JP5 open or no 3.3 V', 'DVDD at U4 pin 4'],
+        ['WAKE_N always low', 'LST noisy or REFL off', 'TP18 must be 1.65 V'],
+        ['Code offset', 'VOCM or VMID off', 'Step 49 table, JP4']]
 table(pg, 4, 40, [34, 52, 40], rows, rh=6.4, size=2.6)
 
 # 54 --------------------------------------------------------------------------------------------
 pg = step('What is verified and what is open',
           ['Checked by tools: the electrical rules, the design rules, the netlist against the board, and the rotations in the JLC viewer. Checked by simulation: gain, band, noise and settling.',
-           'Nothing has run on a real board yet. Red rows mark the three open items.'])
+           'Nothing has run on a real board yet. Red rows mark the three open items. The THS4531 stability with its 400 pF load stays on the list of the ADC input filter, step 18.'])
 chip(pg, label='STATUS')
 rows = [['Item', 'Status', 'How'],
         ['ERC, DRC, parity', 'Done', 'KiCad, 0 errors'],
         ['Rotations', 'Done', 'JLC viewer'],
         ['Chain response, noise', 'Simulated', 'ngspice, vendor models'],
-        ['Head and bias-T', 'Simulated', 'ngspice, OPA365'],
-        ['THS4531, 400 pF load', 'OPEN', 'LTspice netlist, not run'],
-        ['PMOD fit on ZedBoard', 'OPEN', 'print 1:1 and test'],
+        ['Head and bias-T at 3.3 V', 'Simulated', 'ngspice, OPA365'],
+        ['Listener on real captures', 'Simulated', 'Python, 25 captures'],
+        ['ZedBoard 3.3 V rail noise', 'OPEN', 'probe TP11 and TP12'],
+        ['PMOD fit, adjacent ports', 'OPEN', 'print 1:1 and test'],
         ['First board, bench', 'OPEN', 'steps 49 to 52']]
-table(pg, 4, 38, [44, 28, 54], rows, rh=5.8, size=2.5, colors={5: '#fde5e5', 6: '#fde5e5', 7: '#fde5e5'})
+table(pg, 4, 36, [44, 28, 54], rows, rh=5.4, size=2.5, colors={6: '#fde5e5', 7: '#fde5e5', 8: '#fde5e5'})

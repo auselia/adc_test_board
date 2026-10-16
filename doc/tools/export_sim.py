@@ -25,7 +25,7 @@ for _ in range(150):
 R['mc']=mc
 # burst
 R['burst']={}
-for amp in (0.12,0.30,0.50):
+for amp in (0.12,0.20,0.40):
     t=vc.chain(vin="DC 0").replace("Vin vs 0 DC 0",f"Vin vs 0 DC 4.8 SIN(4.8 {amp} 250k 5u 0 0)")
     d,_=vc.ngspice(t,"tran 20n 45u\nlet dd=v(ainp)-v(ainm)\nwrdata tr.txt v(gout) v(lpf) dd v(op) v(om) v(mid5)")
     r=vc.load_cols(d,'tr.txt'); k=3

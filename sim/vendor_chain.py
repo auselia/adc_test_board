@@ -37,7 +37,7 @@ NOM=dict(R1=10e3,R2=20e3,R3=3.9e3,R4=1e3,R5=2.2e3,R6=2.2e3,R7=10e3,R8=10e3,R9=10
          C1=100e-12,C2=100e-12,C4=100e-12,C5=100e-12,C6=100e-12,C7=1e-6,C8=10e-6,C9=100e-9,C11=1e-6,C13=1e-6,
          C14=100e-12,C15=100e-12,C16=100e-12,C17=100e-12)
 TOL={k:(0.01 if k.startswith('R') else (0.05 if NOM[k]<=1e-9 else 0.10)) for k in NOM}
-V5 = 4.6          # the 5 V rail after the SS14 (5.0 V from USB minus about 0.4 V)
+V5 = 3.3          # the 3.3 V rail from the PMOD (v3)
 def chain(v=None,opa='vendor',cl=0.0,v5=V5,avdd=3.3,body='',vin='DC 4.8 AC 1'):
     v=dict(NOM,**(v or {}))
     def op(n,p,m,o):

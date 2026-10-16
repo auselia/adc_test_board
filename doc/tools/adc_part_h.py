@@ -29,19 +29,18 @@ for i, (nm, v_, c_) in enumerate(rows):
 pg.text(2, 82, 'Test: tie both piezo faces to a differential input and compare the noise with the plant touching the stem.', 2.4, MUTED, 'start')
 
 # 62 --------------------------------------------------------------------------------------------
-L_FB, ESR, R_SRC, C_EFF = 0.3e-6, 0.01, 0.6, 22e-6 * 0.75     # ESTIMATES: bead inductance, 22 uF ESR, cable + SS14, X5R derating at 4.6 V
+R_F, ESR, C_EFF = val('R34'), 0.01, val('C21') * 0.6           # ESTIMATES: 10 uF X5R at 3.3 V keeps about 60 %, ESR 10 mOhm
 def atten(f):
     w = 2 * math.pi * f
     zc = ESR + 1 / (1j * w * C_EFF)
-    zs = R_SRC + 1j * w * L_FB + 0.05
-    return abs(zc / (zs + zc))
+    return abs(zc / (R_F + zc))
 fr = [1e5, 2.5e5, 5e5, 1e6]
-pg = step('Is the 5 V filter enough?',
-          ['The filter is a series ferrite bead and a shunt ceramic. Its attenuation is the ratio of the capacitor impedance to the total impedance. Cable and diode resistance in front help, and they also damp the circuit.',
-           f'With the estimates in the table, the ripple falls by {-db(atten(2.5e5)):.0f} dB at 250 kHz. The op-amps and the LDO reject more. The real bead may differ, so probe TP11 with the power bank you use.'])
+pg = step('Is the 3.3 V supply clean enough?',
+          ['The ZedBoard makes 3.3 V with a switching regulator, so its ripple can sit in the band the sensor listens to. AVDD is the ADC reference, so it gets a filter: a 10 Ω resistor (R34) in series and 10 µF (C21) to ground.',
+           f'With the estimates in the table, the ripple on AVDD falls by {-db(atten(2.5e5)):.0f} dB at 250 kHz. The op-amps reject the rest of the supply by their own PSRR. The real ZedBoard noise is not known, so probe TP11 and TP12 with 20 MHz bandwidth before you trust it.'])
 chip(pg, label='ESTIMATE, ASSUMED PARTS')
 pg.text(2, 42, 'assumed', 2.5, MUTED, 'start', True)
-asm = [f'bead {L_FB*1e9:.0f} nH', f'cable and diode {R_SRC:.1f} Ω', f'22 µF at 4.6 V: {C_EFF*1e6:.0f} µF, ESR {ESR*1e3:.0f} mΩ']
+asm = [f'R34 {R_F:.0f} Ω', f'C21 10 µF at 3.3 V: {C_EFF*1e6:.0f} µF', f'ESR {ESR*1e3:.0f} mΩ']
 for i, t_ in enumerate(asm):
     pg.text(2, 47 + i * 5, t_, 2.5, INK, 'start')
 for i, f in enumerate(fr):
@@ -50,7 +49,7 @@ for i, f in enumerate(fr):
     pg.rect(xx, yy, 30, 11, BONE2, 'none', 0, 1.5)
     pg.text(xx + 15, yy + 4.6, f'{f/1e3:g} kHz', 2.5, MUTED, 'middle', True)
     pg.text(xx + 15, yy + 9.4, f'{db(atten(f)):.0f} dB', 3.0, INK, 'middle', True)
-pg.text(70, 82, 'Measure: 20 MHz bandwidth, AC coupling, 10 mV per division at TP11.', 2.4, MUTED, 'middle')
+pg.text(70, 82, 'Measure: 20 MHz bandwidth, AC coupling, 10 mV per division at TP11 and TP12.', 2.4, MUTED, 'middle')
 
 # 63 --------------------------------------------------------------------------------------------
 r_div = val('R7') * val('R8') / (val('R7') + val('R8'))
@@ -134,32 +133,32 @@ for i, (nm, bw) in enumerate(rows):
 # 67 --------------------------------------------------------------------------------------------
 pg = step('Does the power-up order matter?',
           ['The ADS7057 datasheet gives no sequencing rule. It gives limits: AVDD and DVDD up to 3.9 V, inputs up to AVDD + 0.3 V and logic inputs up to DVDD + 0.3 V. The 22 Ω resistors and the 10 Ω resistors keep a stray current under the 10 mA pin limit.',
-           'One order matters in practice: AVDD must be stable before the first SPI frame, because that frame calibrates the offset. The ZedBoard 3.3 V feeds only DVDD and the pull-up R24, not the reference, so its noise stays out of AVDD.'])
+           'On this board AVDD and DVDD come from the same 3.3 V rail, so they rise together. One thing matters in practice: AVDD must be stable before the first SPI frame, because that frame calibrates the offset. The VMID5 rail needs about 25 ms (step 4), so wait that long after power-up.'])
 chip(pg, label='WHO POWERS WHAT')
-pbox(pg, 2, 40, 28, 14, '5 V input', ['USB-C or J7'], 'ext')
-pbox(pg, 40, 40, 30, 14, 'XC6206', ['U5, 3.3 V'], 'bus')
+pbox(pg, 2, 40, 28, 14, 'PMOD 3.3 V', ['or header J7'], 'ext')
+pbox(pg, 44, 40, 24, 14, 'JP4, R34', ['C21 10 µF'], 'bus')
 pbox(pg, 82, 40, 28, 14, 'AVDD', ['reference'], 'mem')
-pbox(pg, 2, 62, 28, 14, 'ZedBoard', ['PMOD 3.3 V'], 'ext')
+pbox(pg, 44, 62, 24, 14, 'JP5', ['same rail'], 'bus')
 pbox(pg, 82, 62, 28, 14, 'DVDD', ['SPI side'], 'mem')
-pg.arrow([(30, 47), (40, 47)]); pg.arrow([(70, 47), (82, 47)]); pg.arrow([(30, 69), (82, 69)])
-pg.text(118, 70, 'and R24', 2.5, MUTED, 'start')
+pg.arrow([(30, 47), (44, 47)]); pg.arrow([(68, 47), (82, 47)]); pg.line(30, 47, 36, 47, INK, 0.5)
+pg.line(36, 47, 36, 69, INK, 0.5); pg.arrow([(36, 69), (44, 69)]); pg.arrow([(68, 69), (82, 69)])
 pg.text(70, 85, 'Ground is common. Keep the SPI at 10 to 20 MHz while you check the noise.', 2.4, MUTED, 'middle')
 
 # 68 --------------------------------------------------------------------------------------------
-pg = step('What is an open-collector output?',
-          ['The output stage of the LM393 is one transistor. It can pull the output to ground. It cannot push it high. When it is off, the pin floats.',
-           'A resistor to 3.3 V (R24) supplies the high level. Two outputs on one wire make an OR for low: either one pulls the line low. The pull-up also sets the voltage level, so a 5 V part drives a 3.3 V input.'])
+pg = step('What is an open-drain output?',
+          ['The output stage of the TLV7022 is one transistor. It can pull the output to ground. It cannot push it high. When it is off, the pin floats.',
+           'A resistor to 3.3 V (R24 or R42, 47 kΩ) supplies the high level. Two outputs on one wire make an OR for low: either one pulls the line low. The pull-up also sets the voltage level, so the FPGA never sees more than 3.3 V.'])
 chip(pg, label='TWO OUTPUTS ON ONE WIRE')
 pg.line(30, 48, 110, 48, INK, 0.5)
-res_v(pg, 70, 38, 8, 'R24', '10k', left=False)
+res_v(pg, 70, 38, 8, 'R24', '47k', left=False)
 pg.text(74, 38, '3.3 V', 2.5, GRN, 'start', True)
-for x_, nm in ((46, 'upper'), (94, 'lower')):
+for x_, nm in ((46, 'OUTA'), (94, 'OUTB')):
     pg.line(x_, 48, x_, 56, INK, 0.5)
     pg.circle(x_, 62, 5, '#fff', INK, 0.5)
     pg.text(x_, 63, 'Q', 2.6, INK, 'middle', True)
     pg.line(x_, 67, x_, 74, INK, 0.5); gnd(pg, x_, 74)
-    pg.text(x_, 80, f'{nm} comparator', 2.4, MUTED, 'middle')
-pg.line(110, 48, 120, 48, INK, 0.5); pg.text(122, 49, 'nWAKE', 2.6, INK, 'start', True)
+    pg.text(x_, 80, f'{nm} of U6', 2.4, MUTED, 'middle')
+pg.line(110, 48, 120, 48, INK, 0.5); pg.text(122, 49, 'WAKE_N', 2.6, INK, 'start', True)
 pg.text(70, 86, 'both off: high.   either on: low.', 2.5, INK, 'middle', True)
 
 # 69 --------------------------------------------------------------------------------------------

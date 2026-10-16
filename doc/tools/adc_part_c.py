@@ -44,11 +44,11 @@ assert ('R12', '1') in NET['DRV_OUTP'] and ('R12', '2') in NET['DRV_INN'] and ('
 
 # 18 --------------------------------------------------------------------------------------------
 pg = step('What to know about the THS4531',
-          ['Three facts from the datasheet shape the board. The **PD** pin must be driven, so U3 ties it to 5 V. The **VOCM** pin accepts 0.95 to 4.0 V, so 1.65 V is fine.',
+          ['Three facts from the datasheet shape the board. The **PD** pin must be driven, so U3 ties it to 3.3 V. The **VOCM** pin accepts 0.95 to 2.3 V on a 3.3 V supply, so 1.65 V is fine.',
            'The third fact is a limit. The designers of the part expect about 2 pF of load between its outputs. A larger load needs a series resistor.'])
 chip(pg, label='DATASHEET AGAINST THIS BOARD')
-rows_ = [('Supply', '2.5 to 5.5 V', '5 V', 'ok'), ('Gain-bandwidth', '27 MHz', 'gain 1', 'ok'), ('Noise', '10 nV/√Hz', '0.2 LSB', 'ok'),
-         ('VOCM range at 5 V', '0.95 to 4.0 V', '1.65 V', 'ok'), ('PD pin', 'must be driven', 'tied to 5 V', 'ok'),
+rows_ = [('Supply', '2.5 to 5.5 V', '3.3 V', 'ok'), ('Gain-bandwidth', '27 MHz', 'gain 1', 'ok'), ('Noise', '10 nV/√Hz', '0.2 LSB', 'ok'),
+         ('VOCM range at 3.3 V', '0.95 to 2.3 V', '1.65 V', 'ok'), ('PD pin', 'must be driven', 'tied to 3.3 V', 'ok'),
          ('Load between outputs', '2 pF nominal', '400 pF + 20 Ω', 'open')]
 pg.text(4, 40, 'item', 2.5, MUTED, 'start', True); pg.text(50, 40, 'datasheet', 2.5, MUTED, 'start', True)
 pg.text(92, 40, 'this board', 2.5, MUTED, 'start', True)
@@ -241,17 +241,17 @@ section('THE SPI LINK', 'The SPI link', 'Section 4', 'Steps 25 to 30',
 
 # 25 --------------------------------------------------------------------------------------------
 PMOD = {}
-for pad, net in (('1', 'CS'), ('5', 'SDO'), ('7', 'SCLK'), ('9', 'GND'), ('10', 'GND'), ('11', '+3V3'), ('12', '+3V3'), ('8', 'WAKE_N')):
+for pad, net in (('1', 'CS'), ('5', 'SDO'), ('7', 'SCLK'), ('9', 'GND'), ('10', 'GND'), ('11', '+3V3_PMOD'), ('12', '+3V3_PMOD'), ('8', 'WAKE_N'), ('2', 'BIG_N')):
     assert ('J3', pad) in NET[net], (pad, net)
     n = int(pad); r_, c_ = (n + 1) // 2, 2 - n % 2        # row, column of the KiCad zig-zag numbering
     PMOD[n] = (net, r_, c_, r_ if c_ == 1 else r_ + 6)    # PMOD pin number: left column 1 to 6, right column 7 to 12
-assert PMOD[1][3] == 1 and PMOD[5][3] == 3 and PMOD[7][3] == 4 and PMOD[8][3] == 10 and PMOD[9][3] == 5 and PMOD[11][3] == 6
+assert PMOD[1][3] == 1 and PMOD[5][3] == 3 and PMOD[7][3] == 4 and PMOD[8][3] == 10 and PMOD[2][3] == 7 and PMOD[9][3] == 5 and PMOD[11][3] == 6
 pg = step('Which pin is which on the PMOD',
-          ['The board plugs into one PMOD port of the ZedBoard, JA to JD. The board uses eight of the twelve pins. **CS**, **SCLK** and **SDO** carry SPI. **nWAKE** is the wake-up line. 3V3 powers the ADC logic, and GND is the return.',
+          ['The board plugs into one PMOD port of the ZedBoard, JA to JD. The board uses nine of the twelve pins. **CS**, **SCLK** and **SDO** carry SPI. **WAKE_N** and **BIG_N** are the two listener lines. 3V3 on pins 6 and 12 powers the whole board, and GND is the return.',
            'There is no MOSI wire, because this ADC only sends data. The numbering follows the Digilent SPI PMOD, so pin 1 is CS.'])
 chip(pg, label='J3, SEEN FROM THE TOP')
-cols_ = {'CS': AMBT, 'SCLK': AMBT, 'SDO': AMBT, 'WAKE_N': '#d3e3f3', 'GND': '#e6e6e0', '+3V3': '#cfe8cf'}
-nm_ = {'WAKE_N': 'nWAKE', '+3V3': '3V3'}
+cols_ = {'CS': AMBT, 'SCLK': AMBT, 'SDO': AMBT, 'WAKE_N': '#d3e3f3', 'BIG_N': '#d3e3f3', 'GND': '#e6e6e0', '+3V3_PMOD': '#cfe8cf'}
+nm_ = {'+3V3_PMOD': '3V3'}
 for n_, (net, r_, c_, pm_) in PMOD.items():
     x_ = 24 + (c_ - 1) * 34
     y_ = 36 + (r_ - 1) * 7.0

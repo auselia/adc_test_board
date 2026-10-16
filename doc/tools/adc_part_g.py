@@ -22,7 +22,7 @@ for i, (a_, b_) in enumerate(lines):
     pg.text(20, 84 + i * 9, a_, 3.4, AMBER, 'start', mono=True)
     pg.text(60, 84 + i * 9, b_, 3.4, '#D8E4D2', 'start')
 pg.text(20, 150, 'DATASHEETS', 2.8, SAP, 'start', mono=True, ls=0.8)
-pg.text(20, 158, 'ADS7057, THS4531, OPA365 (OPA2365), LM393, XC6206', 3.4, '#D8E4D2', 'start')
+pg.text(20, 158, 'ADS7057, THS4531, OPA365 (OPA2365), TLV7022', 3.4, '#D8E4D2', 'start')
 pg.text(20, 170, 'Rebuild: M4_PDF_PYTHON=<python with pymupdf> python3 doc/tools/make_adc_manual.py', 2.7, SAP, 'start', mono=True)
 pg.text(20, PH - 12, 'AUSELIA  /  ' + m4lib.DOC_NAME, 2.5, '#7E9C86', 'start', mono=True, ls=0.5)
 pg.text(PW - 20, PH - 12, f'{len(pages):02d}', 2.5, '#7E9C86', 'end', mono=True)

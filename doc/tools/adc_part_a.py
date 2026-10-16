@@ -11,14 +11,14 @@ EV = json.load(open(os.path.join(DATA, 'events.json')))
 # ================================================================================================
 pg = new_page('cover')
 pg.bg = FOREST
-pg.text(20, 46, 'HARDWARE MANUAL  /  VERSION 0.2', 3.0, SAP, 'start', mono=True, ls=0.9)
+pg.text(20, 46, 'HARDWARE MANUAL  /  VERSION 0.3', 3.0, SAP, 'start', mono=True, ls=0.9)
 pg.text(20, 78, 'AUS', 24, BONE, 'start', disp=True)
 pg.text(20 + text_w('AUS', 24, 'disp'), 78, 'ELIA', 24, AMBER, 'start', disp=True)
 pg.text(20, 100, 'ADS7057 test board', 15, BONE, 'start', disp=True)
-pg.text(20, 114, 'How a perfboard signal becomes SPI samples, one step at a time.', 5.2, '#D8E4D2', 'start')
+pg.text(20, 114, 'A 3.3 V board that lives on the ZedBoard PMOD, one step at a time.', 5.2, '#D8E4D2', 'start')
 pg.text(20, 144, 'The topology, the datasheet facts that matter, the routing of the board,', 3.7, SAP)
 pg.text(20, 150, 'and what each part is and where it sits.', 3.7, SAP)
-pg.text(20, 177, 'Version 0.2  /  October 15, 2026  /  Nicolás Villegas', 3.0, SAP, 'start', mono=True, ls=0.4)
+pg.text(20, 177, 'Version 0.3  /  October 15, 2026  /  Nicolás Villegas', 3.0, SAP, 'start', mono=True, ls=0.4)
 pg.text(20, PH - 12, 'AUSELIA  /  ' + DOC, 2.5, '#7E9C86', 'start', mono=True, ls=0.5)
 pg.text(PW - 20, PH - 12, '01', 2.5, '#7E9C86', 'end', mono=True)
 draw_mark(pg, 168, 36, 96, BONE, BONE, AMBER, AMBER, rings=True)
@@ -76,19 +76,19 @@ B = {
     'Power': (9, 134, 118, 22), 'Mid-rails': (150, 134, 108, 22)}
 m4lib.BLOCK_MAP = B
 m4lib.MAP_FRAME = (5, 32, 258, 128)
-pbox(pg, *B['Input'], 'SMA in', ['J1', 'from the', 'perfboard'], 'ext')
+pbox(pg, *B['Input'], 'SMA in', ['J1', 'from the', 'sensor head'], 'ext')
 pbox(pg, *B['High-pass'], 'High-pass', ['113 kHz', 'U1A'], 'arith')
 pbox(pg, *B['Gain'], 'Gain', ['× 4.9', 'U1B'], 'arith')
 pbox(pg, *B['Low-pass'], 'Low-pass', ['512 kHz', 'U2A'], 'arith')
 pbox(pg, *B['Driver'], 'Driver', ['THS4531', 'one wire to two'], 'mem')
 pbox(pg, *B['ADC'], 'ADS7057', ['14 bit, SPI', 'U4'], 'mem')
-pbox(pg, *B['SPI port'], 'PMOD J3', ['CS, SCLK, SDO', 'nWAKE, GND, 3V3'], 'bus')
+pbox(pg, *B['SPI port'], 'PMOD J3', ['CS, SCLK, SDO', 'WAKE_N, BIG_N, 3V3'], 'bus')
 pbox(pg, *B['Scope out'], 'SCOPE OUT', ['J4, 51 Ω'], 'ext')
-pbox(pg, *B['Wake-up'], 'Wake-up', ['LM393 window', 'U6, trimmer RV1'], 'ctrl')
-pbox(pg, 9, 134, 28, 22, '5 V in', ['USB-C J2', 'header J7'], 'ext')
-pbox(pg, 44, 134, 40, 22, '+5 V', ['SS14, ferrite', 'FB1'], 'bus')
-pbox(pg, 91, 134, 36, 22, 'AVDD 3.3 V', ['XC6206', 'U5'], 'bus')
-pbox(pg, 150, 134, 50, 22, f'VMID5 {MID:.1f} V', ['divider and buffer'], 'ctrl')
+pbox(pg, *B['Wake-up'], 'Listener', ['TLV7022 pair', 'U6 WAKE, U9 BIG'], 'ctrl')
+pbox(pg, 9, 134, 28, 22, '3.3 V in', ['PMOD J3', 'or header J7'], 'ext')
+pbox(pg, 44, 134, 40, 22, '+3V3 links', ['JP2 to JP6', 'one ammeter gap each'], 'bus')
+pbox(pg, 91, 134, 36, 22, 'AVDD 3.3 V', ['10 Ω, 10 µF', 'R34, C21'], 'bus')
+pbox(pg, 150, 134, 50, 22, f'VMID5 {MID:.2f} V', ['divider and buffer'], 'ctrl')
 pbox(pg, 208, 134, 50, 22, 'VOCM 1.65 V', ['AVDD / 2'], 'ctrl')
 for a, b in (('Input', 'High-pass'), ('High-pass', 'Gain'), ('Gain', 'Low-pass'), ('Low-pass', 'Driver'), ('Driver', 'ADC'), ('ADC', 'SPI port')):
     ax = B[a][0] + B[a][2]
@@ -99,21 +99,21 @@ pg.arrow([(122, 62), (122, 50)])
 pg.arrow([(122, 86), (122, 100)])
 lab(pg, 124, 94.6, 'LPF_OUT', 'start', 2.3)
 pg.arrow([(144, 111), (240, 111), (240, 86)])
-lab(pg, 192, 109.4, 'nWAKE', 'middle')
+lab(pg, 192, 109.4, 'WAKE_N, BIG_N', 'middle')
 pg.arrow([(37, 145), (44, 145)])
 pg.arrow([(84, 145), (91, 145)])
 pg.line(8, 129, 262, 129, '#8c8c8c', 0.5, '1.2,1.0')
-pg.text(262, 127.6, '+5 V rail to U1, U2, U3 and U6', 2.3, MUTED, 'end')
+pg.text(262, 127.6, '+3V3_C rail to U1, U2 and U3, +3V3_L to the listener', 2.3, MUTED, 'end')
 for xx in (56, 90, 122, 159):
     pg.arrow([(xx, 129), (xx, 126)], '#8c8c8c', 0.4)
 pg.line(122, 126, 122, 122, '#8c8c8c', 0.4, '1.2,1.0')
 pg.arrow([(197, 88), (197, 100)], '#8c8c8c', 0.4, '1.2,1.0')
-lab(pg, 199, 98, 'DVDD 3.3 V from the PMOD', 'start', 2.3, MUTED)
+lab(pg, 199, 98, 'DVDD 3.3 V from the same rail', 'start', 2.3, MUTED)
 cards = [
-    ('THE BASICS', 'part 0', 'What the signal is, why the mid-rails, what an ADC measures and why the filter comes first.'),
-    ('POWER', 'steps 1 to 6', '5 V in, 3.3 V for the ADC, then the 2.3 V and 1.65 V mid-rails that the signal rides on.'),
+    ('THE BASICS', 'part 0', 'What the signal is, why 1.65 V, what an ADC measures and why the filter comes first.'),
+    ('POWER', 'steps 1 to 6', '3.3 V from the PMOD only, the four links, the AVDD filter and the 1.65 V mid-rails.'),
     ('SIGNAL AND ADC', 'steps 7 to 24', 'High-pass, gain, low-pass, then the driver and the ADC with its input filter.'),
-    ('SPI AND WAKE-UP', 'steps 25 to 35', 'The four SPI wires, the frame and its power-up rule, and the window comparator.'),
+    ('SPI AND WAKE-UP', 'steps 25 to 35', 'The SPI wires, the frame and its power-up rule, and the listener that raises WAKE_N and BIG_N.'),
     ('THE BOARD', 'steps 36 to 48', 'Layers, floor plan, every part and where it sits, routing, files for the factory and the cost.'),
     ('BRING-UP', 'steps 49 to 54', 'Power-on checks, the first signal, the expected response and what is still open.'),
 ]
@@ -133,24 +133,24 @@ pg.ox = pg.oy = 0
 m4lib.IDEA = 'THE BASICS'
 m4lib.N_IDEA = 6
 section('THE BASICS', 'The basics', 'Part 0', '0.1 to 0.6',
-        'What the board is for, what the signal looks like, why there are two mid-rails, what an ADC measures, '
+        'What the board is for, what the signal looks like, why everything rests at 1.65 V, what an ADC measures, '
         'why the filter comes first and how to read a PCB. No board details yet.')
 
 # 0.1 -------------------------------------------------------------------------------------------
 pg = step('What the board is for',
           ['A piezoelectric sensor on a plant stem hears the clicks of **acoustic emission** (AE). The perfboard charge amplifier turns the charge of the sensor into a voltage.',
-           'This board takes that voltage, filters it and measures it with a 14-bit ADC. It hands the numbers to the ZedBoard over SPI. It also raises a wake-up line when a click is strong.'])
+           'This board takes that voltage, filters it and measures it with a 14-bit ADC. It hands the numbers to the ZedBoard over SPI. A small listener watches the same signal and raises WAKE_N and BIG_N on the PMOD when a click is strong. The whole board runs from the ZedBoard 3.3 V.'])
 chip(pg, label='CHAIN')
 xs_ = [2, 36, 72, 108]
-subs_ = [('Sensor', ['1.6 nF piezo', 'on the stem'], 'ext'), ('Head board', ['OPA365 charge', 'amplifier, 5 V'], 'ctrl'),
-         ('This board', ['filters, ADC,', 'wake-up'], 'arith'), ('ZedBoard', ['FPGA reads', 'SPI and nWAKE'], 'dev')]
+subs_ = [('Sensor', ['1.6 nF piezo', 'on the stem'], 'ext'), ('Head board', ['OPA365 charge', 'amplifier, 3.3 V'], 'ctrl'),
+         ('This board', ['filters, ADC,', 'wake-up'], 'arith'), ('ZedBoard', ['FPGA reads SPI,', 'WAKE_N, BIG_N'], 'dev')]
 for x_, (t_, s_, k_) in zip(xs_, subs_):
     pbox(pg, x_, 40, 30, 24, t_, s_, k_)
 for a_ in (32, 66, 102):
     pg.arrow([(a_, 52), (a_ + 4, 52)])
 lab(pg, 34, 36.5, 'charge')
-lab(pg, 68, 36.5, '4.8 V + events')
-lab(pg, 104, 36.5, 'SPI, nWAKE')
+lab(pg, 68, 36.5, 'AC signal')
+lab(pg, 104, 36.5, 'SPI, WAKE_N')
 pg.text(70, 76, 'the gray box is the part that this manual describes', 2.5, MUTED, 'middle')
 
 # 0.2 -------------------------------------------------------------------------------------------
@@ -182,19 +182,19 @@ pg.text(X0 + W_ / 2, Y0 + H_ + 8.4, 'peak frequency, kHz', 2.5, MUTED, 'middle')
 pg.text(2, Y0 - 3, 'mV pp', 2.5, MUTED, 'start')
 
 # 0.3 -------------------------------------------------------------------------------------------
-pg = step('Why 2.3 V and 1.65 V',
+pg = step('Why everything rests at 1.65 V',
           ['This board has no negative supply. A signal that swings below 0 V would be cut off. So each stage rests at the middle of its own supply, and the signal swings around that level.',
-           'The op-amps run from the 5 V rail (4.6 V after the diode), so they rest at **2.3 V**. The ADC runs from 0 to 3.3 V, so its inputs rest at **1.65 V**.'])
+           'The whole board runs from one 3.3 V rail. The op-amps, the driver and the ADC inputs all rest at half of it, **1.65 V**. The sensor head and the listener rest there too.'])
 chip(pg, label='VOLTAGE LADDER')
-rails = [(0.0, '0 V  ground', INK), (1.65, '1.65 V  VOCM, ADC inputs rest here', BLU), (MID, f'{MID:.1f} V  VMID5, op-amp stages rest here', PUR),
-         (3.3, '3.3 V  AVDD, ADC reference', GRN), (RAIL, f'{RAIL:.1f} V  op-amp supply, the 5 V rail', GRN)]
-ly = lambda v: 78 - v * 8.6
-pg.line(20, ly(0), 20, ly(5.0), INK, 0.6)
+rails = [(0.0, '0 V  ground', INK), (1.65, '1.65 V  VMID5 and VOCM, every stage rests here', PUR),
+         (3.3, '3.3 V  supply, AVDD and the ADC reference', GRN)]
+ly = lambda v: 78 - v * 11.0
+pg.line(20, ly(0), 20, ly(3.3), INK, 0.6)
 for v_, t_, c_ in rails:
     pg.line(17, ly(v_), 24, ly(v_), c_, 0.8)
-    off = {5.0: -1.0, 4.8: 3.0}.get(v_, 0.9)
+    off = 0.9
     pg.text(27, ly(v_) + off, t_, 2.6, c_, 'start', True)
-pg.text(2, ly(2.5) + 0.9, 'volts', 2.5, MUTED, 'start')
+pg.text(2, ly(1.65) + 0.9, 'volts', 2.5, MUTED, 'start')
 
 # 0.4 -------------------------------------------------------------------------------------------
 pg = step('What an ADC measures',
@@ -241,7 +241,8 @@ pg = step('How to read a PCB',
           ['The board has two copper layers. A **pad** holds a part. A **track** joins pads. A **via** is a plated hole that joins the two layers. A **pour** fills free space with copper, here ground.',
            'The **silkscreen** prints the names. The figure is a 20 × 8 mm cut of this board around the ADC.'])
 chip(pg, label='REAL BOARD, 6 ×')
-RX0, RY0, RX1, RY1 = 28.0, 17.0, 48.0, 25.0
+_u4 = FP['U4']
+RX0, RY0, RX1, RY1 = _u4['x'] - 10.0, _u4['y'] - 4.0, _u4['x'] + 10.0, _u4['y'] + 4.0
 S = 6.0
 pg.rect(0, 0, (RX1 - RX0) * S, (RY1 - RY0) * S, '#e8f0e4', INK, 0.3)
 
