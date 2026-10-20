@@ -1,0 +1,247 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage[siunitx,americanvoltage]{circuitikz}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\definecolor{ink}{HTML}{14231B}\definecolor{accent}{HTML}{0F3D2A}\definecolor{cu}{HTML}{7A5608}
+\tcbuselibrary{skins}
+\newtcolorbox{key}{colback=accent!6,colframe=accent,boxrule=0.6pt,arc=2pt,left=6pt,right=6pt,top=4pt,bottom=4pt}
+\sisetup{per-mode=symbol,group-separator={\,}}
+\setlength{\parindent}{0pt}\setlength{\parskip}{6pt}
+\renewcommand{\arraystretch}{1.25}
+\title{\textbf{The sensor head, from the equations up}\\\large Charge amplifier, OPA365, DC point and noise}
+\author{ADS7057 test board v3 \quad ---\quad study notes}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-1em}
+
+All voltages are \emph{deviations from the DC operating point}, written in lowercase ($v$). Capital $V$ is a total or DC value. The Laplace variable is $s=j\omega=j2\pi f$.
+
+\section{The circuit and its three equations}
+
+\begin{center}
+\begin{circuitikz}[american]
+  \node[op amp] (op) at (6,0) {};
+  \draw (op.-) -- ++(-1.3,0) coordinate (X);
+  \draw (op.+) -- ++(-0.8,0) node[left] {$V_{REF}$};
+  \draw (op.out) -- ++(1.4,0) coordinate (O) node[right] {$v_o$};
+  \node[circ] at (X) {};
+  \coordinate (F1) at ($(X)+(0,1.5)$);
+  \coordinate (F2) at ($(X)+(0,3.0)$);
+  \draw (X) -- (F2);
+  \draw (F1) to[R, l=$R_f$] (F1 -| O) -- (O);
+  \draw (F2) to[C, l=$C_f$] (F2 -| O) -- (F1 -| O);
+  \node[circ] at (F1) {};
+  \node[circ] at (O) {};
+  \node[above left] at (X) {$v_x$};
+  \coordinate (P) at ($(X)+(-5.6,0)$);
+  \coordinate (Q) at ($(X)+(-3.0,0)$);
+  \draw (X) -- (P);
+  \node[ground] (g1) at ($(P)+(0,-2.4)$) {};
+  \draw (g1) to[isource] (P);
+  \node[left, font=\small] at ($(P)+(-0.7,-1.2)$) {$i_p=sQ$};
+  \node[circ] at (Q) {};
+  \draw (Q) to[C, l_=$C_p$] ($(Q)+(0,-2.4)$) node[ground] {};
+  \node[font=\footnotesize, anchor=north west] at ($(g1)+(-0.9,-0.9)$) {piezo (charge source)};
+\end{circuitikz}
+\end{center}
+
+The piezo is a charge source $Q$ in parallel with its own capacitance $C_p\approx\SI{1.6}{nF}$. In the head, $C_f=\SI{47}{pF}$ and $R_f=\SI{1}{M\ohm}$ are in parallel between the output and the summing node, and the $+$ input sits at $V_{REF}\approx\SI{1.45}{V}$.
+
+Feedback impedance:
+\[
+Z_f=\frac{R_f}{1+sR_fC_f},\qquad Y_f=\frac1{Z_f}=\frac1{R_f}+sC_f .
+\]
+
+Three equations describe the whole stage.
+
+\begin{enumerate}[label=\textbf{(\arabic*)}]
+\item \textbf{Op-amp with finite gain} ($+$ input at $V_{REF}$, so $0$ in deviations):
+\[ v_o=A\,(0-v_x)=-A\,v_x. \]
+\item \textbf{KCL at the summing node.} The piezo current leaves through $C_p$ and through the feedback branch:
+\[ i_p=sC_p\,v_x+\frac{v_x-v_o}{Z_f}. \]
+\item \textbf{The piezo:}
+\[ i_p=\frac{dq}{dt}\;\longleftrightarrow\; i_p(s)=s\,Q(s). \]
+\end{enumerate}
+
+We do \emph{not} assume a virtual ground. $v_x$ is allowed to be non-zero.
+
+\section{Exact solution}
+
+From (1), $v_x-v_o=(1+A)v_x$. Putting this in (2):
+\[
+i_p=v_x\Big[sC_p+(1+A)Y_f\Big]
+\quad\Rightarrow\quad
+v_x=\frac{i_p}{sC_p+(1+A)Y_f}.
+\]
+Then $v_o=-A\,v_x$:
+\[
+\boxed{\;v_o=-\,i_p\,Z_f\;\frac{1}{\,1+\dfrac{1+sC_pZ_f}{A}\,}\;}
+\]
+
+\begin{key}
+Read this as \textbf{ideal result $\times$ error factor}. The ideal part $-i_pZ_f$ is what you get as $A\to\infty$ (the virtual ground). The numerator of the error term, $1+sC_pZ_f$, is the \emph{noise gain}.
+\end{key}
+
+\section{Frequency response}
+
+A single-pole op-amp is modelled as
+\[
+A(s)=\frac{\omega_t}{s},\qquad \omega_t=2\pi\,\mathrm{GBW},\qquad \mathrm{GBW}=\SI{50}{MHz}\ (\text{OPA365}).
+\]
+Substitute $i_p=sQ$ and $A=\omega_t/s$:
+\[
+\frac{v_o}{Q}=-\,\frac{s\,Z_f}{1+\dfrac{s\,(1+sC_pZ_f)}{\omega_t}} .
+\]
+
+\textbf{Numerator.} With $Z_f=R_f/(1+sR_fC_f)$,
+\[
+sZ_f=\frac1{C_f}\cdot\frac{s}{s+\omega_L},\qquad \omega_L=\frac1{R_fC_f}.
+\]
+
+\textbf{Denominator.} For $\omega\gg\omega_L$, $Z_f\approx 1/(sC_f)$, so $1+sC_pZ_f\to 1+C_p/C_f$. Define the noise gain
+\[
+G_n=1+\frac{C_p}{C_f},\qquad
+1+\frac{sG_n}{\omega_t}=1+\frac{s}{\omega_H},\quad \omega_H=\frac{\omega_t}{G_n}.
+\]
+
+Together:
+\[
+\boxed{\;\frac{v_o}{Q}\approx-\frac1{C_f}\;
+\underbrace{\frac{s}{s+\omega_L}}_{\text{high-pass}}\;
+\underbrace{\frac{1}{1+s/\omega_H}}_{\text{low-pass}}\;}
+\]
+The head is a band-pass. Mid-band gain is $-1/C_f$.
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Quantity & Formula & Value\\
+\midrule
+Mid-band gain & $1/C_f$ & $\SI{21.3}{mV}$ per pC\\
+Low corner & $f_L=\dfrac1{2\pi R_fC_f}$ & $\SI{3.39}{kHz}$ \ ($\tau=\SI{47}{\micro s}$)\\
+Noise gain & $G_n=1+C_p/C_f$ & $1+1600/47=35.0$\\
+High corner & $f_H=\mathrm{GBW}/G_n$ & $\SI{1.43}{MHz}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+At \SI{250}{kHz}, the middle of the AE band:
+\[
+\Big|\tfrac{s}{s+\omega_L}\Big|\approx 0.9999,\qquad
+\Big|\tfrac{1}{1+j\,250/1430}\Big|=\frac{1}{\sqrt{1+0.175^2}}=0.985\ \ (-0.13\,\mathrm{dB}).
+\]
+The perfboard's OPA1642 has $\mathrm{GBW}\approx\SI{11}{MHz}$, so $f_H=11/35=\SI{0.31}{MHz}$ and the factor at \SI{250}{kHz} is $1/\sqrt{1+0.8^2}=0.78$, that is $-2.1$\,dB. This is the 0.2\,dB versus 2.2\,dB difference between the boards.
+
+\section{How good is the ``virtual ground''?}
+
+From the solution, $v_x=-v_o/A$. At \SI{250}{kHz}, $A=\mathrm{GBW}/f=200$. For a \SI{100}{mV} output, $v_x=\SI{0.5}{mV}$. That is small but not zero. The charge that stays on $C_p$ is
+\[
+C_p v_x=(\SI{1.6}{nF})(\SI{0.5}{mV})=\SI{0.8}{pC}.
+\]
+This is the origin of the error term $G_n f/\mathrm{GBW}=0.175$.
+
+\begin{key}
+A large $C_p$ compared with $C_f$ means a large noise gain, less loop gain, and a larger error. A smaller $C_f$ gives more volts per pC but more noise gain and less bandwidth. This is the design trade-off of the head.
+\end{key}
+
+\section{Noise from the same model}
+
+Add the op-amp's input voltage noise $e_n$ in series with the $+$ input. With the signal off, the loop gives
+\[
+v_{o,n}=e_n\Big(1+\frac{Z_f}{Z_{C_p}}\Big)=e_n\,(1+sC_pZ_f)\;\xrightarrow{\ \omega\gg\omega_L\ }\;e_n\,G_n .
+\]
+This is the same quantity as in the error factor, which is why it is called the noise gain. With $e_n=\SI{4.5}{nV/\sqrt{Hz}}$:
+\[
+e_nG_n=\SI{158}{nV/\sqrt{Hz}},\qquad
+v_{n,\mathrm{rms}}=\SI{158}{nV/\sqrt{Hz}}\cdot\sqrt{\SI{400}{kHz}}\approx\SI{100}{\micro V}.
+\]
+The noise densities are per $\sqrt{\mathrm{Hz}}$ because independent sources add as \emph{powers}.
+
+\textbf{Thermal noise of $R_f$} appears as a current noise
+\[
+i_{n,R_f}=\sqrt{\frac{4kT}{R_f}}=\SI{0.129}{pA/\sqrt{Hz}} .
+\]
+It flows through $Z_f$. At \SI{250}{kHz}, $|Z_f|\approx 1/(2\pi fC_f)=\SI{13.5}{k\ohm}$, so it adds about \SI{1.7}{nV/\sqrt{Hz}} at the output, about 1\,\% of the op-amp's. It can be ignored.
+
+\textbf{Equivalent noise charge} (noise referred to the input):
+\[
+Q_n=v_{n,\mathrm{rms}}\,C_f\approx\SI{100}{\micro V}\times\SI{47}{pF}=\SI{4.7}{fC}.
+\]
+The perfboard measurements show about \SI{4}{mV} rms in the band, 40 times the amplifier's own noise. So the noise you see comes from elsewhere (plant, cables, pickup), not from the op-amp.
+
+\section{DC operating point}
+
+Set $s\to0$ in the KCL. $C_p$ and $C_f$ are open circuits, so the only DC path is $R_f$. A real op-amp also has an input bias current $I_b$ and an input offset voltage $V_{os}$:
+\[
+V_{out,DC}=V_{REF}\frac{A}{1+A}+I_bR_f+V_{os}\;\approx\;V_{REF}+I_bR_f+V_{os}.
+\]
+For DC the stage is a unity-gain follower.
+
+\begin{itemize}
+\item With $I_b$ of a few pA and $R_f=\SI{1}{M\ohm}$, $I_bR_f$ is of order \si{\micro V}. Negligible.
+\item If $I_b$ were \SI{160}{nA} (as in the THS4531), $I_bR_f$ would be \SI{0.16}{V}. A high-bias part does not work with a megohm feedback resistor.
+\end{itemize}
+
+The reference comes from the divider R29, R30 (both \SI{1}{M\ohm}):
+\[
+V_{REF}=V_+\frac{R_{30}}{R_{29}+R_{30}}=\frac{\SI{2.9}{V}}{2}=\SI{1.45}{V}.
+\]
+So the output rests at about \SI{1.45}{V}, mid-supply. The available swing is about $\pm\SI{1.3}{V}$:
+\[
+Q_{max}\approx\SI{1.3}{V}\times\SI{47}{pF}\approx\SI{61}{pC},
+\]
+while events are 2 to \SI{11}{pC}.
+
+\section{Supply down the coax (bias-T)}
+
+An inductor is the opposite of a capacitor: $|Z_L|=2\pi fL$. For $L=\SI{470}{\micro H}$:
+\[
+|Z_L|(\SI{250}{kHz})=2\pi\cdot250\,000\cdot470\times10^{-6}\approx\SI{740}{\ohm}\gg\SI{50}{\ohm},
+\]
+and $\approx0$ at DC. So the DC supply flows through the inductor, and the signal goes through the capacitor C38 instead ($|Z_C|=1/(2\pi fC)=\SI{6.4}{\ohm}$ at \SI{250}{kHz} for \SI{100}{nF}). The drop across R26 (\SI{47}{\ohm}) and the inductor's own resistance, at about \SI{4.3}{mA}, takes roughly \SI{0.4}{V} off \SI{3.3}{V}, so $V_+$ at the amplifier is about \SI{2.9}{V}.
+
+\section{Stability}
+
+The loop gain is $T(s)=A(s)\,\beta(s)$ with feedback factor $\beta=1/G_n$. At high frequency $\beta\approx C_f/(C_f+C_p)=1/35$, which is flat. The crossover ($|T|=1$) is at $f_H=\SI{1.43}{MHz}$. There the op-amp's single pole has used $90^\circ$ of phase, leaving about $90^\circ$ minus whatever the output stage ($R_{31}$ and the load) adds. $C_f$ in the feedback path is what keeps this stable: without it, $C_p$ at the $-$ node would add a feedback zero and could peak.
+
+\section{OPA365: the specs that matter}
+
+\begin{center}
+\small
+\begin{tabular}{p{3.4cm}p{3.3cm}p{7.3cm}}
+\toprule
+Spec & Value & Why it matters here\\
+\midrule
+Gain-bandwidth & \SI{50}{MHz} & Sets the head bandwidth, $\mathrm{GBW}/G_n=\SI{1.4}{MHz}$. The perfboard's \SI{11}{MHz} cost 2\,dB.\\
+Input voltage noise & \SI{4.5}{nV/\sqrt{Hz}} & Sets the noise floor: \SI{100}{\micro V} rms at the output, \SI{4.7}{fC} equivalent.\\
+Supply range & 2.2 to \SI{5.5}{V} & The head runs at about \SI{2.9}{V}, inside the range.\\
+Rail-to-rail in/out & yes & The output can use the full swing around \SI{1.45}{V}.\\
+Zero-crossover input & yes & No offset jump when the input sits near mid-supply, where our reference is.\\
+Quiescent current & about \SI{4.6}{mA} & Almost all of the head's \SI{4.3}{mA}. Reason for the OPA314 ($\SI{150}{\micro A}$) low-power option.\\
+Input bias current & pA class (verify) & Allows $R_f=\SI{1}{M\ohm}$ without a DC error.\\
+Input offset voltage & a few hundred \si{\micro V} (verify) & Shifts the rest level slightly. Harmless with AC coupling.\\
+Slew rate & about \SI{25}{V/\micro s} (verify) & A \SI{150}{mV} burst at \SI{250}{kHz} needs $2\pi f V=\SI{0.24}{V/\micro s}$. Large margin.\\
+\bottomrule
+\end{tabular}
+\end{center}
+The entries marked \emph{verify} are quoted from memory. Check them against the datasheet.
+
+\section{The design in five steps}
+
+\begin{enumerate}
+\item KCL at the summing node with $i_p=sQ$ gives $v_o=-Q\,sZ_f$ (ideal).
+\item $Z_f=R_f\parallel C_f$: mid-band gain $-1/C_f$, high-pass at $1/(2\pi R_fC_f)=\SI{3.4}{kHz}$.
+\item Finite $A=\omega_t/s$ adds the error factor with noise gain $G_n=1+C_p/C_f=35$, which gives a low-pass at $\mathrm{GBW}/G_n=\SI{1.4}{MHz}$.
+\item The same $G_n$ multiplies $e_n$: about \SI{100}{\micro V} rms at the output, \SI{4.7}{fC} equivalent.
+\item DC: a unity-gain follower to $V_{REF}$, plus $I_bR_f+V_{os}$.
+\end{enumerate}
+
+\end{document}

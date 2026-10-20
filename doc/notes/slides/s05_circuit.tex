@@ -1,0 +1,20 @@
+\documentclass[border=6pt]{standalone}
+\usepackage{amsmath}
+\usepackage[siunitx,americanvoltage]{circuitikz}
+\usepackage{xcolor}
+\definecolor{ink}{HTML}{14231B}
+\ctikzset{bipoles/length=1.15cm, resistors/scale=0.9, capacitors/scale=0.9, inductors/scale=0.9}
+\newcommand{\lab}[3]{\shortstack{$#1$\\{\footnotesize #2}\\{\scriptsize #3}}}
+\begin{document}
+\sffamily
+\begin{circuitikz}[american, color=ink, font=\small]
+  \node[op amp, noinv input up] (op) at (7,0) {};
+  \node[font=\footnotesize] at ($(op.out)+(-0.1,0.5)$) {U1B OPA2365};
+  \draw (op.+) -- ++(-1.5,0) node[left, font=\footnotesize, align=right] {HPF\_OUT\\from the high-pass};
+  \draw (op.out) -- ++(1.4,0) coordinate (O) node[circ]{} -- ++(0.8,0) node[right, font=\footnotesize, align=left] {GAIN\_OUT\\to the low-pass};
+  \draw (op.-) -- ++(-1.0,0) coordinate (X) -- ++(0,-1.6) coordinate (Y) node[circ]{};
+  \draw (Y) to[R, l={\lab{R_3}{3.9\,k$\Omega$}{$\pm1\,\%$}}] (Y -| O) -- (O);
+  \draw (Y) to[R, l_={\lab{R_4}{1\,k$\Omega$}{$\pm1\,\%$}}] ($(Y)+(0,-3.0)$) node[vcc, rotate=180]{};
+  \node[font=\footnotesize, below=14pt] at ($(Y)+(0,-3.0)$) {$V_{MID5}$ 1.65 V};
+\end{circuitikz}
+\end{document}

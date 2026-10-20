@@ -1,0 +1,22 @@
+\documentclass[border=6pt]{standalone}
+\usepackage{amsmath}
+\usepackage[siunitx,americanvoltage]{circuitikz}
+\usepackage{xcolor}
+\definecolor{ink}{HTML}{14231B}
+\ctikzset{bipoles/length=1.15cm, resistors/scale=0.9, capacitors/scale=0.9, inductors/scale=0.9}
+\newcommand{\lab}[3]{\shortstack{$#1$\\{\footnotesize #2}\\{\scriptsize #3}}}
+\begin{document}
+\sffamily
+\begin{circuitikz}[american, color=ink, font=\small]
+  \node[op amp] (op) at (10,0) {};
+  \node[font=\footnotesize] at ($(op.down)+(0.5,-0.3)$) {U2A OPA2365};
+  \draw (op.out) -- ++(1.6,0) coordinate (O) node[circ]{} -- ++(0.9,0) node[right, font=\footnotesize, align=left] {LPF\_OUT\\to the driver\\and SCOPE OUT};
+  \draw (op.-) -- ++(-0.8,0) coordinate (FB) -- ++(0,-1.5) -| (O);
+  \draw (op.+) -- ++(-1.5,0) coordinate (B) node[circ]{};
+  \draw (0,0.5) node[left, font=\footnotesize]{GAIN\_OUT} to[short,o-] ++(0.4,0) to[R, l={\lab{R_5}{2.2\,k$\Omega$}{$\pm1\,\%$}}] ++(2.8,0) coordinate (A) node[circ]{};
+  \draw (A) to[R, l={\lab{R_6}{2.2\,k$\Omega$}{$\pm1\,\%$}}] (A -| B) -- (B);
+  \draw (A) -- ++(0,2.0) coordinate (A2) to[C, l={\lab{C_4\parallel C_5}{200\,pF C0G}{$\pm5\,\%$}}] (A2 -| O) -- (O);
+  \draw (B) to[C, l_={\lab{C_6}{100\,pF C0G}{$\pm5\,\%$}}] ($(B)+(0,-2.6)$) node[vcc, rotate=180]{};
+  \node[font=\footnotesize, below=14pt] at ($(B)+(0,-2.6)$) {$V_{MID5}$ 1.65 V};
+\end{circuitikz}
+\end{document}

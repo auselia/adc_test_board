@@ -1,0 +1,23 @@
+\documentclass[border=6pt]{standalone}
+\usepackage{amsmath}
+\usepackage[siunitx,americanvoltage]{circuitikz}
+\usepackage{xcolor}
+\definecolor{ink}{HTML}{14231B}
+\ctikzset{bipoles/length=1.15cm, resistors/scale=0.9, capacitors/scale=0.9, inductors/scale=0.9}
+\newcommand{\lab}[3]{\shortstack{$#1$\\{\footnotesize #2}\\{\scriptsize #3}}}
+\begin{document}
+\sffamily
+\begin{circuitikz}[american, color=ink, font=\small]
+  \node[op amp] (op) at (9,0) {};
+  \node[font=\footnotesize] at ($(op.down)+(0.5,-0.3)$) {U1A OPA2365};
+  \draw (op.out) -- ++(1.6,0) coordinate (O) node[circ]{} -- ++(0.9,0) node[right, font=\footnotesize, align=left] {HPF\_OUT\\to the gain stage};
+  \draw (op.-) -- ++(-0.8,0) coordinate (FB) -- ++(0,-1.5) -| (O);
+  \draw (op.+) -- ++(-1.5,0) coordinate (B) node[circ]{};
+  \draw (0,0.5) node[left, font=\footnotesize]{SIG\_IN} to[short,o-] ++(0.5,0) to[C, l={\lab{C_1}{100\,pF C0G}{$\pm5\,\%$}}] ++(2.7,0) coordinate (A) node[circ]{};
+  \draw (A) to[C, l={\lab{C_2}{100\,pF C0G}{$\pm5\,\%$}}] (A -| B) -- (B);
+  \draw (A) -- ++(0,2.0) coordinate (A2) to[R, l={\lab{R_1}{10\,k$\Omega$}{$\pm1\,\%$}}] (A2 -| O) -- (O);
+  \draw (B) to[R, l_={\lab{R_2}{20\,k$\Omega$}{$\pm1\,\%$}}] ($(B)+(0,-2.6)$) node[vcc, rotate=180]{};
+  \node[font=\footnotesize, below=14pt] at ($(B)+(0,-2.6)$) {$V_{MID5}$ 1.65 V};
+  \node[font=\footnotesize, above] at (A) {A};
+\end{circuitikz}
+\end{document}
