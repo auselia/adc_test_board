@@ -19,10 +19,10 @@ The board is a narrow strip (21.5 mm) so that boards fit on adjacent PMOD ports 
 
 | | v2 | v3 |
 |---|---|---|
-| Supply | USB-C or header, 5 V, SS14, ferrite, XC6206 for AVDD | **PMOD 3.3 V only** (header J7 for the bench). AVDD through 10 Ω and 10 µF |
+| Supply | USB-C or header, 5 V, SS14, ferrite, XC6206 for AVDD | **PMOD 3.3 V only**, through the 5-pin header J7 (jumper 1-2). AVDD through 10 Ω and 10 µF |
 | Rails | 5 V, 2.3 V VMID5, 1.65 V VOCM | 3.3 V, **1.65 V** VMID5 and VOCM |
 | Wake-up | LM393 window, trimmer RV1, nWAKE | **Listener**: passive 159 kHz high-pass, 723 kHz low-pass, two TLV7022 comparators. WAKE_N (35 mV) and BIG_N (111 mV) at SIG_IN, on PMOD pins 10 and 7. Observer only |
-| Current measurement | none | Jumpers JP2 (listener), JP3 (capture), JP4 (AVDD), JP5 (DVDD), JP6 (PMOD 3V3) |
+| Current measurement | none | J7: 4-wire source-measure unit connection (below). JP3 (capture rail) can be opened to measure or switch the chain alone |
 | Test points | TP3 to TP20 on a bottom strip | TP3 to TP20 inside each block, names on the back |
 | Size | 57 × 37.6 mm | 125 × 21.5 mm |
 | Head | OPA365, 5 V from the coax | OPA365 at 3.3 V (V+ 2.9 V). Low-power option: OPA314 and Cf 220 pF on the same pads |
@@ -41,9 +41,9 @@ The board serves two purposes. In the plant experiments, four boards sit on ZedB
 | VMID5 (signal ground, half of +3V3_C, 1.65 V) | 10k/10k divider, U2B buffer | 10 Ω, 10 µF |
 | Driver | THS4531, gain 1 | 1k in and feedback; VOCM = 1k/1k divider on AVDD |
 | ADC input filter | | 10 Ω per leg, 4 × 100 pF C0G = 400 pF |
-| AVDD (reference) | from +3V3_C through JP4, R34 10 Ω, C21 10 µF | 4.7 µF + 100 nF at the ADS7057 AVDD pin. RC corner 1.6 kHz |
-| 3.3 V input | PMOD J3 pins 6 and 12 through JP6, or header J7 (cut JP6) | C23 10 µF. No USB, no diode |
-| Rail links | JP2 → +3V3_L (listener), JP3 → +3V3_C (U1, U2, U3), JP4 → AVDD, JP5 → DVDD | Cut one to put an ammeter in series |
+| AVDD (reference) | from +3V3_C through R34 10 Ω, C21 10 µF | 4.7 µF + 100 nF at the ADS7057 AVDD pin. RC corner 1.6 kHz |
+| 3.3 V input | PMOD J3 pins 6 and 12 to J7 pin 1; J7 pins 2 and 3 are the board rail | C23 10 µF. No USB, no diode |
+| Rail link | JP3 joins +3V3_C (U1, U2, U3, AVDD) to +3V3 (closed). The listener and DVDD are on +3V3 | Open JP3 to measure or switch the capture chain alone |
 | MON output | 51 Ω from LPF_OUT to SMA J4 | The scope sees the same signal the ADC samples |
 | Bias-T on SENSOR IN (J1) | JP1 (bridged), R26 47R + C32 10 µF, L2 470 µH, C33 100 nF, R27 1M | 3.3 V reaches the coax centre through 47 Ω and 470 µH. C33 passes the head signal to the filters |
 | Listener filter | C40 100 pF + R35 10k (high-pass 159 kHz), R36 10k + C41 22 pF (low-pass 723 kHz) | Output LST, TP15. Gain 0.68 at 250 kHz (the filters load each other) |
@@ -77,7 +77,7 @@ The bias-T at 3.3 V costs 0.17 dB at 250 kHz and 19 dB at 10 kHz (`python3 sim/h
 | SENSOR IN (J1) | SMA input for the sensor head. The centre pin carries 3.3 V while the jumper JP1 is bridged. Cut JP1 before you connect a function generator. |
 | SCOPE OUT (J4) | SMA monitor output. It carries the same signal the ADC samples, through 51 Ω. Use a 1 MΩ scope input. A 50 Ω input halves the signal. |
 | Test point names (back) | SIG_IN, HPF_OUT, GAIN_OUT, LPF_OUT, DRV_OUTP, DRV_OUTN, AINP, AINM, +3V3, AVDD, VMID5, VOCM, LST, WAKE_N, BIG_N, REFL, GND, GND |
-| Jumper names (back) | JP1 head power, JP2 listener, JP3 capture, JP4 AVDD, JP5 DVDD, JP6 PMOD 3V3 |
+| Silkscreen (top) | Test point numbers (TP3 to TP20) and IC numbers (U1 to U4, U6, U9); head: TP1, TP2, U8. Jumper names and PMOD pin legend on the back |
 | PMOD pin list (back) | Pins used and their names |
 | Leaf and waves (back) | Auselia mark |
 
@@ -87,7 +87,7 @@ Reference designators (R1, C4 and so on) are on the F.Fab layer, not on the silk
 
 All power comes from the ZedBoard PMOD. J3 pins 6 and 12 carry 3.3 V and pins 5 and 11 carry GND. The ZedBoard feeds the PMOD connectors from its 3.3 V rail, rated 3 A and shared with the FMC and the other PMODs. This board draws about 27 mA, plus 5 mA for the head, so four boards are about 130 mA. Feed J7 instead (and cut JP6) to run on the bench.
 
-The four links JP2 to JP5 are closed. Cut one with a knife and solder a header or an ammeter across it to measure the current of that block. JP6 joins the PMOD pins to the board rail. Never feed J7 and the PMOD at the same time.
+J7 is a 5-pin header: 1 Onboard + (PMOD 3.3 V), 2 Force +, 3 Sense +, 4 Sense −, 5 Force −. Pins 2 and 3 are the board rail, pins 4 and 5 are ground. A jumper from pin 1 to pin 2 powers the board from the ZedBoard. To power it from a source-measure unit (for example a Keysight B2901BL) remove the jumper and connect Force to pins 2 and 5 and Sense to pins 3 and 4. The SMU then measures the total board current. JP3 (closed) joins the capture rail: open it to feed or switch U1, U2, U3 and AVDD separately. JP1 is the head power link.
 
 AVDD is the ADC reference, and full scale is ±AVDD. It comes from the rail through 10 Ω and 10 µF. The ZedBoard 3.3 V noise is not known yet: probe TP11 and TP12.
 
@@ -100,7 +100,7 @@ JLCPCB solders these. They are in the BOM and the pick-and-place file.
 | Ref | Part | LCSC |
 |---|---|---|
 | J1, J4 (and J6 on the head) | SMA jack, vertical, 5 pins (sensor in, MON, head out) | C496549 |
-| J7 | 1×2 pin header, 2.54 mm (3.3 V bench input) | C492401 |
+| J7 | 1×5 pin header, 2.54 mm (power / source-measure unit) | C492404 |
 | J3 | 2×6 right-angle pin header, 2.54 mm | C60565 |
 
 If JLCPCB declines a through-hole part, delete its line from the BOM and solder it yourself. The board has the same footprints either way.
@@ -109,7 +109,7 @@ If JLCPCB declines a through-hole part, delete its line from the BOM and solder 
 
 - **J1 SENSOR IN:** SMA for the sensor head, carries +3.3 V on the centre pin (JP1 bridged).
 - **J4 SCOPE OUT:** SMA monitor output, LPF_OUT through 51 Ω.
-- **J7 header:** 3.3 V bench input (cut JP6 first).
+- **J7 header:** power and 4-wire SMU connection (jumper 1-2 for the PMOD supply).
 - **H1, H2:** M3 mounting holes.
 - **J3 PMOD:** 1 CS, 3 SDO, 4 SCLK, 5/11 GND, 6/12 3V3, 7 BIG_N, 10 WAKE_N.
 
@@ -175,7 +175,7 @@ The JLCPCB viewer showed four problems on the first revision, and the CPL correc
 
 | Part | Problem | CPL rotation |
 |---|---|---|
-| J7 (1×2 header) | Pins horizontal, pads vertical | 0 → 90 |
+| J7 (1×5 header) | Rotation as in the CPL (90), not checked in the viewer | check |
 | J3 (2×6 header) | Row horizontal, pads vertical | 0 → 90 |
 
 J3 and J7 have their origin on pin 1 in the KiCad footprint, so they are placed by that pin.
@@ -231,13 +231,13 @@ Paper checks:
 
 With the sensor head: connect it to J1 with the coax, power the board from the PMOD (or J7 at 3.3 V), and the head runs from the rail (about +4.3 mA). Measure about 2.9 V on C37 and 1.45 V on the OPA365 output, VREF and C35. Then continue from step 3.
 
-1. Cut JP6 and feed J7 with 3.3 V and a 100 mA limit. Check +3V3 (3.30 V), AVDD (3.30 V), VOCM (1.65 V), VMID5 (1.65 V) and REFL (1.65 V) at the test points before the PMOD connects. Then close JP6.
+1. Remove the J7 jumper and feed pins 2 and 5 with 3.3 V and a 100 mA limit (SMU Force), Sense on pins 3 and 4. Check +3V3 (3.30 V), AVDD (3.30 V), VOCM (1.65 V), VMID5 (1.65 V) and REFL (1.65 V) at the test points before the PMOD connects. Then fit the jumper 1-2 and connect the PMOD.
 2. Plug the board into the ZedBoard and check that WAKE_N and BIG_N read high (3.3 V).
 3. Feed J1 from the Analog Discovery 2 with a 250 kHz, 100 mV sine. Compare SCOPE OUT with the input on the scope (1 MΩ input).
 4. Read SPI codes. Check the idle code and the amplitude against the scope.
 5. Sweep 10 kHz to 2 MHz and compare with the table above. The 10 kHz loss is the thinnest margin.
 6. Raise a 250 kHz burst from 10 mV: WAKE_N must drop near 35 mV and BIG_N near 111 mV at J1 (±12 mV from the comparator offset). Log TP15 to TP18 on the scope.
-7. Cut JP2 to JP5 one at a time and read the current of each block (listener about 25 µA).
+7. With the SMU on J7, read the total current (about 25 mA). Open JP3 to read the capture chain and the listener separately.
 
 ## Manual (`doc/`)
 

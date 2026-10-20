@@ -10,7 +10,7 @@ The signal runs from the SMA on the left to the PMOD on the right. The listener,
 \section{The board in numbers}
 \begin{center}\begin{tabular}{lp{10.5cm}}\toprule
 Size and stack & 125 $\times$ \SI{21.5}{mm}, two copper layers, \SI{1.6}{mm} FR-4\\
-Parts & 105 footprints: 75 SMD, 4 through-hole, 2 mounting holes, 18 test points, 6 solder jumpers\\
+Parts & 101 footprints: SMD parts, 4 through-hole connectors plus the 5-pin header, 2 mounting holes, 18 test points, 2 solder jumpers (JP1, JP3)\\
 Tracks and vias & 886 track segments (836 at \SI{0.2}{mm}, 50 at \SI{0.15}{mm}); 214 vias of \SI{0.6}{mm} with a \SI{0.3}{mm} drill, 119 of them ground stitching\\
 Ground & a pour on both layers, tied by the stitching vias\\
 Longest analog net & LPF\_OUT, \SI{39}{mm} (it feeds SCOPE OUT and the driver)\\
@@ -24,7 +24,7 @@ Every part belongs to one block. The ADC corner is built tight: the two \SI{10}{
 \section{What the board offers you on the bench}
 \begin{itemize}[leftmargin=1.2em]
 \item Test points after every stage: TP3 SIG\_IN, TP4 HPF\_OUT, TP5 GAIN\_OUT, TP6 LPF\_OUT, TP7 and TP8 driver outputs, TP9 and TP10 ADC inputs, TP11 +3V3, TP12 AVDD, TP13 VMID5, TP14 VOCM, TP15 LST, TP16 WAKE\_N, TP17 BIG\_N, TP18 REFL, TP19 and TP20 ground.
-\item Solder jumpers JP1 (head power), JP2 to JP5 (current links), JP6 (PMOD power). SCOPE OUT (J4) copies the signal the ADC sees through $51\,\Omega$.
+\item J7, a 5-pin power header (Onboard $+$, Force $+$, Sense $+$, Sense $-$, Force $-$) for the PMOD supply or a source-measure unit. Solder jumpers JP1 (head power) and JP3 (capture rail). SCOPE OUT (J4) copies the signal the ADC sees through $51\,\Omega$.
 \end{itemize}
 
 \section{Cost (JLCPCB, economic assembly, shipped to Chile)}

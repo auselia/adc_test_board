@@ -18,7 +18,7 @@
   \node[box,right=0.35cm of f] (g) {PMOD\\J3};
   \draw[->] (a)--(b); \draw[->] (b)--(c); \draw[->] (c)--(d); \draw[->] (d)--(e); \draw[->] (e)--(f); \draw[->] (f)--(g);
   \node[box,below=0.9cm of c] (l) {listener\\U6, U9};
-  \node[box,below=0.9cm of e] (p) {power links\\JP2--JP6};
+  \node[box,below=0.9cm of e] (p) {power header\\J7, JP3};
   \node[box,above=0.9cm of d] (m) {SCOPE OUT\\J4};
   \draw[->] (a.south) |- (l.west); \draw[->] (l.east) -| (g.south); \draw[->] (d.north) -- (m.south); \draw[->] (p.east) -| ($(g.south east)+(-0.1,0)$);
   \node[font=\footnotesize,anchor=north west] at (a.south west){\ };

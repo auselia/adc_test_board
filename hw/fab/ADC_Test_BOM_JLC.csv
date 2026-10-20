@@ -7,7 +7,7 @@ Comment,Designator,Footprint,LCSC Part #
 22pF C0G,C41,C_0603_1608Metric,C1653
 SMA jack,"J1,J4",SMA_Amphenol_132134-11_Vertical,C496549
 Header 2x6 right angle,J3,PinHeader_2x06_P2.54mm_Horizontal,C60565
-Header 1x2,J7,PinHeader_1x02_P2.54mm_Vertical,C492401
+Header 1x5,J7,PinHeader_1x05_P2.54mm_Vertical,C492404
 470uH,L2,L_1210_3225Metric,C75644
 10k,"R1,R7,R8,R35,R36",R_0603_1608Metric,C25804
 20k,R2,R_0603_1608Metric,C4184

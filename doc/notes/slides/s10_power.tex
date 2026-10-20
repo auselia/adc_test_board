@@ -5,7 +5,7 @@
 \begin{document}\maketitle\vspace{-1.2em}
 \section{The power tree}
 \begin{center}\includegraphics[width=0.98\textwidth]{s10_circuit.pdf}\end{center}
-PMOD pins 6 and 12 bring 3.3 V. There is no regulator, no diode and no USB. JP6 joins the PMOD to the board rail +3V3. To run on the bench, cut JP6 and feed the 2-pin header J7 (never both). Four solder jumpers split the rail so each block can be measured alone: JP2 listener, JP3 capture chain (U1, U2, U3), JP4 ADC reference path (AVDD), JP5 ADC logic (DVDD). Cut one with a knife and put an ammeter across the gap. All four are closed at delivery.
+PMOD pins 6 and 12 bring 3.3 V. There is no regulator, no diode and no USB. The 5-pin header J7 is the power entry: 1 Onboard + (PMOD 3.3 V), 2 Force +, 3 Sense +, 4 Sense $-$, 5 Force $-$. A jumper from 1 to 2 powers the board from the ZedBoard. For a source-measure unit remove the jumper and connect Force to 2 and 5, Sense to 3 and 4: the SMU powers the board and reads its total current. JP3 (closed) joins the capture rail +3V3\_C (U1, U2, U3 and AVDD) to +3V3. Open it to switch or measure the chain alone. The listener and DVDD sit on +3V3.
 
 \section{AVDD is the reference}
 The ADS7057 uses AVDD as its reference, so noise on AVDD is noise in the code. AVDD comes from the rail through R34 ($10\,\Omega$) and C21 ($10\,\mu$F). First-order RC:

@@ -51,7 +51,7 @@ Files: s09_spi.pdf, s09_circuit.svg, s09_graph.svg (frame), s09_rate.svg (sample
 
 ## Slide 10. Power and rails
 Subtitle: 3.3 V from the PMOD alone
-- The board takes 3.3 V from the PMOD. It draws about 25 mA. Four solder jumpers split the rail so each block can be measured alone.
+- The board takes 3.3 V from the PMOD through the 5-pin header J7 (jumper 1-2). It draws about 25 mA. A source-measure unit connects to the same header with four wires.
 - AVDD is the ADC reference. A 10 Ω resistor and 10 µF give a 1.6 kHz filter. It removes 44 dB at 250 kHz.
 - The two 1.65 V mid-rails follow the supply. VMID5 needs about 25 ms to settle after power-up.
 Files: s10_power.pdf, s10_circuit.svg, s10_graph.svg (current), s10_avdd.svg (AVDD filter)
@@ -66,7 +66,7 @@ Files: s11_listener.pdf, s11_circuit.svg, s11_graph.svg
 ## Slide 12. Board and layout
 Subtitle: A strip that fits adjacent PMOD ports
 - The board is 125 × 21.5 mm with two copper layers. The signal flows from the SMA on the left to the PMOD on the right.
-- It holds 105 footprints in six blocks. Every stage has a test point, and four solder jumpers measure the current of each block.
+- It holds about 100 footprints in six blocks. Every stage has a numbered test point, and the ICs are numbered on the silkscreen.
 - Five boards with parts cost about 118 dollars. Sixteen cards and heads would cost about 383 dollars, so 16 channels need a bigger budget.
 Files: s12_board.pdf, s12_circuit.svg, s12_graph.svg
 

@@ -1,9 +1,7 @@
 == 1. DC operating point, all links closed, PMOD 3.3 V
   +3V3                                   3.299 V    expect 3.25 .. 3.31   PASS
-  +3V3_L                                 3.299 V    expect 3.25 .. 3.31   PASS
   +3V3_C                                 3.299 V    expect 3.25 .. 3.31   PASS
   AVDD                                   3.271 V    expect 3.25 .. 3.31   PASS
-  DVDD                                   3.299 V    expect 3.25 .. 3.31   PASS
   VMID5                                  1.649 V    expect 1.6 .. 1.7   PASS
   VOCM                                   1.636 V    expect 1.6 .. 1.7   PASS
   LST                                    1.643 V    expect 1.6 .. 1.7   PASS
@@ -15,7 +13,7 @@
   TH1M against the resistor chain         1.62 V    expect 1.614 .. 1.638   PASS
   TH2P against the resistor chain        1.719 V    expect 1.714 .. 1.738   PASS
   TH2M against the resistor chain        1.568 V    expect 1.562 .. 1.586   PASS
-  ADC differential input                -4e-06 V    expect -0.005 .. 0.005   PASS
+  ADC differential input                -3e-06 V    expect -0.005 .. 0.005   PASS
   current from the PMOD                  24.77 mA   expect 15 .. 40   PASS
 == 2. AC gain from the head connector, SENSOR IN to nodes
   SIG_IN to ADC at 250 kHz               12.28 dB   expect 11.5 .. 13   PASS

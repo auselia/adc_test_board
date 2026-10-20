@@ -147,6 +147,8 @@ print('island vias',island_vias())
 for z in b.Zones(): z.SetIslandRemovalMode(pcbnew.ISLAND_REMOVAL_MODE_ALWAYS)
 pcbnew.ZONE_FILLER(b).Fill(b.Zones())
 
+for d_ in list(b.GetDrawings()):
+    if d_.GetLayer() in (pcbnew.F_SilkS,pcbnew.B_SilkS): b.Delete(d_)
 # 4. silkscreen. Reference designators go to F.Fab (the board is dense); the silk carries plain-language labels.
 for fp in b.GetFootprints(): fp.Reference().SetLayer(pcbnew.F_Fab)
 def text(s,x,y,size=0.8,just=pcbnew.GR_TEXT_H_ALIGN_CENTER,layer=pcbnew.F_SilkS,thick=None,mirror=False):
@@ -190,7 +192,7 @@ else:
         x_,y_,_r=_P[r_]
         text(n_,x_,y_+1.6 if y_<10 else y_-1.6,0.8,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
     # current links, named on the back below each jumper
-    for ref_,nm_ in (('JP1','HEAD'),('JP2','LISTEN'),('JP3','CAPTURE'),('JP4','AVDD'),('JP5','DVDD'),('JP6','PMOD 3V3')):
+    for ref_,nm_ in (('JP1','HEAD'),('JP3','CAPTURE')):
         for fp_ in b.GetFootprints():
             if fp_.GetReference()==ref_:
                 p_=fp_.GetPosition(); text(nm_,T(p_.x)-OX,T(p_.y)-OY,0.8,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
@@ -199,6 +201,46 @@ else:
         text(s_,18,y_,sz,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
     for i,l in enumerate(['PMOD (J3)','1 CS    7 BIG_N','2 -     8 -','3 SDO   9 -','4 SCK  10 WAKE_N','5 GND  11 GND','6 3V3  12 3V3']):
         text(l,W-31.0,3.5+i*1.5,0.9,pcbnew.GR_TEXT_H_ALIGN_LEFT,pcbnew.B_SilkS,0.15,True)
+
+# 5. top silkscreen: test point numbers and IC numbers, each placed where it touches no pad, via, text or board edge
+def place_labels(items,size=0.8):
+    BW,BH=(10.0,HEADH) if TARGET=='head' else (W,H)
+    obst=[]
+    for fp in b.GetFootprints():
+        for pad in fp.Pads():
+            bb=pad.GetBoundingBox(); obst.append([T(bb.GetX())-OX-0.2,T(bb.GetY())-OY-0.2,T(bb.GetRight())-OX+0.2,T(bb.GetBottom())-OY+0.2])
+    for t_ in b.GetTracks():
+        if t_.Type()==pcbnew.PCB_VIA_T:
+            p_=t_.GetPosition(); r_=T(t_.GetWidth(pcbnew.F_Cu))/2+0.1; obst.append([T(p_.x)-OX-r_,T(p_.y)-OY-r_,T(p_.x)-OX+r_,T(p_.y)-OY+r_])
+    for d_ in b.GetDrawings():
+        if d_.GetLayer()==pcbnew.F_SilkS:
+            bb=d_.GetBoundingBox(); obst.append([T(bb.GetX())-OX,T(bb.GetY())-OY,T(bb.GetRight())-OX,T(bb.GetBottom())-OY])
+    miss=[]
+    for ref,label,cx,cy,centre_first in items:
+        w=len(label)*size*0.66+0.2; h=size*1.15
+        d0=[(0,0)] if centre_first else []
+        cand=d0+[(dx*k,dy*k) for k in ((1.5,2.0,2.6,3.3) if ref.startswith('TP') else (1.0,1.4,1.9,2.5,3.2)) for dx,dy in ((0,-1),(0,1),(1,0),(-1,0),(1,-1),(-1,-1),(1,1),(-1,1))]
+        ok=None
+        for ox,oy in cand:
+            # push the box out by half its size when the offset is sideways or vertical
+            x=cx+ox+(ox!=0 and (w/2 if ox>0 else -w/2) or 0); y=cy+oy+(oy!=0 and (h/2 if oy>0 else -h/2) or 0)
+            bx=[x-w/2,y-h/2,x+w/2,y+h/2]
+            if bx[0]<0.3 or bx[1]<0.3 or bx[2]>BW-0.3 or bx[3]>BH-0.3: continue
+            if any(not(bx[2]<=o[0] or bx[0]>=o[2] or bx[3]<=o[1] or bx[1]>=o[3]) for o in obst): continue
+            ok=(x,y,bx); break
+        if ok is None: miss.append(ref); continue
+        text(label,ok[0],ok[1],size,layer=pcbnew.F_SilkS,thick=0.12); obst.append(ok[2])
+    return miss
+items=[]
+for fp in b.GetFootprints():
+    r=fp.GetReference(); p=fp.GetPosition()
+    if r.startswith('TP') and TARGET=='head': continue
+    if r.startswith('TP'): items.append((r,r,T(p.x)-OX,T(p.y)-OY,False))
+    elif r[0]=='U': items.append((r,r,T(p.x)-OX,T(p.y)-OY,True))
+items.sort(key=lambda i:(i[0][0]!='U',i[0]))          # ICs first, they have the fewest options
+print('silk labels not placed:',place_labels(items))
+if TARGET=='head':
+    text('TP1',1.9,3.6,0.8,layer=pcbnew.F_SilkS,thick=0.12); text('TP2',8.3,6.0,0.8,layer=pcbnew.F_SilkS,thick=0.12)
 b.GetDesignSettings().SetAuxOrigin(V(OX,OY+(HEADH if TARGET=='head' else H)))
 # pads that DRC reports with a starved thermal relief get a solid connection (self-correcting, up to 3 rounds)
 import subprocess,re

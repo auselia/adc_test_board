@@ -59,7 +59,7 @@ Rop op0 op {zo}
 Rom om0 om {zo}
 .ends
 .model SWC sw(vt=0 vh=0.0035 ron=100 roff=1e12)""",
-         'Vpmod vpm 0 3.3', 'Rpmod vpm %s 0.05' % node('JP6', 1)]
+         'Vpmod vpm 0 3.3', 'Rpmod vpm %s 0.05' % node('J7', 1), 'Rj7 %s %s 0.001' % (node('J7', 1), node('J7', 2))]
     for ref, v in sorted(comp.items()):
         k = ref[0]
         if ref.startswith('JP'):
@@ -105,7 +105,7 @@ def cols(d, name):
     return [list(map(float, l.split())) for l in open(os.path.join(d, name)) if l.strip()]
 
 
-nodes = ['+3V3', '+3V3_L', '+3V3_C', 'AVDD', 'DVDD', 'VMID5', 'VOCM', 'REFL', 'LST', 'TH1P', 'TH1M', 'TH2P', 'TH2M', 'WAKE_N',
+nodes = ['+3V3', '+3V3_C', 'AVDD', 'VMID5', 'VOCM', 'REFL', 'LST', 'TH1P', 'TH1M', 'TH2P', 'TH2M', 'WAKE_N',
          'BIG_N', 'HEAD_LINE', 'SIG_IN', 'DRV_OUTP', 'DRV_OUTN']
 ok = True
 
@@ -132,7 +132,7 @@ _i = 3.3 / sum(_r)
 _th = {'REFL': 3.3 - _i * (_r[0] + _r[1] + _r[2]), 'TH1P': 3.3 - _i * (_r[0] + _r[1]), 'TH2P': 3.3 - _i * _r[0]}
 _th['TH1M'] = 2 * _th['REFL'] - _th['TH1P']
 _th['TH2M'] = 2 * _th['REFL'] - _th['TH2P']
-for n, lo, hi in (('+3V3', 3.25, 3.31), ('+3V3_L', 3.25, 3.31), ('+3V3_C', 3.25, 3.31), ('AVDD', 3.25, 3.31), ('DVDD', 3.25, 3.31),
+for n, lo, hi in (('+3V3', 3.25, 3.31), ('+3V3_C', 3.25, 3.31), ('AVDD', 3.25, 3.31),
                   ('VMID5', 1.6, 1.7), ('VOCM', 1.6, 1.7), ('LST', 1.6, 1.7), ('WAKE_N', 3.25, 3.31), ('BIG_N', 3.25, 3.31),
                   ('HEAD_LINE', 2.8, 3.11)):
     check(n, dc.get(n.lower(), float('nan')), lo, hi, 'V')

@@ -16,6 +16,7 @@ FP_R='Resistor_SMD:R_0603_1608Metric'; FP_C='Capacitor_SMD:C_0603_1608Metric'
 FP_SMA='Connector_Coaxial:SMA_Amphenol_132134-11_Vertical'
 FP_PMOD='Connector_PinHeader_2.54mm:PinHeader_2x06_P2.54mm_Horizontal'
 FP_H2='Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical'
+FP_H5='Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical'
 FP_C8='Capacitor_SMD:C_0805_2012Metric'
 FP_R4='Resistor_SMD:R_0402_1005Metric'; FP_C4='Capacitor_SMD:C_0402_1005Metric'
 FP_L='Inductor_SMD:L_1210_3225Metric'
@@ -68,31 +69,27 @@ def build():
     R(sh,155,200,'10R','DRV_OUTP','AINP','R16',90); R(sh,155,220,'10R','DRV_OUTN','AINM','R17',90)
     for k,x in enumerate((170,180,190,200)): C(sh,x,235,'100pF C0G','AINP','AINM','C%d'%(14+k))
     add(sh,'Auselia:ADS7057','ADS7057','Auselia:ADS7057_X2QFN-8_1.5x1.5mm',230,210,
-        {'7':'AINP','8':'AINM','1':'CS_A','3':'SCLK_A','2':'SDO_A','6':'AVDD','4':'DVDD','5':'GND'},'U',ref='U4',props={'LCSC':'C2669902'})
-    C(sh,215,255,'4.7uF','AVDD','GND','C18'); C(sh,255,255,'1uF','DVDD','GND','C19'); C(sh,270,255,'100nF','DVDD','GND','C20')
+        {'7':'AINP','8':'AINM','1':'CS_A','3':'SCLK_A','2':'SDO_A','6':'AVDD','4':'+3V3','5':'GND'},'U',ref='U4',props={'LCSC':'C2669902'})
+    C(sh,215,255,'4.7uF','AVDD','GND','C18'); C(sh,255,255,'1uF','+3V3','GND','C19'); C(sh,270,255,'100nF','+3V3','GND','C20')
     R(sh,280,195,'22R','CS','CS_A','R18',90); R(sh,280,210,'22R','SCLK','SCLK_A','R19',90); R(sh,280,225,'22R','SDO_A','SDO','R20',90)
     # ---- AVDD: the 3.3 V rail through a 10 ohm / 10 uF filter (no regulator: the rail is already 3.3 V)
-    text(sh,"AVDD = +3V3_C through JP4 (current link), R34 10R and C21 10 uF. C18 4.7 uF + C22 100 nF sit at the ADS7057 AVDD pin. DVDD = +3V3 through JP5.",300,170,2.2,True)
-    add(sh,'Jumper:SolderJumper_2_Bridged','AVDD LINK',FP_JP,330,205,{'1':'+3V3_C','2':'AVDD_IN'},'JP',rot=90,ref='JP4')
-    R(sh,350,205,'10R','AVDD_IN','AVDD','R34',90); C(sh,360,235,'10uF','AVDD','GND','C21'); C(sh,375,235,'100nF','AVDD','GND','C22')
-    add(sh,'Jumper:SolderJumper_2_Bridged','DVDD LINK',FP_JP,390,205,{'1':'+3V3','2':'DVDD'},'JP',rot=90,ref='JP5')
+    text(sh,"AVDD = +3V3_C through R34 10R and C21 10 uF. C18 4.7 uF + C22 100 nF sit at the ADS7057 AVDD pin. DVDD = +3V3.",300,170,2.2,True)
+    R(sh,350,205,'10R','+3V3_C','AVDD','R34',90); C(sh,360,235,'10uF','AVDD','GND','C21'); C(sh,375,235,'100nF','AVDD','GND','C22')
     # ---- listener: passive band-pass on SIG_IN, two window comparators (WAKE_N small, BIG_N large), open drain
     text(sh,"Listener (observer, never gates the chain). SIG_IN -> C40 100 pF / R35 10k to REFL (159 kHz high-pass) -> R36 10k / C41 22 pF (723 kHz low-pass, light load on the high-pass) -> LST.",20,275,1.8)
     text(sh,"TLV7022 open-drain comparators. Thresholds from the 1M / 33k / 18k ladder (about +-30 mV and +-84 mV for the 47 pF head, plus 3.6 mV of internal hysteresis). For the 100 pF head use 15k and 6.8k. WAKE_N = small window, BIG_N = large window. Pull-ups R24, R42 to +3V3.",20,281,1.8)
     C(sh,40,300,'100pF C0G','SIG_IN','LST_A','C40',90); R(sh,60,300,'10k','LST_A','REFL','R35',0); R(sh,80,300,'10k','LST_A','LST','R36',90); C(sh,100,300,'22pF C0G','LST','GND','C41')
-    R(sh,40,330,'1M','+3V3_L','TH2P','R21',0); R(sh,55,330,'33k','TH2P','TH1P','R22',0); R(sh,70,330,'15k','TH1P','REFL','R39',0)
+    R(sh,40,330,'1M','+3V3','TH2P','R21',0); R(sh,55,330,'33k','TH2P','TH1P','R22',0); R(sh,70,330,'15k','TH1P','REFL','R39',0)
     R(sh,85,330,'15k','REFL','TH1M','R40',0); R(sh,100,330,'33k','TH1M','TH2M','R41',0); R(sh,115,330,'1M','TH2M','GND','R23',0)
     C(sh,40,350,'100nF','TH2P','GND','C43'); C(sh,55,350,'100nF','TH1P','GND','C26'); C(sh,70,350,'1uF','REFL','GND','C42'); C(sh,85,350,'100nF','TH1M','GND','C27'); C(sh,100,350,'100nF','TH2M','GND','C44')
-    add(sh,'Auselia:TLV7022','TLV7022','Package_TO_SOT_SMD:SOT-23-8',150,320,{'3':'TH1P','2':'LST','5':'LST','6':'TH1M','1':'WAKE_N','7':'WAKE_N','8':'+3V3_L','4':'GND'},'U',ref='U6',props={'LCSC':'C2862588'})
-    add(sh,'Auselia:TLV7022','TLV7022','Package_TO_SOT_SMD:SOT-23-8',190,320,{'3':'TH2P','2':'LST','5':'LST','6':'TH2M','1':'BIG_N','7':'BIG_N','8':'+3V3_L','4':'GND'},'U',ref='U9',props={'LCSC':'C2862588'})
-    C(sh,150,345,'100nF','+3V3_L','GND','C28'); C(sh,190,345,'100nF','+3V3_L','GND','C45')
+    add(sh,'Auselia:TLV7022','TLV7022','Package_TO_SOT_SMD:SOT-23-8',150,320,{'3':'TH1P','2':'LST','5':'LST','6':'TH1M','1':'WAKE_N','7':'WAKE_N','8':'+3V3','4':'GND'},'U',ref='U6',props={'LCSC':'C2862588'})
+    add(sh,'Auselia:TLV7022','TLV7022','Package_TO_SOT_SMD:SOT-23-8',190,320,{'3':'TH2P','2':'LST','5':'LST','6':'TH2M','1':'BIG_N','7':'BIG_N','8':'+3V3','4':'GND'},'U',ref='U9',props={'LCSC':'C2862588'})
+    C(sh,150,345,'100nF','+3V3','GND','C28'); C(sh,190,345,'100nF','+3V3','GND','C45')
     R(sh,230,315,'47k','+3V3','WAKE_N','R24',0); R(sh,250,315,'47k','+3V3','BIG_N','R42',0)
-    add(sh,'Jumper:SolderJumper_2_Bridged','LISTENER LINK',FP_JP,270,330,{'1':'+3V3','2':'+3V3_L'},'JP',rot=90,ref='JP2')
     add(sh,'Jumper:SolderJumper_2_Bridged','CAPTURE LINK',FP_JP,290,330,{'1':'+3V3','2':'+3V3_C'},'JP',rot=90,ref='JP3')
-    # ---- power: 3.3 V from the ZedBoard PMOD (pins 6 and 12) through the solder jumper JP6, or from the header J7 (battery later)
-    text(sh,"Power: +3V3 from the PMOD pins 6 and 12 through JP6 (bridged), or from the 2-pin header J7. Cut JP6 when J7 feeds the board. Current links: JP1 head, JP2 listener, JP3 capture, JP4 AVDD, JP5 DVDD.",320,275,1.8)
-    add(sh,'Connector_Generic:Conn_01x02','3V3 IN',FP_H2,330,350,{'1':'+3V3','2':'GND'},'J',ref='J7',props={'LCSC':'C492401'})
-    add(sh,'Jumper:SolderJumper_2_Bridged','PMOD 3V3',FP_JP,360,300,{'1':'+3V3_PMOD','2':'+3V3'},'JP',rot=90,ref='JP6')
+    # ---- power: one 5-pin header J7 (Onboard +, Force +, Sense +, Sense -, Force -). Jumper 1-2 = PMOD 3.3 V powers the board.
+    text(sh,"Power header J7: 1 Onboard + (PMOD 3.3 V), 2 Force +, 3 Sense +, 4 Sense -, 5 Force -. Jumper 1-2 powers the board from the PMOD. For a source-measure unit remove the jumper and connect Force to 2 and 5, Sense to 3 and 4. JP3 (closed) joins the capture rail +3V3_C to +3V3: open it to switch or measure the chain separately. JP1 = head power.",320,275,1.8)
+    add(sh,'Connector_Generic:Conn_01x05','POWER / SMU',FP_H5,330,350,{'1':'+3V3_PMOD','2':'+3V3','3':'+3V3','4':'GND','5':'GND'},'J',ref='J7',props={'LCSC':'C492404'})
     C(sh,385,320,'10uF','+3V3','GND','C23')
     # ---- test points after each stage (SMD pads 1.5 mm, not placed by JLCPCB)
     text(sh,"Test points: one after each stage of the signal chain, then the rails, WAKE_N and two grounds for the scope clip.",20,400,1.8,True)
@@ -127,7 +124,7 @@ def build():
     R4(sh,350,410,'49.9R','HOUT','HAC','R31','C25120',90); C4(sh,375,410,'100nF','HAC','HLINE','C38','C307331',90)
     add(sh,'Device:L','470uH',FP_L,400,395,{'1':'HLINE','2':'HV'},'L',rot=90,ref='L1',props={'LCSC':LCSC['470uH']})
     add(sh,'Connector:Conn_Coaxial','SMA HEAD OUT',FP_SMA,430,395,{'1':'HLINE','2':'HGND'},'J',ref='J6',props={'LCSC':'C496549'})
-    flag(sh,365,250,'+3V3'); flag(sh,380,250,'GND'); flag(sh,395,250,'+3V3_PMOD'); flag(sh,410,250,'+3V3_C'); flag(sh,425,250,'HGND'); flag(sh,440,250,'HV'); flag(sh,455,250,'+3V3_L'); flag(sh,470,250,'AVDD'); flag(sh,485,250,'DVDD')
+    flag(sh,365,250,'+3V3'); flag(sh,380,250,'GND'); flag(sh,395,250,'+3V3_PMOD'); flag(sh,410,250,'+3V3_C'); flag(sh,425,250,'HGND'); flag(sh,440,250,'HV'); flag(sh,455,250,'AVDD')
     return r
 if __name__=='__main__':
     out=sys.argv[1]
