@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="483.12pt" height="252.805269pt" viewBox="0 0 483.12 252.805269" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-20T13:52:32.368945</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.1, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 252.805269 
+L 483.12 252.805269 
+L 483.12 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 7.2 43.395164 
+L 466.729412 43.395164 
+L 466.729412 21.33588 
+L 7.2 21.33588 
+z
+" clip-path="url(#pfb1e412c97)" style="fill: #f4f7f2"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 7.2 67.90548 
+L 466.729412 67.90548 
+L 466.729412 45.846196 
+L 7.2 45.846196 
+z
+" clip-path="url(#pfb1e412c97)" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 7.2 92.415796 
+L 466.729412 92.415796 
+L 466.729412 70.356511 
+L 7.2 70.356511 
+z
+" clip-path="url(#pfb1e412c97)" style="fill: #f4f7f2"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 7.2 116.926111 
+L 466.729412 116.926111 
+L 466.729412 94.866827 
+L 7.2 94.866827 
+z
+" clip-path="url(#pfb1e412c97)" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 7.2 141.436427 
+L 466.729412 141.436427 
+L 466.729412 119.377143 
+L 7.2 119.377143 
+z
+" clip-path="url(#pfb1e412c97)" style="fill: #f4f7f2"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 7.2 165.946743 
+L 466.729412 165.946743 
+L 466.729412 143.887459 
+L 7.2 143.887459 
+z
+" clip-path="url(#pfb1e412c97)" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 7.2 190.457059 
+L 466.729412 190.457059 
+L 466.729412 168.397774 
+L 7.2 168.397774 
+z
+" clip-path="url(#pfb1e412c97)" style="fill: #f4f7f2"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 7.2 214.967374 
+L 466.729412 214.967374 
+L 466.729412 192.90809 
+L 7.2 192.90809 
+z
+" clip-path="url(#pfb1e412c97)" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 7.2 239.47769 
+L 466.729412 239.47769 
+L 466.729412 217.418406 
+L 7.2 217.418406 
+z
+" clip-path="url(#pfb1e412c97)" style="fill: #f4f7f2"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 9px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: start; fill: #14231b" x="11.795294" y="34.694536" transform="rotate(-0 11.795294 34.694536)">DC operating point, all rails (18 checks)</text>
+   </g>
+   <g id="text_2">
+    <g id="patch_11">
+     <path d="M 289.626245 39.288666 
+L 312.971402 39.288666 
+Q 315.671402 39.288666 315.671402 36.588666 
+L 315.671402 28.142377 
+Q 315.671402 25.442377 312.971402 25.442377 
+L 289.626245 25.442377 
+Q 286.926245 25.442377 286.926245 28.142377 
+L 286.926245 36.588666 
+Q 286.926245 39.288666 289.626245 39.288666 
+z
+" style="fill: #2e7d4f"/>
+    </g>
+    <text style="font-size: 9px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="301.298824" y="34.694623" transform="rotate(-0 301.298824 34.694623)">PASS</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 8.5px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: start; fill: #566559" x="347.251765" y="34.565146" transform="rotate(-0 347.251765 34.565146)">ngspice, as-built netlist</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 9px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: start; fill: #14231b" x="11.795294" y="59.204939" transform="rotate(-0 11.795294 59.204939)">Gain 12.3 dB at 250 kHz; −40.5 dB at 10 kHz; −24 dB at 2 MHz</text>
+   </g>
+   <g id="text_5">
+    <g id="patch_12">
+     <path d="M 289.626245 63.798982 
+L 312.971402 63.798982 
+Q 315.671402 63.798982 315.671402 61.098982 
+L 315.671402 52.652693 
+Q 315.671402 49.952693 312.971402 49.952693 
+L 289.626245 49.952693 
+Q 286.926245 49.952693 286.926245 52.652693 
+L 286.926245 61.098982 
+Q 286.926245 63.798982 289.626245 63.798982 
+z
+" style="fill: #2e7d4f"/>
+    </g>
+    <text style="font-size: 9px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="301.298824" y="59.204939" transform="rotate(-0 301.298824 59.204939)">PASS</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 8.5px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: start; fill: #566559" x="347.251765" y="59.075462" transform="rotate(-0 347.251765 59.075462)">ngspice</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 9px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: start; fill: #14231b" x="11.795294" y="83.715255" transform="rotate(-0 11.795294 83.715255)">Listener thresholds: WAKE_N 35 mV, BIG_N 111 mV at SIG_IN</text>
+   </g>
+   <g id="text_8">
+    <g id="patch_13">
+     <path d="M 289.626245 88.309298 
+L 312.971402 88.309298 
+Q 315.671402 88.309298 315.671402 85.609298 
+L 315.671402 77.163009 
+Q 315.671402 74.463009 312.971402 74.463009 
+L 289.626245 74.463009 
+Q 286.926245 74.463009 286.926245 77.163009 
+L 286.926245 85.609298 
+Q 286.926245 88.309298 289.626245 88.309298 
+z
+" style="fill: #2e7d4f"/>
+    </g>
+    <text style="font-size: 9px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="301.298824" y="83.715255" transform="rotate(-0 301.298824 83.715255)">PASS</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 8.5px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: start; fill: #566559" x="347.251765" y="83.585777" transform="rotate(-0 347.251765 83.585777)">ngspice, 5 burst levels</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 9px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: start; fill: #14231b" x="11.795294" y="108.225483" transform="rotate(-0 11.795294 108.225483)">ERC, DRC, schematic against board</text>
+   </g>
+   <g id="text_11">
+    <g id="patch_14">
+     <path d="M 289.626245 112.819614 
+L 312.971402 112.819614 
+Q 315.671402 112.819614 315.671402 110.119614 
+L 315.671402 101.673325 
+Q 315.671402 98.973325 312.971402 98.973325 
+L 289.626245 98.973325 
+Q 286.926245 98.973325 286.926245 101.673325 
+L 286.926245 110.119614 
+Q 286.926245 112.819614 289.626245 112.819614 
+z
+" style="fill: #2e7d4f"/>
+    </g>
+    <text style="font-size: 9px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="301.298824" y="108.225571" transform="rotate(-0 301.298824 108.225571)">PASS</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 8.5px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: start; fill: #566559" x="347.251765" y="108.096176" transform="rotate(-0 347.251765 108.096176)">KiCad, 0 errors</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 9px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: start; fill: #14231b" x="11.795294" y="132.735887" transform="rotate(-0 11.795294 132.735887)">Head and bias-T at 3.3 V; listener on 25 real captures</text>
+   </g>
+   <g id="text_14">
+    <g id="patch_15">
+     <path d="M 275.878745 137.32993 
+L 326.718902 137.32993 
+Q 329.418902 137.32993 329.418902 134.62993 
+L 329.418902 126.18364 
+Q 329.418902 123.48364 326.718902 123.48364 
+L 275.878745 123.48364 
+Q 273.178745 123.48364 273.178745 126.18364 
+L 273.178745 134.62993 
+Q 273.178745 137.32993 275.878745 137.32993 
+z
+" style="fill: #b8861b"/>
+    </g>
+    <text style="font-size: 9px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="301.298824" y="132.735887" transform="rotate(-0 301.298824 132.735887)">SIMULATED</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 8.5px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: start; fill: #566559" x="347.251765" y="132.606409" transform="rotate(-0 347.251765 132.606409)">ngspice, Python</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 9px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: start; fill: #14231b" x="11.795294" y="157.246114" transform="rotate(-0 11.795294 157.246114)">ZedBoard 3.3 V rail noise (TP11, TP12)</text>
+   </g>
+   <g id="text_17">
+    <g id="patch_16">
+     <path d="M 288.545542 161.842794 
+L 314.052105 161.842794 
+Q 316.752105 161.842794 316.752105 159.142794 
+L 316.752105 150.691407 
+Q 316.752105 147.991407 314.052105 147.991407 
+L 288.545542 147.991407 
+Q 285.845542 147.991407 285.845542 150.691407 
+L 285.845542 159.142794 
+Q 285.845542 161.842794 288.545542 161.842794 
+z
+" style="fill: #b3261e"/>
+    </g>
+    <text style="font-size: 9px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="301.298824" y="157.248751" transform="rotate(-0 301.298824 157.248751)">OPEN</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 8.5px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: start; fill: #566559" x="347.251765" y="157.116808" transform="rotate(-0 347.251765 157.116808)">measure</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 9px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: start; fill: #14231b" x="11.795294" y="181.758979" transform="rotate(-0 11.795294 181.758979)">PMOD fit on adjacent ports</text>
+   </g>
+   <g id="text_20">
+    <g id="patch_17">
+     <path d="M 288.545542 186.35311 
+L 314.052105 186.35311 
+Q 316.752105 186.35311 316.752105 183.65311 
+L 316.752105 175.201723 
+Q 316.752105 172.501723 314.052105 172.501723 
+L 288.545542 172.501723 
+Q 285.845542 172.501723 285.845542 175.201723 
+L 285.845542 183.65311 
+Q 285.845542 186.35311 288.545542 186.35311 
+z
+" style="fill: #b3261e"/>
+    </g>
+    <text style="font-size: 9px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="301.298824" y="181.759067" transform="rotate(-0 301.298824 181.759067)">OPEN</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 8.5px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: start; fill: #566559" x="347.251765" y="181.627124" transform="rotate(-0 347.251765 181.627124)">print 1:1, test</text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 9px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: start; fill: #14231b" x="11.795294" y="206.266834" transform="rotate(-0 11.795294 206.266834)">THS4531 stable with 400 pF + 20 Ω</text>
+   </g>
+   <g id="text_23">
+    <g id="patch_18">
+     <path d="M 288.545542 210.863426 
+L 314.052105 210.863426 
+Q 316.752105 210.863426 316.752105 208.163426 
+L 316.752105 199.712039 
+Q 316.752105 197.012039 314.052105 197.012039 
+L 288.545542 197.012039 
+Q 285.845542 197.012039 285.845542 199.712039 
+L 285.845542 208.163426 
+Q 285.845542 210.863426 288.545542 210.863426 
+z
+" style="fill: #b3261e"/>
+    </g>
+    <text style="font-size: 9px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="301.298824" y="206.269383" transform="rotate(-0 301.298824 206.269383)">OPEN</text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 8.5px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: start; fill: #566559" x="347.251765" y="206.137439" transform="rotate(-0 347.251765 206.137439)">LTspice / bench</text>
+   </g>
+   <g id="text_25">
+    <text style="font-size: 9px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: start; fill: #14231b" x="11.795294" y="230.77715" transform="rotate(-0 11.795294 230.77715)">First board on the bench</text>
+   </g>
+   <g id="text_26">
+    <g id="patch_19">
+     <path d="M 288.545542 235.373742 
+L 314.052105 235.373742 
+Q 316.752105 235.373742 316.752105 232.673742 
+L 316.752105 224.222355 
+Q 316.752105 221.522355 314.052105 221.522355 
+L 288.545542 221.522355 
+Q 285.845542 221.522355 285.845542 224.222355 
+L 285.845542 232.673742 
+Q 285.845542 235.373742 288.545542 235.373742 
+z
+" style="fill: #b3261e"/>
+    </g>
+    <text style="font-size: 9px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="301.298824" y="230.779699" transform="rotate(-0 301.298824 230.779699)">OPEN</text>
+   </g>
+   <g id="text_27">
+    <text style="font-size: 8.5px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: start; fill: #566559" x="347.251765" y="230.647755" transform="rotate(-0 347.251765 230.647755)">manual steps 49 to 52</text>
+   </g>
+   <g id="text_28">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'Arial', 'Helvetica', 'DejaVu Sans'; text-anchor: start; fill: #14231b" x="11.795294" y="15.208301" transform="rotate(-0 11.795294 15.208301)">What is checked and what is open</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pfb1e412c97">
+   <rect x="7.2" y="12.757269" width="468.72" height="232.848"/>
+  </clipPath>
+ </defs>
+</svg>

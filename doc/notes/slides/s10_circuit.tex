@@ -1,0 +1,19 @@
+\documentclass[border=6pt]{standalone}
+\usepackage{amsmath}
+\usepackage[siunitx,americanvoltage]{circuitikz}
+\usepackage{xcolor}
+\definecolor{ink}{HTML}{14231B}
+\ctikzset{bipoles/length=1.15cm, resistors/scale=0.9, capacitors/scale=0.9, inductors/scale=0.9}
+\newcommand{\lab}[3]{\shortstack{$#1$\\{\footnotesize #2}\\{\scriptsize #3}}}
+\begin{document}
+\sffamily
+\begin{circuitikz}[american, color=ink, font=\small]
+  \draw (0,0) node[left,font=\footnotesize,align=right]{PMOD 6, 12\\3.3 V} to[short,o-] ++(0.6,0) to[short] ++(0.6,0) node[above,font=\footnotesize]{JP6} -- ++(1.2,0) coordinate (V) node[circ]{} node[above=4pt,font=\footnotesize]{+3V3};
+  \draw (V) to[C, l={\lab{C_{23}}{10\,$\mu$F}{X5R}}] ++(0,-2.4) node[ground]{};
+  \draw (V) -- ++(0,2.4) coordinate (T) -- ++(2.0,0) to[short] ++(1.2,0) node[above,font=\footnotesize]{JP2} -- ++(1.0,0) node[right,font=\footnotesize]{+3V3\_L listener};
+  \draw (V) -- ++(2.0,0) to[short] ++(1.2,0) node[above,font=\footnotesize]{JP3} -- ++(1.0,0) coordinate (CAP) node[circ]{} node[above=3pt,font=\footnotesize,xshift=8mm]{+3V3\_C U1 U2 U3};
+  \draw (CAP) -- ++(0,-1.9) -- ++(0.3,0) to[short] ++(1.0,0) node[above,font=\footnotesize]{JP4} to[R, l={\lab{R_{34}}{10\,$\Omega$}{$\pm1\,\%$}}] ++(2.3,0) coordinate (AV) node[circ]{} -- ++(0.8,0) node[right,font=\footnotesize]{AVDD};
+  \draw (AV) to[C, l_={\lab{C_{21}}{10\,$\mu$F}{X5R}}] ++(0,-2.2) node[ground]{};
+  \draw (V) ++(1.0,0) node[circ]{} -- ++(0,-3.4) to[short] ++(2.2,0) node[above,font=\footnotesize]{JP5} -- ++(1.6,0) node[right,font=\footnotesize]{DVDD};
+\end{circuitikz}
+\end{document}

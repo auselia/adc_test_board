@@ -1,0 +1,22 @@
+\documentclass[border=6pt]{standalone}
+\usepackage{amsmath}
+\usepackage[siunitx,americanvoltage]{circuitikz}
+\usepackage{xcolor}
+\definecolor{ink}{HTML}{14231B}
+\ctikzset{bipoles/length=1.15cm, resistors/scale=0.9, capacitors/scale=0.9, inductors/scale=0.9}
+\newcommand{\lab}[3]{\shortstack{$#1$\\{\footnotesize #2}\\{\scriptsize #3}}}
+\begin{document}
+\sffamily
+\usetikzlibrary{positioning}
+\begin{tikzpicture}[font=\small,box/.style={draw=ink,rounded corners=2pt,minimum height=1.0cm,align=center,inner sep=5pt,thick},>=latex]
+  \node[box] (a) {KiCad\\schematic};
+  \node[box,right=0.8cm of a] (b) {netlist\\(as built)};
+  \node[box,right=0.8cm of b] (c) {ngspice\\\texttt{netlist\_verify.py}};
+  \node[box,right=0.8cm of c] (d) {DC, AC, burst\\checks};
+  \node[box,right=0.8cm of d] (e) {PASS or\\FAIL};
+  \draw[->] (a)--(b); \draw[->] (b)--(c); \draw[->] (c)--(d); \draw[->] (d)--(e);
+  \node[box,below=0.9cm of c] (f) {Python:\\listener on 25\\real captures};
+  \node[box,below=0.9cm of d] (g) {bench:\\open items};
+  \draw[->] (f)--(e.south west); \draw[->] (g)--(e.south);
+\end{tikzpicture}
+\end{document}

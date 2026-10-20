@@ -1,0 +1,23 @@
+\documentclass[border=6pt]{standalone}
+\usepackage{amsmath}
+\usepackage[siunitx,americanvoltage]{circuitikz}
+\usepackage{xcolor}
+\definecolor{ink}{HTML}{14231B}
+\ctikzset{bipoles/length=1.15cm, resistors/scale=0.9, capacitors/scale=0.9, inductors/scale=0.9}
+\newcommand{\lab}[3]{\shortstack{$#1$\\{\footnotesize #2}\\{\scriptsize #3}}}
+\begin{document}
+\sffamily
+\begin{circuitikz}[american, color=ink, font=\small]
+  \draw[thick,rounded corners=2pt] (6.5,-1.9) rectangle (9.5,1.9) node[midway,align=center]{U3\\THS4531\\gain 1};
+  \node[font=\footnotesize,anchor=west] at (6.55,1.0){IN$-$}; \node[font=\footnotesize,anchor=west] at (6.55,-1.0){IN$+$};
+  \node[font=\footnotesize,anchor=east] at (9.45,1.0){OUT$+$}; \node[font=\footnotesize,anchor=east] at (9.45,-1.0){OUT$-$};
+  % inputs
+  \draw (0,-1.0) node[left,font=\footnotesize]{LPF\_OUT} to[C, l={\lab{C_{11}}{1\,$\mu$F}{X5R}}] ++(2.2,0) to[R, l={\lab{R_{10}}{1\,k$\Omega$}{$\pm1\,\%$}}] ++(2.5,0) coordinate (P) node[circ]{} -- (6.5,-1.0);
+  \draw (0,1.0) node[left,font=\footnotesize]{VOCM 1.65 V} to[R, l={\lab{R_{11}}{1\,k$\Omega$}{$\pm1\,\%$}}] ++(4.7,0) coordinate (N) node[circ]{} -- (6.5,1.0);
+  % outputs and feedback
+  \draw (9.5,1.0) -- ++(0.9,0) coordinate (OP) node[circ]{} -- ++(0.6,0) node[right,font=\footnotesize]{DRV\_OUTP};
+  \draw (9.5,-1.0) -- ++(0.9,0) coordinate (ON) node[circ]{} -- ++(0.6,0) node[right,font=\footnotesize]{DRV\_OUTN};
+  \draw (OP) -- ++(0,1.5) coordinate (a) -- ($(a -| N)+(2.6,0)$) to[R, l={\lab{R_{12}}{1\,k$\Omega$}{$\pm1\,\%$}}] (a -| N) -- (N);
+  \draw (ON) -- ++(0,-1.5) coordinate (c) -- ($(c -| P)+(2.6,0)$) to[R, l_={\lab{R_{13}}{1\,k$\Omega$}{$\pm1\,\%$}}] (c -| P) -- (P);
+\end{circuitikz}
+\end{document}

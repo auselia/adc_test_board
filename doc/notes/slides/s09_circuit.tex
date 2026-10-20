@@ -1,0 +1,22 @@
+\documentclass[border=6pt]{standalone}
+\usepackage{amsmath}
+\usepackage[siunitx,americanvoltage]{circuitikz}
+\usepackage{xcolor}
+\definecolor{ink}{HTML}{14231B}
+\ctikzset{bipoles/length=1.15cm, resistors/scale=0.9, capacitors/scale=0.9, inductors/scale=0.9}
+\newcommand{\lab}[3]{\shortstack{$#1$\\{\footnotesize #2}\\{\scriptsize #3}}}
+\begin{document}
+\sffamily
+\begin{circuitikz}[american, color=ink, font=\small]
+  \draw[thick] (0,-2.6) rectangle (2.6,2.6) node[pos=0.5,xshift=-5mm,align=center,font=\footnotesize]{ZedBoard\\PMOD\\(J3)};
+  \draw[thick,rounded corners=2pt] (9.2,-2.6) rectangle (12.2,2.6) node[pos=0.5,xshift=9mm,align=center,font=\footnotesize]{U4\\ADS7057};
+  \foreach \y/\p/\n/\r in {1.6/1/CS/R_{18}, 0/4/SCLK/R_{19}, -1.6/3/SDO/R_{20}} {
+    \node[font=\footnotesize,anchor=east] at (2.55,\y+0.3){pin \p};
+    \draw (2.6,\y) to[R, l={\lab{\r}{22\,$\Omega$}{$\pm1\,\%$}}] (6.2,\y) -- (9.2,\y);
+    \node[font=\footnotesize,anchor=west] at (9.3,\y+0.3){\n};
+  }
+  \draw[-latex] (6.4,0.85) -- (7.4,0.85) node[right,font=\footnotesize]{to ADC};
+  \draw[-latex] (7.4,-0.85) -- (6.4,-0.85); \node[font=\footnotesize,anchor=west] at (7.5,-0.85){to FPGA};
+  \node[font=\footnotesize,align=left,anchor=north west] at (0,-2.9){PMOD pins 5, 11 GND; 6, 12 3.3 V; 7 BIG\_N; 10 WAKE\_N; 2, 8, 9 not used};
+\end{circuitikz}
+\end{document}

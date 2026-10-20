@@ -1,0 +1,26 @@
+\documentclass[border=6pt]{standalone}
+\usepackage{amsmath}
+\usepackage[siunitx,americanvoltage]{circuitikz}
+\usepackage{xcolor}\usetikzlibrary{calc}
+\definecolor{ink}{HTML}{14231B}
+\ctikzset{bipoles/length=1.15cm, resistors/scale=0.9, capacitors/scale=0.9, inductors/scale=0.9}
+\newcommand{\lab}[3]{\shortstack{$#1$\\{\footnotesize #2}\\{\scriptsize #3}}}
+\begin{document}
+\sffamily
+\usetikzlibrary{positioning}
+\begin{tikzpicture}[font=\small,box/.style={draw=ink,rounded corners=2pt,minimum height=0.9cm,align=center,inner sep=4pt,thick},>=latex]
+  \node[box] (a) {SMA J1\\bias-T};
+  \node[box,right=0.35cm of a] (b) {high-pass\\U1A};
+  \node[box,right=0.35cm of b] (c) {gain\\U1B};
+  \node[box,right=0.35cm of c] (d) {low-pass\\U2A};
+  \node[box,right=0.35cm of d] (e) {driver\\U3};
+  \node[box,right=0.35cm of e] (f) {ADC\\U4};
+  \node[box,right=0.35cm of f] (g) {PMOD\\J3};
+  \draw[->] (a)--(b); \draw[->] (b)--(c); \draw[->] (c)--(d); \draw[->] (d)--(e); \draw[->] (e)--(f); \draw[->] (f)--(g);
+  \node[box,below=0.9cm of c] (l) {listener\\U6, U9};
+  \node[box,below=0.9cm of e] (p) {power links\\JP2--JP6};
+  \node[box,above=0.9cm of d] (m) {SCOPE OUT\\J4};
+  \draw[->] (a.south) |- (l.west); \draw[->] (l.east) -| (g.south); \draw[->] (d.north) -- (m.south); \draw[->] (p.east) -| ($(g.south east)+(-0.1,0)$);
+  \node[font=\footnotesize,anchor=north west] at (a.south west){\ };
+\end{tikzpicture}
+\end{document}

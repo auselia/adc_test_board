@@ -1,0 +1,24 @@
+\documentclass[border=6pt]{standalone}
+\usepackage{amsmath}
+\usepackage[siunitx,americanvoltage]{circuitikz}
+\usepackage{xcolor}
+\definecolor{ink}{HTML}{14231B}
+\ctikzset{bipoles/length=1.15cm, resistors/scale=0.9, capacitors/scale=0.9, inductors/scale=0.9}
+\newcommand{\lab}[3]{\shortstack{$#1$\\{\footnotesize #2}\\{\scriptsize #3}}}
+\begin{document}
+\sffamily
+\begin{circuitikz}[american, color=ink, font=\small]
+  \draw (0,2.0) node[left,font=\footnotesize]{SIG\_IN} to[short,o-] ++(0.3,0) to[C, l={\lab{C_{40}}{100\,pF C0G}{$\pm5\,\%$}}] ++(2.4,0) coordinate (A) node[circ]{} to[R, l={\lab{R_{36}}{10\,k$\Omega$}{$\pm1\,\%$}}] ++(2.8,0) coordinate (L) node[circ]{} -- ++(1.4,0) node[right,font=\footnotesize]{LST};
+  \draw (A) to[R, l_={\lab{R_{35}}{10\,k$\Omega$}{$\pm1\,\%$}}] ++(0,-2.2) coordinate (RF) node[circ]{};
+  \draw (L) to[C, l_={\lab{C_{41}}{22\,pF C0G}{$\pm5\,\%$}}] ++(0,-2.2) node[ground]{};
+  \node[font=\footnotesize,anchor=west] at (RF){\ \ REFL 1.65 V};
+  % ladder
+  \draw (9.5,3.6) node[above,font=\footnotesize]{3.3 V} -- ++(0,-0.3);
+  \foreach \i/\n/\v/\y in {1/21/1\,M$\Omega$/3.0, 2/22/33\,k$\Omega$/1.9, 3/39/15\,k$\Omega$/0.8, 4/40/15\,k$\Omega$/-0.4, 5/41/33\,k$\Omega$/-1.5, 6/23/1\,M$\Omega$/-2.6} {
+    \node[font=\footnotesize,anchor=west] at (9.9,\y){$R_{\n}$ \v};
+  }
+  \draw (9.5,3.3) to[R] ++(0,-1.1) to[R] ++(0,-1.1) to[R] ++(0,-1.1) coordinate (RL) to[R] ++(0,-1.1) to[R] ++(0,-1.1) to[R] ++(0,-1.1) node[ground]{};
+  \node[font=\footnotesize,anchor=east] at (9.4,2.1){TH2P}; \node[font=\footnotesize,anchor=east] at (9.4,0.95){TH1P}; \node[font=\footnotesize,anchor=east] at (9.4,-0.25){REFL}; \node[font=\footnotesize,anchor=east] at (9.4,-1.4){TH1M}; \node[font=\footnotesize,anchor=east] at (9.4,-2.5){TH2M};
+  \node[align=left,font=\footnotesize,anchor=west] at (11.6,0.2){U6: WAKE\_N (small window)\\U9: BIG\_N (large window)\\TLV7022, open drain,\\47 k$\Omega$ pull-ups};
+\end{circuitikz}
+\end{document}
