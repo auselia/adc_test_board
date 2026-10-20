@@ -1,0 +1,1106 @@
+[
+ {
+  "ref": "J1",
+  "value": "RIBBON IN",
+  "fp": "Connector_IDC:IDC-Header_2x25_P2.54mm_Vertical",
+  "lcsc": "C19193816",
+  "nets": {
+   "1": "GND",
+   "2": "SCLK_IN",
+   "3": "GND",
+   "4": "SDO0",
+   "5": "GND",
+   "6": "SDO1",
+   "7": "GND",
+   "8": "SDO2",
+   "9": "GND",
+   "10": "SDO3",
+   "11": "GND",
+   "12": "CS0",
+   "13": "CS1",
+   "14": "GND",
+   "15": "CS2",
+   "16": "CS3",
+   "17": "CS4",
+   "18": "GND",
+   "19": "CS5",
+   "20": "CS6",
+   "21": "CS7",
+   "22": "GND",
+   "23": "WAKE0",
+   "24": "WAKE1",
+   "25": "WAKE2",
+   "26": "WAKE3",
+   "27": "GND",
+   "28": "WAKE4",
+   "29": "WAKE5",
+   "30": "WAKE6",
+   "31": "WAKE7",
+   "32": "GND",
+   "33": "BIG0",
+   "34": "BIG1",
+   "35": "BIG2",
+   "36": "BIG3",
+   "37": "GND",
+   "38": "BIG4",
+   "39": "BIG5",
+   "40": "BIG6",
+   "41": "BIG7",
+   "42": "GND",
+   "43": "GND",
+   "44": "GND",
+   "45": "GND",
+   "46": "GND",
+   "47": "GND",
+   "48": "GND",
+   "49": "GND",
+   "50": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "J2",
+  "value": "SLOT 0",
+  "fp": "Connector_PinSocket_2.54mm:PinSocket_2x06_P2.54mm_Vertical",
+  "lcsc": "C36191",
+  "nets": {
+   "1": "BIG0",
+   "2": "CS0",
+   "3": "NC",
+   "4": "NC",
+   "5": "NC",
+   "6": "SDO0",
+   "7": "WAKE0",
+   "8": "SCLK0",
+   "9": "GND",
+   "10": "GND",
+   "11": "+3V3",
+   "12": "+3V3"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "J3",
+  "value": "SLOT 1",
+  "fp": "Connector_PinSocket_2.54mm:PinSocket_2x06_P2.54mm_Vertical",
+  "lcsc": "C36191",
+  "nets": {
+   "1": "BIG1",
+   "2": "CS1",
+   "3": "NC",
+   "4": "NC",
+   "5": "NC",
+   "6": "SDO0",
+   "7": "WAKE1",
+   "8": "SCLK1",
+   "9": "GND",
+   "10": "GND",
+   "11": "+3V3",
+   "12": "+3V3"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "J4",
+  "value": "SLOT 2",
+  "fp": "Connector_PinSocket_2.54mm:PinSocket_2x06_P2.54mm_Vertical",
+  "lcsc": "C36191",
+  "nets": {
+   "1": "BIG2",
+   "2": "CS2",
+   "3": "NC",
+   "4": "NC",
+   "5": "NC",
+   "6": "SDO1",
+   "7": "WAKE2",
+   "8": "SCLK2",
+   "9": "GND",
+   "10": "GND",
+   "11": "+3V3",
+   "12": "+3V3"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "J5",
+  "value": "SLOT 3",
+  "fp": "Connector_PinSocket_2.54mm:PinSocket_2x06_P2.54mm_Vertical",
+  "lcsc": "C36191",
+  "nets": {
+   "1": "BIG3",
+   "2": "CS3",
+   "3": "NC",
+   "4": "NC",
+   "5": "NC",
+   "6": "SDO1",
+   "7": "WAKE3",
+   "8": "SCLK3",
+   "9": "GND",
+   "10": "GND",
+   "11": "+3V3",
+   "12": "+3V3"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "J6",
+  "value": "SLOT 4",
+  "fp": "Connector_PinSocket_2.54mm:PinSocket_2x06_P2.54mm_Vertical",
+  "lcsc": "C36191",
+  "nets": {
+   "1": "BIG4",
+   "2": "CS4",
+   "3": "NC",
+   "4": "NC",
+   "5": "NC",
+   "6": "SDO2",
+   "7": "WAKE4",
+   "8": "SCLK4",
+   "9": "GND",
+   "10": "GND",
+   "11": "+3V3",
+   "12": "+3V3"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "J7",
+  "value": "SLOT 5",
+  "fp": "Connector_PinSocket_2.54mm:PinSocket_2x06_P2.54mm_Vertical",
+  "lcsc": "C36191",
+  "nets": {
+   "1": "BIG5",
+   "2": "CS5",
+   "3": "NC",
+   "4": "NC",
+   "5": "NC",
+   "6": "SDO2",
+   "7": "WAKE5",
+   "8": "SCLK5",
+   "9": "GND",
+   "10": "GND",
+   "11": "+3V3",
+   "12": "+3V3"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "J8",
+  "value": "SLOT 6",
+  "fp": "Connector_PinSocket_2.54mm:PinSocket_2x06_P2.54mm_Vertical",
+  "lcsc": "C36191",
+  "nets": {
+   "1": "BIG6",
+   "2": "CS6",
+   "3": "NC",
+   "4": "NC",
+   "5": "NC",
+   "6": "SDO3",
+   "7": "WAKE6",
+   "8": "SCLK6",
+   "9": "GND",
+   "10": "GND",
+   "11": "+3V3",
+   "12": "+3V3"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "J9",
+  "value": "SLOT 7",
+  "fp": "Connector_PinSocket_2.54mm:PinSocket_2x06_P2.54mm_Vertical",
+  "lcsc": "C36191",
+  "nets": {
+   "1": "BIG7",
+   "2": "CS7",
+   "3": "NC",
+   "4": "NC",
+   "5": "NC",
+   "6": "SDO3",
+   "7": "WAKE7",
+   "8": "SCLK7",
+   "9": "GND",
+   "10": "GND",
+   "11": "+3V3",
+   "12": "+3V3"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "J10",
+  "value": "5 V IN",
+  "fp": "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal",
+  "lcsc": "C8465",
+  "nets": {
+   "1": "+5V_IN",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "U1",
+  "value": "SN74LVC244A",
+  "fp": "Package_SO:TSSOP-20_4.4x6.5mm_P0.65mm",
+  "lcsc": "C7668",
+  "nets": {
+   "1": "GND",
+   "19": "GND",
+   "20": "+3V3",
+   "10": "GND",
+   "2": "SCLK_IN",
+   "4": "SCLK_IN",
+   "6": "SCLK_IN",
+   "8": "SCLK_IN",
+   "11": "SCLK_IN",
+   "13": "SCLK_IN",
+   "15": "SCLK_IN",
+   "17": "SCLK_IN",
+   "18": "SB0",
+   "16": "SB1",
+   "14": "SB2",
+   "12": "SB3",
+   "9": "SB4",
+   "7": "SB5",
+   "5": "SB6",
+   "3": "SB7"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R1",
+  "value": "22R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23345",
+  "nets": {
+   "1": "SB0",
+   "2": "SCLK0"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R2",
+  "value": "22R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23345",
+  "nets": {
+   "1": "SB1",
+   "2": "SCLK1"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R3",
+  "value": "22R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23345",
+  "nets": {
+   "1": "SB2",
+   "2": "SCLK2"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R4",
+  "value": "22R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23345",
+  "nets": {
+   "1": "SB3",
+   "2": "SCLK3"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R5",
+  "value": "22R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23345",
+  "nets": {
+   "1": "SB4",
+   "2": "SCLK4"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R6",
+  "value": "22R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23345",
+  "nets": {
+   "1": "SB5",
+   "2": "SCLK5"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R7",
+  "value": "22R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23345",
+  "nets": {
+   "1": "SB6",
+   "2": "SCLK6"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R8",
+  "value": "22R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23345",
+  "nets": {
+   "1": "SB7",
+   "2": "SCLK7"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C1",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "+3V3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R9",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "CS0"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R10",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "WAKE0"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R11",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "BIG0"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R12",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "CS1"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R13",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "WAKE1"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R14",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "BIG1"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R15",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "CS2"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R16",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "WAKE2"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R17",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "BIG2"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R18",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "CS3"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R19",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "WAKE3"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R20",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "BIG3"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R21",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "CS4"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R22",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "WAKE4"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R23",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "BIG4"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R24",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "CS5"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R25",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "WAKE5"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R26",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "BIG5"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R27",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "CS6"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R28",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "WAKE6"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R29",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "BIG6"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R30",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "CS7"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R31",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "WAKE7"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R32",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "+3V3",
+   "2": "BIG7"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C2",
+  "value": "10uF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C19702",
+  "nets": {
+   "1": "+3V3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C3",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "+3V3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C4",
+  "value": "10uF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C19702",
+  "nets": {
+   "1": "+3V3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C5",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "+3V3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C6",
+  "value": "10uF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C19702",
+  "nets": {
+   "1": "+3V3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C7",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "+3V3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C8",
+  "value": "10uF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C19702",
+  "nets": {
+   "1": "+3V3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C9",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "+3V3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C10",
+  "value": "10uF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C19702",
+  "nets": {
+   "1": "+3V3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C11",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "+3V3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C12",
+  "value": "10uF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C19702",
+  "nets": {
+   "1": "+3V3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C13",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "+3V3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C14",
+  "value": "10uF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C19702",
+  "nets": {
+   "1": "+3V3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C15",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "+3V3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C16",
+  "value": "10uF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C19702",
+  "nets": {
+   "1": "+3V3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C17",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "+3V3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "U2",
+  "value": "TPS7A8300",
+  "fp": "Package_DFN_QFN:QFN-20-1EP_3.5x3.5mm_P0.5mm_EP2x2mm",
+  "lcsc": "C544500",
+  "nets": {
+   "15": "+5V",
+   "16": "+5V",
+   "17": "+5V",
+   "14": "+5V",
+   "13": "NR",
+   "12": "NC",
+   "4": "NC",
+   "1": "+3V3",
+   "19": "+3V3",
+   "20": "+3V3",
+   "2": "+3V3",
+   "3": "FB",
+   "5": "NC",
+   "6": "GND",
+   "7": "NC",
+   "9": "NC",
+   "10": "GND",
+   "11": "GND",
+   "8": "GND",
+   "18": "GND",
+   "21": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "D1",
+  "value": "SS14",
+  "fp": "Diode_SMD:D_SMA",
+  "lcsc": "C2480",
+  "nets": {
+   "2": "+5V_IN",
+   "1": "+5V"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C18",
+  "value": "22uF 25V",
+  "fp": "Capacitor_SMD:C_0805_2012Metric",
+  "lcsc": "C45783",
+  "nets": {
+   "1": "+5V",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C19",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "+5V",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C20",
+  "value": "22uF 25V",
+  "fp": "Capacitor_SMD:C_0805_2012Metric",
+  "lcsc": "C45783",
+  "nets": {
+   "1": "+3V3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C21",
+  "value": "22uF 25V",
+  "fp": "Capacitor_SMD:C_0805_2012Metric",
+  "lcsc": "C45783",
+  "nets": {
+   "1": "+3V3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C22",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "+3V3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C23",
+  "value": "10nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C57112",
+  "nets": {
+   "1": "NR",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C24",
+  "value": "10nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C57112",
+  "nets": {
+   "1": "+3V3",
+   "2": "FB"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R33",
+  "value": "1k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C21190",
+  "nets": {
+   "1": "+3V3",
+   "2": "LED_A"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "D2",
+  "value": "3V3 OK",
+  "fp": "LED_SMD:LED_0603_1608Metric",
+  "lcsc": "C2286",
+  "nets": {
+   "2": "LED_A",
+   "1": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "TP1",
+  "value": "+3V3",
+  "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+  "lcsc": "",
+  "nets": {
+   "1": "+3V3"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "TP2",
+  "value": "GND",
+  "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+  "lcsc": "",
+  "nets": {
+   "1": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "TP3",
+  "value": "+5V",
+  "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+  "lcsc": "",
+  "nets": {
+   "1": "+5V"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "H1",
+  "value": "M3",
+  "fp": "MountingHole:MountingHole_3.2mm_M3",
+  "lcsc": "",
+  "nets": {},
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "H2",
+  "value": "M3",
+  "fp": "MountingHole:MountingHole_3.2mm_M3",
+  "lcsc": "",
+  "nets": {},
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "H3",
+  "value": "M3",
+  "fp": "MountingHole:MountingHole_3.2mm_M3",
+  "lcsc": "",
+  "nets": {},
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "H4",
+  "value": "M3",
+  "fp": "MountingHole:MountingHole_3.2mm_M3",
+  "lcsc": "",
+  "nets": {},
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "H5",
+  "value": "M3",
+  "fp": "MountingHole:MountingHole_3.2mm_M3",
+  "lcsc": "",
+  "nets": {},
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "H6",
+  "value": "M3",
+  "fp": "MountingHole:MountingHole_3.2mm_M3",
+  "lcsc": "",
+  "nets": {},
+  "side": "top",
+  "dnp": false
+ }
+]

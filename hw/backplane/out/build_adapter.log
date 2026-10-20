@@ -1,0 +1,20 @@
+adapter schematic written; 64 parts
+west group mean x 42.57 (should be < 45.0), east 47.50
+saved /Users/nico/Documents/GitHub/adc_test_board/hw/backplane/FMC_Adapter.kicad_pcb
+plane stubs added 135 failed []
+layers: ['F.Cu', 'In1.Cu', 'In2.Cu', 'B.Cu'] planes: 1
+2026-10-20 13:17:12.293 INFO   [B28459\05B6B5] Optimization stage started on board 'e7f1ec30d4bfc8038f722836cf03d884' with score 868.79 (44 unrouted and 26 violations).
+2026-10-20 13:19:37.252 INFO   [B28459\05B6B5] Optimizer pass #1 on board '3861a1b65b8e86616ff46a8b041b9268' was completed in 140.64 seconds with the score of 868.79 (44 unrouted and 26 violations).
+2026-10-20 13:19:39.838 INFO   [B28459\05B6B5] Optimization stage completed: started with score 868.79 (44 unrouted and 26 violations), completed in 146.29 seconds, final score: 868.79 (44 unrouted and 26 violations), using 138.91 total CPU seconds, 
+import True
+tracks 1212 vias 292
+finished
+Found 4 violations
+Found 0 unconnected items
+   1 [courtyards_overlap]
+   3 [silk_overlap]
+Plotted to 'fab/gerber_FMC_Adapter/FMC_Adapter-Edge_Cuts.gm1'.
+Done.
+Wrote position data to 'fab/FMC_Adapter_pos_kicad.csv'.
+FMC_Adapter BOM lines 9 parts 59 missing LCSC []
+-rw-r--r--@ 1 nico  staff  135389 Oct 20 13:19 fab/FMC_Adapter_gerbers.zip

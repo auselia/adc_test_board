@@ -11,8 +11,9 @@ class Sym:
     @classmethod
     def get(cls,libid):
         if libid not in cls.cache:
-            if libid.startswith('Auselia:'):
-                t=parse(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'..','Auselia.kicad_sym')).read())
+            if libid.startswith('Auselia:') or libid.startswith('Bp:'):
+                libfile={'Auselia':os.path.join('..','Auselia.kicad_sym'),'Bp':os.path.join('..','backplane','Bp.kicad_sym')}[libid.split(':')[0]]
+                t=parse(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),libfile)).read())
                 s=[c for c in find(t,'symbol') if c[1]==libid.split(':')[1]][0]
                 s=copy.deepcopy(s)
             else:

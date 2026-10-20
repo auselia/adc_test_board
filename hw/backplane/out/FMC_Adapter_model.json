@@ -1,0 +1,1169 @@
+[
+ {
+  "ref": "J1",
+  "value": "ASP-134602-01",
+  "fp": "Bp:ASP-134602-01_LPC",
+  "lcsc": "C2875619",
+  "nets": {
+   "C1": "GND",
+   "C4": "GND",
+   "C5": "GND",
+   "C8": "GND",
+   "C9": "GND",
+   "C12": "GND",
+   "C13": "GND",
+   "C16": "GND",
+   "C17": "GND",
+   "C20": "GND",
+   "C21": "GND",
+   "C24": "GND",
+   "C25": "GND",
+   "C28": "GND",
+   "C29": "GND",
+   "C32": "GND",
+   "C33": "GND",
+   "C36": "GND",
+   "C38": "GND",
+   "C40": "GND",
+   "D2": "GND",
+   "D3": "GND",
+   "D6": "GND",
+   "D7": "GND",
+   "D10": "GND",
+   "D13": "GND",
+   "D16": "GND",
+   "D19": "GND",
+   "D22": "GND",
+   "D25": "GND",
+   "D28": "GND",
+   "D37": "GND",
+   "D39": "GND",
+   "G1": "GND",
+   "G4": "GND",
+   "G5": "GND",
+   "G8": "GND",
+   "G11": "GND",
+   "G14": "GND",
+   "G17": "GND",
+   "G20": "GND",
+   "G23": "GND",
+   "G26": "GND",
+   "G29": "GND",
+   "G32": "GND",
+   "G35": "GND",
+   "G38": "GND",
+   "G40": "GND",
+   "H3": "GND",
+   "H6": "GND",
+   "H9": "GND",
+   "H12": "GND",
+   "H15": "GND",
+   "H18": "GND",
+   "H21": "GND",
+   "H24": "GND",
+   "H27": "GND",
+   "H30": "GND",
+   "H33": "GND",
+   "H36": "GND",
+   "H39": "GND",
+   "C39": "+3V3_FMC",
+   "D36": "+3V3_FMC",
+   "D38": "+3V3_FMC",
+   "D40": "+3V3_FMC",
+   "G39": "VADJ",
+   "H40": "VADJ",
+   "G6": "LA00_P_CC",
+   "G7": "LA00_N_CC",
+   "D8": "LA01_P_CC",
+   "D9": "LA01_N_CC",
+   "H7": "LA02_P",
+   "H8": "LA02_N",
+   "G9": "LA03_P",
+   "G10": "LA03_N",
+   "H10": "LA04_P",
+   "H11": "LA04_N",
+   "D11": "LA05_P",
+   "D12": "LA05_N",
+   "C10": "LA06_P",
+   "C11": "LA06_N",
+   "H13": "LA07_P",
+   "H14": "LA07_N",
+   "G12": "LA08_P",
+   "G13": "LA08_N",
+   "D14": "LA09_P",
+   "D15": "LA09_N",
+   "C14": "LA10_P",
+   "C15": "LA10_N",
+   "H16": "LA11_P",
+   "H17": "LA11_N",
+   "G15": "LA12_P",
+   "G16": "LA12_N",
+   "D17": "LA13_P",
+   "D18": "LA13_N",
+   "C18": "LA14_P",
+   "C19": "LA14_N",
+   "H19": "LA15_P",
+   "H20": "LA15_N",
+   "G18": "LA16_P",
+   "G19": "LA16_N",
+   "D20": "LA17_P_CC",
+   "D21": "LA17_N_CC",
+   "C22": "LA18_P_CC",
+   "C23": "LA18_N_CC",
+   "H22": "LA19_P",
+   "H23": "LA19_N",
+   "G21": "LA20_P",
+   "G22": "LA20_N",
+   "H25": "LA21_P",
+   "H26": "LA21_N",
+   "G24": "LA22_P",
+   "G25": "LA22_N",
+   "D23": "LA23_P",
+   "D24": "LA23_N",
+   "H28": "LA24_P",
+   "H29": "LA24_N",
+   "G27": "LA25_P",
+   "G28": "LA25_N",
+   "D26": "LA26_P",
+   "D27": "LA26_N",
+   "C26": "LA27_P",
+   "C27": "LA27_N",
+   "H31": "LA28_P",
+   "H32": "LA28_N",
+   "G30": "LA29_P",
+   "G31": "LA29_N",
+   "H34": "LA30_P",
+   "H35": "LA30_N",
+   "G33": "LA31_P",
+   "G34": "LA31_N",
+   "H37": "LA32_P",
+   "H38": "LA32_N",
+   "G36": "LA33_P",
+   "G37": "LA33_N",
+   "H2": "GND",
+   "D30": "JTAG_BYP",
+   "D31": "JTAG_BYP"
+  },
+  "side": "bot",
+  "dnp": false
+ },
+ {
+  "ref": "J2",
+  "value": "RIBBON A",
+  "fp": "Connector_IDC:IDC-Header_2x25_P2.54mm_Vertical",
+  "lcsc": "C19193816",
+  "nets": {
+   "1": "GND",
+   "2": "RA_SCLK",
+   "3": "GND",
+   "4": "RA_SDO0",
+   "5": "GND",
+   "6": "RA_SDO1",
+   "7": "GND",
+   "8": "RA_SDO2",
+   "9": "GND",
+   "10": "RA_SDO3",
+   "11": "GND",
+   "12": "RA_CS0",
+   "13": "RA_CS1",
+   "14": "GND",
+   "15": "RA_CS2",
+   "16": "RA_CS3",
+   "17": "RA_CS4",
+   "18": "GND",
+   "19": "RA_CS5",
+   "20": "RA_CS6",
+   "21": "RA_CS7",
+   "22": "GND",
+   "23": "RA_WAKE0",
+   "24": "RA_WAKE1",
+   "25": "RA_WAKE2",
+   "26": "RA_WAKE3",
+   "27": "GND",
+   "28": "RA_WAKE4",
+   "29": "RA_WAKE5",
+   "30": "RA_WAKE6",
+   "31": "RA_WAKE7",
+   "32": "GND",
+   "33": "RA_BIG0",
+   "34": "RA_BIG1",
+   "35": "RA_BIG2",
+   "36": "RA_BIG3",
+   "37": "GND",
+   "38": "RA_BIG4",
+   "39": "RA_BIG5",
+   "40": "RA_BIG6",
+   "41": "RA_BIG7",
+   "42": "GND",
+   "43": "GND",
+   "44": "GND",
+   "45": "GND",
+   "46": "GND",
+   "47": "GND",
+   "48": "GND",
+   "49": "GND",
+   "50": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "J3",
+  "value": "RIBBON B",
+  "fp": "Connector_IDC:IDC-Header_2x25_P2.54mm_Vertical",
+  "lcsc": "C19193816",
+  "nets": {
+   "1": "GND",
+   "2": "RB_SCLK",
+   "3": "GND",
+   "4": "RB_SDO0",
+   "5": "GND",
+   "6": "RB_SDO1",
+   "7": "GND",
+   "8": "RB_SDO2",
+   "9": "GND",
+   "10": "RB_SDO3",
+   "11": "GND",
+   "12": "RB_CS0",
+   "13": "RB_CS1",
+   "14": "GND",
+   "15": "RB_CS2",
+   "16": "RB_CS3",
+   "17": "RB_CS4",
+   "18": "GND",
+   "19": "RB_CS5",
+   "20": "RB_CS6",
+   "21": "RB_CS7",
+   "22": "GND",
+   "23": "RB_WAKE0",
+   "24": "RB_WAKE1",
+   "25": "RB_WAKE2",
+   "26": "RB_WAKE3",
+   "27": "GND",
+   "28": "RB_WAKE4",
+   "29": "RB_WAKE5",
+   "30": "RB_WAKE6",
+   "31": "RB_WAKE7",
+   "32": "GND",
+   "33": "RB_BIG0",
+   "34": "RB_BIG1",
+   "35": "RB_BIG2",
+   "36": "RB_BIG3",
+   "37": "GND",
+   "38": "RB_BIG4",
+   "39": "RB_BIG5",
+   "40": "RB_BIG6",
+   "41": "RB_BIG7",
+   "42": "GND",
+   "43": "GND",
+   "44": "GND",
+   "45": "GND",
+   "46": "GND",
+   "47": "GND",
+   "48": "GND",
+   "49": "GND",
+   "50": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "U1",
+  "value": "SN74LVC8T245",
+  "fp": "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm",
+  "lcsc": "C27643",
+  "nets": {
+   "1": "VADJ",
+   "2": "VADJ",
+   "22": "GND",
+   "23": "+3V3_FMC",
+   "24": "+3V3_FMC",
+   "11": "GND",
+   "12": "GND",
+   "13": "GND",
+   "3": "LA01_P_CC",
+   "21": "T_RA_CS0",
+   "4": "LA01_N_CC",
+   "20": "T_RA_CS1",
+   "5": "LA06_P",
+   "19": "T_RA_CS2",
+   "6": "LA06_N",
+   "18": "T_RA_CS3",
+   "7": "LA05_P",
+   "17": "T_RA_CS4",
+   "8": "LA05_N",
+   "16": "T_RA_CS5",
+   "9": "LA10_P",
+   "15": "T_RA_CS6",
+   "10": "LA09_P",
+   "14": "T_RA_CS7"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C1",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "VADJ",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C2",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "+3V3_FMC",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R1",
+  "value": "47R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23182",
+  "nets": {
+   "1": "T_RA_CS0",
+   "2": "RA_CS0"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R2",
+  "value": "47R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23182",
+  "nets": {
+   "1": "T_RA_CS1",
+   "2": "RA_CS1"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R3",
+  "value": "47R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23182",
+  "nets": {
+   "1": "T_RA_CS2",
+   "2": "RA_CS2"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R4",
+  "value": "47R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23182",
+  "nets": {
+   "1": "T_RA_CS3",
+   "2": "RA_CS3"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R5",
+  "value": "47R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23182",
+  "nets": {
+   "1": "T_RA_CS4",
+   "2": "RA_CS4"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R6",
+  "value": "47R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23182",
+  "nets": {
+   "1": "T_RA_CS5",
+   "2": "RA_CS5"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R7",
+  "value": "47R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23182",
+  "nets": {
+   "1": "T_RA_CS6",
+   "2": "RA_CS6"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R8",
+  "value": "47R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23182",
+  "nets": {
+   "1": "T_RA_CS7",
+   "2": "RA_CS7"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "U2",
+  "value": "SN74LVC8T245",
+  "fp": "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm",
+  "lcsc": "C27643",
+  "nets": {
+   "1": "VADJ",
+   "2": "GND",
+   "22": "GND",
+   "23": "+3V3_FMC",
+   "24": "+3V3_FMC",
+   "11": "GND",
+   "12": "GND",
+   "13": "GND",
+   "3": "LA10_N",
+   "21": "RA_WAKE0",
+   "4": "LA09_N",
+   "20": "RA_WAKE1",
+   "5": "LA13_P",
+   "19": "RA_WAKE2",
+   "6": "LA14_P",
+   "18": "RA_WAKE3",
+   "7": "LA13_N",
+   "17": "RA_WAKE4",
+   "8": "LA14_N",
+   "16": "RA_WAKE5",
+   "9": "LA17_P_CC",
+   "15": "RA_WAKE6",
+   "10": "LA17_N_CC",
+   "14": "RA_WAKE7"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C3",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "VADJ",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C4",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "+3V3_FMC",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "U3",
+  "value": "SN74LVC8T245",
+  "fp": "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm",
+  "lcsc": "C27643",
+  "nets": {
+   "1": "VADJ",
+   "2": "GND",
+   "22": "GND",
+   "23": "+3V3_FMC",
+   "24": "+3V3_FMC",
+   "11": "GND",
+   "12": "GND",
+   "13": "GND",
+   "3": "LA18_P_CC",
+   "21": "RA_BIG0",
+   "4": "LA18_N_CC",
+   "20": "RA_BIG1",
+   "5": "LA23_P",
+   "19": "RA_BIG2",
+   "6": "LA23_N",
+   "18": "RA_BIG3",
+   "7": "LA27_P",
+   "17": "RA_BIG4",
+   "8": "LA26_P",
+   "16": "RA_BIG5",
+   "9": "LA27_N",
+   "15": "RA_BIG6",
+   "10": "LA26_N",
+   "14": "RA_BIG7"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C5",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "VADJ",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C6",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "+3V3_FMC",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "U4",
+  "value": "SN74LVC8T245",
+  "fp": "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm",
+  "lcsc": "C27643",
+  "nets": {
+   "1": "VADJ",
+   "2": "VADJ",
+   "22": "GND",
+   "23": "+3V3_FMC",
+   "24": "+3V3_FMC",
+   "11": "GND",
+   "12": "GND",
+   "13": "GND",
+   "3": "LA00_P_CC",
+   "21": "T_RB_CS0",
+   "4": "LA00_N_CC",
+   "20": "T_RB_CS1",
+   "5": "LA02_P",
+   "19": "T_RB_CS2",
+   "6": "LA02_N",
+   "18": "T_RB_CS3",
+   "7": "LA03_P",
+   "17": "T_RB_CS4",
+   "8": "LA03_N",
+   "16": "T_RB_CS5",
+   "9": "LA04_P",
+   "15": "T_RB_CS6",
+   "10": "LA04_N",
+   "14": "T_RB_CS7"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C7",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "VADJ",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C8",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "+3V3_FMC",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R9",
+  "value": "47R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23182",
+  "nets": {
+   "1": "T_RB_CS0",
+   "2": "RB_CS0"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R10",
+  "value": "47R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23182",
+  "nets": {
+   "1": "T_RB_CS1",
+   "2": "RB_CS1"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R11",
+  "value": "47R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23182",
+  "nets": {
+   "1": "T_RB_CS2",
+   "2": "RB_CS2"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R12",
+  "value": "47R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23182",
+  "nets": {
+   "1": "T_RB_CS3",
+   "2": "RB_CS3"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R13",
+  "value": "47R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23182",
+  "nets": {
+   "1": "T_RB_CS4",
+   "2": "RB_CS4"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R14",
+  "value": "47R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23182",
+  "nets": {
+   "1": "T_RB_CS5",
+   "2": "RB_CS5"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R15",
+  "value": "47R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23182",
+  "nets": {
+   "1": "T_RB_CS6",
+   "2": "RB_CS6"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R16",
+  "value": "47R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23182",
+  "nets": {
+   "1": "T_RB_CS7",
+   "2": "RB_CS7"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "U5",
+  "value": "SN74LVC8T245",
+  "fp": "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm",
+  "lcsc": "C27643",
+  "nets": {
+   "1": "VADJ",
+   "2": "GND",
+   "22": "GND",
+   "23": "+3V3_FMC",
+   "24": "+3V3_FMC",
+   "11": "GND",
+   "12": "GND",
+   "13": "GND",
+   "3": "LA08_P",
+   "21": "RB_WAKE0",
+   "4": "LA08_N",
+   "20": "RB_WAKE1",
+   "5": "LA07_P",
+   "19": "RB_WAKE2",
+   "6": "LA07_N",
+   "18": "RB_WAKE3",
+   "7": "LA12_P",
+   "17": "RB_WAKE4",
+   "8": "LA12_N",
+   "16": "RB_WAKE5",
+   "9": "LA11_P",
+   "15": "RB_WAKE6",
+   "10": "LA11_N",
+   "14": "RB_WAKE7"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C9",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "VADJ",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C10",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "+3V3_FMC",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "U6",
+  "value": "SN74LVC8T245",
+  "fp": "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm",
+  "lcsc": "C27643",
+  "nets": {
+   "1": "VADJ",
+   "2": "GND",
+   "22": "GND",
+   "23": "+3V3_FMC",
+   "24": "+3V3_FMC",
+   "11": "GND",
+   "12": "GND",
+   "13": "GND",
+   "3": "LA16_P",
+   "21": "RB_BIG0",
+   "4": "LA16_N",
+   "20": "RB_BIG1",
+   "5": "LA15_P",
+   "19": "RB_BIG2",
+   "6": "LA15_N",
+   "18": "RB_BIG3",
+   "7": "LA20_P",
+   "17": "RB_BIG4",
+   "8": "LA20_N",
+   "16": "RB_BIG5",
+   "9": "LA19_P",
+   "15": "RB_BIG6",
+   "10": "LA19_N",
+   "14": "RB_BIG7"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C11",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "VADJ",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C12",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "+3V3_FMC",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "U7",
+  "value": "SN74LVC8T245",
+  "fp": "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm",
+  "lcsc": "C27643",
+  "nets": {
+   "1": "VADJ",
+   "2": "GND",
+   "22": "GND",
+   "23": "+3V3_FMC",
+   "24": "+3V3_FMC",
+   "11": "GND",
+   "12": "GND",
+   "13": "GND",
+   "3": "LA22_P",
+   "21": "RA_SDO0",
+   "4": "LA22_N",
+   "20": "RA_SDO1",
+   "5": "LA21_P",
+   "19": "RA_SDO2",
+   "6": "LA21_N",
+   "18": "RA_SDO3",
+   "7": "LA25_P",
+   "17": "RB_SDO0",
+   "8": "LA25_N",
+   "16": "RB_SDO1",
+   "9": "LA24_P",
+   "15": "RB_SDO2",
+   "10": "LA24_N",
+   "14": "RB_SDO3"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C13",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "VADJ",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C14",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "+3V3_FMC",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "U8",
+  "value": "SN74LVC8T245",
+  "fp": "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm",
+  "lcsc": "C27643",
+  "nets": {
+   "1": "VADJ",
+   "2": "VADJ",
+   "22": "GND",
+   "23": "+3V3_FMC",
+   "24": "+3V3_FMC",
+   "11": "GND",
+   "12": "GND",
+   "13": "GND",
+   "3": "LA29_P",
+   "21": "T_RA_SCLK",
+   "4": "LA29_N",
+   "20": "T_RB_SCLK",
+   "5": "GND",
+   "19": "NC",
+   "6": "GND",
+   "18": "NC",
+   "7": "GND",
+   "17": "NC",
+   "8": "GND",
+   "16": "NC",
+   "9": "GND",
+   "15": "NC",
+   "10": "GND",
+   "14": "NC"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C15",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "VADJ",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C16",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "+3V3_FMC",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R17",
+  "value": "47R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23182",
+  "nets": {
+   "1": "T_RA_SCLK",
+   "2": "RA_SCLK"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R18",
+  "value": "47R",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C23182",
+  "nets": {
+   "1": "T_RB_SCLK",
+   "2": "RB_SCLK"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R19",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "RA_SDO0",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R20",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "RA_SDO1",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R21",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "RA_SDO2",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R22",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "RA_SDO3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R23",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "RB_SDO0",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R24",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "RB_SDO1",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R25",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "RB_SDO2",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R26",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C25803",
+  "nets": {
+   "1": "RB_SDO3",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C17",
+  "value": "10uF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C19702",
+  "nets": {
+   "1": "VADJ",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C18",
+  "value": "10uF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C19702",
+  "nets": {
+   "1": "+3V3_FMC",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C19",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "VADJ",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "C20",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0603_1608Metric",
+  "lcsc": "C14663",
+  "nets": {
+   "1": "+3V3_FMC",
+   "2": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "R27",
+  "value": "1k",
+  "fp": "Resistor_SMD:R_0603_1608Metric",
+  "lcsc": "C21190",
+  "nets": {
+   "1": "+3V3_FMC",
+   "2": "LED_A"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "D1",
+  "value": "3V3 OK",
+  "fp": "LED_SMD:LED_0603_1608Metric",
+  "lcsc": "C2286",
+  "nets": {
+   "2": "LED_A",
+   "1": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "H1",
+  "value": "M3",
+  "fp": "MountingHole:MountingHole_3.2mm_M3",
+  "lcsc": "",
+  "nets": {},
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "H2",
+  "value": "M3",
+  "fp": "MountingHole:MountingHole_3.2mm_M3",
+  "lcsc": "",
+  "nets": {},
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "TP1",
+  "value": "GND",
+  "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+  "lcsc": "",
+  "nets": {
+   "1": "GND"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "TP2",
+  "value": "+3V3_FMC",
+  "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+  "lcsc": "",
+  "nets": {
+   "1": "+3V3_FMC"
+  },
+  "side": "top",
+  "dnp": false
+ },
+ {
+  "ref": "TP3",
+  "value": "VADJ",
+  "fp": "TestPoint:TestPoint_Pad_D1.5mm",
+  "lcsc": "",
+  "nets": {
+   "1": "VADJ"
+  },
+  "side": "top",
+  "dnp": false
+ }
+]

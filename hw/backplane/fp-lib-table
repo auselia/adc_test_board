@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "Bp")(type "KiCad")(uri "${KIPRJMOD}/Bp.pretty")(options "")(descr "backplane footprints"))
+)

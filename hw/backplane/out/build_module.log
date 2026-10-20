@@ -1,0 +1,19 @@
+module schematic written; 80 parts
+saved /Users/nico/Documents/GitHub/adc_test_board/hw/backplane/BP_Module.kicad_pcb 245.79999999999998 72.0
+plane stubs added 89 failed []
+layers: ['F.Cu', 'In1.Cu', 'In2.Cu', 'B.Cu'] planes: 2
+2026-10-20 13:28:18.503 INFO   [E2F481\A2875D] Optimization stage started on board '7f1563bb7749878edbabead1dabb5fd6' with score 977.47 (4 unrouted and 6 violations).
+2026-10-20 13:31:05.120 INFO   [E2F481\A2875D] Optimizer pass #1 on board '73aafac2a406dfe0d26aa585ed54d528' was completed in 161.83 seconds with the score of 977.47 (4 unrouted and 6 violations).
+2026-10-20 13:31:08.950 INFO   [E2F481\A2875D] Optimization stage completed: started with score 977.47 (4 unrouted and 6 violations), completed in 168.42 seconds, final score: 977.47 (4 unrouted and 6 violations), using 151.32 total CPU seconds, 363.
+import True
+tracks 679 vias 143
+finished
+Found 6 violations
+Found 0 unconnected items
+   1 [silk_over_copper]
+   5 [silk_overlap]
+Plotted to 'fab/gerber_BP_Module/BP_Module-Edge_Cuts.gm1'.
+Done.
+Wrote position data to 'fab/BP_Module_pos_kicad.csv'.
+BP_Module BOM lines 14 parts 71 missing LCSC []
+-rw-r--r--@ 1 nico  staff  205623 Oct 20 13:31 fab/BP_Module_gerbers.zip

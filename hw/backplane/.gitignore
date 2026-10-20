@@ -1,0 +1,5 @@
+*.dsn
+*.ses
+out/route_*.log
+out/*_v.svg
+fab/gerber_*/

@@ -1,0 +1,22 @@
+ERC report (2026-10-20T12:37:44, Encoding UTF8)
+Report includes: Errors
+
+***** Sheet /
+[power_pin_not_driven]: Input Power pin not driven by any Output Power pins
+    ; error
+    @(114.30 mm, 281.94 mm): Symbol J1 Pin C1 [GND, Power input, Line]
+[power_pin_not_driven]: Input Power pin not driven by any Output Power pins
+    ; error
+    @(187.96 mm, 378.46 mm): Symbol J1 Pin G39 [VADJ, Power input, Line]
+[pin_to_pin]: Pins of type Output and Output are connected
+    ; error
+    @(200.66 mm, 378.46 mm): Symbol J1 Pin D31 [TDO, Output, Line]
+    @(195.58 mm, 378.46 mm): Symbol J1 Pin H2 [PRSNT_M2C_L, Output, Line]
+
+ ** ERC messages: 3  Errors 3  Warnings 0
+
+ ** Ignored checks:
+    - Global label only appears once in the schematic
+    - Four connection points are joined together
+    - SPICE model issue
+    - Assigned footprint doesn't match footprint filters
