@@ -1,0 +1,9 @@
+BP16 schematic written; 174 parts
+saved /Users/nico/Documents/GitHub/adc_test_board/hw/backplane/BP16.kicad_pcb
+plane stubs added 308 failed []
+layers: ['F.Cu', 'In1.Cu', 'In2.Cu', 'In3.Cu', 'In4.Cu', 'B.Cu'] planes: 2
+084 INFO   [5F9601\683BFA] Auto-routing pass #10 on board '87967d33a41e4d8348eedddb0c910b90' was completed in 139.58 seconds with score 875.74 (71 unrouted and 37 violations), using 1761.81 CPU seconds and the job allocated 4782.9
+2026-10-20 18:55:04.723 INFO   [5F9601\683BFA] Auto-routing pass #11 on board '87967d33a41e4d8348eedddb0c910b90' was completed in 147.60 seconds with score 875.74 (71 unrouted and 37 violations), using 1901.34 CPU seconds and the job allocated 5042.8
+2026-10-20 18:58:34.220 INFO   [5F9601\683BFA] Auto-routing pass #12 on board 'f3380487f3a766c2b559cef4cda5511e' was completed in 179.60 seconds with score 875.74 (71 unrouted and 37 violations), using 2090.00 CPU seconds and the job allocated 5332.2
+import False
+tracks 304 vias 308

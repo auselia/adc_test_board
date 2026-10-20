@@ -104,3 +104,6 @@ Trade-off: the FPGA first sees ANY_WAKE, then clocks out 32 flag bits (about 2 u
 1. Check the CPL and BOM in the JLCPCB viewer (items 1 and 2 above), then order the adapter and the modules, or hand-solder the headers.
 2. RTL plan for the scheduler and the two modes.
 3. Bench: one module with two cards, then 16.
+
+## 10. Status: single-board version (2026-10-20)
+A one-board 16-channel design (FMC plug on the left, 8 level shifters, 4 x 4 socket matrix, 158 x 124 mm) is in `hw/backplane/` (`bp16.py`, `layout_bp16.py`, `BP16.kicad_pcb`). **The layout is placed but not routed.** Freerouting stalled at about 71 unrouted connections on 4 layers and again on 6 layers, and the run was stopped. The two-board version (FMC adapter plus 8-slot module) is routed and has JLCPCB files in `hw/backplane/fab/`.

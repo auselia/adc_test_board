@@ -4,6 +4,7 @@ HERE=os.path.dirname(os.path.abspath(__file__))
 import pcbnew
 name=sys.argv[1]
 RULES={'BP_Module':dict(clr=0.15,track=0.2,via=0.6,drill=0.3,planes=[('In1_Cu','GND'),('In2_Cu','+3V3')],power=['+5V','+5V_IN'],pw=0.6),
+       'BP16':dict(clr=0.127,track=0.15,via=0.45,drill=0.2,planes=[('In1_Cu','GND'),('In4_Cu','+3V3')],power=['+5V','+5V_IN'],pw=0.6),
        'FMC_Adapter':dict(clr=0.127,track=0.15,via=0.45,drill=0.2,planes=[('In1_Cu','GND')],power=['+3V3_FMC','VADJ'],pw=0.4)}[name]
 pro=os.path.join(HERE,name+'.kicad_pro')
 if not os.path.exists(pro): shutil.copy(os.path.join(HERE,'..','ADC_Test.kicad_pro'),pro)

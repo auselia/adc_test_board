@@ -12,7 +12,7 @@ def load_fp(fpid):
     lib,name=fpid.split(':'); return pcbnew.FootprintLoad((os.path.join(HERE,'Bp.pretty') if lib=='Bp' else FPDIR+lib+'.pretty'),name)
 def make(name,model,place,outline,texts=(),drop_pads=None):
     """place: ref -> (x,y,rot) in board coords (mm, origin top-left of the outline); side comes from the model."""
-    b=pcbnew.BOARD(); b.SetCopperLayerCount(4)
+    b=pcbnew.BOARD(); b.SetCopperLayerCount(6 if name=='BP16' else 4)
     nets=sorted({n for p in model for n in p['nets'].values() if n!='NC'})
     ni={}
     for n in nets:
