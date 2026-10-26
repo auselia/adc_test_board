@@ -20,7 +20,7 @@ ROT_ABS={'J3':90,'J7':0}   # the viewer showed header J7 and J3 turned, as on th
 # Position offsets in mm (CPL frame: x right, y up) for parts whose JLC 3D model has a different origin than our
 # footprint. Measured in the viewer at 35.25 px/mm.
 #   RV1: model body centre was 2.5 mm right of the pins' centre and 1.0 mm low, hanging 0.6 mm off the board edge.
-POS_OFF={'RV1':(-2.54,1.0),'J7':(5.08,0.0),'J3':(0.0,-6.35)}
+POS_OFF={'RV1':(-2.54,1.0),'J7':(5.08,0.0),'J3':(1.27,-6.35)}
 def rot_off(pkg):
     for rx,off in ROT_RULES:
         if re.match(rx,pkg): return off
