@@ -188,9 +188,13 @@ else:
     TPN={'TP3':'SIG','TP4':'HPF','TP5':'GAIN','TP6':'LPF','TP7':'DRV+','TP8':'DRV-','TP9':'AIN+','TP10':'AIN-','TP11':'3V3','TP12':'AVDD','TP13':'MID5',
          'TP14':'VOCM','TP15':'LST','TP16':'WAKE','TP17':'BIG','TP18':'REFL','TP19':'GND','TP20':'GND'}
     from layout_v3 import POS as _P
-    for r_,n_ in TPN.items():
+    _last={}
+    for r_,n_ in sorted(TPN.items(),key=lambda kv:(_P[kv[0]][1],_P[kv[0]][0])):
         x_,y_,_r=_P[r_]
-        text(n_,x_,y_+1.6 if y_<10 else y_-1.6,0.8,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
+        yy=y_+1.6 if y_<10 else y_-1.6
+        if y_ in _last and x_-_last[y_][0]<3.9 and not _last[y_][1]: yy+=1.3*(1 if y_<10 else -1); _last[y_]=(x_,True)
+        else: _last[y_]=(x_,False)
+        text(n_,x_,yy,0.8,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
     # current links, named on the back below each jumper
     for ref_,nm_ in (('JP1','HEAD'),('JP3','CAPTURE')):
         for fp_ in b.GetFootprints():
@@ -200,7 +204,7 @@ else:
     for s_,y_,sz in (('ADS7057 test board v3',16.5,1.2),('Auselia 2026-10',18.6,1.0)):
         text(s_,18,y_,sz,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
     for i,l in enumerate(['PMOD (J3)','1 CS    7 BIG_N','2 -     8 -','3 SDO   9 -','4 SCK  10 WAKE_N','5 GND  11 GND','6 3V3  12 3V3']):
-        text(l,W-31.0,3.5+i*1.5,0.9,pcbnew.GR_TEXT_H_ALIGN_LEFT,pcbnew.B_SilkS,0.15,True)
+        text(l,W-27.0,9.0+i*1.5,0.9,pcbnew.GR_TEXT_H_ALIGN_LEFT,pcbnew.B_SilkS,0.15,True)
 
 # 5. top silkscreen: test point numbers and IC numbers, each placed where it touches no pad, via, text or board edge
 def place_labels(items,size=0.8):

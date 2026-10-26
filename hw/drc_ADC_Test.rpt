@@ -1,8 +1,8 @@
 ** Drc report for ADC_Test.kicad_pcb **
-** Created on 2026-10-20T17:43:46 **
+** Created on 2026-10-26T13:35:09 **
 ** Report includes: Errors, Warnings, Exclusions **
 
-** Found 12 DRC violations **
+** Found 7 DRC violations **
 [silk_edge_clearance]: Silkscreen clipped by board edge
     Rule: board setup constraints silk; warning
     @(225.0000 mm, 100.0000 mm): Segment on Edge.Cuts
@@ -27,26 +27,6 @@
     Rule: board setup constraints silk; warning
     @(225.0000 mm, 100.0000 mm): Segment on Edge.Cuts
     @(222.3500 mm, 103.0200 mm): Rectangle of J3 on F.Silkscreen
-[silk_overlap]: Silkscreen clearance
-    Rule: board setup constraints silk; warning
-    @(180.6900 mm, 104.2000 mm): PCB text 'CAPTURE' on B.Silkscreen
-    @(194.0000 mm, 105.0000 mm): PCB text '1 CS    7 BIG_N' on B.Silkscreen
-[silk_overlap]: Silkscreen clearance
-    Rule: board setup constraints silk; warning
-    @(184.2800 mm, 105.8000 mm): PCB text 'MID5' on B.Silkscreen
-    @(194.0000 mm, 105.0000 mm): PCB text '1 CS    7 BIG_N' on B.Silkscreen
-[silk_overlap]: Silkscreen clearance
-    Rule: board setup constraints silk; warning
-    @(194.0000 mm, 106.5000 mm): PCB text '2 -     8 -' on B.Silkscreen
-    @(187.4700 mm, 105.8000 mm): PCB text 'VOCM' on B.Silkscreen
-[silk_overlap]: Silkscreen clearance
-    Rule: board setup constraints silk; warning
-    @(194.0000 mm, 105.0000 mm): PCB text '1 CS    7 BIG_N' on B.Silkscreen
-    @(187.4700 mm, 105.8000 mm): PCB text 'VOCM' on B.Silkscreen
-[silk_overlap]: Silkscreen clearance
-    Rule: board setup constraints silk; warning
-    @(190.6600 mm, 105.8000 mm): PCB text 'AVDD' on B.Silkscreen
-    @(194.0000 mm, 105.0000 mm): PCB text '1 CS    7 BIG_N' on B.Silkscreen
 [silk_over_copper]: Silkscreen clipped by solder mask
     Local override; warning
     @(118.0000 mm, 116.5000 mm): PCB text 'ADS7057 test board v3' on B.Silkscreen
@@ -54,7 +34,7 @@
 
 ** Found 0 unconnected pads **
 
-** Found 14 Footprint errors **
+** Found 16 Footprint errors **
 [missing_footprint]: Missing footprint C34 (47pF C0G)
     Local override; warning
 [missing_footprint]: Missing footprint C35 (10uF)
@@ -64,6 +44,10 @@
 [missing_footprint]: Missing footprint C37 (10uF)
     Local override; warning
 [missing_footprint]: Missing footprint C38 (100nF)
+    Local override; warning
+[missing_footprint]: Missing footprint H3 (M2)
+    Local override; warning
+[missing_footprint]: Missing footprint H4 (M2)
     Local override; warning
 [missing_footprint]: Missing footprint J6 (SMA HEAD OUT)
     Local override; warning
