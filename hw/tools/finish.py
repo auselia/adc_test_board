@@ -196,7 +196,7 @@ else:
     bt('JP1 head power',86.0,11.9); bt('JP3 capture rail',86.0,13.2)
     bt('J7 1 ONBOARD+ 2 FORCE+',66.0,11.9); bt('3 SENSE+ 4 SENSE- 5 FORCE-',66.0,13.2)
     logo(59.5,14.6,0.1,layer=pcbnew.B_SilkS,mirror=True)
-    bt('AFE Test Board',58.0,16.5,1.4); bt('ADS7057 v3   Auselia 2026-10',58.0,18.8,0.8)
+    bt('AFE Test Board',58.0,16.5,1.4); bt('ADS7057 v1   Auselia 2026-10',58.0,18.8,0.8)
     for i,l in enumerate(['PMOD (J3)','1 CS    7 BIG_N','2 -     8 -','3 SDO   9 -','4 SCK  10 WAKE_N','5 GND  11 GND','6 3V3  12 3V3']):
         bt(l,W-27.0,9.0+i*1.5,0.9)
     # top: pin names of the power / SMU header J7 (pin 1 at x = 98.0)
@@ -243,7 +243,7 @@ if TARGET!='head':
         for _f in b.GetFootprints():
             if _f.GetReference()==_r: text(_r,T(_f.GetPosition().x)-OX,T(_f.GetPosition().y)-OY-2.4,0.8,layer=pcbnew.F_SilkS,thick=0.12)
 if TARGET=='head':
-    text('TP1',1.9,8.6,0.8,layer=pcbnew.F_SilkS,thick=0.12); text('TP2',8.3,11.0,0.8,layer=pcbnew.F_SilkS,thick=0.12)
+    text('+',2.2,8.6,1.2,layer=pcbnew.F_SilkS,thick=0.18); text('-',8.4,11.2,1.2,layer=pcbnew.F_SilkS,thick=0.18)
 b.GetDesignSettings().SetAuxOrigin(V(OX,OY+(HEADH if TARGET=='head' else H)))
 # pads that DRC reports with a starved thermal relief get a solid connection (self-correcting, up to 3 rounds)
 import subprocess,re

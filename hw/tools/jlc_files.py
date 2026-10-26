@@ -16,7 +16,7 @@ ROT_RULES=[(r'^SOT-223',180),(r'^SOT-23',-90),(r'^SOIC-',270),(r'^CP_EIA-',180)]
 #   (C29, the tantalum capacitor of the first revision, is gone)
 #   J7  1x2 header (J2 in the first revision) : viewer showed the pins horizontal, our pads are vertical        -> 0 -> 90
 #   J3  2x6 right angle  : viewer showed the row horizontal, our pads run vertically       -> 0 -> 90
-ROT_ABS={'J3':90,'J7':0,'U6':180,'U9':180}   # the viewer showed header J7 and J3 turned, as on the first revision. Check U6, U9, U8, J2 gone
+ROT_ABS={'J3':90,'J7':0,'U6':180,'U9':180,'U8':0}   # the viewer showed header J7 and J3 turned, as on the first revision. Check U6, U9, U8, J2 gone
 # Position offsets in mm (CPL frame: x right, y up) for parts whose JLC 3D model has a different origin than our
 # footprint. Measured in the viewer at 35.25 px/mm.
 #   RV1: model body centre was 2.5 mm right of the pins' centre and 1.0 mm low, hanging 0.6 mm off the board edge.
