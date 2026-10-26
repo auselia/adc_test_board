@@ -1,12 +1,12 @@
 ** Drc report for ADC_Head.kicad_pcb **
-** Created on 2026-10-20T17:44:26 **
+** Created on 2026-10-26T13:23:07 **
 ** Report includes: Errors, Warnings, Exclusions **
 
 ** Found 1 DRC violations **
 [courtyards_overlap]: Courtyards overlap
     Rule: board setup constraints courtyard; error
-    @(105.0000 mm, 103.6000 mm): Footprint TP1
-    @(105.0000 mm, 106.6000 mm): Footprint L1
+    @(105.0000 mm, 111.6000 mm): Footprint L1
+    @(105.0000 mm, 108.6000 mm): Footprint TP1
 
 ** Found 0 unconnected pads **
 

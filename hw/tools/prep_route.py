@@ -9,7 +9,7 @@ OX,OY=100.0,100.0
 import sys
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 from layout_v3 import W as _W, H as _H
-BOARDS=[('HGND',0.0,0.0,10.0,float(os.environ.get('HEADH','22')))] if TARGET=='head' else [('GND',0.0,0.0,_W,_H)]
+BOARDS=[('HGND',0.0,0.0,10.0,float(os.environ.get('HEADH','27')))] if TARGET=='head' else [('GND',0.0,0.0,_W,_H)]
 def add_zone(layer,net,x0,y0,x1,y1,inset=0.3):
     x0,y0,x1,y1=x0+OX,y0+OY,x1+OX,y1+OY
     z=pcbnew.ZONE(b); z.SetLayer(layer); z.SetNet(b.FindNet(net))

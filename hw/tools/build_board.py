@@ -13,7 +13,7 @@ OX,OY=100.0,100.0
 W,H=57.0,37.6                  # main board (the bottom 3 mm carry the test-point strip)
 DX=7.0                         # strip added on the left for the bias-T parts
 TARGET=os.environ.get('BOARD','adc')   # 'adc' main board, 'head' sensor head (its own board file)
-HW_,HH_=10.0,float(os.environ.get('HEADH','22'))   # sensor head outline (panel coordinates)
+HW_,HH_=10.0,float(os.environ.get('HEADH','27'))   # sensor head outline (panel coordinates)
 # ref: (x, y, rotation) in mm from the top-left corner of the board
 POS={
  'J1':(4.6,7.6,0),                     # SMA in (hand-solder)
@@ -59,6 +59,10 @@ HEAD={'TP1':(5.0,3.6,0),'TP2':(8.4,3.6,0),
       'U8':(5.0,10.5,180),
       'L1':(5.0,6.6,180),
       'J6':(5.0,HH_-4.1,0)}
+HEAD_DY=5.0
+for _k,(_x,_y,_r) in list(HEAD.items()):
+    if _k!='J6': HEAD[_k]=(_x,_y+HEAD_DY,_r)
+HEAD['H3']=(2.5,2.5,0); HEAD['H4']=(7.5,2.5,0)
 import json
 if os.environ.get('HEADJSON'): HEAD.update({k:tuple(v) for k,v in json.loads(os.environ['HEADJSON']).items()})
 def load_fp(fpid):
@@ -73,7 +77,7 @@ else:
     from layout_v3 import POS as _P3, W as _W3, H as _H3
     POS=dict(_P3); W,H=_W3,_H3
 PCBFILE='ADC_Head.kicad_pcb' if TARGET=='head' else 'ADC_Test.kicad_pcb'
-FIXED={'J1','J2','J3','J4','J6','U4','H1','H2','TP1','TP2','U8','L1','J7'}
+FIXED={'J1','J2','J3','J4','J6','U4','H1','H2','H3','H4','TP1','TP2','U8','L1','J7'}
 def legalize(b,gap=0.1,iters=200):
     """Push the smaller of two overlapping courtyards out along the shorter axis."""
     T=pcbnew.ToMM

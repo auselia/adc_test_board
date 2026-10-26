@@ -105,6 +105,8 @@ def build():
     add(sh,'Connector:Conn_Coaxial','SMA MON',FP_SMA,520,90,{'1':'MON','2':'GND'},'J',ref='J4',props={'LCSC':'C496549'})
     add(sh,'Mechanical:MountingHole','M3','MountingHole:MountingHole_3.2mm_M3',480,150,{},'H',ref='H1')
     add(sh,'Mechanical:MountingHole','M3','MountingHole:MountingHole_3.2mm_M3',500,150,{},'H',ref='H2')
+    add(sh,'Mechanical:MountingHole','M2','MountingHole:MountingHole_2.2mm_M2',520,150,{},'H',ref='H3')
+    add(sh,'Mechanical:MountingHole','M2','MountingHole:MountingHole_2.2mm_M2',540,150,{},'H',ref='H4')
     # ---- SENSOR IN (J1): bias-T. +5 V through R26/L2 onto the coax centre = power for the sensor head; C33 passes its signal to SIG_IN.
     text(sh,"SENSOR IN (J1) = bias-T for the sensor head. +3V3 -> 47R (R26, C32 filter) -> JP1 -> 470 uH (L2) -> coax centre. C33 100 nF passes the head's signal to SIG_IN.",20,360,1.8,True)
     text(sh,"R27 1M gives SIG_IN a DC level (VMID5). To feed a function generator or a perfboard instead, cut the solder jumper JP1 (bridged by a copper trace) so the centre pin carries no DC.",20,366,1.8)

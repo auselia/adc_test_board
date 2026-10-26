@@ -9,7 +9,7 @@ There are **two boards**, ordered separately:
 | Board | What it is | Size |
 |---|---|---|
 | ADC test board (`ADC_Test`) | HPF, gain, LPF, driver, ADS7057, listener (WAKE_N, BIG_N), PMOD, bias-T for the head, current-measurement links, test points | **125 × 21.5 mm** |
-| Sensor head (`ADC_Head`) | The perfboard charge amplifier on a PCB. The piezo wires solder to it. It is powered through the coax | 10 × 22 mm |
+| Sensor head (`ADC_Head`) | The perfboard charge amplifier on a PCB. The piezo wires solder to it. It is powered through the coax | 10 × 27 mm |
 
 The head connects to **SENSOR IN (J1)** with one coax cable. The coax carries 3.3 V to the head (a bias-T) and the signal back. To use a function generator instead of the head, cut JP1.
 
@@ -146,7 +146,7 @@ Both orders together, with shipping (Global Standard $10.75 per parcel) and 19 %
 | 2 ADC boards + 10 heads | $161.46 | $174.26 |
 
 - The head's fixed fees (setup $8.24, stencil $1.55, hand-solder labor $3.61, PCB $4.00, one more extended type) are about $20 per order. A single panel would save them, but it forces equal quantities and mouse-bite tabs. Two orders let you buy 2 ADC boards and 10 heads.
-- The OPA365 ($2.67) is the most expensive part of a head. The OPA2365 (SOIC-8) would be $1.38 and needs no new extended fee, but it does not fit in 10 mm × 22 mm with the SMA.
+- The OPA365 ($2.67) is the most expensive part of a head. The OPA2365 (SOIC-8) would be $1.38 and needs no new extended fee, but it does not fit in 10 mm × 27 mm with the SMA.
 - DHL Express costs about $32 more per parcel (3–7 days).
 - "Confirm Parts Placement" adds $0.45 per order.
 

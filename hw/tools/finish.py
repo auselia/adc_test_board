@@ -8,7 +8,7 @@ def V(x,y): return pcbnew.VECTOR2I(mm(x),mm(y))
 OX,OY=100.0,100.0
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 from layout_v3 import W,H
-HEADH=float(os.environ.get('HEADH','22'))
+HEADH=float(os.environ.get('HEADH','27'))
 DX=7.0
 BOARDS=[('HGND',0.0,0.0,10.0,HEADH)] if TARGET=='head' else [('GND',0.0,0.0,W,H)]
 b=pcbnew.LoadBoard(PCB)
@@ -179,9 +179,9 @@ def logo(x0,y0,s=0.1,layer=pcbnew.F_SilkS,mirror=False):
         a.SetArcGeometry(P(28+dx,24-h),P(28+r,24),P(28+dx,24+h))
 # front: labels a person can read without the schematic
 if TARGET=='head':
-    text('+ centre',5.0,6.0,0.8,layer=pcbnew.B_SilkS,thick=0.15,mirror=True); text('-',8.4,5.8,0.9,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
-    logo(2.9,9.0,0.1,layer=pcbnew.B_SilkS,mirror=True)                        # back, the face the piezo sits on
-    text('HEAD v1',5.0,7.8,0.8,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
+    text('+ centre',5.0,11.0,0.8,layer=pcbnew.B_SilkS,thick=0.15,mirror=True); text('-',8.4,10.8,0.9,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
+    logo(2.9,14.0,0.1,layer=pcbnew.B_SilkS,mirror=True)                        # back, the face the piezo sits on
+    text('HEAD v1',5.0,12.8,0.8,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
 else:
     text('SENSOR IN',5.4,1.2,0.8); text('+3V3 on centre',5.4,20.6,0.0001) if False else None
     text('SCOPE OUT',5.4,20.7,0.8)
@@ -240,7 +240,7 @@ for fp in b.GetFootprints():
 items.sort(key=lambda i:(i[0][0]!='U',i[0]))          # ICs first, they have the fewest options
 print('silk labels not placed:',place_labels(items))
 if TARGET=='head':
-    text('TP1',1.9,3.6,0.8,layer=pcbnew.F_SilkS,thick=0.12); text('TP2',8.3,6.0,0.8,layer=pcbnew.F_SilkS,thick=0.12)
+    text('TP1',1.9,8.6,0.8,layer=pcbnew.F_SilkS,thick=0.12); text('TP2',8.3,11.0,0.8,layer=pcbnew.F_SilkS,thick=0.12)
 b.GetDesignSettings().SetAuxOrigin(V(OX,OY+(HEADH if TARGET=='head' else H)))
 # pads that DRC reports with a starved thermal relief get a solid connection (self-correcting, up to 3 rounds)
 import subprocess,re
