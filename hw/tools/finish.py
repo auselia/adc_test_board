@@ -196,7 +196,7 @@ else:
     bt('JP1 head power',88.0,12.2); bt('JP3 capture rail',88.0,13.6)
     bt('J7 1 ONBOARD+ 2 FORCE+',64.0,12.2); bt('3 SENSE+ 4 SENSE- 5 FORCE-',64.0,13.6)
     logo(37.6,14.8,0.1,layer=pcbnew.B_SilkS,mirror=True)
-    bt('Auselia',36.0,16.6,1.7); bt('AFE Test Board v1   2026-10',36.0,19.2,0.9)
+    bt('Auselia',36.0,16.6,1.7); bt('AFE Test Board v1   Oct 2026',36.0,19.2,0.9)
     for i,l in enumerate(['PMOD (J3)','1 CS    7 BIG_N','2 -     8 -','3 SDO   9 -','4 SCK  10 WAKE_N','5 GND  11 GND','6 3V3  12 3V3']):
         bt(l,W-21.0,9.4+i*1.4,0.9)
     # top: pin names of the power / SMU header J7 (pin 1 at x = 98.0)
