@@ -187,24 +187,21 @@ else:
     text('SCOPE OUT',5.4,20.7,0.8)
     TPN={'TP3':'SIG','TP4':'HPF','TP5':'GAIN','TP6':'LPF','TP7':'DRV+','TP8':'DRV-','TP9':'AIN+','TP10':'AIN-','TP11':'3V3','TP12':'AVDD','TP13':'MID5',
          'TP14':'VOCM','TP15':'LST','TP16':'WAKE','TP17':'BIG','TP18':'REFL','TP19':'GND','TP20':'GND'}
-    from layout_v3 import POS as _P
-    _last={}
-    for r_,n_ in sorted(TPN.items(),key=lambda kv:(_P[kv[0]][1],_P[kv[0]][0])):
-        x_,y_,_r=_P[r_]
-        yy=y_+1.6 if y_<10 else y_-1.6
-        if y_ in _last and x_-_last[y_][0]<3.9 and not _last[y_][1]: yy+=1.3*(1 if y_<10 else -1); _last[y_]=(x_,True)
-        else: _last[y_]=(x_,False)
-        text(n_,x_,yy,0.8,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
-    # current links, named on the back below each jumper
-    for ref_,nm_ in (('JP1','HEAD'),('JP3','CAPTURE')):
-        for fp_ in b.GetFootprints():
-            if fp_.GetReference()==ref_:
-                p_=fp_.GetPosition(); text(nm_,T(p_.x)-OX,T(p_.y)-OY,0.8,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
-    logo(44.0,7.0,0.1,layer=pcbnew.B_SilkS,mirror=True)
-    for s_,y_,sz in (('ADS7057 test board v3',16.5,1.2),('Auselia 2026-10',18.6,1.0)):
-        text(s_,18,y_,sz,layer=pcbnew.B_SilkS,thick=0.15,mirror=True)
+    # back: one tidy information panel (mirrored text: the anchor is where reading starts, the text runs toward smaller x)
+    def bt(s,x,y,size=0.8): text(s,x,y,size,pcbnew.GR_TEXT_H_ALIGN_LEFT,pcbnew.B_SilkS,0.15,True)
+    TPL=[('TP3','SIG_IN'),('TP4','HPF'),('TP5','GAIN'),('TP6','LPF'),('TP7','DRV+'),('TP8','DRV-'),('TP9','AIN+'),('TP10','AIN-'),('TP11','3V3'),('TP12','AVDD'),
+         ('TP13','VMID5'),('TP14','VOCM'),('TP15','LST'),('TP16','WAKE_N'),('TP17','BIG_N'),('TP18','REFL'),('TP19','GND'),('TP20','GND')]
+    for i,(tp_,nm_) in enumerate(TPL):
+        bt('%s %s'%(tp_,nm_),86.0-(i//6)*10.0,3.4+(i%6)*1.25)
+    bt('JP1 head power',86.0,11.9); bt('JP3 capture rail',86.0,13.2)
+    bt('J7 1 ONBOARD+ 2 FORCE+',66.0,11.9); bt('3 SENSE+ 4 SENSE- 5 FORCE-',66.0,13.2)
+    logo(59.5,14.6,0.1,layer=pcbnew.B_SilkS,mirror=True)
+    bt('AFE Test Board',58.0,16.5,1.4); bt('ADS7057 v3   Auselia 2026-10',58.0,18.8,0.8)
     for i,l in enumerate(['PMOD (J3)','1 CS    7 BIG_N','2 -     8 -','3 SDO   9 -','4 SCK  10 WAKE_N','5 GND  11 GND','6 3V3  12 3V3']):
-        text(l,W-27.0,9.0+i*1.5,0.9,pcbnew.GR_TEXT_H_ALIGN_LEFT,pcbnew.B_SilkS,0.15,True)
+        bt(l,W-27.0,9.0+i*1.5,0.9)
+    # top: pin names of the power / SMU header J7 (pin 1 at x = 98.0)
+    for k_,(num_,nm_) in enumerate((('1','ON+'),('2','F+'),('3','S+'),('4','S-'),('5','F-'))):
+        text(num_,98.0+2.54*k_,4.5,0.8,layer=pcbnew.F_SilkS,thick=0.12); text(nm_,98.0+2.54*k_,8.9,0.8,layer=pcbnew.F_SilkS,thick=0.12)
 
 # 5. top silkscreen: test point numbers and IC numbers, each placed where it touches no pad, via, text or board edge
 def place_labels(items,size=0.8):
@@ -212,18 +209,16 @@ def place_labels(items,size=0.8):
     obst=[]
     for fp in b.GetFootprints():
         for pad in fp.Pads():
-            bb=pad.GetBoundingBox(); obst.append([T(bb.GetX())-OX-0.2,T(bb.GetY())-OY-0.2,T(bb.GetRight())-OX+0.2,T(bb.GetBottom())-OY+0.2])
-    for t_ in b.GetTracks():
-        if t_.Type()==pcbnew.PCB_VIA_T:
-            p_=t_.GetPosition(); r_=T(t_.GetWidth(pcbnew.F_Cu))/2+0.1; obst.append([T(p_.x)-OX-r_,T(p_.y)-OY-r_,T(p_.x)-OX+r_,T(p_.y)-OY+r_])
+            bb=pad.GetBoundingBox(); obst.append([T(bb.GetX())-OX-0.08,T(bb.GetY())-OY-0.08,T(bb.GetRight())-OX+0.08,T(bb.GetBottom())-OY+0.08])
     for d_ in b.GetDrawings():
         if d_.GetLayer()==pcbnew.F_SilkS:
             bb=d_.GetBoundingBox(); obst.append([T(bb.GetX())-OX,T(bb.GetY())-OY,T(bb.GetRight())-OX,T(bb.GetBottom())-OY])
     miss=[]
     for ref,label,cx,cy,centre_first in items:
-        w=len(label)*size*0.66+0.2; h=size*1.15
+        w=len(label)*size*0.78+0.3; h=size*1.3
         d0=[(0,0)] if centre_first else []
-        cand=d0+[(dx*k,dy*k) for k in ((1.5,2.0,2.6,3.3) if ref.startswith('TP') else (1.0,1.4,1.9,2.5,3.2)) for dx,dy in ((0,-1),(0,1),(1,0),(-1,0),(1,-1),(-1,-1),(1,1),(-1,1))]
+        order=((0,-1),(0,1),(1,0),(-1,0),(1,-1),(-1,-1),(1,1),(-1,1)) if cy<8 else ((0,1),(0,-1),(1,0),(-1,0),(1,-1),(-1,-1),(1,1),(-1,1))
+        cand=d0+[(dx*k,dy*k) for k in ((1.25,1.5,1.8,2.3,2.8) if ref.startswith('TP') else (1.0,1.4,1.9,2.5,3.2)) for dx,dy in order]
         ok=None
         for ox,oy in cand:
             # push the box out by half its size when the offset is sideways or vertical
@@ -243,6 +238,10 @@ for fp in b.GetFootprints():
     elif r[0]=='U': items.append((r,r,T(p.x)-OX,T(p.y)-OY,True))
 items.sort(key=lambda i:(i[0][0]!='U',i[0]))          # ICs first, they have the fewest options
 print('silk labels not placed:',place_labels(items))
+if TARGET!='head':
+    for _r in ('JP1','JP3'):
+        for _f in b.GetFootprints():
+            if _f.GetReference()==_r: text(_r,T(_f.GetPosition().x)-OX,T(_f.GetPosition().y)-OY-2.4,0.8,layer=pcbnew.F_SilkS,thick=0.12)
 if TARGET=='head':
     text('TP1',1.9,8.6,0.8,layer=pcbnew.F_SilkS,thick=0.12); text('TP2',8.3,11.0,0.8,layer=pcbnew.F_SilkS,thick=0.12)
 b.GetDesignSettings().SetAuxOrigin(V(OX,OY+(HEADH if TARGET=='head' else H)))
