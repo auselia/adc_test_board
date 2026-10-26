@@ -192,13 +192,13 @@ else:
     TPL=[('TP3','SIG_IN'),('TP4','HPF'),('TP5','GAIN'),('TP6','LPF'),('TP7','DRV+'),('TP8','DRV-'),('TP9','AIN+'),('TP10','AIN-'),('TP11','3V3'),('TP12','AVDD'),
          ('TP13','VMID5'),('TP14','VOCM'),('TP15','LST'),('TP16','WAKE_N'),('TP17','BIG_N'),('TP18','REFL'),('TP19','GND'),('TP20','GND')]
     for i,(tp_,nm_) in enumerate(TPL):
-        bt('%s %s'%(tp_,nm_),86.0-(i//6)*10.0,3.4+(i%6)*1.25)
-    bt('JP1 head power',86.0,11.9); bt('JP3 capture rail',86.0,13.2)
-    bt('J7 1 ONBOARD+ 2 FORCE+',66.0,11.9); bt('3 SENSE+ 4 SENSE- 5 FORCE-',66.0,13.2)
-    logo(59.5,14.6,0.1,layer=pcbnew.B_SilkS,mirror=True)
-    bt('AFE Test Board',58.0,16.5,1.4); bt('ADS7057 v1   Auselia 2026-10',58.0,18.8,0.8)
+        bt('%s %s'%(tp_,nm_),88.0-(i//6)*15.0,3.4+(i%6)*1.25)
+    bt('JP1 head power',88.0,12.2); bt('JP3 capture rail',88.0,13.6)
+    bt('J7 1 ONBOARD+ 2 FORCE+',64.0,12.2); bt('3 SENSE+ 4 SENSE- 5 FORCE-',64.0,13.6)
+    logo(37.6,14.8,0.1,layer=pcbnew.B_SilkS,mirror=True)
+    bt('Auselia',36.0,16.6,1.7); bt('AFE Test Board v1   2026-10',36.0,19.2,0.9)
     for i,l in enumerate(['PMOD (J3)','1 CS    7 BIG_N','2 -     8 -','3 SDO   9 -','4 SCK  10 WAKE_N','5 GND  11 GND','6 3V3  12 3V3']):
-        bt(l,W-27.0,9.0+i*1.5,0.9)
+        bt(l,W-21.0,9.4+i*1.4,0.9)
     # top: pin names of the power / SMU header J7 (pin 1 at x = 98.0)
     for k_,(num_,nm_) in enumerate((('1','ON+'),('2','F+'),('3','S+'),('4','S-'),('5','F-'))):
         text(num_,98.0+2.54*k_,4.5,0.8,layer=pcbnew.F_SilkS,thick=0.12); text(nm_,98.0+2.54*k_,8.9,0.8,layer=pcbnew.F_SilkS,thick=0.12)
