@@ -127,7 +127,7 @@ for i, row in enumerate(rows):
 # 60 --------------------------------------------------------------------------------------------
 ihead = abs(SB['i(v5)']) / 2                    # ngspice, OPA365 model (head_bias_t_3v3_results.txt: head plus an identical reference amplifier)
 pg = step('How to test the head',
-          ['Power the ADC board from the PMOD or the header J7 and connect the head to SENSOR IN (J1) with the coax. Measure the head first, then inject a known charge. A 10 pF capacitor from the function generator to the piezo + pad gives Q = 10 pF × ΔV.',
+          ['Power the ADC board from the PMOD (jumper on J7 pins 1 and 2) or from an SMU on J7. Connect the head to SENSOR IN (J1) with the coax. Measure the head first, then inject a known charge. A 10 pF capacitor from the function generator to the piezo + pad gives Q = 10 pF × ΔV.',
            f'A step of 100 mV injects 1 pC. The output moves by {1e-12/CF*1e3:.0f} mV, because Q / Cf = 1 pC / {CF*1e12:.0f} pF.'])
 chip(pg, label='EXPECTED VALUES')
 rows = [['Where', 'Expect'],

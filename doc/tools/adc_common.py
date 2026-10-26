@@ -71,7 +71,7 @@ assert abs(GAIN - 4.9) < 1e-9
 RAIL = 3.3                       # the 3.3 V rail from the PMOD, as simulated
 MID = RAIL / 2                   # VMID5 and VOCM, 1.65 V
 
-# listener thresholds: one chain from +3V3_L to ground, REFL in the middle
+# listener thresholds: one chain from +3V3 to ground, REFL in the middle
 _L = [val(r) for r in ('R21', 'R22', 'R39', 'R40', 'R41', 'R23')]
 assert _L[1] == _L[4] and _L[2] == _L[3] and _L[0] == _L[5]
 L_I = RAIL / sum(_L)                         # chain current, A
@@ -118,7 +118,7 @@ BLOCKS = [
     ('ADC input filter', '#2c9aa8', ['R16', 'R17', 'C14', 'C15', 'C16', 'C17']),
     ('ADS7057 and bypass', '#0e6e7a', ['U4', 'C18', 'C19', 'C20', 'C22']),
     ('SPI series resistors', '#6aa8b0', ['R18', 'R19', 'R20']),
-    ('3.3 V input and links', GRN, ['J7', 'JP2', 'JP3', 'JP4', 'JP5', 'JP6', 'R34', 'C21', 'C23']),
+    ('3.3 V input and links', GRN, ['J7', 'JP3', 'R34', 'C21', 'C23']),
     ('Listener', '#d89cc8', ['U6', 'U9', 'C40', 'R35', 'R36', 'C41', 'C28', 'C45', 'R21', 'R22', 'R39', 'R40', 'R41', 'R23',
                              'C43', 'C26', 'C42', 'C27', 'C44', 'R24', 'R42']),
     ('Bias-T for the head', '#d9822b', ['JP1', 'L2', 'R26', 'R27', 'C32', 'C33']),

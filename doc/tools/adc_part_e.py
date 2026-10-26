@@ -49,7 +49,7 @@ joints = json.load(open(os.path.join(FAB, 'joints.json')))
 # 45 --------------------------------------------------------------------------------------------
 pg = step('Which files go to the factory',
           [f'JLCPCB needs three files. The Gerber zip makes the bare board. The BOM names every part. The CPL gives the position and angle of each part.',
-           f'The main board zip holds {n_gb} files. The BOM has {n_lines} lines and {n_parts} parts. The CPL has {len(cpl)} rows. The mounting holes, the solder jumpers JP1 to JP6 and the test points are in none of them. The sensor head has its own zip, BOM and CPL.'])
+           f'The main board zip holds {n_gb} files. The BOM has {n_lines} lines and {n_parts} parts. The CPL has {len(cpl)} rows. The mounting holes, the solder jumpers JP1 and JP3 and the test points are in none of them. The sensor head has its own zip, BOM and CPL.'])
 chip(pg, label='FILES IN hw/fab')
 items = [('ADC_Test_gerbers.zip', 'Copper, mask, silk, paste, outline, drill', PUR),
          ('ADC_Test_BOM_JLC.csv', 'Value, references, footprint, LCSC number', BLU),
@@ -89,7 +89,7 @@ for ref in sorted(pos, key=lambda r: (r[0], int(re.sub(r'\D', '', r) or 0))):
 assert fix
 pg = step('What the placement viewer corrected',
           [f'The JLCPCB viewer showed parts turned wrong on the first revision. {len(fix)} rotations are corrected in the CPL. The new parts of this revision (U6 and U9 TLV7022, U8, L1, L2, J6) are not checked in the viewer yet. Each fix sits in `jlc_files.py`, not in the board.',
-           'The KiCad footprints and the JLC library disagree on the zero angle. J3 and J7 also have their origin on pin 1, so they are placed by that pin.'])
+           'The KiCad footprints and the JLC library disagree on the zero angle. J3 and J7 have their origin on pin 1. So the CPL moves both to the centre of the part. J7 is turned to 0, U6 and U9 to 180, and U8 on the head to 0.'])
 chip(pg, label='KICAD ROTATION AGAINST CPL ROTATION')
 table(pg, 4, 40, [14, 18, 18, 86], [['Ref', 'KiCad', 'CPL', 'Why']] + fix[:8], rh=5.6, size=2.5)
 pg.text(4, 80, 'Rule: look at every part in the viewer once. The viewer shows the real answer.', 2.5, MUTED)
@@ -129,8 +129,8 @@ section('BRING-UP AND CHECKS', 'Bring-up and checks', 'Section 8', 'Steps 49 to 
 
 # 49 --------------------------------------------------------------------------------------------
 pg = step('What to check before the PMOD goes in',
-          ['Cut JP6 and feed 3.3 V to the header J7 from a bench supply set to 3.3 V with a 100 mA limit. Leave the PMOD unplugged. Measure each rail at the test points against GND. Switch off if +3V3 is off by more than 0.1 V or the current is above 60 mA.',
-           'With the PMOD plugged in and JP6 closed, the same readings must appear. Never feed J7 and the PMOD at the same time.'])
+          ['Remove the J7 jumper. Feed 3.3 V to J7 pins 2 and 5 from an SMU or a bench supply with a 100 mA limit. Use pins 3 and 4 for Sense. Leave the PMOD unplugged. Measure each rail at the test points against GND. Switch off if +3V3 is off by more than 0.1 V or the current is above 60 mA.',
+           'With the PMOD plugged in and the jumper on J7 pins 1 and 2, the same readings must appear. Never use the jumper and the SMU at the same time.'])
 chip(pg, label='EXPECTED VOLTAGES, 3.3 V IN')
 rows = [['Node', 'Test point', 'Expect'],
         ['+3V3', 'TP11', '3.30 V'],
@@ -191,9 +191,9 @@ rows = [['Symptom', 'Likely cause', 'Check'],
         ['3.3 V low', 'Weak PMOD supply or short', 'TP11 under load'],
         ['SCOPE OUT flat', 'U1 or U2 not powered', '3.3 V at pin 8, JP3 closed'],
         ['SDO all zeros', 'First frame only', 'Read twice'],
-        ['SDO stuck', 'JP5 open or no 3.3 V', 'DVDD at U4 pin 4'],
+        ['SDO stuck', 'No 3.3 V on DVDD', '+3V3 at U4 pin 4'],
         ['WAKE_N always low', 'LST noisy or REFL off', 'TP18 must be 1.65 V'],
-        ['Code offset', 'VOCM or VMID off', 'Step 49 table, JP4']]
+        ['Code offset', 'VOCM or VMID off', 'Step 49 table, JP3 closed']]
 table(pg, 4, 40, [34, 52, 40], rows, rh=6.4, size=2.6)
 
 # 54 --------------------------------------------------------------------------------------------

@@ -141,7 +141,7 @@ pg.text(36, 80, 'via', 2.5, GRN, 'middle', True)
 # 37 --------------------------------------------------------------------------------------------
 pg = step('How the floor is planned',
           [f'The board is a narrow strip, {BW:.0f} × {BH:.1f} mm, so that boards fit on adjacent PMOD ports, about 22.7 mm apart. The signal runs from the SMA connectors on the left to the PMOD on the right.',
-           'The top row holds the bias-T, the high-pass, the gain, the low-pass and the mid-rail. The bottom row holds the listener, the driver, the ADC input filter and the ADC. The power links and the header J7 sit next to the PMOD.'])
+           'The top row holds the bias-T, the high-pass, the gain, the low-pass and the mid-rail. The bottom row holds the listener, the driver, the ADC input filter and the ADC. The power header J7 sits next to the PMOD.'])
 chip(pg, label='TOP VIEW, COLORS BY BLOCK')
 k = 0.95
 bx, by = 4, 36
@@ -165,7 +165,7 @@ n_tp = sum(1 for r in FP if r.startswith('TP'))
 n_jp = sum(1 for r in FP if r.startswith('JP'))
 n_smd = len(FP) - n_tht - n_hole - n_tp - n_jp        # the solder jumpers are copper only
 pg = step('Where every part is',
-          [f'The table lists the blocks, the references and the count. The main board has {len(FP)} footprints: {n_smd} surface-mount parts, {n_tht} through-hole parts and {n_hole} mounting holes and {n_tp} test points, plus {n_jp} solder jumpers (JP1 to JP6) that are copper only.',
+          [f'The table lists the blocks, the references and the count. The main board has {len(FP)} footprints: {n_smd} surface-mount parts, {n_tht} through-hole parts and {n_hole} mounting holes and {n_tp} test points, plus {n_jp} solder jumpers (JP1 and JP3) that are copper only.',
            'Every part has a place in exactly one block, and the same reference appears in the schematic, the BOM and the placement file.'])
 chip(pg, label='BLOCKS, REFERENCES')
 tot_ = 0
@@ -237,7 +237,7 @@ for i, n_ in enumerate(sel):
     pg.text(x_ + 26 + lens[n_] / mxl * 28 + 1.6, y_ + 4.6, f'{lens[n_]:.0f}', 2.5, INK, 'start', True)
 
 # 41 --------------------------------------------------------------------------------------------
-pw = ['+3V3', '+3V3_C', '+3V3_L', 'AVDD', 'VMID5', 'VOCM']
+pw = ['+3V3', '+3V3_C', 'AVDD', 'VMID5', 'VOCM']
 plen = {n: net_length(n) for n in pw}
 rho, thick = 1.7e-8, 35e-6
 drop5 = rho * plen['+3V3_C'] * 1e-3 / (0.2e-3 * thick) * (I_BAT_A := 0.027)
@@ -254,8 +254,8 @@ for i, n_ in enumerate(pw):
 
 # 42 --------------------------------------------------------------------------------------------
 pg = step('What each label on the silkscreen means',
-          ['The front carries the labels that a user needs: SENSOR IN and SCOPE OUT. The names of the parts (R16, C29 and so on) are not on the silkscreen, because the board is dense. They are in the KiCad file and in the 1:1 print.',
-           'The back carries the name of each test point and each solder jumper, the Auselia logo, the PMOD pin list and the title.'])
+          ['The front carries SENSOR IN and SCOPE OUT. It also has the number of every test point (TP3 to TP20) and every IC (U1 to U4, U6, U9). It names the jumpers JP1 and JP3 and the pins of the header J7. The small parts (R16, C29) have no name on the silkscreen, because the board is dense. Their names are in the KiCad file and in the 1:1 print.',
+           'The back is one panel. It has a table of the test point names, the PMOD pins, the J7 pins and the jumpers. It also has the Auselia logo and the title AFE Test Board.'])
 chip(pg, label='FRONT SIDE')
 k = 1.02
 bx, by = 4, 38
@@ -264,8 +264,8 @@ marks = [('SENSOR IN', 5.4, 1.2, 1), ('SCOPE OUT', 5.4, 20.7, 2), ('test points'
 for nm, x_, y_, n_ in marks:
     pg.circle(bx + x_ * k + 7, by + y_ * k + 2.5, 2.2, AMBT, INK, 0.3)
     pg.text(bx + x_ * k + 7, by + y_ * k + 3.4, n_, 2.5, INK, 'middle', True)
-lst = ['SENSOR IN: J1, sensor head, 3.3 V on the centre', 'SCOPE OUT: J4, the signal at the ADC (front)', 'test points: the name of each pad is on the back',
-       'jumpers: JP1 to JP6, name on the back', 'PMOD pin list and the Auselia logo: back']
+lst = ['SENSOR IN: J1, sensor head, 3.3 V on the centre', 'SCOPE OUT: J4, the signal at the ADC (front)', 'test points: TP and IC numbers on the top silkscreen; the table of names is on the back',
+       'power header J7 (1 to 5) and jumpers JP1, JP3: names on the top', 'PMOD pin list, J7 legend and the AFE Test Board logo: back']
 for i, t_ in enumerate(lst):
     pg.text(bx + 4, by + BH * k + 6 + i * 5.0, f'{i+1}  {t_}', 2.5, INK, 'start', True)
 
@@ -276,8 +276,8 @@ pg = step('Which footprints are tricky',
           [f'The ADS7057 pads are {pw_:.2f} × {ph_:.2f} mm at 0.5 mm pitch. The gap between pads is 0.25 mm, so the solder mask web is thin. JLCPCB assembled it in the quote without a warning.',
            'Three other parts need care. The factory model of each one had a different orientation or origin from the footprint, and the CPL now corrects it.'])
 chip(pg, label='PARTS TO WATCH')
-cards_ = [('U4  ADS7057', 'X2QFN-8, 1.5 mm', 'pin 1 mark checked, rotated 180'), ('U6, U9  TLV7022', 'SOT-23-8, 0.65 mm pitch', 'check in the JLC viewer'),
-          ('U8  OPA365 (head)', 'SOT-23-5', 'check in the JLC viewer'), ('J3  PMOD', 'right-angle 2 × 6', 'set absolute angle, 5.9 mm beyond the edge')]
+cards_ = [('U4  ADS7057', 'X2QFN-8, 1.5 mm', 'pin 1 mark checked, rotated 180'), ('U6, U9  TLV7022', 'SOT-23-8, 0.65 mm pitch', 'checked in the viewer, rotation 180'),
+          ('U8  OPA365 (head)', 'SOT-23-5', 'rotation 0 after the viewer check'), ('J3, J7  headers', 'J3 right-angle 2 × 6, J7 1 × 5', 'angle and centre moved in the CPL')]
 for i, (a_, b_, c_) in enumerate(cards_):
     x_, y_ = 2 + (i % 2) * 68, 40 + (i // 2) * 21
     pg.rect(x_, y_, 64, 18, BONE2, 'none', 0, 2)
@@ -287,12 +287,12 @@ for i, (a_, b_, c_) in enumerate(cards_):
 
 # 44 --------------------------------------------------------------------------------------------
 pg = step('What the board looks like',
-          ['The render is from the final KiCad file. J1 and J4 stand on the left edge, J1 above J4. The PMOD header J3 points off the right edge. The 2-pin header J7 and the solder jumpers are next to it.',
+          ['The render is from the final KiCad file. J1 and J4 stand on the left edge, J1 above J4. The PMOD header J3 points off the right edge. The 5-pin power header J7 and the solder jumpers are next to it.',
            'The two holes are M3 mounting holes.'])
 chip(pg, label='3D RENDER, KICAD')
 _wa, _ha = __import__('PIL.Image', fromlist=['Image']).open(os.path.join(REPO, 'doc', 'assets', 'render_angled.jpg')).size
 image(pg, os.path.join(REPO, 'doc', 'assets', 'render_angled.jpg'), 0, 38, 82, 82 * _ha / _wa)
-for i, t_ in enumerate(['J1: SENSOR IN, left edge, top', 'J4: SCOPE OUT, left edge, bottom', 'J3: PMOD, right edge', 'J7 and JP2 to JP6: power links', 'U4: ADS7057, right third']):
+for i, t_ in enumerate(['J1: SENSOR IN, left edge, top', 'J4: SCOPE OUT, left edge, bottom', 'J3: PMOD, right edge', 'J7: power and SMU header', 'U4: ADS7057, right third']):
     pg.text(86, 44 + i * 6.0, t_, 2.5, INK, 'start', True)
 
 # top view page (after step 44) -----------------------------------------------------------------

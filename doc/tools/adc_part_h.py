@@ -135,10 +135,10 @@ pg = step('Does the power-up order matter?',
           ['The ADS7057 datasheet gives no sequencing rule. It gives limits: AVDD and DVDD up to 3.9 V, inputs up to AVDD + 0.3 V and logic inputs up to DVDD + 0.3 V. The 22 Ω resistors and the 10 Ω resistors keep a stray current under the 10 mA pin limit.',
            'On this board AVDD and DVDD come from the same 3.3 V rail, so they rise together. One thing matters in practice: AVDD must be stable before the first SPI frame, because that frame calibrates the offset. The VMID5 rail needs about 25 ms (step 4), so wait that long after power-up.'])
 chip(pg, label='WHO POWERS WHAT')
-pbox(pg, 2, 40, 28, 14, 'PMOD 3.3 V', ['or header J7'], 'ext')
-pbox(pg, 44, 40, 24, 14, 'JP4, R34', ['C21 10 µF'], 'bus')
+pbox(pg, 2, 40, 28, 14, 'PMOD 3.3 V', ['or SMU on J7'], 'ext')
+pbox(pg, 44, 40, 24, 14, 'JP3, R34', ['C21 10 µF'], 'bus')
 pbox(pg, 82, 40, 28, 14, 'AVDD', ['reference'], 'mem')
-pbox(pg, 44, 62, 24, 14, 'JP5', ['same rail'], 'bus')
+pbox(pg, 44, 62, 24, 14, '+3V3', ['direct'], 'bus')
 pbox(pg, 82, 62, 28, 14, 'DVDD', ['SPI side'], 'mem')
 pg.arrow([(30, 47), (44, 47)]); pg.arrow([(68, 47), (82, 47)]); pg.line(30, 47, 36, 47, INK, 0.5)
 pg.line(36, 47, 36, 69, INK, 0.5); pg.arrow([(36, 69), (44, 69)]); pg.arrow([(68, 69), (82, 69)])

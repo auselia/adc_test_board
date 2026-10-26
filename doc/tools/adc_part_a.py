@@ -85,8 +85,8 @@ pbox(pg, *B['ADC'], 'ADS7057', ['14 bit, SPI', 'U4'], 'mem')
 pbox(pg, *B['SPI port'], 'PMOD J3', ['CS, SCLK, SDO', 'WAKE_N, BIG_N, 3V3'], 'bus')
 pbox(pg, *B['Scope out'], 'SCOPE OUT', ['J4, 51 Ω'], 'ext')
 pbox(pg, *B['Wake-up'], 'Listener', ['TLV7022 pair', 'U6 WAKE, U9 BIG'], 'ctrl')
-pbox(pg, 9, 134, 28, 22, '3.3 V in', ['PMOD J3', 'or header J7'], 'ext')
-pbox(pg, 44, 134, 40, 22, '+3V3 links', ['JP2 to JP6', 'one ammeter gap each'], 'bus')
+pbox(pg, 9, 134, 28, 22, '3.3 V in', ['PMOD J3 to J7', 'jumper 1-2'], 'ext')
+pbox(pg, 44, 134, 40, 22, 'Power header J7', ['SMU: Force, Sense', 'JP3 capture rail'], 'bus')
 pbox(pg, 91, 134, 36, 22, 'AVDD 3.3 V', ['10 Ω, 10 µF', 'R34, C21'], 'bus')
 pbox(pg, 150, 134, 50, 22, f'VMID5 {MID:.2f} V', ['divider and buffer'], 'ctrl')
 pbox(pg, 208, 134, 50, 22, 'VOCM 1.65 V', ['AVDD / 2'], 'ctrl')
@@ -103,15 +103,15 @@ lab(pg, 192, 109.4, 'WAKE_N, BIG_N', 'middle')
 pg.arrow([(37, 145), (44, 145)])
 pg.arrow([(84, 145), (91, 145)])
 pg.line(8, 129, 262, 129, '#8c8c8c', 0.5, '1.2,1.0')
-pg.text(262, 127.6, '+3V3_C rail to U1, U2 and U3, +3V3_L to the listener', 2.3, MUTED, 'end')
+pg.text(262, 127.6, '+3V3_C rail (JP3) to U1, U2, U3 and AVDD; the listener is on +3V3', 2.3, MUTED, 'end')
 for xx in (56, 90, 122, 159):
     pg.arrow([(xx, 129), (xx, 126)], '#8c8c8c', 0.4)
 pg.line(122, 126, 122, 122, '#8c8c8c', 0.4, '1.2,1.0')
 pg.arrow([(197, 88), (197, 100)], '#8c8c8c', 0.4, '1.2,1.0')
-lab(pg, 199, 98, 'DVDD 3.3 V from the same rail', 'start', 2.3, MUTED)
+lab(pg, 199, 98, 'DVDD is on +3V3', 'start', 2.3, MUTED)
 cards = [
     ('THE BASICS', 'part 0', 'What the signal is, why 1.65 V, what an ADC measures and why the filter comes first.'),
-    ('POWER', 'steps 1 to 6', '3.3 V from the PMOD only, the four links, the AVDD filter and the 1.65 V mid-rails.'),
+    ('POWER', 'steps 1 to 6', '3.3 V from the PMOD only, the power header J7, the AVDD filter and the 1.65 V mid-rails.'),
     ('SIGNAL AND ADC', 'steps 7 to 24', 'High-pass, gain, low-pass, then the driver and the ADC with its input filter.'),
     ('SPI AND WAKE-UP', 'steps 25 to 35', 'The SPI wires, the frame and its power-up rule, and the listener that raises WAKE_N and BIG_N.'),
     ('THE BOARD', 'steps 36 to 48', 'Layers, floor plan, every part and where it sits, routing, files for the factory and the cost.'),

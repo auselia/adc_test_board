@@ -6,39 +6,38 @@ from adc_common import *
 # SECTION 1: POWER AND REFERENCES
 # ================================================================================================
 section('POWER AND REFERENCES', 'Power and references', 'Section 1', 'Steps 1 to 6',
-        'How 3.3 V comes in from the ZedBoard PMOD alone, how the four links split it, how AVDD is filtered and how the 1.65 V mid-rails are made. '
+        'How 3.3 V comes in from the ZedBoard PMOD alone, how the power header J7 and the link JP3 serve it, how AVDD is filtered and how the 1.65 V mid-rails are made. '
         'Everything else on the board rests on these rails.', active=['Power', 'Mid-rails'])
 
 # 1 ---------------------------------------------------------------------------------------------
 pg = step('How 3.3 V comes in',
-          ['The board takes all its power from the ZedBoard PMOD. Pins 6 and 12 of J3 carry 3.3 V, and pins 5 and 11 carry ground. There is no USB, no regulator and no diode. The solder jumper JP6 joins the PMOD pins to the board rail +3V3.',
-           'To run the board on the bench without a ZedBoard, cut JP6 and feed 3.3 V to the 2-pin header J7. Never feed both at once.'])
+          ['The board takes all its power from the ZedBoard PMOD. Pins 6 and 12 of J3 carry 3.3 V, and pins 5 and 11 carry ground. There is no USB, no regulator and no diode. The 5-pin header J7 is the power entry: pin 1 is the PMOD 3.3 V, pins 2 and 3 are the board rail +3V3, pins 4 and 5 are ground. A jumper from pin 1 to pin 2 powers the board from the ZedBoard.',
+           'For a bench supply or a source-measure unit (SMU), remove the jumper. Connect Force to pins 2 and 5, and Sense to pins 3 and 4. Never use the jumper and the SMU together.'])
 chip(pg, label='INPUT PATH')
 pbox(pg, 2, 40, 28, 14, 'PMOD J3', ['pins 6 and 12'], 'ext')
-pbox(pg, 2, 62, 28, 14, 'Header', ['J7, 3.3 V'], 'ext')
-pbox(pg, 52, 40, 22, 14, 'JP6', ['solder link'], 'arith')
+pbox(pg, 2, 62, 28, 14, 'SMU', ['Force, Sense'], 'ext')
+pbox(pg, 44, 40, 34, 14, 'J7 pins 1-2', ['jumper'], 'arith')
 pbox(pg, 104, 51, 30, 14, '+3V3', ['C23, 10 µF'], 'bus')
-pg.arrow([(30, 47), (52, 47)])
-pg.line(74, 47, 90, 47, INK, 0.5); pg.line(90, 47, 90, 58, INK, 0.5); pg.arrow([(90, 58), (104, 58)])
+pg.arrow([(30, 47), (44, 47)])
+pg.line(78, 47, 90, 47, INK, 0.5); pg.line(90, 47, 90, 58, INK, 0.5); pg.arrow([(90, 58), (104, 58)])
 pg.line(30, 69, 90, 69, INK, 0.5); pg.line(90, 69, 90, 58, INK, 0.5)
-pg.text(62, 82, 'one source at a time: PMOD or header', 2.5, MUTED, 'middle')
-assert ('JP6', '1') in NET['+3V3_PMOD'] and ('JP6', '2') in NET['+3V3'] and ('J7', '1') in NET['+3V3'] and ('J3', '11') in NET['+3V3_PMOD']
+pg.text(62, 82, 'one source at a time: jumper or SMU (pins 2 and 3)', 2.5, MUTED, 'middle')
+assert ('J7', '1') in NET['+3V3_PMOD'] and ('J7', '2') in NET['+3V3'] and ('J7', '3') in NET['+3V3'] and ('J3', '11') in NET['+3V3_PMOD']
 
 # 2 ---------------------------------------------------------------------------------------------
-pg = step('Why the four links JP2 to JP5',
-          ['Four solder jumpers split the 3.3 V into the rails that the blocks use. JP2 feeds the listener (+3V3_L), JP3 the capture chain (+3V3_C), JP4 the ADC reference path (AVDD) and JP5 the ADC logic (DVDD). All four are closed. The board is always on.',
-           'To measure the current of one block, cut its jumper with a knife and solder a 2-pin header or an ammeter across the gap. Close the jumper with a drop of solder when you are done.'])
+pg = step('The power header J7 and the link JP3',
+          ['J7 has five pins for a four-wire SMU: 1 Onboard +, 2 Force +, 3 Sense +, 4 Sense -, 5 Force -. Pins 2 and 3 meet at the board rail. Pins 4 and 5 are ground. The SMU reads the board current.',
+           'JP3 is a solder jumper, closed, between +3V3 and the capture rail +3V3_C (U1, U2, U3 and AVDD). The listener and DVDD sit on +3V3. Open JP3 to measure the capture chain alone or to feed it from a switch later.'])
 chip(pg, label='RAILS AND LINKS')
 pbox(pg, 2, 54, 22, 14, '+3V3', [], 'bus')
-rows_l = [('JP2', '+3V3_L', 'listener', 38), ('JP3', '+3V3_C', 'U1, U2, U3', 50), ('JP4', 'AVDD', 'ADC reference, after JP3', 62), ('JP5', 'DVDD', 'ADC logic', 74)]
+rows_l = [('J7 1-2', '+3V3', 'from the PMOD', 38), ('J7 2-3', '+3V3', 'SMU Force and Sense', 50), ('JP3', '+3V3_C', 'U1, U2, U3, AVDD', 62), ('+3V3', '+3V3', 'listener and DVDD', 74)]
 pg.line(24, 61, 34, 61, INK, 0.5); pg.line(34, 42, 34, 78, INK, 0.5)
 for nm, rail, who, yy in rows_l:
     pg.arrow([(34, yy + 4), (46, yy + 4)])
     pbox(pg, 46, yy - 1.5, 18, 11, nm, [], 'arith', 2.6, 2.2)
     pg.arrow([(64, yy + 4), (76, yy + 4)])
     pg.text(78, yy + 3.2, f'{rail}   {who}', 2.5, INK, 'start', True)
-for nm, rail, who, yy in rows_l:
-    assert (nm, '1') in NET['+3V3'] or (nm, '1') in NET['+3V3_C'] or (nm, '1') in NET['AVDD_IN'] or (nm, '1') in NET['+3V3']
+assert ('JP3', '1') in NET['+3V3'] and ('JP3', '2') in NET['+3V3_C']
 
 # 3 ---------------------------------------------------------------------------------------------
 R_A, C_A = val('R34'), val('C21')
@@ -46,13 +45,11 @@ f_a = 1 / (2 * math.pi * R_A * C_A)
 a_250 = 1 / math.sqrt(1 + (250e3 / f_a) ** 2)
 pg = step('Where the ADC reference comes from',
           ['The ADS7057 uses its supply pin AVDD as its reference. Full scale is ±AVDD, so noise on AVDD is noise in every code.',
-           f'There is no second regulator. AVDD comes from the rail through JP4, a 10 Ω resistor (R34) and 10 µF (C21). That RC has a corner at {f_a:.0f} Hz and removes {-db(a_250):.0f} dB at 250 kHz (ESTIMATE). The 4.7 µF C18 and the 100 nF C22 sit at the ADC pin.'])
+           f'There is no second regulator. AVDD comes from the capture rail through a 10 Ω resistor (R34) and 10 µF (C21). That RC has a corner at {f_a:.0f} Hz and removes {-db(a_250):.0f} dB at 250 kHz (ESTIMATE). The 4.7 µF C18 and the 100 nF C22 sit at the ADC pin.'])
 chip(pg, label='AVDD PATH')
 pbox(pg, 2, 40, 22, 18, '+3V3_C', [], 'bus')
 pbox(pg, 100, 40, 36, 18, 'ADS7057', ['pin 6, AVDD'], 'mem')
-pg.arrow([(24, 49), (34, 49)])
-pbox(pg, 34, 43, 14, 12, 'JP4', [], 'arith', 2.6, 2.2)
-pg.line(48, 49, 56, 49, INK, 0.5)
+pg.line(24, 49, 56, 49, INK, 0.5)
 res_h(pg, 56, 49, 12, 'R34', '10 Ω')
 pg.line(68, 49, 100, 49, INK, 0.5)
 pg.arrow([(96, 49), (100, 49)])
@@ -119,7 +116,7 @@ LOADS = [('OPA2365, 4 channels', 4 * 4.6), ('Sensor head', 4.7), ('VOCM divider'
 I_BAT = sum(v for _, v in LOADS)
 pg = step('How much current, and where to probe',
           [f'The board draws about {I_BAT:.0f} mA from the 3.3 V of the PMOD (ESTIMATE from datasheet typical values). The four op-amp channels and the sensor head are the largest parts. The listener is only about 25 µA.',
-           'Every stage has a test point. The list below names the rails. The four links of step 2 let you check each block alone.'])
+           'Every stage has a test point. The list below names the rails. J7 and JP3 (step 2) let you read the total current with an SMU, or the capture chain alone.'])
 chip(pg, label='ESTIMATE, mA')
 x_ = 4
 tot = sum(v for _, v in LOADS)
