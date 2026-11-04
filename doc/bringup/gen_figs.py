@@ -6,10 +6,10 @@ from matplotlib.patches import Rectangle, FancyBboxPatch, Circle
 F='/Users/nico/Documents/GitHub/adc_test_board/doc/fonts/'
 for f in ('Inter-Regular.ttf','Inter-SemiBold.ttf','Inter-Bold.ttf','IBMPlexMono-Regular.ttf'): fm.fontManager.addfont(F+f)
 plt.rcParams['font.family']='Inter'; plt.rcParams['svg.fonttype']='none'
-INK='#14231b'; GRN='#0f3d2a'; AMB='#d89a2b'; MUT='#566559'; RED='#b3261e'; BLU='#3b6aa8'; PNK='#c25a9a'
+INK='#14261C'; GRN='#1B3A2B'; AMB='#E8A13A'; MUT='#5C7A63'; RED='#b3261e'; BLU='#3b6aa8'; PNK='#c25a9a'
 D='/Users/nico/Documents/GitHub/adc_test_board/doc/data/'
 B=json.load(open(D+'board.json')); H=json.load(open(D+'head.json')); S=json.load(open(D+'sim.json'))
-def save(fig,n): fig.savefig(n+'.pdf',bbox_inches='tight'); fig.savefig(n+'.png',dpi=200,bbox_inches='tight'); plt.close(fig)
+def save(fig,n): fig.savefig(n+'.pdf',bbox_inches='tight',transparent=True); fig.savefig(n+'.png',dpi=200,bbox_inches='tight',transparent=True); plt.close(fig)
 # ---- 1. board map
 def board_map(data,name,figsize,labels,tps=True,rot=False):
     fig,ax=plt.subplots(figsize=figsize); W,Hh=data['size']

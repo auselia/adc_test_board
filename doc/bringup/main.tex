@@ -9,23 +9,17 @@
 \usetikzlibrary{calc}
 \tcbuselibrary{skins}
 \sisetup{per-mode=symbol}
-\definecolor{ink}{HTML}{14231B}\definecolor{dark}{HTML}{16251E}\definecolor{amber}{HTML}{E8A23C}\definecolor{grn}{HTML}{0F3D2A}\definecolor{mut}{HTML}{566559}
-\definecolor{okbg}{HTML}{E4EFE6}\definecolor{badbg}{HTML}{F7E6D0}\definecolor{noteb}{HTML}{ECEFE9}
+\definecolor{ink}{HTML}{1A1A1A}\definecolor{dark}{HTML}{14261C}\definecolor{amber}{HTML}{E8A13A}\definecolor{grn}{HTML}{1B3A2B}\definecolor{mut}{HTML}{5C7A63}\definecolor{bone}{HTML}{F4F1EA}\definecolor{bonetwo}{HTML}{EDE8DC}\definecolor{sap}{HTML}{A9C7A0}
+\definecolor{okbg}{HTML}{E1EBDB}\definecolor{badbg}{HTML}{F6E4C4}\definecolor{noteb}{HTML}{EDE8DC}
 \color{ink}
 \setlength{\parindent}{0pt}\setlength{\parskip}{6pt}\renewcommand{\arraystretch}{1.25}
-\titleformat{\section}{\Large\bfseries}{\thesection}{0.7em}{}
-\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.6em}{}
+\titleformat{\section}{\Large\bfseries\color{grn}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{grn}}{\thesubsection}{0.6em}{}
 \titlespacing*{\section}{0pt}{16pt}{6pt}\titlespacing*{\subsection}{0pt}{12pt}{4pt}
 \captionsetup{font={small},labelfont=bf,labelsep=period,justification=raggedright,singlelinecheck=false}
-% Auselia mark, geometry from platform/brand/mark/svg (viewBox units, y flipped); #1 stem and leaf, #2 bud and arcs
-\newcommand{\lmk}[2]{\tikz[baseline=-1.6mm,x=0.0125cm,y=0.0125cm]{%
- \draw[line width=0.0625cm,line cap=round,line join=round,color=#1] (28,-58) -- (28,-12);
- \fill[color=#1] (28,-48) .. controls (28,-37) and (18,-31) .. (7,-31) .. controls (7,-42) and (17,-50) .. (28,-48) -- cycle;
- \fill[color=#2] (28,-24) circle (6);
- \draw[line width=0.045cm,line cap=round,color=#2] (39.5,-32) arc (-34.8:34.8:14);
- \draw[line width=0.045cm,line cap=round,color=#2] (46,-36.6) arc (-35.1:35.1:22);}}
-\newcommand{\lm}{\lmk{grn}{amber}}
-\newcommand{\lmr}{\lmk{white}{amber}}
+% Auselia mark: the brand SVGs converted to PDF (platform/brand/mark/svg), never redrawn
+\newcommand{\lm}{\includegraphics[height=0.85cm]{mark_color.pdf}}
+\newcommand{\lmr}[1][1.25cm]{\includegraphics[height=#1]{mark_reversed.pdf}}
 \pagestyle{fancy}\fancyhf{}
 \fancyhead[L]{\color{ink}\lm}\fancyhead[R]{\small ADS7057 AFE test board: bring-up guide}
 \fancyfoot[L]{\small Auselia $\cdot$ Internal $\cdot$ v0.1}\fancyfoot[R]{\small\thepage}
@@ -42,16 +36,16 @@
 % ---------------- cover
 \thispagestyle{empty}\pagecolor{dark}\color{white}
 \begin{tikzpicture}[remember picture,overlay]
- \node[anchor=north west,xshift=2.5cm,yshift=-3.2cm] at (current page.north west) {\scalebox{3.6}{\lmr}\hspace{1.2em}{\titlefont\fontsize{30}{30}\selectfont\color{white}AUS\color{amber}ELIA}};
+ \node[anchor=north west,xshift=2.5cm,yshift=-3.2cm] at (current page.north west) {\raisebox{-0.22cm}{\lmr[1.45cm]}\hspace{0.1cm}{\titlefont\fontsize{30}{30}\selectfont\color{bone}AUS\color{amber}ELIA}};
  \node[anchor=north west,text width=13cm,xshift=2.5cm,yshift=-10.5cm,font=\scriptsize\ttfamily,text=white!60!dark] at (current page.north west) {INTERNAL TECHNICAL DOCUMENT};
- \node[anchor=north west,text width=14cm,xshift=2.5cm,yshift=-11.4cm] at (current page.north west) {\titlefont\fontsize{34}{40}\selectfont\color{white!94!dark} ADS7057 AFE test board:\\bring-up guide};
+ \node[anchor=north west,text width=14cm,xshift=2.5cm,yshift=-11.4cm] at (current page.north west) {\titlefont\fontsize{34}{40}\selectfont\color{bone} ADS7057 AFE test board:\\bring-up guide};
  \node[anchor=north west,text width=14cm,xshift=2.5cm,yshift=-17.0cm] at (current page.north west) {\large\color{white!85!dark} Seven steps from the first power-up to a head on the plant};
  \foreach \y/\a/\b in {23.5/AUTHOR/{Nicol\'as Villegas},24.4/DATE/{4 November 2026},25.3/VERSION/{0.1},26.2/STATUS/{Draft for the first boards}}{
    \node[anchor=north west,xshift=2.5cm,yshift=-\y cm,font=\scriptsize\ttfamily,text=white!55!dark] at (current page.north west) {\a};
    \node[anchor=north west,xshift=6.0cm,yshift=-\y cm,font=\small,text=white] at (current page.north west) {\b};}
  \node[anchor=north west,xshift=2.5cm,yshift=-28.2cm,font=\tiny\ttfamily,text=white!50!dark] at (current page.north west) {AUSELIA / INTERNAL / VERSION 0.1};
 \end{tikzpicture}
-\clearpage\nopagecolor\color{ink}
+\clearpage\pagecolor{bone}\color{ink}
 % ---------------- 1
 \section{About this guide}
 This guide takes the first assembled boards from the box to a measured result. It follows the order of the signal: power first, then the chain, then the listener, then the SPI link, then the sensor head, and last the head on the plant.
