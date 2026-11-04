@@ -21,9 +21,10 @@
 \newcommand{\lm}{\includegraphics[height=0.85cm]{mark_color.pdf}}
 \newcommand{\lmr}[1][1.25cm]{\includegraphics[height=#1]{mark_reversed.pdf}}
 \pagestyle{fancy}\fancyhf{}
-\fancyhead[L]{\color{ink}\lm}\fancyhead[R]{\small ADS7057 AFE test board: bring-up guide}
-\fancyfoot[L]{\small Auselia $\cdot$ Internal $\cdot$ v0.1}\fancyfoot[R]{\small\thepage}
-\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\headrulewidth}{0pt}
+\newcommand{\faintmark}{\tikz[baseline=-0.9mm]\node[opacity=0.45,inner sep=0]{\includegraphics[height=0.62cm]{mark_color.pdf}};}
+\fancyfoot[L]{\faintmark\hspace{0.7em}{\ttfamily\fontsize{6.6}{8}\selectfont\color{mut}AUSELIA\ \ /\ \ ADS7057 AFE TEST BOARD\ \ /\ \ BRING-UP GUIDE\ \ /\ \ VERSION 0.1}}
+\fancyfoot[R]{{\ttfamily\fontsize{6.6}{8}\selectfont\color{mut}\thepage}}
 \newenvironment{pass}{\begin{tcolorbox}[colback=okbg,colframe=grn,boxrule=0.5pt,arc=2pt,left=6pt,right=6pt,top=3pt,bottom=3pt,title={\textbf{Pass}},coltitle=white,fonttitle=\small,attach boxed title to top left={yshift=-2mm,xshift=2mm},boxed title style={colback=grn,arc=1pt}]}{\end{tcolorbox}}
 \newenvironment{fail}{\begin{tcolorbox}[colback=badbg,colframe=amber!85!black,boxrule=0.5pt,arc=2pt,left=6pt,right=6pt,top=3pt,bottom=3pt,title={\textbf{If not}},coltitle=white,fonttitle=\small,attach boxed title to top left={yshift=-2mm,xshift=2mm},boxed title style={colback=amber!85!black,arc=1pt}]}{\end{tcolorbox}}
 \newenvironment{warn}{\begin{tcolorbox}[colback=red!6,colframe=red!60!black,boxrule=0.6pt,arc=2pt,left=6pt,right=6pt,top=3pt,bottom=3pt,title={\textbf{Careful}},coltitle=white,fonttitle=\small,attach boxed title to top left={yshift=-2mm,xshift=2mm},boxed title style={colback=red!60!black,arc=1pt}]}{\end{tcolorbox}}
@@ -33,19 +34,24 @@
 \setlist[enumerate]{leftmargin=2em,itemsep=2pt,topsep=2pt}
 \setlist[itemize]{leftmargin=1.4em,itemsep=2pt,topsep=2pt}
 \begin{document}
-% ---------------- cover
-\thispagestyle{empty}\pagecolor{dark}\color{white}
+% ---------------- cover (white, printer friendly: mark with signal rings, wordmark above the title)
+\thispagestyle{empty}
 \begin{tikzpicture}[remember picture,overlay]
- \node[anchor=north west,xshift=2.5cm,yshift=-3.2cm] at (current page.north west) {\raisebox{-0.22cm}{\lmr[1.45cm]}\hspace{0.1cm}{\titlefont\fontsize{30}{30}\selectfont\color{bone}AUS\color{amber}ELIA}};
- \node[anchor=north west,text width=13cm,xshift=2.5cm,yshift=-10.5cm,font=\scriptsize\ttfamily,text=white!60!dark] at (current page.north west) {INTERNAL TECHNICAL DOCUMENT};
- \node[anchor=north west,text width=14cm,xshift=2.5cm,yshift=-11.4cm] at (current page.north west) {\titlefont\fontsize{34}{40}\selectfont\color{bone} ADS7057 AFE test board:\\bring-up guide};
- \node[anchor=north west,text width=14cm,xshift=2.5cm,yshift=-17.0cm] at (current page.north west) {\large\color{white!85!dark} Seven steps from the first power-up to a head on the plant};
- \foreach \y/\a/\b in {23.5/AUTHOR/{Nicol\'as Villegas},24.4/DATE/{4 November 2026},25.3/VERSION/{0.1},26.2/STATUS/{Draft for the first boards}}{
-   \node[anchor=north west,xshift=2.5cm,yshift=-\y cm,font=\scriptsize\ttfamily,text=white!55!dark] at (current page.north west) {\a};
-   \node[anchor=north west,xshift=6.0cm,yshift=-\y cm,font=\small,text=white] at (current page.north west) {\b};}
- \node[anchor=north west,xshift=2.5cm,yshift=-28.2cm,font=\tiny\ttfamily,text=white!50!dark] at (current page.north west) {AUSELIA / INTERNAL / VERSION 0.1};
+ \pgfmathsetmacro{\H}{9.4}\pgfmathsetmacro{\sc}{\H/64}
+ \node[anchor=north east,inner sep=0] (m) at ($(current page.north east)+(-1.6cm,-2.6cm)$) {\includegraphics[height=\H cm]{mark_color.pdf}};
+ \coordinate (c) at ($(m.north west)+(32.6*\sc cm,-21*\sc cm)$);
+ \draw[amber,opacity=0.75,line width=0.5pt] (c) circle (11.1*\sc cm);
+ \draw[amber,opacity=0.5,line width=0.5pt] (c) circle (17.6*\sc cm);
+ \draw[amber,opacity=0.32,line width=0.5pt] (c) circle (27.9*\sc cm);
+ \node[anchor=north west,xshift=2.2cm,yshift=-2.6cm,font=\scriptsize\ttfamily,text=mut] at (current page.north west) {BRING-UP GUIDE\ \ /\ \ VERSION 0.1};
+ \node[anchor=north west,xshift=2.2cm,yshift=-13.3cm] at (current page.north west) {\titlefont\fontsize{46}{46}\selectfont\color{grn}AUS\color{amber}ELIA};
+ \node[anchor=north west,text width=15.5cm,xshift=2.2cm,yshift=-15.4cm] at (current page.north west) {\titlefont\fontsize{26}{31}\selectfont\color{grn}ADS7057 AFE test board:\\bring-up guide};
+ \node[anchor=north west,text width=15cm,xshift=2.2cm,yshift=-19.0cm] at (current page.north west) {\large\color{ink} Seven steps from the first power-up to a head on the plant.};
+ \node[anchor=north west,text width=14cm,xshift=2.2cm,yshift=-21.2cm] at (current page.north west) {\small\color{mut} Each step has a goal, what to do, a table of what you should see, and what to check if it does not match. Every expected number comes from the simulation of the as-built board.};
+ \node[anchor=north west,xshift=2.2cm,yshift=-25.2cm,font=\scriptsize\ttfamily,text=mut] at (current page.north west) {Version 0.1\ \ /\ \ November 4, 2026\ \ /\ \ Nicol\'as Villegas};
+ \node[anchor=north west,xshift=2.2cm,yshift=-27.6cm,font=\tiny\ttfamily,text=mut] at (current page.north west) {AUSELIA\ \ /\ \ ADS7057 AFE TEST BOARD\ \ /\ \ BRING-UP GUIDE\ \ /\ \ VERSION 0.1};
 \end{tikzpicture}
-\clearpage\pagecolor{bone}\color{ink}
+\clearpage
 % ---------------- 1
 \section{About this guide}
 This guide takes the first assembled boards from the box to a measured result. It follows the order of the signal: power first, then the chain, then the listener, then the SPI link, then the sensor head, and last the head on the plant.
